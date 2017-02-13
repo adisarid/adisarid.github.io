@@ -9,6 +9,35 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:["timeline"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+      var container = document.getElementById('adi.cv');
+      var chart = new google.visualization.Timeline(container);
+      var dataTable = new google.visualization.DataTable();
+      var today = new Date();
+      var mm = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
+
+      dataTable.addColumn({ type: 'string', id: 'Type' });
+      dataTable.addColumn({ type: 'string', id: 'Institute/workplace' });
+      dataTable.addColumn({ type: 'date', id: 'Start' });
+      dataTable.addColumn({ type: 'date', id: 'End' });
+      dataTable.addRows([
+        [ 'Education', 'The Technion, Haifa (GPA 85.2, graduated Cum Laude), BA', new Date(2002, 9, 1), new Date(2005, 9, 1) ],
+        [ 'Education', 'Tel-Aviv university (GPA 92.0), MSc', new Date(2007, 9, 1), new Date(2011, 9, 1) ],
+        [ 'Education', 'Tel-Aviv university, PhD (in progress)', new Date(2013, 9, 1), new Date(yyyy, mm, 1) ],
+        [ 'Work', 'IDF Navy - Section of Operations Research', new Date(2005, 9, 2), new Date(2010, 9, 2) ],
+        [ 'Work', 'IDF Planning Directorate - The Center for Military Research and Analysis', new Date(2010, 9, 2), new Date(2012, 9, 2) ],
+        [ 'Work', 'Sarid Research Institute - Head of Operations Research and Partner', new Date(2012, 9, 2), new Date(yyyy, mm, 1) ],
+      ]);
+
+      chart.draw(dataTable);
+    }
+  </script>
   <body>
     <section class="page-header">
       <h1 class="project-name">Adi Sarid</h1>
@@ -37,7 +66,10 @@ Email:
 <li>Practical operations research (implementing OR projects in the industry)</li>
 </ul>
 
-<p>Last updated 2-Nov-2016.</p>
+<p>Here's a short interactive CV of my education and employment (2005 and henceforth):</p>
+<div id="adi.cv" style="height: 300px;"></div> 
+<p>Produced using google charts "timeline"</p>
+<p>Last updated 13-Feb-2017.</p>
 
       <footer class="site-footer">
 
