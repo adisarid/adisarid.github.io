@@ -34,8 +34,10 @@
         [ 'Work', 'IDF Planning Directorate - The Center for Military Research and Analysis', new Date(2010, 9, 2), new Date(2012, 9, 2) ],
         [ 'Work', 'Sarid Research Institute - Head of Operations Research and Partner', new Date(2012, 9, 2), new Date(yyyy, mm, 1) ],
       ]);
-
-      chart.draw(dataTable);
+      var options = {
+        timeline: {rowLabelStyle: {fontSize: 18},
+                   barLabelStyle: {fontSize: 18} } };
+      chart.draw(dataTable, options);
     }
   </script>
   <body>
