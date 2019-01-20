@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Adi Sarid&#39;s personal blog</title>
+    <link>/</link>
+    <description>Recent content on Adi Sarid&#39;s personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Jan 2019 12:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Short note about tidyeval</title>
+      <link>/post/2019-01-20-short-note-about-tidy-eval/</link>
+      <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-01-20-short-note-about-tidy-eval/</guid>
+      <description>Following Jenny Bryan’s talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).
+What is tidyeval?Tidy evaluation, or non standard evaluation, allows us to pass column names between functions. This is the “classic” behaviour of most tidyverse functions. For example, we use:
+library(tidyverse)mtcars %&amp;gt;% select(mpg, cyl)## mpg cyl## Mazda RX4 21.0 6## Mazda RX4 Wag 21.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Adi Sarid I&amp;rsquo;m a Partner and the Head of Operations Research Department at Sarid Research Services (a boutique market research agency). I&amp;rsquo;m also a PhD student at Tel-Aviv university, researching robustness and equity in power grid expansion planning. Very broadly, my interests include:
+ Data science, Operations research, Market research.  You can reach out via my linkedin, or simply email me adi@sarid-ins.co.il.
+For more information about Sarid Research Institute, check out Sarid Research (English site) or Sarid Research (Hebrew site).</description>
+    </item>
+    
+    <item>
+      <title>Recap: what I learned in rstudio::conf2019</title>
+      <link>/post/2019-01-19-rstudio-conf-recap/</link>
+      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-01-19-rstudio-conf-recap/</guid>
+      <description>First, let me start by saying wow!, what a wonderful experience.
+When I booked the trip from Israel to Austin, TX, I thought that I’ll see some good content, and learn at the conference (as I in fact did). It was much more enjoyable than I could’ve imagined. In part I guess this can be contributed to the awesome R community. The ease in which you start a conversation with just about anyone in the conference - about R, professional life (or even personal life), that’s great.</description>
+    </item>
+    
+  </channel>
+</rss>

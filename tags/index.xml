@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Adi Sarid&#39;s personal blog</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Adi Sarid&#39;s personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 19 Jan 2019 12:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Conference</title>
+      <link>/tags/conference/</link>
+      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/conference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rstudioconf</title>
+      <link>/tags/rstudioconf/</link>
+      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/rstudioconf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tidyeval</title>
+      <link>/tags/tidyeval/</link>
+      <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyeval/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

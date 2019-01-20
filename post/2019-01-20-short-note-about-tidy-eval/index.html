@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.53" />
+
+
+<title>Short note about tidyeval - Adi Sarid&#39;s personal blog</title>
+<meta property="og:title" content="Short note about tidyeval - Adi Sarid&#39;s personal blog">
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/">Main</a></li>
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/adisarid/adisarid.github.io">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/SaridResearch">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">5 min read</span>
+    
+
+    <h1 class="article-title">Short note about tidyeval</h1>
+
+    
+    <span class="article-date">2019/01/20</span>
+    
+
+    <div class="article-content">
+      
+
+
+<p>Following Jenny Bryan’s talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).</p>
+<div id="what-is-tidyeval" class="section level1">
+<h1>What is tidyeval?</h1>
+<p>Tidy evaluation, or non standard evaluation, allows us to pass column names between functions. This is the “classic” behaviour of most tidyverse functions. For example, we use:</p>
+<pre class="r"><code>library(tidyverse)
+
+mtcars %&gt;% 
+  select(mpg, cyl)</code></pre>
+<pre><code>##                      mpg cyl
+## Mazda RX4           21.0   6
+## Mazda RX4 Wag       21.0   6
+## Datsun 710          22.8   4
+## Hornet 4 Drive      21.4   6
+## Hornet Sportabout   18.7   8
+## Valiant             18.1   6
+## Duster 360          14.3   8
+## Merc 240D           24.4   4
+## Merc 230            22.8   4
+## Merc 280            19.2   6
+## Merc 280C           17.8   6
+## Merc 450SE          16.4   8
+## Merc 450SL          17.3   8
+## Merc 450SLC         15.2   8
+## Cadillac Fleetwood  10.4   8
+## Lincoln Continental 10.4   8
+## Chrysler Imperial   14.7   8
+## Fiat 128            32.4   4
+## Honda Civic         30.4   4
+## Toyota Corolla      33.9   4
+## Toyota Corona       21.5   4
+## Dodge Challenger    15.5   8
+## AMC Javelin         15.2   8
+## Camaro Z28          13.3   8
+## Pontiac Firebird    19.2   8
+## Fiat X1-9           27.3   4
+## Porsche 914-2       26.0   4
+## Lotus Europa        30.4   4
+## Ford Pantera L      15.8   8
+## Ferrari Dino        19.7   6
+## Maserati Bora       15.0   8
+## Volvo 142E          21.4   4</code></pre>
+<p>The two variables were selected out of the <code>mtcars</code> data set, and we specified them as names without using any quotation marks. They are symbolic, not characters (although they could also be specified as characters, <code>select</code> is smart enough that way).</p>
+<p>But assume we want to pass variables “tidy style” between functions which do different operations.</p>
+</div>
+<div id="variation-one---a-basic-example" class="section level1">
+<h1>Variation one - a basic example</h1>
+<p>We’ll start simple: a function which has two parameters. The first parameter is a dataset. The second parameters is a grouping variable. All other variables in the data set will have their mean computed using <code>summarize_all</code>.</p>
+<pre class="r"><code>test1 &lt;- function(dataset, groupby_vars){
+  grouping_vars &lt;- enquo(groupby_vars)
+  dataset %&gt;% 
+    group_by(!! grouping_vars) %&gt;%
+    summarize_all(funs(mean(.))) %&gt;%
+    return()
+}
+
+mtcars %&gt;%
+  select(cyl:carb) %&gt;%
+  test1(groupby_vars = cyl)</code></pre>
+<pre><code>## # A tibble: 3 x 10
+##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  105.  82.6  4.07  2.29  19.1 0.909 0.727  4.09  1.55
+## 2     6  183. 122.   3.59  3.12  18.0 0.571 0.429  3.86  3.43
+## 3     8  353. 209.   3.23  4.00  16.8 0     0.143  3.29  3.5</code></pre>
+<p>We can see that <code>mtcars</code> was grouped by <code>cyl</code> which was passed as a name (not characters). The function <code>test1</code> took it, then <code>enquo()</code>-ed it, and eventually used it in the tidy chain using <code>!!</code>.
+The function <code>enquo</code> turns the input into a “quosure”. Then the <code>!!</code> “uses” the quosure to select the proper variable from mtcars.</p>
+</div>
+<div id="passing-arguments-using-..." class="section level1">
+<h1>Passing arguments using <code>...</code></h1>
+<p>A slightly more complex situation is passing multiple arguments to the function. Assume that this time we want to construct a function which gets one input by which to group by, and what are the variables to be summarized:</p>
+<pre class="r"><code>test2 &lt;- function(dataset, groupby_vars, ...){
+  grouping_vars &lt;- enquo(groupby_vars)
+  dataset %&gt;% 
+    group_by(!! grouping_vars) %&gt;%
+    summarize_at(vars(...), funs(mean(.))) %&gt;%
+    return()
+}
+
+mtcars %&gt;%
+  select(cyl:carb) %&gt;%
+  test2(groupby_vars = cyl, disp:drat)</code></pre>
+<pre><code>## # A tibble: 3 x 4
+##     cyl  disp    hp  drat
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  105.  82.6  4.07
+## 2     6  183. 122.   3.59
+## 3     8  353. 209.   3.23</code></pre>
+<p>What happend is that <code>test2</code> treats the grouping variable the same way that <code>test1</code> treated it, but it also passed along the variables <code>disp:drat</code>.</p>
+</div>
+<div id="maximum-flexibility---multiple-enquos" class="section level1">
+<h1>Maximum flexibility - multiple <code>enquo()</code>s</h1>
+<p>Sometime passing the dots, i.e., <code>...</code> is not enough.
+For example, if we want specify behaviour for different columns of the data frame (e.g., compute the mean for some and the std for others). In such cases we need a more flexible version. We can extend the flexibilty of this approach using multiple <code>enqou()</code>s.</p>
+<pre class="r"><code>test3 &lt;- function(dataset, groupby_vars, computemean_vars, computestd_vars){
+  grouping_vars &lt;- enquo(groupby_vars)
+  mean_vars &lt;- enquo(computemean_vars)
+  std_vars &lt;- enquo(computestd_vars)
+  dataset %&gt;% 
+    group_by(!! grouping_vars) %&gt;%
+    summarize_at(vars(!!mean_vars), funs(mean(.))) %&gt;%
+    left_join(dataset %&gt;%
+                group_by(!! grouping_vars) %&gt;%
+                summarize_at(vars(!!std_vars), funs(sd(.))))
+}
+mtcars %&gt;% 
+  test3(groupby_vars = cyl, disp:drat, wt:carb)</code></pre>
+<pre><code>## Joining, by = &quot;cyl&quot;</code></pre>
+<pre><code>## # A tibble: 3 x 10
+##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  105.  82.6  4.07 0.570  1.68 0.302 0.467 0.539 0.522
+## 2     6  183. 122.   3.59 0.356  1.71 0.535 0.535 0.690 1.81 
+## 3     8  353. 209.   3.23 0.759  1.20 0     0.363 0.726 1.56</code></pre>
+<p>In the resulting table, the first column <code>cyl</code> is the grouping variable, columns <code>disp</code> through <code>drat</code> have the mean of the corresponding variables, and columns <code>wt</code> through <code>carb</code> have their standard deviation computed.</p>
+</div>
+<div id="additional-uses-of-tidy-evaluation" class="section level1">
+<h1>Additional uses of tidy evaluation</h1>
+<p>This evaluation is very useful when building flexible functions, but also when using the <code>ggplot2</code> syntax within functions, and more so when using Shiny applications, in which input parameters need to go in as grouping or as plotting parameters.</p>
+<p>However, this is a topic for a different post.</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>Tidy evaluation empowers you with great tools - it offers a great degree of flexibilty, but it’s a bit tricky to master.</p>
+<p>My suggestion is that if you’re trying to master tidy evaluation, just think about your use case: which of the three variations presented in this post it resembles too?</p>
+<p>Work your way up - from the simplest version (if it works for you) and up to the complex (but most flexible) version.</p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js//highlight.min.js"></script>
+
+
+
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,104 @@
+---
+title: "Short note about tidyeval"
+author: "Adi Sarid"
+date: 2019-01-20T12:00:00-00:00
+categories: ["R"]
+tags: ["tidyeval"]
+---
+
+Following Jenny Bryan's talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).
+
+# What is tidyeval?
+
+Tidy evaluation, or non standard evaluation, allows us to pass column names between functions. This is the "classic" behaviour of most tidyverse functions. For example, we use:
+
+```{r tidyverse simple example, warning=FALSE, message=FALSE}
+
+library(tidyverse)
+
+mtcars %>% 
+  select(mpg, cyl)
+
+```
+
+The two variables were selected out of the `mtcars` data set, and we specified them as names without using any quotation marks. They are symbolic, not characters (although they could also be specified as characters, `select` is smart enough that way).
+
+But assume we want to pass variables "tidy style" between functions which do different operations. 
+
+# Variation one - a basic example
+
+We'll start simple: a function which has two parameters. The first parameter is a dataset. The second parameters is a grouping variable. All other variables in the data set will have their mean computed using `summarize_all`.
+
+```{r variation one}
+test1 <- function(dataset, groupby_vars){
+  grouping_vars <- enquo(groupby_vars)
+  dataset %>% 
+    group_by(!! grouping_vars) %>%
+    summarize_all(funs(mean(.))) %>%
+    return()
+}
+
+mtcars %>%
+  select(cyl:carb) %>%
+  test1(groupby_vars = cyl)
+```
+
+We can see that `mtcars` was grouped by `cyl` which was passed as a name (not characters). The function `test1` took it, then `enquo()`-ed it, and eventually used it in the tidy chain using `!!`. 
+The function `enquo` turns the input into a "quosure". Then the `!!` "uses" the quosure to select the proper variable from mtcars.
+
+# Passing arguments using `...`
+
+A slightly more complex situation is passing multiple arguments to the function. Assume that this time we want to construct a function which gets one input by which to group by, and what are the variables to be summarized:
+
+```{r using dots}
+test2 <- function(dataset, groupby_vars, ...){
+  grouping_vars <- enquo(groupby_vars)
+  dataset %>% 
+    group_by(!! grouping_vars) %>%
+    summarize_at(vars(...), funs(mean(.))) %>%
+    return()
+}
+
+mtcars %>%
+  select(cyl:carb) %>%
+  test2(groupby_vars = cyl, disp:drat)
+```
+
+What happend is that `test2` treats the grouping variable the same way that `test1` treated it, but it also passed along the variables `disp:drat`.
+
+# Maximum flexibility - multiple `enquo()`s
+
+Sometime passing the dots, i.e., `...` is not enough.
+For example, if we want specify behaviour for different columns of the data frame (e.g., compute the mean for some and the std for others). In such cases we need a more flexible version. We can extend the flexibilty of this approach using multiple `enqou()`s.
+
+```{r multiple enquos}
+test3 <- function(dataset, groupby_vars, computemean_vars, computestd_vars){
+  grouping_vars <- enquo(groupby_vars)
+  mean_vars <- enquo(computemean_vars)
+  std_vars <- enquo(computestd_vars)
+  dataset %>% 
+    group_by(!! grouping_vars) %>%
+    summarize_at(vars(!!mean_vars), funs(mean(.))) %>%
+    left_join(dataset %>%
+                group_by(!! grouping_vars) %>%
+                summarize_at(vars(!!std_vars), funs(sd(.))))
+}
+mtcars %>% 
+  test3(groupby_vars = cyl, disp:drat, wt:carb)
+```
+
+In the resulting table, the first column `cyl` is the grouping variable, columns `disp` through `drat` have the mean of the corresponding variables, and columns `wt` through `carb` have their standard deviation computed.
+
+# Additional uses of tidy evaluation
+
+This evaluation is very useful when building flexible functions, but also when using the `ggplot2` syntax within functions, and more so when using Shiny applications, in which input parameters need to go in as grouping or as plotting parameters.
+
+However, this is a topic for a different post.
+
+# Conclusions
+
+Tidy evaluation empowers you with great tools - it offers a great degree of flexibilty, but it's a bit tricky to master.
+
+My suggestion is that if you're trying to master tidy evaluation, just think about your use case: which of the three variations presented in this post it resembles too? 
+
+Work your way up - from the simplest version (if it works for you) and up to the complex (but most flexible) version.
