@@ -102,7 +102,7 @@ Finally, create the learning material around the previous steps. Re-iterate as n
    * "Baby steps" - use faded examples or incremental examples when teaching. Avoid a "novice blank page" when starting.
    * Encourage the students: "what would you type into stackoverflow to find a solution to this problem?"
    * No opting-out. If someone doesn't know the answer, ask someone else - then go back to that person and ask something else. No one will "fall asleep", you make sure that everyone are with you. Jump between locations in class (not in the sitting order).
-   * **Use [rstudio.cloud](rstudio.cloud)** when a uniform R environment is desired. We can even start from a flat base instance with all the packages pre-loaded.
+   * **Use [rstudio.cloud](https://rstudio.cloud)** when a uniform R environment is desired. We can even start from a flat base instance with all the packages pre-loaded.
    
 ## Feedback
 
@@ -113,9 +113,9 @@ Finally, create the learning material around the previous steps. Re-iterate as n
 
 Check the online materials of the course. Everything is on a creative commons - BY RStudio - license.
 
-All resources for teaching techniques are available at Greg Wilson's website [teachtogether.tech](teachtogether.tech).
+All resources for teaching techniques are available at Greg Wilson's website [teachtogether.tech](http://teachtogether.tech).
 
-Resources specific for Shiny teaching are available at the workshop's website, including Mine's teaching notes for 1hr, 2hr, 1/2day, 1day, 2day workshops. See [http://teach-shiny.rbind.io](http://teach-shiny.rbind.io).
+Resources specific for Shiny teaching are available at the workshop's website, including Mine's teaching notes for 1hr, 2hr, 1/2day, 1day, 2day workshops. See [http://teach-shiny.rbind.io](https://teach-shiny.rbind.io).
 
 # Conference Day 1
 
