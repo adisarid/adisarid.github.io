@@ -6,13 +6,31 @@
     <description>Recent content in Tags on Adi Sarid&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Jan 2019 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0300</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Conference</title>
+      <title>Deep Learning</title>
+      <link>/tags/deep-learning/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
+      
+      <guid>/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Demo</title>
+      <link>/tags/demo/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
+      
+      <guid>/tags/demo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>conference</title>
       <link>/tags/conference/</link>
       <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
       
@@ -21,7 +39,7 @@
     </item>
     
     <item>
-      <title>Rstudioconf</title>
+      <title>rstudio::conf</title>
       <link>/tags/rstudioconf/</link>
       <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
       
@@ -30,7 +48,7 @@
     </item>
     
     <item>
-      <title>Tidyeval</title>
+      <title>tidyeval</title>
       <link>/tags/tidyeval/</link>
       <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
       
