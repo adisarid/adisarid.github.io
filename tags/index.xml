@@ -39,6 +39,24 @@
     </item>
     
     <item>
+      <title>progress bars</title>
+      <link>/tags/progress-bars/</link>
+      <pubDate>Fri, 25 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/progress-bars/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>purrr</title>
+      <link>/tags/purrr/</link>
+      <pubDate>Fri, 25 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/purrr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>rstudio::conf</title>
       <link>/tags/rstudioconf/</link>
       <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>

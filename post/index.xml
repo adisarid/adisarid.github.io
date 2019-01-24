@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Purrring progress bars (adding a progress bar to `purrr::map`)</title>
+      <link>/post/2019-01-24-purrrying-progress-bars/</link>
+      <pubDate>Fri, 25 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-01-24-purrrying-progress-bars/</guid>
+      <description>With all the functional programming going on (i.e., purrr::map and the likes), there is at least one thing that I found missing: progress bars. The plyr::do function had a nice looking progress bar open up by default if the operation took more than 2 seconds and had at least two more to go (as per Hadley’s description in Issue#149 in tidyverse/purrr).
+The issue is still open, for the time of writing these lines, and will probably be solved sometime in the near future as a feature of purrr::map.</description>
+    </item>
+    
+    <item>
       <title>Short note about tidyeval</title>
       <link>/post/2019-01-20-short-note-about-tidy-eval/</link>
       <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
