@@ -4,6 +4,14 @@
     
     <url>
     
+      <loc>/post/2019-02-03-class-action-conjoint/</loc>
+      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/2019-01-24-purrrying-progress-bars/</loc>
       <lastmod>2019-01-25T12:00:00+00:00</lastmod>
     </url>
@@ -182,6 +190,24 @@
     
     <url>
     
+      <loc>/tags/class-actions/</loc>
+      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/conjoint-analysis/</loc>
+      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tags/deep-learning/</loc>
       <lastmod>2016-04-27T00:00:00+03:00</lastmod>
       <priority>0</priority>
@@ -237,7 +263,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2019-01-25T12:00:00+00:00</lastmod>
+      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -261,7 +287,7 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2016-04-27T00:00:00+03:00</lastmod>
+      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -298,6 +324,15 @@
     
       <loc>/tags/rstudioconf/</loc>
       <lastmod>2019-01-19T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/shiny/</loc>
+      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 3.3.0">
+  <meta name="generator" content="Hugo 0.53" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Adi Sarid">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="A few days ago I presented at the 9th Israeli class action lawsuit conference. You’re probably asking yourself what would a data scientist do in a room full of lawyers?
+Apparently, there is a lot to do… Here’s the story: being in market research, we get a lot of lawyers which are faced with class action lawsuits (either suing or being sued) - and they hire us to conduct research and estimate things like the size of the group for the class action, or the total damages applied on the group.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2019-02-03-class-action-conjoint/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#4caf50">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-132925515-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Adi Sarid&#39;s personal blog">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Adi Sarid&#39;s personal blog">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2019-02-03-class-action-conjoint/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@SaridResearch">
+  <meta property="twitter:creator" content="@SaridResearch">
+  
+  <meta property="og:site_name" content="Adi Sarid&#39;s personal blog">
+  <meta property="og:url" content="/post/2019-02-03-class-action-conjoint/">
+  <meta property="og:title" content="Settling class action lawsuits with conjoint analysis and R (&#43;a conjoint shiny app) | Adi Sarid&#39;s personal blog">
+  <meta property="og:description" content="A few days ago I presented at the 9th Israeli class action lawsuit conference. You’re probably asking yourself what would a data scientist do in a room full of lawyers?
+Apparently, there is a lot to do… Here’s the story: being in market research, we get a lot of lawyers which are faced with class action lawsuits (either suing or being sued) - and they hire us to conduct research and estimate things like the size of the group for the class action, or the total damages applied on the group."><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-02-03T12:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2019-02-03T12:00:00&#43;00:00">
+  
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#4caf50",
+          "text": "#fff"
+        },
+        "button": {
+          "background": "#fff",
+          "text": "#4caf50"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "/privacy/"
+      }
+    })});
+</script>
+
+
+  
+
+  <title>Settling class action lawsuits with conjoint analysis and R (&#43;a conjoint shiny app) | Adi Sarid&#39;s personal blog</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Adi Sarid&#39;s personal blog</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home/about</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Recent Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Settling class action lawsuits with conjoint analysis and R (&#43;a conjoint shiny app)</h1>
+
+  
+
+  
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2019-02-03 12:00:00 &#43;0000 &#43;0000" itemprop="datePublished">
+    <time datetime="2019-02-03 12:00:00 &#43;0000 &#43;0000" itemprop="dateModified">
+      Feb 3, 2019
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/2019-02-03-class-action-conjoint/#disqus_thread"></a>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/r/">R</a>
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Settling%20class%20action%20lawsuits%20with%20conjoint%20analysis%20and%20R%20%28%2ba%20conjoint%20shiny%20app%29&amp;url=%2fpost%2f2019-02-03-class-action-conjoint%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2019-02-03-class-action-conjoint%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2019-02-03-class-action-conjoint%2f&amp;title=Settling%20class%20action%20lawsuits%20with%20conjoint%20analysis%20and%20R%20%28%2ba%20conjoint%20shiny%20app%29"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2019-02-03-class-action-conjoint%2f&amp;title=Settling%20class%20action%20lawsuits%20with%20conjoint%20analysis%20and%20R%20%28%2ba%20conjoint%20shiny%20app%29"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Settling%20class%20action%20lawsuits%20with%20conjoint%20analysis%20and%20R%20%28%2ba%20conjoint%20shiny%20app%29&amp;body=%2fpost%2f2019-02-03-class-action-conjoint%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>A few days ago I presented at the 9th Israeli class action lawsuit conference. You’re probably asking yourself what would a data scientist do in a room full of lawyers?</p>
+<p>Apparently, there is a lot to do… Here’s the story: being in market research, we get a lot of lawyers which are faced with class action lawsuits (either suing or being sued) - and they hire us to conduct research and estimate things like the size of the group for the class action, or the total damages applied on the group.</p>
+<p>This time, we did something special. we conducted our own survey, with consumers in the general public in Israel. The goal was to rate various ways of getting compensation (after settling a class action lawsuit).</p>
+<p>For that we used conjoint analysis. Conjoint is where you ask the survey participants a set of questions (five in our case). Each question has a number of alternatives (or packages) to choose from, and these are randomized per respondent. In our case we showed three packages, each package is defined by three parameters relating to how a consumer can get compensation in case of a class action being won:</p>
+<ol style="list-style-type: decimal">
+<li>Push versus pull - do you have to ask for the compensation or would you get the notification/compensation without asking.</li>
+<li>The value of the compensation - tested at 4 levels (25, 50, 75, and 100 ILS)</li>
+<li>The method of delivery - as a complimentary product, a refund at next purchase, bank cheque, or credit card.</li>
+</ol>
+<p>The thing about conjoint analysis is that when you diversify enough, you can then run various models to estimate the weight of each parameter, i.e., using logistic regression.</p>
+<p>The data is available in the <a href="https://github.com/adisarid/class-action-IL-survey">github repo</a>, and the specific data is under the data folder.</p>
+<pre class="r"><code>#library(tidyverse)
+class_action_conjoint &lt;- read_csv(&quot;https://raw.githubusercontent.com/adisarid/class-action-IL-survey/master/data/20190130020529-SurveyExport-general_public-conjoint.csv&quot;,
+                                  skip = 1,
+                                  col_names = 
+                                    c(&quot;Response ID&quot;, &quot;Set Number&quot;, &quot;Card Number&quot;, 
+                                      &quot;compensation_push_pull&quot;, &quot;compensation_amount_ILS&quot;, &quot;compensation_type&quot;,
+                                      &quot;score_selection&quot;))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   `Response ID` = col_double(),
+##   `Set Number` = col_double(),
+##   `Card Number` = col_double(),
+##   compensation_push_pull = col_character(),
+##   compensation_amount_ILS = col_double(),
+##   compensation_type = col_character(),
+##   score_selection = col_double()
+## )</code></pre>
+<pre class="r"><code>glimpse(class_action_conjoint)</code></pre>
+<pre><code>## Observations: 7,020
+## Variables: 7
+## $ `Response ID`           &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10...
+## $ `Set Number`            &lt;dbl&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,...
+## $ `Card Number`           &lt;dbl&gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1,...
+## $ compensation_push_pull  &lt;chr&gt; &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;pull&quot;...
+## $ compensation_amount_ILS &lt;dbl&gt; 75, 50, 25, 100, 25, 100, 75, 100, 50,...
+## $ compensation_type       &lt;chr&gt; &quot;another_product&quot;, &quot;credit_cart&quot;, &quot;ban...
+## $ score_selection         &lt;dbl&gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 10...</code></pre>
+<pre class="r"><code>class_action_conjoint %&gt;% count(compensation_push_pull)</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   compensation_push_pull     n
+##   &lt;chr&gt;                  &lt;int&gt;
+## 1 pull                    3516
+## 2 push                    3504</code></pre>
+<pre class="r"><code>class_action_conjoint %&gt;% count(compensation_amount_ILS)</code></pre>
+<pre><code>## # A tibble: 4 x 2
+##   compensation_amount_ILS     n
+##                     &lt;dbl&gt; &lt;int&gt;
+## 1                      25  1759
+## 2                      50  1761
+## 3                      75  1752
+## 4                     100  1748</code></pre>
+<pre class="r"><code>class_action_conjoint %&gt;% count(compensation_type)</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   compensation_type        n
+##   &lt;chr&gt;                &lt;int&gt;
+## 1 another_product       1391
+## 2 bank_cheque           1410
+## 3 coupon                1403
+## 4 credit_cart           1415
+## 5 refund_next_purchase  1401</code></pre>
+<p>You can see that the different options are balanced (they should be - they were selected randomly) and that the number of observations is <span class="math inline">\(7,020\)</span>. This is because we had <span class="math inline">\(n=468\)</span> respondents answering the conjoint question groups, each selecting best one out of three, with five such random sets (<span class="math inline">\(5*3*468=7020\)</span>).</p>
+<div id="logistic-regression" class="section level2">
+<h2>Logistic regression</h2>
+<p>The easiest (and most basic) way to start analyzing the conjoint data is with logistic regression. Note that I’m not endorsing this use of logistic regression in conjoint analysis, because nowadays it has become a standard to compensate for mixed effects (see package <code>lme4</code>). However, for the purposes of this post, I’m going to carry on with the simple <code>glm</code> which is sufficiently good for our illustration. In any case, my experience is that the models yield similar results in most cases.</p>
+<pre class="r"><code>glm_set &lt;- class_action_conjoint %&gt;% 
+  mutate(score_selection = score_selection/100) %&gt;% 
+  mutate(compensation_push_pull = factor(compensation_push_pull,
+                                         levels = c(&quot;pull&quot;, &quot;push&quot;),
+                                         ordered = F),
+         compensation_type = factor(compensation_type,
+                                    levels = 
+                                      c(&quot;another_product&quot;,
+                                        &quot;refund_next_purchase&quot;,
+                                        &quot;coupon&quot;,
+                                        &quot;bank_cheque&quot;,
+                                        &quot;credit_cart&quot;),
+                                    ordered = F)) %&gt;% 
+  select(-`Set Number`, -`Card Number`, -`Response ID`) %&gt;% 
+  mutate(compensation_amount_ILS = factor(compensation_amount_ILS, levels = c(25, 50, 75, 100)))
+
+conjoint_glm_model &lt;- glm(data = glm_set %&gt;% 
+      select(score_selection, compensation_push_pull, compensation_amount_ILS, compensation_type),
+    formula = score_selection ~ .,
+    family = binomial())
+summary(conjoint_glm_model)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = score_selection ~ ., family = binomial(), data = glm_set %&gt;% 
+##     select(score_selection, compensation_push_pull, compensation_amount_ILS, 
+##         compensation_type))
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.8635  -0.8111  -0.5139   0.8796   2.6557  
+## 
+## Coefficients:
+##                                       Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept)                           -3.49667    0.11341 -30.832   &lt;2e-16
+## compensation_push_pullpush             0.74140    0.05807  12.767   &lt;2e-16
+## compensation_amount_ILS50              1.01476    0.09385  10.813   &lt;2e-16
+## compensation_amount_ILS75              1.73623    0.09224  18.823   &lt;2e-16
+## compensation_amount_ILS100             2.40149    0.09281  25.876   &lt;2e-16
+## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418
+## compensation_typecoupon                1.10396    0.09588  11.514   &lt;2e-16
+## compensation_typebank_cheque           1.53888    0.09473  16.245   &lt;2e-16
+## compensation_typecredit_cart           1.89640    0.09586  19.782   &lt;2e-16
+##                                          
+## (Intercept)                           ***
+## compensation_push_pullpush            ***
+## compensation_amount_ILS50             ***
+## compensation_amount_ILS75             ***
+## compensation_amount_ILS100            ***
+## compensation_typerefund_next_purchase    
+## compensation_typecoupon               ***
+## compensation_typebank_cheque          ***
+## compensation_typecredit_cart          ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 8936.7  on 7019  degrees of freedom
+## Residual deviance: 7295.6  on 7011  degrees of freedom
+## AIC: 7313.6
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>Note how most variables (actually all but <code>compensation_typerefund_next_purchase</code>) are significant and with a positive estimate (i.e., odds ratio &gt; 1). This means means that when a certain variable increases, the probability of choosing the package increases, i.e.:</p>
+<ul>
+<li>Passively getting the compensation (“Push”) is better than a required act to get the compensation (“pull”) .</li>
+<li>Any sum of money (50, 75, 100) is better than 25, in an increasing odds ratio.</li>
+<li>Most compensation types (credit card payback, bank cheque, coupon) are significantly better than a complimentary product.</li>
+</ul>
+<p>Now comes the interesting part: for example, compare the following three packages. Try to guess which one is more attractive:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Parameter</th>
+<th align="center">Package 1</th>
+<th align="center">Package 2</th>
+<th align="center">Package 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Push/Pull</td>
+<td align="center">Pull</td>
+<td align="center">Pull</td>
+<td align="center">Push</td>
+</tr>
+<tr class="even">
+<td align="left">Return</td>
+<td align="center">Credit</td>
+<td align="center">Refund</td>
+<td align="center">Coupon</td>
+</tr>
+<tr class="odd">
+<td align="left">Price</td>
+<td align="center">25</td>
+<td align="center">75</td>
+<td align="center">25</td>
+</tr>
+</tbody>
+</table>
+<p>It is not that easy to determine between the three. In this situation there is no single strategy which is superior to the others, we can however plot these three packages with the logistic regression response and standard errors. First let’s put them all in a tibble (I also added the best and worst packages).</p>
+<pre class="r"><code>package_comparison &lt;- tribble(
+  ~package_name, ~compensation_push_pull, ~compensation_amount_ILS, ~compensation_type,
+  &quot;pkg1&quot;, &quot;pull&quot;, 25, &quot;credit_cart&quot;,
+  &quot;pkg2&quot;, &quot;pull&quot;, 75, &quot;refund_next_purchase&quot;,
+  &quot;pkg3&quot;, &quot;push&quot;, 25, &quot;coupon&quot;,
+  &quot;worst&quot;, &quot;pull&quot;, 25, &quot;another_product&quot;,
+  &quot;best&quot;, &quot;push&quot;, 100, &quot;credit_cart&quot;
+) %&gt;% 
+  mutate(compensation_amount_ILS = factor(compensation_amount_ILS)) # need to convert to factor - which is how it is modeled in the glm.
+
+predicted_responses &lt;- predict(conjoint_glm_model, newdata = package_comparison, type = &quot;response&quot;, se.fit = T)
+
+# lets join these together
+
+package_responses &lt;- package_comparison %&gt;% 
+  mutate(fit = predicted_responses$fit,
+         se.fit = predicted_responses$se.fit)
+
+package_responses</code></pre>
+<pre><code>## # A tibble: 5 x 6
+##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit
+##   &lt;chr&gt;        &lt;chr&gt;            &lt;fct&gt;            &lt;chr&gt;             &lt;dbl&gt;
+## 1 pkg1         pull             25               credit_cart      0.168 
+## 2 pkg2         pull             75               refund_next_pur~ 0.158 
+## 3 pkg3         push             25               coupon           0.161 
+## 4 worst        pull             25               another_product  0.0294
+## 5 best         push             100              credit_cart      0.824 
+## # ... with 1 more variable: se.fit &lt;dbl&gt;</code></pre>
+<pre class="r"><code># P.S. - excuse the &quot;credit_cart&quot; typo (I build the model that way, only then noticed...)
+
+ggplot(package_responses %&gt;% slice(1:3) , aes(x = package_name, y = fit)) + 
+  geom_point() +
+  geom_errorbar(aes(ymin = fit - se.fit, ymax = fit + se.fit)) + 
+  ggtitle(&quot;Package comparison (packages 1-3)&quot;, subtitle = &quot;Error bars represent the SE&quot;) + 
+  ylab(&quot;Predicted response (glm logit)&quot;) + 
+  xlab(&quot;Package name&quot;) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))</code></pre>
+<p><img src="/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(package_responses, aes(x = package_name, y = fit)) + 
+  geom_point() +
+  geom_errorbar(aes(ymin = fit - se.fit, ymax = fit + se.fit)) + 
+  ggtitle(&quot;Package comparison (including best and worst packages)&quot;, subtitle = &quot;Error bars represent the SE&quot;) + 
+  ylab(&quot;Predicted response (glm logit)&quot;) +
+  xlab(&quot;Package name&quot;) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1))</code></pre>
+<p><img src="/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png" width="672" /></p>
+<p>We see that the three packages (pkg1, pkg2, and pkg3) are relatively similar, within one standard error from one another. When compared to the worst package they are roughly <span class="math inline">\(\sim8\)</span> times better (via odds ratio), but the best package is <span class="math inline">\(\sim5\)</span> times better than packages 1-3.</p>
+<p>One can use these concepts to illustrate the benefits of each parameter on the different packages, and let the user experience how different features make the packages more or less “attractive”.</p>
+<p>As an experiment, I prepared a nice little shiny app which lets the user experiment with the different features: build two packages and then compare them. You can checkout the code at the <a href="https://github.com/adisarid/class-action-IL-survey/tree/master/settlement-app/SettlementAttractive">github repo</a>, or check out the live app <a href="https://sarid.shinyapps.io/class-action">here</a>.</p>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>Surveys are a popular tool used in class actions (at least in Israel). They can be used to estimate the tradeoffs between various types of compensation or settlement, for example with the use of conjoint analysis.</p>
+<p>With a glm model one can tell the differences of various packages, and the odds ratio is a way to illustrate to decision makers a comparison of various options (and how much “more attractive” is one package over another).</p>
+<p>A shiny app can be a nice way to illustrate the results of a conjoint analysis, and to let the user experiment with how different features make a specific option better or worse than another option.</p>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/conjoint-analysis/">Conjoint analysis</a>
+  
+  <a class="badge badge-light" href="/tags/class-actions/">Class actions</a>
+  
+  <a class="badge badge-light" href="/tags/shiny/">shiny</a>
+  
+</div>
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "adisarid" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    
+
+	For more R posts, check out
+	<a href="https://www.r-bloggers.com/" target="_blank" rel="noopener">R-bloggers</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//adisarid.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <script src="/js/academic.min.07fbebbbf71b021c8836e1d7ecffa489.js"></script>
+
+    
+	
+  </body>
+</html>
+

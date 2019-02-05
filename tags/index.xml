@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Adi Sarid&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 03 Feb 2019 12:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Class actions</title>
+      <link>/tags/class-actions/</link>
+      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/class-actions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Conjoint analysis</title>
+      <link>/tags/conjoint-analysis/</link>
+      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/conjoint-analysis/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Deep Learning</title>
@@ -62,6 +80,15 @@
       <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
       
       <guid>/tags/rstudioconf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
       <description></description>
     </item>
     
