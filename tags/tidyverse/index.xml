@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tidyverse on Adi Sarid&#39;s personal blog</title>
+    <link>/tags/tidyverse/</link>
+    <description>Recent content in Tidyverse on Adi Sarid&#39;s personal blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Apr 2019 12:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Test your tidyness - a short quiz to check your tidyverse capabilities</title>
+      <link>/post/2019-04-28-test_your_tidyness/</link>
+      <pubDate>Sun, 28 Apr 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-04-28-test_your_tidyness/</guid>
+      <description>Over the last month I gave a tidyverse + intro to data science corporate training in a startup in Tel-Aviv. We had two groups (beginners and intermediates), and for the last assignment of the course I was aiming for a short quiz comprised of various topics which we covered during the course, such that can also be automated easily (i.e., multiple choice questions).
+I came up with the following quiz, which I thought would be nice to share here.</description>
+    </item>
+    
+  </channel>
+</rss>
