@@ -6,8 +6,84 @@
     <description>Recent content in R on Adi Sarid&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Apr 2019 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jul 2019 12:00:00 +0000</lastBuildDate>
     <atom:link href="/categories/r/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>What NOT to do when building a shiny app (lessons learned the hard way)</title>
+      <link>/post/2019-07-03-shiny_app_lessons/</link>
+      <pubDate>Fri, 19 Jul 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-07-03-shiny_app_lessons/</guid>
+      <description>
+
+
+&lt;p&gt;I’ve been building R shiny apps for a while now, and ever since I started working with shiny, it has significantly increased the set of services I offer my clients.&lt;/p&gt;
+&lt;p&gt;Here’s a documentations of some of the many lessons I learned in previous projects I did. Hopefully, others can avoid them in the future.&lt;/p&gt;
+&lt;div id=&#34;background&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;Shiny is a really great tool that allows data scientists to communicate their analysis in an appealing and an effective way. However, as data scientists we are used to thinking about things a certain way. Our way of thinking, and our practices are different than these of a software developer or a DevOps.&lt;/p&gt;
+&lt;p&gt;Here are some of things I learned along the path of my Shiny app developing experiences - some things that you should and should not do.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dont-skip-the-planning-phase&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Don’t skip the planning phase&lt;/h2&gt;
+&lt;p&gt;Do a mockup, research your implementation options.&lt;/p&gt;
+&lt;div id=&#34;mockup&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Mockup&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Do a mockup&lt;/strong&gt;, even if it’s just a piece of paper which took you 5 minutes to draw. It will be worth it.&lt;/p&gt;
+&lt;p&gt;Shiny is very tempting in the sense that once you understand the concept of reactive programming, you can go from idea to a full app in a few days work. Why invest time in preparing a mockup or planning, when you can just go ahead and do the actual thing?&lt;/p&gt;
+&lt;p&gt;My experience tells me that the app is much more successful in capturing the customer’s needs, when he’s a part of the technical planning phase (when you share your dillemas with the client). It sets expectations, frames what you can and can’t (or won’t) do for the customer, and enables you to find solutions together.&lt;/p&gt;
+&lt;p&gt;Also, when you’re looking at a mockup (even if it’s just a simple drawing or a non-interactive slide), it helps in the next stages of building the app’s UI.&lt;/p&gt;
+&lt;p&gt;Here is an example of how a mockup would look like when I’m drawing it on a piece of paper. Note how I’ve already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you’re actually looking at one of these.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/mockup_draw_example.jpg&#34; alt=&#34;Example for a mockup drawing&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Example for a mockup drawing&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;research&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Research&lt;/h3&gt;
+&lt;p&gt;When you encounter a requirement you did not encounter before, and wondering about how to accomplish it, research.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is there more than a single way to accomplish what you’re trying?&lt;/li&gt;
+&lt;li&gt;What are the pros and cons of each method?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, when I needed to show a table and incorporate data intake into the table, I was researching two options, one with the &lt;code&gt;DataTable&lt;/code&gt; package (via the &lt;code&gt;editable=TRUE&lt;/code&gt; argument) and the other is the &lt;code&gt;rhandsontable&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;Both provide data editing, eventually I chose &lt;code&gt;randsontable&lt;/code&gt; which had some limitations (e.g., slower rendering than &lt;code&gt;DataTable&lt;/code&gt;, no search box), but provided more features out-of-the-box (e.g., data validation displaying factors as a list, checkboxes, etc.).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;be-sure-you-can-live-up-to-your-promises&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Be sure you can live up to your promises&lt;/h2&gt;
+&lt;p&gt;This is more of a broad issue (you can say its true for anything).&lt;/p&gt;
+&lt;p&gt;In my case, in the past I promised some clients I’ll provide “realtime” dashboards. However, as it turned out, I was reading from a csv data dump which provided the data with delays going up to 15-30 minutes.&lt;/p&gt;
+&lt;p&gt;In most projects I do, 15 minutes and realtime are pretty much equivalent from a practical standpoint, but in a specific project I did recently, I had a client which wanted to check the data as it was changing minute-by-minute.&lt;/p&gt;
+&lt;p&gt;This gap in expectations caused some confusion and dissappointment. We eventually learned from this, and in the future, when realtime is a requirement, we will use a better data source (i.e., data base instead of the delayed data dump).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dont-forget-to-plan-your-budget&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Don’t forget to plan your budget&lt;/h2&gt;
+&lt;p&gt;Make sure you consider all the elements you need for the project. Plan the budget accordingly, and understand the ramifications of scaling the app.&lt;/p&gt;
+&lt;p&gt;For example, if you’re using shinyapps.io, get familiar with the pricing packages, figure out what will you need to provide a good SLA (relative to the number of users of the app).&lt;/p&gt;
+&lt;p&gt;Same goes for other cloud services, e.g., using a data base - how many users? how many connections? size of data base?&lt;/p&gt;
+&lt;p&gt;In most cloud providers you can also set up &lt;strong&gt;billing alerts&lt;/strong&gt; which lets you know when something is exceeding a predetermined threshold.&lt;/p&gt;
+&lt;p&gt;All of these are very important when you’re building your quote, and obviously when going into production with your App.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;dont-skip-testing-and-staging-on-your-way-to-production&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Don’t skip testing and staging on your way to production&lt;/h2&gt;
+&lt;p&gt;In software development there are various levels of environments, starting from your desktop (“local”), through development server, integration, testing, staging/acceptance, and production. See Wikipedia’s &lt;a href=&#34;https://en.wikipedia.org/wiki/Deployment_environment&#34;&gt;Deployment environment&lt;/a&gt; entry.&lt;/p&gt;
+&lt;p&gt;When building an app, make sure you go through these steps. Specifically relating to testing, staging, and production). What I found to be particularly useful is to upload the app twice (in two seperate locations/urls):&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Deploy as a beta app (client acceptance/demo) in which I demonstrate additional features and discuss them with the client, before incorporating them into production.&lt;/li&gt;
+&lt;li&gt;Deploy as a production/live app.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As you iterate and improve the app, fix bugs, and add new features, you are also at the risk of breaking things. Thus, you should first update the beta app, share the new additions, and let the client experiment with the app. This way you can double check you didn’t break anything else.&lt;/p&gt;
+&lt;p&gt;Only when the client authorizes the corrections, redeploy the new app to the production.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;As data scientists using Shiny, we’ve also become software developers. We’re developing not just for ourselves or for other useRs in our community.&lt;/p&gt;
+&lt;p&gt;With Shiny we’re building for end-users. We’re building customer facing apps, and we need to keep that in mind. We should make sure that we adopt and use best practices of software development.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Test your tidyness - a short quiz to check your tidyverse capabilities</title>
