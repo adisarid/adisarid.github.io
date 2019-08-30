@@ -332,7 +332,7 @@ fluidPage(
 &lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Conclusions&lt;/h2&gt;
 &lt;p&gt;The post contains essential things you need in order to get started with AWS Cognito authentication for your shiny apps.&lt;/p&gt;
-&lt;p&gt;You can extend this process to any authentication service (for example, digital ocean has a similar service to Cognito). There are some packages which implement the entire process for other services, like &lt;code&gt;googleAuthR&lt;/code&gt; for a gmail login (see this link)[&lt;a href=&#34;https://code.markedmondson.me/googleAuthR/articles/google-authentication-types.html&#34; class=&#34;uri&#34;&gt;https://code.markedmondson.me/googleAuthR/articles/google-authentication-types.html&lt;/a&gt;],&lt;/p&gt;
+&lt;p&gt;You can extend this process to any authentication service (for example, digital ocean has a similar service to Cognito). There are some packages which implement the entire process for other services, like &lt;code&gt;googleAuthR&lt;/code&gt; for a gmail login &lt;a href=&#34;https://code.markedmondson.me/googleAuthR/articles/google-authentication-types.html&#34;&gt;see this link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you found this post useful, let me know!, either in comments below, or twitter, or email.&lt;/p&gt;
 &lt;p&gt;As always, be careful of how you implement this process in your own apps, to make sure there are no security risks or loopholes. Also, DISCLAIMER: The information in this post is free, you can use this however like. Note that it is published with the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;/p&gt;
 &lt;/div&gt;
