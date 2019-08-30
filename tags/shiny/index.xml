@@ -6,10 +6,31 @@
     <description>Recent content in shiny on Adi Sarid&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Feb 2019 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2019 12:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/shiny/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Securing Shiny apps with AWS Cognito authentication</title>
+      <link>/post/2019-08-10-cognito-shiny-authentication/</link>
+      <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-08-10-cognito-shiny-authentication/</guid>
+      <description>BackgroundShiny apps are a great way to share information and empower your users. Sometimes you want to make sure that only authenticated and authorized users will be able to view your shiny apps.
+There are a number of ways to make sure only certain users have access to your apps. For example, you can subscribe to the professional plan in shinyapps.io which has this option built-in. You can program the authentication flow internally by yourself, or you just use a 3rd party service such as google firebase, AWS Cognito, Auth0, or others).</description>
+    </item>
+    
+    <item>
+      <title>What NOT to do when building a shiny app (lessons learned the hard way)</title>
+      <link>/post/2019-07-03-shiny_app_lessons/</link>
+      <pubDate>Fri, 19 Jul 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-07-03-shiny_app_lessons/</guid>
+      <description>I’ve been building R shiny apps for a while now, and ever since I started working with shiny, it has significantly increased the set of services I offer my clients.
+Here’s a documentations of some of the many lessons I learned in previous projects I did. Hopefully, others can avoid them in the future.
+BackgroundShiny is a really great tool that allows data scientists to communicate their analysis in an appealing and an effective way.</description>
+    </item>
     
     <item>
       <title>Settling class action lawsuits with conjoint analysis and R (&#43;a conjoint shiny app)</title>

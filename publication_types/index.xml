@@ -6,19 +6,10 @@
     <description>Recent content in Publication_types on Adi Sarid&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Jul 2013 00:00:00 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2015 00:00:00 +0300</lastBuildDate>
     
 	<atom:link href="/publication_types/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>1</title>
-      <link>/publication_types/1/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0300</pubDate>
-      
-      <guid>/publication_types/1/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>2</title>
@@ -26,6 +17,15 @@
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0300</pubDate>
       
       <guid>/publication_types/2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>1</title>
+      <link>/publication_types/1/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0300</pubDate>
+      
+      <guid>/publication_types/1/</guid>
       <description></description>
     </item>
     

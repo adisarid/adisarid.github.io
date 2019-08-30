@@ -6,10 +6,73 @@
     <description>Recent content in Tags on Adi Sarid&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Feb 2019 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2019 12:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS</title>
+      <link>/tags/aws/</link>
+      <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Authentication</title>
+      <link>/tags/authentication/</link>
+      <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/authentication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cognito</title>
+      <link>/tags/cognito/</link>
+      <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/cognito/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Sun, 28 Apr 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Teaching</title>
+      <link>/tags/teaching/</link>
+      <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/teaching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Train the Trainer</title>
+      <link>/tags/train-the-trainer/</link>
+      <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/train-the-trainer/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Class actions</title>
@@ -26,69 +89,6 @@
       <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
       
       <guid>/tags/conjoint-analysis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deep Learning</title>
-      <link>/tags/deep-learning/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
-      
-      <guid>/tags/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Demo</title>
-      <link>/tags/demo/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
-      
-      <guid>/tags/demo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Shiny</title>
-      <link>/tags/shiny/</link>
-      <pubDate>Fri, 19 Jul 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/shiny/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Teaching</title>
-      <link>/tags/teaching/</link>
-      <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/teaching/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tidyverse</title>
-      <link>/tags/tidyverse/</link>
-      <pubDate>Sun, 28 Apr 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/tidyverse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Train the Trainer</title>
-      <link>/tags/train-the-trainer/</link>
-      <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/train-the-trainer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>conference</title>
-      <link>/tags/conference/</link>
-      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/conference/</guid>
       <description></description>
     </item>
     
@@ -111,6 +111,24 @@
     </item>
     
     <item>
+      <title>tidyeval</title>
+      <link>/tags/tidyeval/</link>
+      <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyeval/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>conference</title>
+      <link>/tags/conference/</link>
+      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/conference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>rstudio::conf</title>
       <link>/tags/rstudioconf/</link>
       <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
@@ -120,20 +138,20 @@
     </item>
     
     <item>
-      <title>shiny</title>
-      <link>/tags/shiny/</link>
-      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
+      <title>Deep Learning</title>
+      <link>/tags/deep-learning/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
       
-      <guid>/tags/shiny/</guid>
+      <guid>/tags/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>tidyeval</title>
-      <link>/tags/tidyeval/</link>
-      <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
+      <title>Demo</title>
+      <link>/tags/demo/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
       
-      <guid>/tags/tidyeval/</guid>
+      <guid>/tags/demo/</guid>
       <description></description>
     </item>
     
