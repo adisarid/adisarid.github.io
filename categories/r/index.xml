@@ -254,7 +254,7 @@ function(input, output, session){
     })
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The accompanying user interface (&lt;code&gt;user.r&lt;/code&gt;) will look like the following:&lt;/p&gt;
+&lt;p&gt;The accompanying user interface (&lt;code&gt;ui.r&lt;/code&gt;) will look like the following:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
 library(shiny)
 library(shinyjs)
