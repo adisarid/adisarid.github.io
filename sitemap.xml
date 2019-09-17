@@ -3,8 +3,8 @@
     
     <url>
     
-      <loc>/tags/aws/</loc>
-      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
+      <loc>/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -12,7 +12,51 @@
     
     <url>
     
-      <loc>/</loc>
+      <loc>/categories/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/r/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/2019-09-17-google_drive_dir_structure_permissions/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/googledrive/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/aws/</loc>
       <lastmod>2019-08-30T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -30,25 +74,7 @@
     
     <url>
     
-      <loc>/categories/</loc>
-      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/tags/cognito/</loc>
-      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/categories/r/</loc>
       <lastmod>2019-08-30T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -59,15 +85,6 @@
     
       <loc>/post/2019-08-10-cognito-shiny-authentication/</loc>
       <lastmod>2019-08-30T12:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/</loc>
-      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
-      <priority>0</priority>
     </url>
     
   

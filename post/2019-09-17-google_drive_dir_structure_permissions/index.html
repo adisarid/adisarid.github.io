@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -30,10 +28,11 @@
   
     
   
-  <meta name="description" content="Partner and Head of Opeartions Research Department">
+  <meta name="description" content="Google drive is a great tool, specifically we’ve been using “G Suite” (the equivalent of google drive but for businesses), for a long time. Lately I noticed it’s missing an important feature - monitoring file shares and permission of google drive items across organization is non-trival (at least in the G suite basic subscription).
+I wanted to get a better sense of how my files and folders are shared across users within and outside the organization.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/tags/">
+  <link rel="alternate" hreflang="en-us" href="/post/2019-09-17-google_drive_dir_structure_permissions/">
 
   
 
@@ -113,15 +112,15 @@
   
 
   
-  <link rel="alternate" href="/tags/index.xml" type="application/rss+xml" title="Adi Sarid&#39;s personal blog">
-  <link rel="feed" href="/tags/index.xml" type="application/rss+xml" title="Adi Sarid&#39;s personal blog">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Adi Sarid&#39;s personal blog">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Adi Sarid&#39;s personal blog">
   
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/tags/">
+  <link rel="canonical" href="/post/2019-09-17-google_drive_dir_structure_permissions/">
 
   
   
@@ -136,12 +135,15 @@
   <meta property="twitter:creator" content="@SaridResearch">
   
   <meta property="og:site_name" content="Adi Sarid&#39;s personal blog">
-  <meta property="og:url" content="/tags/">
-  <meta property="og:title" content="Tags | Adi Sarid&#39;s personal blog">
-  <meta property="og:description" content="Partner and Head of Opeartions Research Department"><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:url" content="/post/2019-09-17-google_drive_dir_structure_permissions/">
+  <meta property="og:title" content="Retrieving google drive item shares and permissions (in R) | Adi Sarid&#39;s personal blog">
+  <meta property="og:description" content="Google drive is a great tool, specifically we’ve been using “G Suite” (the equivalent of google drive but for businesses), for a long time. Lately I noticed it’s missing an important feature - monitoring file shares and permission of google drive items across organization is non-trival (at least in the G suite basic subscription).
+I wanted to get a better sense of how my files and folders are shared across users within and outside the organization."><meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2019-09-17T12:00:00&#43;00:00">
+  <meta property="article:published_time" content="2019-09-17T12:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2019-09-17T12:00:00&#43;00:00">
   
 
   
@@ -174,7 +176,7 @@
 
   
 
-  <title>Tags | Adi Sarid&#39;s personal blog</title>
+  <title>Retrieving google drive item shares and permissions (in R) | Adi Sarid&#39;s personal blog</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -312,7 +314,9 @@
 </nav>
 
 
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
+  
 
 
 
@@ -329,86 +333,256 @@
 
   
   
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Retrieving google drive item shares and permissions (in R)</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1 itemprop="name">Tags</h1>
 
-  
-
-  
-</div>
-
-
-
-<div class="universal-wrapper">
-  
+<div class="article-metadata">
 
   
   
-  <div>
-    <h2><a href="/tags/progress-bars/">progress bars</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/tags/purrr/">purrr</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/tags/tidyeval/">tidyeval</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/tags/conference/">conference</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/tags/rstudioconf/">rstudio::conf</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/tags/deep-learning/">Deep Learning</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="/tags/demo/">Demo</a></h2>
-    <div class="article-style">
-      
-    </div>
-  </div>
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="">
+  </span>
   
 
-  
-<nav>
-  <ul class="pagination justify-content-center">
+  <span class="article-date">
     
-    <li class="page-item"><a class="page-link" href="/tags/">&laquo;</a></li>
+    <meta content="2019-09-17 12:00:00 &#43;0000 &#43;0000" itemprop="datePublished">
+    <time datetime="2019-09-17 12:00:00 &#43;0000 &#43;0000" itemprop="dateModified">
+      Sep 17, 2019
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/2019-09-17-google_drive_dir_structure_permissions/#disqus_thread"></a>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
     
+    <a href="/categories/r/">R</a>
     
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Retrieving%20google%20drive%20item%20shares%20and%20permissions%20%28in%20R%29&amp;url=%2fpost%2f2019-09-17-google_drive_dir_structure_permissions%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2019-09-17-google_drive_dir_structure_permissions%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2019-09-17-google_drive_dir_structure_permissions%2f&amp;title=Retrieving%20google%20drive%20item%20shares%20and%20permissions%20%28in%20R%29"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2019-09-17-google_drive_dir_structure_permissions%2f&amp;title=Retrieving%20google%20drive%20item%20shares%20and%20permissions%20%28in%20R%29"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Retrieving%20google%20drive%20item%20shares%20and%20permissions%20%28in%20R%29&amp;body=%2fpost%2f2019-09-17-google_drive_dir_structure_permissions%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
   </ul>
-</nav>
+</div>
 
+
+  
 
 </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>Google drive is a great tool, specifically we’ve been using “G Suite” (the equivalent of google drive but for businesses), for a long time. Lately I noticed it’s missing an important feature - monitoring file shares and permission of google drive items across organization is non-trival (at least in the G suite basic subscription).</p>
+<p>I wanted to get a better sense of how my files and folders are shared across users within and outside the organization. I decided to give the <code>googledrive</code> package a try and extract the shares and permissions of important folders I had on my account. Here’s how I did that.</p>
+<div id="using-googledrive-to-mass-extract-shares-and-permission-of-google-drive-items" class="section level2">
+<h2>Using <code>googledrive</code> to mass extract shares and permission of google drive items</h2>
+<p>First, I wanted to focus on specific folders which contain a lot of subfolders. My goal was to generate a <code>tibble</code> with the names of all sub-items (folder or files one level under the specific folders), along with all users which have access to these folders.</p>
+<p>Here is a description of what you need to do in order to accomplish what I described, followed by the code I used.</p>
+<ol style="list-style-type: decimal">
+<li>Get the id (or URL) for the folder you want to retrieve data from. You can get the id by just visiting the folder, and the id is in the URL, i.e., <code>https://drive.google.com/drive/u/1/folders/&lt;HERE YOU WILL SEE THE FOLDER ID&gt;</code>.</li>
+<li>Then, retrieve all items within the folder.</li>
+<li>Use <code>purrr</code> functions (i.e., <code>map</code> and <code>map_df</code> to iterate over the results and bring them into a tidy form).</li>
+<li>(Optional) Use <code>pivot_wider</code> to create a <code>tibble</code> in a wide format where each row is an item and each column is the type of access each user has on the item.</li>
+</ol>
+<p>The first function I’m using is a function I defined called <code>get_permissions_df()</code>:</p>
+<pre class="r"><code>library(tidyverse)
+library(googledrive)  # the package used to iterface with the google api
+
+# Function to retrieve email addresses of permissions (read/write) --------
+
+get_permissions_df &lt;- function(permission_list){
+  map_df(permission_list, ~{
+    if (!is.null(.$emailAddress)){
+      tibble(user_email = .$emailAddress, user_role = .$role)
+    } else {
+      tibble(user_email = NA, user_role = NA)
+    }
+  })
+}</code></pre>
+<p>The function returns a tibble with two columns: user_email and user_role, according to the users with access to the folder (access can be owner/writer/reader).</p>
+<p>Now, to actually pulling the data and processing it:</p>
+<pre class="r"><code># Read the contents of the folder -----
+# note that the first time you run this, you will be asked to login into your gmail using a web browser.
+folder_contents &lt;- drive_ls(as_id(&quot;&lt;FOLDER ID OR URL&gt;&quot;)) # replace here with the URL or ID of the folder.
+
+# Get a tidy form of all shares and permissions of subfolders
+tidy_permissions &lt;- folder_contents %&gt;% 
+  mutate(new_creds = 
+           map(drive_resource, 
+                  ~{get_permissions_df(.$permissions)})
+  ) %&gt;% 
+  select(name, new_creds) %&gt;% 
+  unnest(new_creds) %&gt;% 
+  filter(!is.na(user_email))
+
+# Optional - turn into a wider form where each column is a user,
+# each row is a subfolder, and values are permissions of users.
+
+wide_permissions &lt;- tidy_permissions %&gt;% 
+  distinct(name, user_email, .keep_all = T) %&gt;% 
+  pivot_wider(id_cols = name, 
+              names_from = user_email, values_from = user_role, values_fill = list(user_role = &quot;none&quot;))</code></pre>
+<p>There you have it: <code>tidy_permissions</code> will hold the names of all subfolders with permissions. A folder will appear as many times as it has permissions (with the user email and the type of permission). The <code>wide_permissions</code> will hold a wide version in which each row is a folder and each column is a user.</p>
+<p>Note that this works for specific folders. You can also use <code>drive_ls()</code> without any arguments (or use it with <code>recursive=TRUE</code>), to pull everything on the drive (or everything within all subfolders, recursively). When I did that it took me around 5-10 minutes to pull all the data and about 5 minutes to prepare it, since I have <span class="math inline">\(&gt;100k\)</span> items.</p>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>The post provides a method to create a concise tibble with the contents of you google drive items, and their user permissions.
+You can either run it on all items in your google drive or on selected folders (and sub-folders within). The method is especially useful in the context of data safety and security, when you want to make sure you are not sharing sensitive items in an undesired manner.</p>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/googledrive/">googledrive</a>
+  
+</div>
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "adisarid" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
 <div class="container">
   <footer class="site-footer">
   
@@ -570,6 +744,4 @@
 	
   </body>
 </html>
-
-
 
