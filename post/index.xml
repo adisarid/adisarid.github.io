@@ -10,6 +10,520 @@
     <atom:link href="/post/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Confidence and prediction intervals explained... (with a Shiny app!)</title>
+      <link>/post/2019-12-13-confidence_prediction_intervals_explained/</link>
+      <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-12-13-confidence_prediction_intervals_explained/</guid>
+      <description>
+
+
+&lt;p&gt;This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.&lt;/p&gt;
+&lt;p&gt;I put in a lot of efforts into bringing practical challenges, examples from real life, and a lot of demonstrations of statistical theory with R. This post is an example for how I’ve been using R code (and specifically Shiny apps) to demonstrate statistical theory, concepts and provide intuition.&lt;/p&gt;
+&lt;div id=&#34;whats-the-difference-between-confidence-and-prediction-intervals&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What’s the difference between confidence and prediction intervals?&lt;/h2&gt;
+&lt;p&gt;Last week I taught multiple linear regression, and I noticed that students have a hard time comprehending the difference between confidence intervals and prediction intervals. The former being an interval for the model (i.e., interval for the underlying model), and the latter being an interval for a noval observation.&lt;/p&gt;
+&lt;p&gt;As the sample size increases, our uncertainty of the model’s parameters decreases, but the uncertainty in the value of a new observation, &lt;span class=&#34;math inline&#34;&gt;\(y_0\)&lt;/span&gt; is associated with variance of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; (the random variable from which &lt;span class=&#34;math inline&#34;&gt;\(y_0\)&lt;/span&gt; is drawn). Hence, it has a lower bound, based on that variance.&lt;/p&gt;
+&lt;p&gt;In R, you can get a prediction or a confidence interval by using either&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;predict(object, newdata, interval = &#34;prediction&#34;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Or&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;predict(object, newdata, interval = &#34;confidence&#34;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;For a prediction or for a confidence interval, respectively.&lt;/p&gt;
+&lt;p&gt;To help me illustrate the differences between the two, I decided to build a small Shiny web app. It shows the differences between confidence intervals, prediction intervals, the regression fit, and the actual (original) model.&lt;/p&gt;
+&lt;p&gt;The app is available &lt;a href=&#34;https://sarid.shinyapps.io/intervals_demo/&#34;&gt;here&lt;/a&gt;, and the source code is available on &lt;a href=&#34;https://github.com/adisarid/prediction_confidence_intervals_demo&#34;&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With this app you can choose three types of models to demonstrate. Simple linear regression, and regression with a twist (&lt;span class=&#34;math inline&#34;&gt;\(\log\)&lt;/span&gt; transformation on the &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; or &lt;span class=&#34;math inline&#34;&gt;\(\sin\)&lt;/span&gt; transformation on the &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Linear model &lt;span class=&#34;math inline&#34;&gt;\(y = a + bx + \epsilon\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Log-linear model &lt;span class=&#34;math inline&#34;&gt;\(\log(y)=a+bx+\epsilon\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sine &lt;span class=&#34;math inline&#34;&gt;\(y = a + b\sin(x) + \epsilon\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All the models are based on simple linear regression (&lt;code&gt;lm&lt;/code&gt; function), for the latter two models with either a &lt;code&gt;log&lt;/code&gt; or &lt;code&gt;sin&lt;/code&gt; transformation.&lt;/p&gt;
+&lt;p&gt;The app allows you to play around with various values such as the &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; range, the model’s parameters (&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt; and &lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt;), the error’s standard deviation (&lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt;), and show or hide any of the following elements, on the chart:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The original function (i.e., the original model)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The sampled points&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The confidence interval&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The prediction interval&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The model’s fit&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Feel free to share the app or the app’s code. As mentioned above, the &lt;strong&gt;source code for the app&lt;/strong&gt; is available here: &lt;a href=&#34;https://github.com/adisarid/prediction_confidence_intervals_demo&#34;&gt;https://github.com/adisarid/prediction_confidence_intervals_demo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here’s an example for what the app’s generating code and output looks like, for a model of the type &lt;span class=&#34;math inline&#34;&gt;\(\log(y) = 1 + \frac{x}{2} + \epsilon\)&lt;/span&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(tidyr)
+library(tibble)
+library(ggplot2)
+
+sample_size &amp;lt;- 90
+x_range &amp;lt;- c(0, 1.5)
+a &amp;lt;- 1
+b &amp;lt;- 1.5
+sigma &amp;lt;- 0.3
+
+actual_function &amp;lt;- tibble(x = seq(x_range[1], x_range[2], by = 0.01)) %&amp;gt;% 
+  mutate(actual_y = exp(a + b*x))
+
+random_sample &amp;lt;- tibble(epsilon_err = rnorm(n = sample_size, 
+                                            mean = 0,
+                                            sd = sigma),
+                        x = runif(n = sample_size,
+                                  min = x_range[1],
+                                  max = x_range[2])) %&amp;gt;% 
+  mutate(sampled_y = exp(a + b*x + epsilon_err))
+
+linear_model &amp;lt;- lm(formula = log(sampled_y) ~ x, data = random_sample)
+
+prediction_i &amp;lt;- predict(object = linear_model,
+                         newdata = actual_function,
+                         interval = &amp;quot;prediction&amp;quot;) %&amp;gt;% 
+  as_tibble() %&amp;gt;% 
+  rename_at(vars(lwr,upr), ~paste0(., &amp;quot;_pi&amp;quot;)) %&amp;gt;% 
+  mutate_all(exp)
+
+confidence_i &amp;lt;- predict(object = linear_model,
+                         newdata = actual_function,
+                         interval = &amp;quot;confidence&amp;quot;) %&amp;gt;% 
+  as_tibble() %&amp;gt;% 
+  rename_at(vars(lwr,upr), ~paste0(., &amp;quot;_ci&amp;quot;)) %&amp;gt;% 
+  select(-fit) %&amp;gt;% 
+  mutate_all(exp)
+
+intervals &amp;lt;- actual_function %&amp;gt;% 
+  bind_cols(prediction_i,
+            confidence_i)
+
+ggplot() + 
+  geom_line(data = actual_function, aes(x, actual_y, color = &amp;quot;Original Model&amp;quot;), size = 1) + 
+  geom_point(data = random_sample, aes(x, sampled_y), alpha = 0.5) + 
+  geom_line(data = intervals, 
+            aes(x, fit, color = &amp;quot;Regression Fit&amp;quot;), size = 1) + 
+  geom_line(data = intervals, 
+            aes(x, lwr_pi, color = &amp;quot;Prediction Interval&amp;quot;), 
+            linetype = 2, size = 1) +
+  geom_line(data = intervals, 
+            aes(x, upr_pi, color = &amp;quot;Prediction Interval&amp;quot;), 
+            linetype = 2, size = 1) + 
+  geom_line(data = intervals, 
+            aes(x, lwr_ci, color = &amp;quot;Confidence Interval&amp;quot;), 
+            linetype = 2, size = 1) + 
+  geom_line(data = intervals, 
+            aes(x, upr_ci, color = &amp;quot;Confidence Interval&amp;quot;), 
+            linetype = 2, size = 1) + 
+  theme_bw() + 
+  xlab(&amp;quot;x&amp;quot;) + 
+  ylab(&amp;quot;y&amp;quot;) + 
+  ggtitle(&amp;quot;Log-linear: Model, Fit, Confidence and Prediction Intervals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;Shiny apps are a great way to illustrate theoretical concepts, to provide intuition, and to let students experiment with parameters and see the outcomes. In this post I demonstrated how a Shiny app can be used to explain the concepts of a regression fit, confidence, and prediction intervals.&lt;/p&gt;
+&lt;p&gt;If you used Shiny for interesting educational demonstrations I’d love to hear about it! feel free to share in the comments or message me on twitter &lt;span class=&#34;citation&#34;&gt;@SaridResearch&lt;/span&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Retrieving google drive item shares and permissions (in R)</title>
+      <link>/post/2019-09-17-google_drive_dir_structure_permissions/</link>
+      <pubDate>Tue, 17 Sep 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-09-17-google_drive_dir_structure_permissions/</guid>
+      <description>
+
+
+&lt;p&gt;Google drive is a great tool, specifically we’ve been using “G Suite” (the equivalent of google drive but for businesses), for a long time. Lately I noticed it’s missing an important feature - monitoring file shares and permission of google drive items across organization is non-trival (at least in the G suite basic subscription).&lt;/p&gt;
+&lt;p&gt;I wanted to get a better sense of how my files and folders are shared across users within and outside the organization. I decided to give the &lt;code&gt;googledrive&lt;/code&gt; package a try and extract the shares and permissions of important folders I had on my account. Here’s how I did that.&lt;/p&gt;
+&lt;div id=&#34;using-googledrive-to-mass-extract-shares-and-permission-of-google-drive-items&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using &lt;code&gt;googledrive&lt;/code&gt; to mass extract shares and permission of google drive items&lt;/h2&gt;
+&lt;p&gt;First, I wanted to focus on specific folders which contain a lot of subfolders. My goal was to generate a &lt;code&gt;tibble&lt;/code&gt; with the names of all sub-items (folder or files one level under the specific folders), along with all users which have access to these folders.&lt;/p&gt;
+&lt;p&gt;Here is a description of what you need to do in order to accomplish what I described, followed by the code I used.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Get the id (or URL) for the folder you want to retrieve data from. You can get the id by just visiting the folder, and the id is in the URL, i.e., &lt;code&gt;https://drive.google.com/drive/u/1/folders/&amp;lt;HERE YOU WILL SEE THE FOLDER ID&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Then, retrieve all items within the folder.&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;purrr&lt;/code&gt; functions (i.e., &lt;code&gt;map&lt;/code&gt; and &lt;code&gt;map_df&lt;/code&gt; to iterate over the results and bring them into a tidy form).&lt;/li&gt;
+&lt;li&gt;(Optional) Use &lt;code&gt;pivot_wider&lt;/code&gt; to create a &lt;code&gt;tibble&lt;/code&gt; in a wide format where each row is an item and each column is the type of access each user has on the item.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first function I’m using is a function I defined called &lt;code&gt;get_permissions_df()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(googledrive)  # the package used to iterface with the google api
+
+# Function to retrieve email addresses of permissions (read/write) --------
+
+get_permissions_df &amp;lt;- function(permission_list){
+  map_df(permission_list, ~{
+    if (!is.null(.$emailAddress)){
+      tibble(user_email = .$emailAddress, user_role = .$role)
+    } else {
+      tibble(user_email = NA, user_role = NA)
+    }
+  })
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The function returns a tibble with two columns: user_email and user_role, according to the users with access to the folder (access can be owner/writer/reader).&lt;/p&gt;
+&lt;p&gt;Now, to actually pulling the data and processing it:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Read the contents of the folder -----
+# note that the first time you run this, you will be asked to login into your gmail using a web browser.
+folder_contents &amp;lt;- drive_ls(as_id(&amp;quot;&amp;lt;FOLDER ID OR URL&amp;gt;&amp;quot;)) # replace here with the URL or ID of the folder.
+
+# Get a tidy form of all shares and permissions of subfolders
+tidy_permissions &amp;lt;- folder_contents %&amp;gt;% 
+  mutate(new_creds = 
+           map(drive_resource, 
+                  ~{get_permissions_df(.$permissions)})
+  ) %&amp;gt;% 
+  select(name, new_creds) %&amp;gt;% 
+  unnest(new_creds) %&amp;gt;% 
+  filter(!is.na(user_email))
+
+# Optional - turn into a wider form where each column is a user,
+# each row is a subfolder, and values are permissions of users.
+
+wide_permissions &amp;lt;- tidy_permissions %&amp;gt;% 
+  distinct(name, user_email, .keep_all = T) %&amp;gt;% 
+  pivot_wider(id_cols = name, 
+              names_from = user_email, values_from = user_role, values_fill = list(user_role = &amp;quot;none&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There you have it: &lt;code&gt;tidy_permissions&lt;/code&gt; will hold the names of all subfolders with permissions. A folder will appear as many times as it has permissions (with the user email and the type of permission). The &lt;code&gt;wide_permissions&lt;/code&gt; will hold a wide version in which each row is a folder and each column is a user.&lt;/p&gt;
+&lt;p&gt;Note that this works for specific folders. You can also use &lt;code&gt;drive_ls()&lt;/code&gt; without any arguments (or use it with &lt;code&gt;recursive=TRUE&lt;/code&gt;), to pull everything on the drive (or everything within all subfolders, recursively). When I did that it took me around 5-10 minutes to pull all the data and about 5 minutes to prepare it, since I have &lt;span class=&#34;math inline&#34;&gt;\(&amp;gt;100k\)&lt;/span&gt; items.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;The post provides a method to create a concise tibble with the contents of you google drive items, and their user permissions.
+You can either run it on all items in your google drive or on selected folders (and sub-folders within). The method is especially useful in the context of data safety and security, when you want to make sure you are not sharing sensitive items in an undesired manner.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Securing Shiny apps with AWS Cognito authentication</title>
+      <link>/post/2019-08-10-cognito-shiny-authentication/</link>
+      <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-08-10-cognito-shiny-authentication/</guid>
+      <description>
+
+
+&lt;div id=&#34;background&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;Shiny apps are a great way to share information and empower your users. Sometimes you want to make sure that only authenticated and authorized users will be able to view your shiny apps.&lt;/p&gt;
+&lt;p&gt;There are a number of ways to make sure only certain users have access to your apps. For example, you can subscribe to the professional plan in shinyapps.io which has this option built-in. You can program the authentication flow internally by yourself, or you just use a 3rd party service such as google firebase, AWS Cognito, Auth0, or others).&lt;/p&gt;
+&lt;p&gt;The benefit of using a dedicated service is that you get a lot of features which will be a serious headake to program yourself, such as social logins, two factor authentication, logs, and user blocks on suspicious attempts (or warnings on unauthorized attempts, depending on settings).&lt;/p&gt;
+&lt;p&gt;The down side is that it takes some time to implement. In this guide I aim to make the process as simple and painless as possible, using the Amazon Web Service’s authentication solution, called &lt;em&gt;AWS Cognito&lt;/em&gt;. But first, some theory about authentication.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-authentication-works&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;How authentication works&lt;/h2&gt;
+&lt;p&gt;The logic behind authentication with AWS Cognito (or similar alternatives) is that you direct your users to a login page hosted by AWS, in which the user completes a process which confirms the user’s indentity. For example, by entering an e-mail and password, or by using a social sign-in (i.e., login via gmail, amazon, facebook). Then, once Cognito is finished, the user is redirected to your app with a URL variable which contain a specially issued code (i.e., &lt;code&gt;https://your-app-address/?code=AMAZON_ISSUED_CODE&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Then, you use an http request (i.e., with package &lt;code&gt;httr&lt;/code&gt;) to query the Cognito API with this code, and in return you receive the information behind this code (i.e., the user’s &lt;em&gt;token&lt;/em&gt;, with information such as the name of the user, what is the user’s email, validity of the token, etc.). This &lt;code&gt;httr&lt;/code&gt; query is performed by using a password known only to you (i.e., only your app “knows” this password, this is not the user’s password).&lt;/p&gt;
+&lt;p&gt;The code is usable only once, and the token is valid for a limited duration, to minimize the risk that an unauthorized party will hijack the token and re-use it to access your app.&lt;/p&gt;
+&lt;p&gt;After authenticating the user, you can authorize the user according to privileges (which you would have to manage within your app, i.e. if the users email is X, then he can view Y).&lt;/p&gt;
+&lt;p&gt;This process description was a very simplified, down-to-earth, nutshell description of oauth2. It might be inaccurate, but it will be enough for our goal here which is to actually implement it within a shiny app, integrating to Cognito. If you wish, you can find more information about oauth2 in detail &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s get to business.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-1-define-a-user-pool&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 1: Define a user pool&lt;/h2&gt;
+&lt;p&gt;This step is actually performed within the AWS Console. Log into your AWS console and find the Cognito service.
+Click on “Manage User Pools”, and then create a new user pool. The step-by-step wizard is pretty self explanatory, so I’ll focus on the important things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make sure that you require a relevant field upon your user sign-up which you can “count on” in order to perform user authorization within your app based on that field later on. I usually check the email address as a required field, and then add logic in my app which maps email addresses to what each user is allowed to view.&lt;/li&gt;
+&lt;li&gt;Multi-factor authentication can be “off”, “optional” or “required”. If your app contains sensitive information, then you should consider making it required.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Important!&lt;/strong&gt; in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.&lt;/p&gt;
+&lt;p&gt;Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Optional&lt;/strong&gt;: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.&lt;/p&gt;
+&lt;p&gt;Complete the wizard and create your user pool.&lt;/p&gt;
+&lt;div id=&#34;email-communications&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Email communications&lt;/h3&gt;
+&lt;p&gt;You must have the AWS SES (simple email service) configured properly, in order for the registration of new users and “forgot password” flows to work. By default, SES is in sandbox mode, which means you can only register users with pre-verified emails. Defining SES is outside the scope of this guide, but note that you have to open a ticket in the AWS support center, asking for these privilleges.&lt;/p&gt;
+&lt;p&gt;Make sure you supply AWS support with a lot of information about how you make sure emails don’t bounce, and about spam prevention. Even though it’s trivial, since this is an internal AWS system using the email service, they made me jump through hoops, untill granting me a 50k daily email cap, which is more than enough for me.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;app-client-settings&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;App client settings&lt;/h3&gt;
+&lt;p&gt;Under the “App integration -&amp;gt; App client settings” you need to add the Callback URL of your app (where the user is directed upon login). For example, if your app is going to be hosted on shinyapps.io that would be: &lt;code&gt;https://YOUR_USER_NAME.shinyapps.io/YOUR_APP_NAME&lt;/code&gt;. Your sign-out url can be the same, if you want the app to allow the user to restart the login, or a different page showing that the user has logged out.&lt;/p&gt;
+&lt;p&gt;Under OAuth 2.0/“Allowed OAuth Flows” you should check the: &lt;em&gt;Authorization code grant&lt;/em&gt;. This is the authentication flow we are going to use for our shiny app. The “implicit grant” is not as secure, and the “client credentials” is used for machine-to-machine authentication.&lt;/p&gt;
+&lt;p&gt;Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.&lt;/p&gt;
+&lt;p&gt;Set a domain name for your login screen and customize the UI of the login screen if you wish.&lt;/p&gt;
+&lt;p&gt;You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;enable-identity-provides-optional&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Enable identity provides (Optional)&lt;/h3&gt;
+&lt;p&gt;If you want to offer your users a social login such as Facebook or Google, you would need to issue the proper credentials via google console and facebook. This is a nice addition, but is out of the scope of this guide.&lt;/p&gt;
+&lt;p&gt;Finally, we get into the R code part of this post.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-2-authorization-code-within-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 2: Authorization code (within R)&lt;/h2&gt;
+&lt;p&gt;Now we need to add logic to our shiny app which will redirect the user to the AWS Cognito login page, and once the user authenticates and redirected to the shiny app, our shiny app will verify the token’s validity.&lt;/p&gt;
+&lt;p&gt;Very basically, the Shiny app should read query url variables, and:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;If no variables appear, show a login button to the user (which will redirect to the AWS Cognito login screen with the proper parameters).&lt;/li&gt;
+&lt;li&gt;If a url variable called &lt;code&gt;code&lt;/code&gt; appears, our app will read its value, and use AWS Cognito to apply a second layer of verification and identification according to the code (read the token issued by Cognito).&lt;/li&gt;
+&lt;li&gt;If the user is logged on, show a “logout” button which will redirect the user into AWS Cognito logout link.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div id=&#34;redirect-links-to-loginlogout-screen-authorization-logout-endpoints&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Redirect links to login/logout screen (AUTHORIZATION, LOGOUT Endpoints)&lt;/h3&gt;
+&lt;p&gt;There are two “endpoints” (urls) that your users will be redirected to:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;During their login flow into the app, or;&lt;/li&gt;
+&lt;li&gt;After they click “logout”.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first is the “AUTHORIZATION Endpoint”. It is a redirection of the client to a url of the following form (I have already put it into a &lt;code&gt;paste0&lt;/code&gt; command, which we will later use in our app).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;base_cognito_url &amp;lt;- &amp;quot;https://YOUR_PREEDEFINED_AWS_COGNITO_DOMAIN.amazoncognito.com/&amp;quot;
+app_client_id &amp;lt;- &amp;quot;YOUR_APP_CLIENT_ID&amp;quot;
+app_client_secret &amp;lt;- &amp;quot;YOUR_APP_CLIENT_SECRET&amp;quot;
+redirect_uri &amp;lt;- &amp;quot;https://YOUR_APP/redirect_uri&amp;quot; 
+# e.g., if you are using shinyapps.io this would be: 
+# https://ACCOUNT_NAME.shinyapps.io/YOUR_APP_NAME
+
+aws_auth_redirect &amp;lt;-
+  paste0(
+    base_cognito_url,
+    &amp;quot;oauth2/authorize?&amp;quot;,
+    &amp;quot;response_type=code&amp;amp;&amp;quot;,
+    &amp;quot;client_id=&amp;quot;, app_client_id, &amp;quot;&amp;amp;&amp;quot;,
+    &amp;quot;redirect_uri=&amp;quot;, redirect_uri, &amp;quot;&amp;amp;&amp;quot;,
+    &amp;quot;state=appredirect&amp;quot;
+  )
+
+aws_auth_redirect&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;https://YOUR_PREEDEFINED_AWS_COGNITO_DOMAIN.amazoncognito.com/oauth2/authorize?response_type=code&amp;amp;client_id=YOUR_APP_CLIENT_ID&amp;amp;redirect_uri=https://YOUR_APP/redirect_uri&amp;amp;state=appredirect&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can also specify the “scopes” (what information should Cognito hold for your next query, email, phone, etc.). If you don’t specify any scopes, all the information available on the user will be provided (see the next section of this post “&lt;strong&gt;Querying Cognito with the grant code&lt;/strong&gt;”).&lt;/p&gt;
+&lt;p&gt;The second endpoint is the “LOGOUT Endpoint” which will logout the user. It is important to provide a logout button so that users can safely close your app, without worrying about other users in the same computer abusing their credentials.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;aws_auth_logout &amp;lt;-
+  paste0(
+    base_cognito_url, &amp;quot;logout?&amp;quot;,
+    &amp;quot;client_id=&amp;quot;, app_client_id, &amp;quot;&amp;amp;&amp;quot;,
+    &amp;quot;logout_uri=&amp;quot;, redirect_uri
+  )
+
+aws_auth_logout&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;https://YOUR_PREEDEFINED_AWS_COGNITO_DOMAIN.amazoncognito.com/logout?client_id=YOUR_APP_CLIENT_ID&amp;amp;logout_uri=https://YOUR_APP/redirect_uri&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once a user has completed the login process (via the authorization endpoint), he will be redirected to your app (the link you provided in the redirect_uri and in the Cognito setup at step 1). If the login is successful, the user will return with a url variable called code, i.e. &lt;code&gt;https://YOUR_APP/redirect_uri?code=####-####-####-####&lt;/code&gt;. The next step will be to make sure that this code is indeed valid, and to check who is the user trying to access behind this code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;querying-cognito-with-the-grant-code&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Querying Cognito with the grant code&lt;/h3&gt;
+&lt;p&gt;This is a crucial part, in which we make sure that the user is indeed valid, and allowed to access your app. We’re going to use the &lt;code&gt;httr&lt;/code&gt; package for that.&lt;/p&gt;
+&lt;p&gt;Let’s assume we have already pulled the authorization code from the Shiny app’s url variables (we’re going to show how to do that in step 3).&lt;/p&gt;
+&lt;p&gt;We’re going to build a function which gets the code as an argument and provides the user’s information (or an error if the user is not authenticated or there was a different failure). I usually place this code in my &lt;code&gt;global.r&lt;/code&gt; file, which is a part of the shiny app’s bundle (&lt;code&gt;ui.r&lt;/code&gt;, &lt;code&gt;server.r&lt;/code&gt;, &lt;code&gt;global.r&lt;/code&gt;), and is used to define an environment variables and functions which will be availble to the shiny app. You can also place it at the begining of the &lt;code&gt;server.r&lt;/code&gt; if you don’t want a &lt;code&gt;global.r&lt;/code&gt; file. If you are using a single &lt;code&gt;app.r&lt;/code&gt; just put it before the app itself.&lt;/p&gt;
+&lt;p&gt;Here is the code that goes into your &lt;code&gt;global.r&lt;/code&gt; file:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;base_cognito_url &amp;lt;- &amp;quot;https://YOUR_DOMAIN.YOUR_AMAZON_REGION.amazoncognito.com/&amp;quot;
+app_client_id &amp;lt;- &amp;quot;YOUR_APP_CLIENT_ID&amp;quot;
+app_client_secret &amp;lt;- &amp;quot;YOUR_APP_CLIENT_SECRET&amp;quot;
+redirect_uri &amp;lt;- &amp;quot;https://YOUR_APP/redirect_uri&amp;quot;
+
+library(httr)
+
+app &amp;lt;- oauth_app(appname = &amp;quot;my_shiny_app&amp;quot;,
+                 key = app_client_id,
+                 secret = app_client_secret,
+                 redirect_uri = redirect_uri)
+cognito &amp;lt;- oauth_endpoint(authorize = &amp;quot;authorize&amp;quot;,
+                          access = &amp;quot;token&amp;quot;,
+                          base_url = paste0(base_cognito_url, &amp;quot;oauth2&amp;quot;))
+
+
+retrieve_user_data &amp;lt;- function(user_code){
+  
+  failed_token &amp;lt;- FALSE
+  
+  # get the token
+  tryCatch({token_res &amp;lt;- oauth2.0_access_token(endpoint = cognito,
+                                              app = app,
+                                              code = user_code,
+                                              user_params = list(client_id = app_client_id,
+                                                                 grant_type = &amp;quot;authorization_code&amp;quot;),
+                                              use_basic_auth = TRUE)},
+           error = function(e){failed_token &amp;lt;&amp;lt;- TRUE})
+  
+  # check result status, make sure token is valid and that the process did not fail
+  if (failed_token) {
+    return(NULL)
+  }
+  
+  # The token did not fail, go ahead and use the token to retrieve user information
+  user_information &amp;lt;- GET(url = paste0(base_cognito_url, &amp;quot;oauth2/userInfo&amp;quot;), 
+                          add_headers(Authorization = paste(&amp;quot;Bearer&amp;quot;, token_res$access_token)))
+  
+  return(content(user_information))
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-3-define-your-shiny-apps-server.r-and-ui.r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Step 3: define your Shiny app’s &lt;code&gt;server.r&lt;/code&gt; and &lt;code&gt;ui.r&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;In our shiny app, we need to pull the code and use the &lt;code&gt;retrieve_user_data&lt;/code&gt; function we’ve just defined as part of our verification of the user. Here is the code we will use for this. This should go into the &lt;code&gt;server.r&lt;/code&gt; file.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+library(shinyjs)
+
+# define a tibble of allwed users (this can also be read from a local file or from a database)
+allowed_users &amp;lt;- tibble(
+  user_email = c(&amp;quot;user1@example.com&amp;quot;,
+                 &amp;quot;user2@example.com&amp;quot;))
+
+function(input, output, session){
+   
+   # initialize authenticated reactive values ----
+   # In addition to these three (auth, name, email)
+   # you can add additional reactive values here, if you want them to be based on the user which logged on, e.g. privileges.
+   user &amp;lt;- reactiveValues(auth = FALSE, # is the user authenticated or not
+                          name = NULL, # user&amp;#39;s name as stored and returned by cognito
+                          email = NULL)  # user&amp;#39;s email as stored and returned by cognito
+   
+   # get the url variables ----
+   observe({
+        query &amp;lt;- parseQueryString(session$clientData$url_search)
+        if (!(&amp;quot;code&amp;quot; %in% names(query))){
+            # no code in the url variables means the user hasn&amp;#39;t logged in yet
+            showElement(&amp;quot;login&amp;quot;)
+        } else {
+            current_user &amp;lt;- retrieve_user_data(query$code)
+            # if an error occurred during login
+            if (is.null(current_user)){
+                hideElement(&amp;quot;login&amp;quot;)
+                showElement(&amp;quot;login_error_aws_flow&amp;quot;)
+                showElement(&amp;quot;submit_sign_out_div&amp;quot;)
+                user$auth &amp;lt;- FALSE
+            } else {
+                # check if user is in allowed user list
+                # for more robustness, use stringr::str_to_lower to avoid case sensitivity
+                # i.e., (str_to_lower(current_user$email) %in% str_to_lower(allowed_users$user_email))
+                if (current_user$email %in% allowed_users$user_email){
+                    hideElement(&amp;quot;login&amp;quot;)
+                    showElement(&amp;quot;login_confirmed&amp;quot;)
+                    showElement(&amp;quot;submit_sign_out_div&amp;quot;)
+                    
+                    user$auth &amp;lt;- TRUE
+                    user$email &amp;lt;- current_user$email
+                    user$name &amp;lt;- current_user$name
+                    
+                    # ==== User is valid, continue prep ====
+                    
+                    # show the welcome box with user name
+                    output$confirmed_login_name &amp;lt;-
+                        renderText({
+                            paste0(&amp;quot;Hi there!, &amp;quot;,
+                                    user$name)
+                        })
+                    
+                    # ==== Put additional login dependent steps here (e.g. db read from source) ====
+                    
+                    # ADD HERE YOUR REQUIRED LOGIC
+                    # I personally like to select the first tab for the user to see, i.e.:
+                    showTab(&amp;quot;main_navigation&amp;quot;, &amp;quot;content_tab_id&amp;quot;, select = TRUE) 
+                    # (see the next chunk for how this tab is defined in terms of ui elements)
+                    
+                    # ==== Finish loading and go to tab ====
+                    
+                } else {
+                    # user not allowed. Only show sign-out, perhaps also show a login error message.
+                    hideElement(&amp;quot;login&amp;quot;)
+                    showElement(&amp;quot;login_error_user&amp;quot;)
+                    showElement(&amp;quot;submit_sign_out_div&amp;quot;)
+                }
+            }
+        }
+    })
+   
+   # This is where you will put your actual elements (the server side that is) ----
+   # For example:
+    
+    output$some_plot &amp;lt;- renderPlot({
+        # *** THIS IS EXTREMELY IMPORTANT!!! ***
+        validate(need(user$auth, &amp;quot;No privileges to watch data. Please contact support.&amp;quot;))
+        # since shinyjs is not safe for hiding content, make sure that any information is covered
+        # by the validate(...) expression as was specified. 
+        # Rendered elements which were not preceded by a validate expression can be viewed in the html code (even if you use hideElement).
+        
+        # only if user is confirmed the information will render (a plot in this case)
+        plot(cars)
+    })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The accompanying user interface (&lt;code&gt;ui.r&lt;/code&gt;) will look like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+library(shiny)
+library(shinyjs)
+
+fluidPage(
+    useShinyjs(), # to enable the show/hide of elements such as login and buttons
+    hidden( # this is how the logout button will like:
+        div(
+            id = &amp;quot;submit_sign_out_div&amp;quot;,
+            a(id = &amp;quot;submit_sign_out&amp;quot;,
+              &amp;quot;logout&amp;quot;,
+              href = aws_auth_logout,
+              style = &amp;quot;color: black; 
+              -webkit-appearance: button; 
+              -moz-appearance: button; 
+              appearance: button; 
+              text-decoration: none; 
+              background:#ff9999; 
+              position: absolute; 
+              top: 0px; left: 20px; 
+              z-index: 10000;
+              padding: 5px 10px 5px 10px;&amp;quot;
+              )
+            )
+    ),
+    navbarPage(
+        &amp;quot;Cognito auth example&amp;quot;,
+        id = &amp;quot;main_navigation&amp;quot;,
+        tabPanel(
+            &amp;quot;identification&amp;quot;,
+            value = &amp;quot;login_tab_id&amp;quot;,
+            h1(&amp;quot;Login&amp;quot;),
+            div(
+                id = &amp;quot;login&amp;quot;,
+                p(&amp;quot;To login you must identify with a username and password&amp;quot;),
+                # This defines a login button which upon click will redirect to the AWS Cognito login page
+                a(id = &amp;quot;login_link&amp;quot;,
+                  &amp;quot;Click here to login&amp;quot;,
+                  href = aws_auth_redirect,
+                  style = &amp;quot;color: black;
+                  -webkit-appearance: button;
+                  -moz-appearance: button;
+                  appearance: button;
+                  text-decoration: none;
+                  background:#95c5ff;
+                  padding: 5px 10px 5px 10px;&amp;quot;)
+            ),
+            hidden(div(
+                id = &amp;quot;login_error_aws_flow&amp;quot;,
+                p(&amp;quot;An error has occurred.&amp;quot;),
+                p(&amp;quot;Please contact support&amp;quot;)
+            )),
+            hidden(
+                div(
+                    id = &amp;quot;login_confirmed&amp;quot;,
+                    h3(&amp;quot;User confirmed&amp;quot;),
+                    fluidRow(
+                        textOutput(&amp;quot;confirmed_login_name&amp;quot;)),
+                    fluidRow(
+                        p(&amp;quot;Use the menu bar to navigate.&amp;quot;),
+                        p(
+                            &amp;quot;Don&amp;#39;t forget to logout when you want to close the system.&amp;quot;
+                        )
+                    )
+                )
+            ),
+        ),
+        tabPanel(&amp;quot;Your actual content&amp;quot;, 
+                 value = &amp;quot;content_tab_id&amp;quot;,
+                 fluidRow(plotOutput(&amp;quot;some_plot&amp;quot;)))
+    )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;The post contains essential things you need in order to get started with AWS Cognito authentication for your shiny apps.&lt;/p&gt;
+&lt;p&gt;You can extend this process to any authentication service (for example, digital ocean has a similar service to Cognito). There are some packages which implement the entire process for other services, like &lt;code&gt;googleAuthR&lt;/code&gt; for a gmail login &lt;a href=&#34;https://code.markedmondson.me/googleAuthR/articles/google-authentication-types.html&#34;&gt;see this link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you found this post useful, let me know!, either in comments below, or twitter, or email.&lt;/p&gt;
+&lt;p&gt;As always, be careful of how you implement this process in your own apps, to make sure there are no security risks or loopholes. Also, DISCLAIMER: The information in this post is free, you can use this however like. Note that it is published with the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>What NOT to do when building a shiny app (lessons learned the hard way)</title>
       <link>/post/2019-07-03-shiny_app_lessons/</link>
       <pubDate>Fri, 19 Jul 2019 12:00:00 +0000</pubDate>

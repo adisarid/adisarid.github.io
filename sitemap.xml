@@ -4,6 +4,30 @@
     
     <url>
     
+      <loc>/post/2019-12-13-confidence_prediction_intervals_explained/</loc>
+      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/2019-09-17-google_drive_dir_structure_permissions/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/2019-08-10-cognito-shiny-authentication/</loc>
+      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/2019-07-03-shiny_app_lessons/</loc>
       <lastmod>2019-07-19T12:00:00+00:00</lastmod>
     </url>
@@ -100,14 +124,6 @@
     
     <url>
     
-      <loc>/talk/example/</loc>
-      <lastmod>2017-01-01T00:00:00+02:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/publication/</loc>
       <lastmod>2017-01-01T00:00:00+02:00</lastmod>
     </url>
@@ -181,8 +197,26 @@
     
     <url>
     
+      <loc>/tags/aws/</loc>
+      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/</loc>
       <lastmod>2019-01-22T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/authentication/</loc>
+      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -216,6 +250,15 @@
     
       <loc>/tags/class-actions/</loc>
       <lastmod>2019-02-03T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/cognito/</loc>
+      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -287,7 +330,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2019-07-19T12:00:00+00:00</lastmod>
+      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -296,7 +339,7 @@
     <url>
     
       <loc>/tags/shiny/</loc>
-      <lastmod>2019-07-19T12:00:00+00:00</lastmod>
+      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -320,7 +363,7 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
+      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -357,6 +400,24 @@
     
       <loc>/tags/conference/</loc>
       <lastmod>2019-01-19T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/googledrive/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/linear-models/</loc>
+      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
