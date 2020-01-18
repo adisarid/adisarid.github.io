@@ -4,6 +4,22 @@
     
     <url>
     
+      <loc>/talk/</loc>
+      <lastmod>2020-01-17T00:00:00+02:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/talk/plumber_api_meetup/</loc>
+      <lastmod>2020-01-17T00:00:00+02:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/2019-12-13-confidence_prediction_intervals_explained/</loc>
       <lastmod>2019-12-13T12:00:00+00:00</lastmod>
     </url>
@@ -133,14 +149,6 @@
     <url>
     
       <loc>/publication/</loc>
-      <lastmod>2017-01-01T00:00:00+02:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/talk/</loc>
       <lastmod>2017-01-01T00:00:00+02:00</lastmod>
     </url>
     

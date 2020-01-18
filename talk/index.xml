@@ -6,10 +6,19 @@
     <description>Recent content in Recent &amp; Upcoming Talks on Adi Sarid&#39;s personal blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Want to talk to R? just call your plumber</title>
+      <link>/talk/plumber_api_meetup/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0200</pubDate>
+      
+      <guid>/talk/plumber_api_meetup/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Not So Shiny?</title>
