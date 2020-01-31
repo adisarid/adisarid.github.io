@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Adi Sarid&#39;s personal blog</title>
+    <title>Tags on Adi Sarid - Personal Blog</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on Adi Sarid&#39;s personal blog</description>
+    <description>Recent content in Tags on Adi Sarid - Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Aug 2019 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Jan 2020 06:08:00 -1000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>rstudio conference</title>
+      <link>/tags/rstudio-conference/</link>
+      <pubDate>Fri, 31 Jan 2020 06:08:00 -1000</pubDate>
+      
+      <guid>/tags/rstudio-conference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linear models</title>
+      <link>/tags/linear-models/</link>
+      <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/linear-models/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>googledrive</title>
+      <link>/tags/googledrive/</link>
+      <pubDate>Tue, 17 Sep 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/googledrive/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>AWS</title>
@@ -30,65 +66,11 @@
     </item>
     
     <item>
-      <title>Class actions</title>
-      <link>/tags/class-actions/</link>
-      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/class-actions/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Cognito</title>
       <link>/tags/cognito/</link>
       <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
       
       <guid>/tags/cognito/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Conjoint analysis</title>
-      <link>/tags/conjoint-analysis/</link>
-      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/conjoint-analysis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deep Learning</title>
-      <link>/tags/deep-learning/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
-      
-      <guid>/tags/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Demo</title>
-      <link>/tags/demo/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
-      
-      <guid>/tags/demo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Shiny</title>
-      <link>/tags/shiny/</link>
-      <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/shiny/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Teaching</title>
-      <link>/tags/teaching/</link>
-      <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/teaching/</guid>
       <description></description>
     </item>
     
@@ -102,6 +84,15 @@
     </item>
     
     <item>
+      <title>Teaching</title>
+      <link>/tags/teaching/</link>
+      <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/teaching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Train the Trainer</title>
       <link>/tags/train-the-trainer/</link>
       <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
@@ -111,29 +102,20 @@
     </item>
     
     <item>
-      <title>conference</title>
-      <link>/tags/conference/</link>
-      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      <title>Class actions</title>
+      <link>/tags/class-actions/</link>
+      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
       
-      <guid>/tags/conference/</guid>
+      <guid>/tags/class-actions/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>googledrive</title>
-      <link>/tags/googledrive/</link>
-      <pubDate>Tue, 17 Sep 2019 12:00:00 +0000</pubDate>
+      <title>Conjoint analysis</title>
+      <link>/tags/conjoint-analysis/</link>
+      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
       
-      <guid>/tags/googledrive/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linear models</title>
-      <link>/tags/linear-models/</link>
-      <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/linear-models/</guid>
+      <guid>/tags/conjoint-analysis/</guid>
       <description></description>
     </item>
     
@@ -156,6 +138,24 @@
     </item>
     
     <item>
+      <title>tidyeval</title>
+      <link>/tags/tidyeval/</link>
+      <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyeval/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>conference</title>
+      <link>/tags/conference/</link>
+      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/conference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>rstudio::conf</title>
       <link>/tags/rstudioconf/</link>
       <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
@@ -165,20 +165,20 @@
     </item>
     
     <item>
-      <title>shiny</title>
-      <link>/tags/shiny/</link>
-      <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
+      <title>Deep Learning</title>
+      <link>/tags/deep-learning/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
       
-      <guid>/tags/shiny/</guid>
+      <guid>/tags/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>tidyeval</title>
-      <link>/tags/tidyeval/</link>
-      <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
+      <title>Demo</title>
+      <link>/tags/demo/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
       
-      <guid>/tags/tidyeval/</guid>
+      <guid>/tags/demo/</guid>
       <description></description>
     </item>
     

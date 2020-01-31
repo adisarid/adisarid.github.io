@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Demo on Adi Sarid&#39;s personal blog</title>
+    <title>Demo on Adi Sarid - Personal Blog</title>
     <link>/tags/demo/</link>
-    <description>Recent content in Demo on Adi Sarid&#39;s personal blog</description>
+    <description>Recent content in Demo on Adi Sarid - Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0300</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0300</pubDate>
       
       <guid>/project/external-project/</guid>
-      <description></description>
+      <description>An example of linking directly to an external project website using &lt;code&gt;external_link&lt;/code&gt;.</description>
     </item>
     
   </channel>

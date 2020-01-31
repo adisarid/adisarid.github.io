@@ -1,5 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    
+    <url>
+    
+      <loc>/</loc>
+      <lastmod>2020-01-31T06:08:00-10:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/2020-01-31-rstudio-conf2020-recap/</loc>
+      <lastmod>2020-01-31T06:08:00-10:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/</loc>
+      <lastmod>2020-01-31T06:08:00-10:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/rstudio-conference/</loc>
+      <lastmod>2020-01-31T06:08:00-10:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
   
     
     <url>
@@ -20,6 +54,15 @@
     
     <url>
     
+      <loc>/categories/</loc>
+      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/2019-12-13-confidence_prediction_intervals_explained/</loc>
       <lastmod>2019-12-13T12:00:00+00:00</lastmod>
     </url>
@@ -28,8 +71,71 @@
     
     <url>
     
+      <loc>/categories/r/</loc>
+      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/shiny/</loc>
+      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/linear-models/</loc>
+      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/2019-09-17-google_drive_dir_structure_permissions/</loc>
       <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/googledrive/</loc>
+      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/aws/</loc>
+      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/authentication/</loc>
+      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/cognito/</loc>
+      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
+      <priority>0</priority>
     </url>
     
   
@@ -60,8 +166,53 @@
     
     <url>
     
+      <loc>/tags/tidyverse/</loc>
+      <lastmod>2019-04-28T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/teaching/</loc>
+      <lastmod>2019-03-12T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/2019-03-12-the_teachr_cheat_sheet/</loc>
       <lastmod>2019-03-12T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/train-the-trainer/</loc>
+      <lastmod>2019-03-12T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/class-actions/</loc>
+      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/conjoint-analysis/</loc>
+      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
+      <priority>0</priority>
     </url>
     
   
@@ -84,6 +235,24 @@
     
     <url>
     
+      <loc>/tags/progress-bars/</loc>
+      <lastmod>2019-01-25T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/purrr/</loc>
+      <lastmod>2019-01-25T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/</loc>
       <lastmod>2019-01-22T00:00:00+02:00</lastmod>
     </url>
@@ -100,6 +269,15 @@
     
     <url>
     
+      <loc>/tags/tidyeval/</loc>
+      <lastmod>2019-01-20T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/about/</loc>
       <lastmod>2019-01-19T12:00:00+00:00</lastmod>
     </url>
@@ -110,6 +288,24 @@
     
       <loc>/post/2019-01-19-rstudio-conf-recap/</loc>
       <lastmod>2019-01-19T12:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/conference/</loc>
+      <lastmod>2019-01-19T12:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/rstudioconf/</loc>
+      <lastmod>2019-01-19T12:00:00+00:00</lastmod>
+      <priority>0</priority>
     </url>
     
   
@@ -156,6 +352,24 @@
     
     <url>
     
+      <loc>/tags/deep-learning/</loc>
+      <lastmod>2016-04-27T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/demo/</loc>
+      <lastmod>2016-04-27T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/project/external-project/</loc>
       <lastmod>2016-04-27T00:00:00+03:00</lastmod>
     </url>
@@ -172,8 +386,71 @@
     
     <url>
     
+      <loc>/project/</loc>
+      <lastmod>2016-04-27T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication_types/2/</loc>
+      <lastmod>2015-09-01T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/publication/person-re-id/</loc>
       <lastmod>2015-09-01T00:00:00+03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/authors/</loc>
+      <lastmod>2015-09-01T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/authors/ga-cushen/</loc>
+      <lastmod>2015-09-01T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication_types/</loc>
+      <lastmod>2015-09-01T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication_types/1/</loc>
+      <lastmod>2013-07-01T00:00:00+03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/authors/ms-nixon/</loc>
+      <lastmod>2013-07-01T00:00:00+03:00</lastmod>
+      <priority>0</priority>
     </url>
     
   
@@ -195,167 +472,7 @@
     
     <url>
     
-      <loc>/publication_types/1/</loc>
-      <lastmod>2013-07-01T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/publication_types/2/</loc>
-      <lastmod>2015-09-01T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/aws/</loc>
-      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/</loc>
-      <lastmod>2019-01-22T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/authentication/</loc>
-      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/author/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/authors/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/categories/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/class-actions/</loc>
-      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/cognito/</loc>
-      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/conjoint-analysis/</loc>
-      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/deep-learning/</loc>
-      <lastmod>2016-04-27T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/demo/</loc>
-      <lastmod>2016-04-27T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/authors/ga-cushen/</loc>
-      <lastmod>2015-09-01T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/authors/ms-nixon/</loc>
-      <lastmod>2013-07-01T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/project/</loc>
-      <lastmod>2016-04-27T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/publication_types/</loc>
-      <lastmod>2013-07-01T00:00:00+03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/categories/r/</loc>
-      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/shiny/</loc>
-      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -372,114 +489,6 @@
     <url>
     
       <loc>/slides/example-slides/</loc>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/</loc>
-      <lastmod>2019-08-30T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/teaching/</loc>
-      <lastmod>2019-03-12T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/tidyverse/</loc>
-      <lastmod>2019-04-28T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/train-the-trainer/</loc>
-      <lastmod>2019-03-12T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/conference/</loc>
-      <lastmod>2019-01-19T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/googledrive/</loc>
-      <lastmod>2019-09-17T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/linear-models/</loc>
-      <lastmod>2019-12-13T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/progress-bars/</loc>
-      <lastmod>2019-01-25T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/purrr/</loc>
-      <lastmod>2019-01-25T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/rstudioconf/</loc>
-      <lastmod>2019-01-19T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/shiny/</loc>
-      <lastmod>2019-02-03T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/tidyeval/</loc>
-      <lastmod>2019-01-20T12:00:00+00:00</lastmod>
-      <priority>0</priority>
     </url>
     
   
