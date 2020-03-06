@@ -28,10 +28,12 @@
   
     
   
-  <meta name="description" content="Things that I learned about shiny app development, the &#34;hard way&#34;. Talk given at a meetup held at the Microsoft Reactor, TLV.">
+  <meta name="description" content="For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).
+After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i.e., with SSL certificates.
+I’ve put together this step-by-step post to close this gap (in part for self-documentation).">
 
   
-  <link rel="alternate" hreflang="en-us" href="/talk/not_so_shiny/">
+  <link rel="alternate" hreflang="en-us" href="/post/2020-03-06-setup_rstudio_server_with_ssl/">
 
   
 
@@ -119,7 +121,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/talk/not_so_shiny/">
+  <link rel="canonical" href="/post/2020-03-06-setup_rstudio_server_with_ssl/">
 
   
   
@@ -134,14 +136,16 @@
   <meta property="twitter:creator" content="@SaridResearch">
   
   <meta property="og:site_name" content="Adi Sarid - Personal Blog">
-  <meta property="og:url" content="/talk/not_so_shiny/">
-  <meta property="og:title" content="Not So Shiny? | Adi Sarid - Personal Blog">
-  <meta property="og:description" content="Things that I learned about shiny app development, the &#34;hard way&#34;. Talk given at a meetup held at the Microsoft Reactor, TLV."><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:url" content="/post/2020-03-06-setup_rstudio_server_with_ssl/">
+  <meta property="og:title" content="Set up RStudio server with Let&#39;s Encrypt SSL certificate | Adi Sarid - Personal Blog">
+  <meta property="og:description" content="For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).
+After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i.e., with SSL certificates.
+I’ve put together this step-by-step post to close this gap (in part for self-documentation)."><meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2017-01-01T00:00:00&#43;02:00">
+  <meta property="article:published_time" content="2020-03-06T22:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2017-01-01T00:00:00&#43;02:00">
+  <meta property="article:modified_time" content="2020-03-06T22:00:00&#43;00:00">
   
 
   
@@ -174,7 +178,7 @@
 
   
 
-  <title>Not So Shiny? | Adi Sarid - Personal Blog</title>
+  <title>Set up RStudio server with Let&#39;s Encrypt SSL certificate | Adi Sarid - Personal Blog</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -349,7 +353,8 @@
   </div>
 </nav>
 
-<div class="pub" itemscope itemtype="http://schema.org/Event">
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
   
 
@@ -370,7 +375,7 @@
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">Not So Shiny?</h1>
+  <h1 itemprop="name">Set up RStudio server with Let&#39;s Encrypt SSL certificate</h1>
 
   
 
@@ -388,9 +393,9 @@
 
   <span class="article-date">
     
-    <meta content="2017-01-01 00:00:00 &#43;0200 IST" itemprop="datePublished">
-    <time datetime="2017-01-01 00:00:00 &#43;0200 IST" itemprop="dateModified">
-      Jan 1, 2017
+    <meta content="2020-03-06 22:00:00 &#43;0000 &#43;0000" itemprop="datePublished">
+    <time datetime="2020-03-06 22:00:00 &#43;0000 &#43;0000" itemprop="dateModified">
+      Mar 6, 2020
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -398,11 +403,16 @@
   </span>
 
   
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
 
   
   
   <span class="middot-divider"></span>
-  <a href="/talk/not_so_shiny/#disqus_thread"></a>
+  <a href="/post/2020-03-06-setup_rstudio_server_with_ssl/#disqus_thread"></a>
   
 
   
@@ -413,35 +423,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Not%20So%20Shiny%3f&amp;url=%2ftalk%2fnot_so_shiny%2f"
+         href="https://twitter.com/intent/tweet?text=Set%20up%20RStudio%20server%20with%20Let%27s%20Encrypt%20SSL%20certificate&amp;url=%2fpost%2f2020-03-06-setup_rstudio_server_with_ssl%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2ftalk%2fnot_so_shiny%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2020-03-06-setup_rstudio_server_with_ssl%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2ftalk%2fnot_so_shiny%2f&amp;title=Not%20So%20Shiny%3f"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2020-03-06-setup_rstudio_server_with_ssl%2f&amp;title=Set%20up%20RStudio%20server%20with%20Let%27s%20Encrypt%20SSL%20certificate"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2ftalk%2fnot_so_shiny%2f&amp;title=Not%20So%20Shiny%3f"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2020-03-06-setup_rstudio_server_with_ssl%2f&amp;title=Set%20up%20RStudio%20server%20with%20Let%27s%20Encrypt%20SSL%20certificate"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Not%20So%20Shiny%3f&amp;body=%2ftalk%2fnot_so_shiny%2f">
+         href="mailto:?subject=Set%20up%20RStudio%20server%20with%20Let%27s%20Encrypt%20SSL%20certificate&amp;body=%2fpost%2f2020-03-06-setup_rstudio_server_with_ssl%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -461,8 +471,6 @@
 
 
 
-  
-
 
 
 
@@ -478,72 +486,154 @@
 
   <div class="article-container">
 
-    
-      <h3>Abstract</h3>
-      <p class="pub-abstract" itemprop="text">Things that I learned about shiny app development, the &ldquo;hard way&rdquo;. Talk given at a meetup held at the Microsoft Reactor, TLV.</p>
-    
+    <div class="article-style" itemprop="articleBody">
+      
 
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-12 col-md-3 pub-row-heading">Date</div>
-          <div class="col-12 col-md-9" itemprop="datePublished">
-            
-            Oct 24, 2019
-            <div class="talk-time">
-              
-                5:45 PM
-                
-                  &mdash; 6:05 PM
-                
-              
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
+
+<p>For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).</p>
+<p>After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i.e., with SSL certificates.</p>
+<p>I’ve put together this step-by-step post to close this gap (in part for self-documentation). I don’t cover dockerized versions here.</p>
+<div id="step-1-or-actually-steps-1-10" class="section level2">
+<h2>Step 1 (or actually steps 1-10)</h2>
+<p>Install rstudio server and shiny server on your choice of cloud provider. Common choices are AWS (EC2 or Lightsail, Digital Ocean, Azure, and Google. Anything works actually).</p>
+<p>Installation instructions are covered in detail in Dean Attali’s post <a href="https://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean">here</a> which uses Digital Ocean.</p>
+<p>No use repeating everything in its entirety. I will however highlight two things I’ve found helpful and are a bit different from Dean’s post.</p>
+<ol style="list-style-type: decimal">
+<li>Selection of instance size (resources)</li>
+<li>AWS Lightsail’s deafult firewall settings</li>
+</ol>
+<div id="selection-of-instance-size" class="section level3">
+<h3>Selection of instance size</h3>
+<p>I’ve found that opening an instance with low memory (i.e., 0.5-1Gb) is problematic. Its cheap, but if you’re installing packages such as <code>dplyr</code> (included in <code>tidyverse</code>), compiling the package within your server, will require more memory than what you have available. You can workaround this by increasing your swap file size (step 6 in Dean’s post), but eventually even R processes might give you a hard time in the future. I’ve been using a 4GB server, which seems to be ok for my purposes (and at the time of writing this post costs about $20 USD per month).</p>
+</div>
+<div id="aws-lightsails-firewall-settings" class="section level3">
+<h3>AWS Lightsail’s firewall settings</h3>
+<p>When using <strong>AWS Lightsail</strong> (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).</p>
+<p>Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:</p>
+<p><img src='/img/lightsail_firewall_configuration.jpg'></p>
+<p>If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).</p>
+</div>
+</div>
+<div id="secure-you-server-with-ssl-encryption" class="section level2">
+<h2>Secure you server with SSL encryption</h2>
+<p>Since you will probably be passing data back and forth between your remote server and local computer, you want to secure this data transfer with encryption. The best way to do this is using SSL certificates (it’s actually called TSL, the name SSL refers to a deprecated protocol, but everyone seems to still be using the SSL initials, <a href="https://www.cloudflare.com/learning/ssl/what-is-ssl/">see here</a>).</p>
+<p>There is a free service called Let’s Encrypt which provides SSL certificates, which is what we’re going to use here. I’m actually adopting the approach of <a href="https://docs.fuga.cloud/how-to-use-lets-encrypt-certificates-to-secure-nginxs-ssl-configuration">this tutorial</a>.</p>
+<div id="install-lets-encrypt-and-get-certficates" class="section level3">
+<h3>Install Let’s Encrypt and get certficates</h3>
+<p>Install the following software on your linux server</p>
+<pre><code>sudo apt instal letsencrypt</code></pre>
+<p>Update your nginx configuration as preperation for obtaining the let’s encrypt certificate. This step is needed because when requesting a certificate from let’s encrypt, the let’s encrypt server will try to authenticate your server.</p>
+<p>Use</p>
+<pre><code>sudo nano /etc/nginx/sites-enabled/default</code></pre>
+<p>And add the following (replace <code>r.example.com</code> with your domain):</p>
+<pre><code>server {
+        listen 80;
+        listen [::]:80;
+        root /var/www/r.example.com/html;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name r.example.com;
+}</code></pre>
+<p>Get your SSL certificates using the following line, just replace <code>r.example.com</code> with your subdomain.</p>
+<pre><code>letsencrypt certonly -a webroot --webroot-path=/var/www/r.example.com/html/ -d r.example.com
+</code></pre>
+<p>Update your nginx settings again</p>
+<pre><code>sudo nano /etc/nginx/sites-enabled/default</code></pre>
+<p>To have the following setup (remember to replace <code>r.example.com</code> with your domain):</p>
+<pre><code>map $http_upgrade $connection_upgrade {
+  default upgrade;
+  &#39;&#39;      close;
+}
+
+# listens on port 80 and redirects traffic to secure alternative
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        server_name r.example.com;
+        return 301 https://r.example.com$request_uri;
+}
+
+server {
+        
+        # SSL configuration
+        
+        listen 443 ssl;
+        ssl_certificate /etc/letsencrypt/live/r.example.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/r.example.com/privkey.pem;
+        ssl_protocols TLSv1.2;
+
+        ssl_ciphers EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+        ssl_prefer_server_ciphers On;
+        ssl_session_cache shared:SSL:128m;
+        add_header Strict-Transport-Security &quot;max-age=31557600; includeSubDomains&quot;;
+        ssl_stapling on;
+        ssl_stapling_verify on;
+
+        root /var/www/r.example.com/html;
+
+        server_name _;
+
+        # Reroute traffic to shiny server (i.e., reverse proxy for port 3838)
+        location /shiny/ {
+           proxy_pass http://127.0.0.1:3838/;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection $connection_upgrade;
+           rewrite ^(/shiny/[^/]+)$ $1/ permanent;
+        }
+
+        # Reroute traffic to rstudio server (i.e., reverse proxy for port 8787)
+        location /rstudio/ {
+           proxy_pass http://127.0.0.1:8787/;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection $connection_upgrade;
+        }
+}
+</code></pre>
+<p>Your server should be working now, but since Let’s Encrypt certificates only last 90 days, lets put an automatically renewal process in place.</p>
+<pre><code>sudo nano /opt/renewCerts.sh</code></pre>
+<p>Paste the following text:</p>
+<pre><code>#!/bin/sh
+# This script renews all the Let&#39;s Encrypt certificates with a validity &lt; 30 days
+if ! letsencrypt renew &gt; /var/log/letsencrypt/renew.log 2&gt;&amp;1 ; then
+    echo Automated renewal failed:
+    cat /var/log/letsencrypt/renew.log
+    exit 1
+fi
+nginx -t &amp;&amp; nginx -s reload</code></pre>
+<p>Make sure the script is owned and executable by root:</p>
+<pre><code>chown root.root /opt/renewCerts.sh
+chmod u+x /opt/renewCerts.sh</code></pre>
+<p>Add it to cron for auto execution:</p>
+<pre><code>sudo crontab -e</code></pre>
+<p>Add</p>
+<pre><code>@weekly /opt/renewCerts.sh</code></pre>
+</div>
+</div>
+<div id="all-should-be-set" class="section level2">
+<h2>All should be set!</h2>
+<p>Go ahead and browse to your domain (e.g., <code>https://r.example.com/rstudio</code>). Check that you’re able to login properly and that all pages are secure on <code>https</code>.</p>
+</div>
+
     </div>
-    <div class="d-md-none space-below"></div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-12 col-md-3 pub-row-heading">Event</div>
-          <div class="col-12 col-md-9">
-            
-            Meetup
-            
-          </div>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
-    </div>
-    <div class="d-md-none space-below"></div>
 
     
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-12 col-md-3 pub-row-heading">Location</div>
-          <div class="col-12 col-md-9">TLV, Israel</div>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
-    </div>
-    <div class="d-md-none space-below"></div>
-    
 
-    <div class="space-below"></div>
 
-    <div class="article-style">
-      <p>Presentation and source code are available  <a href="https://github.com/adisarid/meetup_not_so_shiny/" target="_blank">here</a>, accompanying shiny app used for demonstrations is available <a href="https://sarid.shinyapps.io/not_so_shiny" target="_blank">here</a>.</p>
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="">RStudio server</a>
+  
+  <a class="badge badge-light" href="/tags/nginx/">nginx</a>
+  
+  <a class="badge badge-light" href="">Let&#39;s Encrypt</a>
+  
+</div>
 
-    </div>
 
-    
 
     
 
@@ -561,10 +651,39 @@
 
 
 
+    
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "adisarid" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
   </div>
-</div>
-
-
+</article>
 
 <div class="container">
   <footer class="site-footer">

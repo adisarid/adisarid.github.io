@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RStudio server on Adi Sarid - Personal Blog</title>
+    <link>/tags/rstudio-server/</link>
+    <description>Recent content in RStudio server on Adi Sarid - Personal Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 06 Mar 2020 22:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/rstudio-server/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Set up RStudio server with Let&#39;s Encrypt SSL certificate</title>
+      <link>/post/2020-03-06-setup_rstudio_server_with_ssl/</link>
+      <pubDate>Fri, 06 Mar 2020 22:00:00 +0000</pubDate>
+      
+      <guid>/post/2020-03-06-setup_rstudio_server_with_ssl/</guid>
+      <description>For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).
+After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i.e., with SSL certificates.
+I’ve put together this step-by-step post to close this gap (in part for self-documentation).</description>
+    </item>
+    
+  </channel>
+</rss>

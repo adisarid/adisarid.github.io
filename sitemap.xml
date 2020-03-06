@@ -4,7 +4,51 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2020-01-31T06:08:00-10:00</lastmod>
+      <lastmod>2020-03-06T22:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/lets-encrypt/</loc>
+      <lastmod>2020-03-06T22:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/rstudio-server/</loc>
+      <lastmod>2020-03-06T22:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/2020-03-06-setup_rstudio_server_with_ssl/</loc>
+      <lastmod>2020-03-06T22:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/</loc>
+      <lastmod>2020-03-06T22:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/nginx/</loc>
+      <lastmod>2020-03-06T22:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -14,15 +58,6 @@
     
       <loc>/post/2020-01-31-rstudio-conf2020-recap/</loc>
       <lastmod>2020-01-31T06:08:00-10:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/</loc>
-      <lastmod>2020-01-31T06:08:00-10:00</lastmod>
-      <priority>0</priority>
     </url>
     
   
@@ -80,7 +115,7 @@
     
     <url>
     
-      <loc>/tags/shiny/</loc>
+      <loc>/tags/linear-models/</loc>
       <lastmod>2019-12-13T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -89,7 +124,7 @@
     
     <url>
     
-      <loc>/tags/linear-models/</loc>
+      <loc>/tags/shiny/</loc>
       <lastmod>2019-12-13T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>

@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Adi Sarid - Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 Jan 2020 06:08:00 -1000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Mar 2020 22:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Let&#39;s Encrypt</title>
+      <link>/tags/lets-encrypt/</link>
+      <pubDate>Fri, 06 Mar 2020 22:00:00 +0000</pubDate>
+      
+      <guid>/tags/lets-encrypt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RStudio server</title>
+      <link>/tags/rstudio-server/</link>
+      <pubDate>Fri, 06 Mar 2020 22:00:00 +0000</pubDate>
+      
+      <guid>/tags/rstudio-server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>/tags/nginx/</link>
+      <pubDate>Fri, 06 Mar 2020 22:00:00 +0000</pubDate>
+      
+      <guid>/tags/nginx/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>rstudio conference</title>
@@ -21,20 +48,20 @@
     </item>
     
     <item>
-      <title>Shiny</title>
-      <link>/tags/shiny/</link>
-      <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/tags/shiny/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>linear models</title>
       <link>/tags/linear-models/</link>
       <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
       
       <guid>/tags/linear-models/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
       <description></description>
     </item>
     
