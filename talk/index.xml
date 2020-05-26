@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Recent &amp; Upcoming Talks on Adi Sarid - Personal Blog</title>
+    <title>Recent &amp; Upcoming Talks | Adi Sarid - Personal Blog</title>
     <link>/talk/</link>
-    <description>Recent content in Recent &amp; Upcoming Talks on Adi Sarid - Personal Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0200</lastBuildDate>
-    
-	<atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
-    
+      <atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent &amp; Upcoming Talks</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright><lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0200</lastBuildDate>
+    <image>
+      <url>/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png</url>
+      <title>Recent &amp; Upcoming Talks</title>
+      <link>/talk/</link>
+    </image>
     
     <item>
       <title>Want to talk to R? just call your plumber</title>
       <link>/talk/plumber_api_meetup/</link>
-      <pubDate>Fri, 17 Jan 2020 00:00:00 +0200</pubDate>
-      
+      <pubDate>Fri, 17 Jan 2020 19:10:00 +0200</pubDate>
       <guid>/talk/plumber_api_meetup/</guid>
-      <description>Presentation and source code are available here.</description>
+      <description>&lt;p&gt;Presentation and source code are available  
+&lt;a href=&#34;https://github.com/adisarid/startrek_plumber_api/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Not So Shiny?</title>
       <link>/talk/not_so_shiny/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0200</pubDate>
-      
+      <pubDate>Thu, 24 Oct 2019 18:05:00 +0200</pubDate>
       <guid>/talk/not_so_shiny/</guid>
-      <description>Presentation and source code are available here, accompanying shiny app used for demonstrations is available here.</description>
+      <description>&lt;p&gt;Presentation and source code are available  
+&lt;a href=&#34;https://github.com/adisarid/meetup_not_so_shiny/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;, accompanying shiny app used for demonstrations is available 
+&lt;a href=&#34;https://sarid.shinyapps.io/not_so_shiny&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

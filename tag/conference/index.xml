@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>conference | Adi Sarid - Personal Blog</title>
+    <link>/tag/conference/</link>
+      <atom:link href="/tag/conference/index.xml" rel="self" type="application/rss+xml" />
+    <description>conference</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright><lastBuildDate>Sat, 19 Jan 2019 12:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png</url>
+      <title>conference</title>
+      <link>/tag/conference/</link>
+    </image>
+    
+    <item>
+      <title>Recap: what I learned in rstudio::conf2019</title>
+      <link>/post/2019-01-19-rstudio-conf-recap/</link>
+      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      <guid>/post/2019-01-19-rstudio-conf-recap/</guid>
+      <description>
+
+
+&lt;p&gt;First, let me start by saying wow!, what a wonderful experience.&lt;/p&gt;
+&lt;p&gt;When I booked the trip from Israel to Austin, TX, I thought that I’ll see some good content, and learn at the conference (as I in fact did). It was much more enjoyable than I could’ve imagined. In part I guess this can be contributed to the awesome R community. The ease in which you start a conversation with just about anyone in the conference - about R, professional life (or even personal life), that’s great.&lt;/p&gt;
+&lt;p&gt;Besides that, visiting Texas (for the first time) was interesting, but for more on that - see &lt;a href=&#34;#venue&#34;&gt;venue&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;workshop-shiny-train-the-trainer&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Workshop “Shiny Train-the-Trainer”&lt;/h1&gt;
+&lt;p&gt;This was a two day workshop. The first day was taught by Greg Wilson, and touched different points of teaching in general, and teaching programming lanugages. The second day was taught by Mine, and zoomed-in on Shiny apps and how to teach building Shiny apps.&lt;/p&gt;
+&lt;p&gt;Starting from the theory and building up, Greg was very charismatic. For me, some takeaways from the workshop were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each time you start a new course, choose 1-2 things you want to improve/tryout. Don’t try to go “all-in” because then you might miss. Also, make sure that when you do implement new techniques, you don’t fall short on things you were doing so far which were good.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is going to be slightly cumbersome (I’m also summarizing this for my own good).&lt;/p&gt;
+&lt;p&gt;A few things that helps organize and conduct sessions.&lt;/p&gt;
+&lt;div id=&#34;figure-out-who-are-your-learners&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Figure out who are your learners&lt;/h2&gt;
+&lt;p&gt;Figure out who are your learners: what are they interested in? what do they already know, and what they don’t know. What is the diversity you’re going to get in the crowd (persona analysis).&lt;/p&gt;
+&lt;p&gt;Here’s are examples for different personas we cooked up during the workshop.&lt;/p&gt;
+&lt;div id=&#34;a-shiny-novice&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A shiny novice&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Background&lt;/strong&gt;: Statisticians and Data Scientists from the pharma industry.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prior knowledge&lt;/strong&gt;: Some knowledge but not state of the art.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Motivation&lt;/strong&gt;: Want to build shiny apps to share information with other functions in the company.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;How the course will help them&lt;/strong&gt;: Able to build simple shiny apps and grow from there.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Special needs&lt;/strong&gt;: “&lt;em&gt;Think they know but actually don’t&lt;/em&gt;”.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-shiny-expert&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A shiny expert&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Background&lt;/strong&gt;: New company moving from a start-up. Biostatistics PhD.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prior knowledge&lt;/strong&gt;: Used R, made apps for paper presentations, done some shiny apps. Looks good but they know that there are stuff that they don’t know. Mix of formal (for the statistics) but a lot of fun learning on their own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Motivation&lt;/strong&gt;: Utilize what they have done, but in the context of the organization, and learn about new and cool things.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;How the course will help them&lt;/strong&gt;: Teach them the newest and best things of Shiny, in the context of the company. This is how make it production and enterprise ready.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Special needs&lt;/strong&gt;: Work from home. Interaction remote. Dog that barks. Online course.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-student-you-expect-to-encounter-at-a-shiny-workshop-you-teach&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A student you expect to encounter at a shiny workshop you teach&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Background&lt;/strong&gt;: Danny is studying industrial engineering. Undergrad. He is in his third year, and about to finish next year. He likes data science and likes aquiring new programming skills.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prior knowledge&lt;/strong&gt;: Danny has learned some python and some base R, throghout the last few semsters, but he is not fluent in either. Still struggling with some commands in R.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Motivation&lt;/strong&gt;: Danny wants to aquire a new tools that will help him next year when he looks for new work, and will help him impress potential employers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;How the course will help them&lt;/strong&gt;: Danny will be able to build apps and use them as showcase while he is looking for work next year. In addition, he will be able to build shiny apps that will help him publish and distribute findings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Special needs&lt;/strong&gt;: Danny has a lot of motivation, but is a novice to R and programming in general. He doesn’t have a lot of time for exercise because the semster courses take up a lot of his time, nonetheless, he is willing to invest the time in projects at specific “peaks” in order to advance his skills.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;write-the-learning-objectives&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Write the learning objectives&lt;/h2&gt;
+&lt;p&gt;Write learning objectives which are observable (by the learners) and also measureable. For example:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The student will build a shiny app that does…&lt;/li&gt;
+&lt;li&gt;The students will learn and use the &lt;code&gt;renderPlot()&lt;/code&gt; function, etc.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here’s another example for learning objectives of a short introductory 1-hour session:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;The students will understand the basic elements of a shiny app and describe the difference between ui, server and global.&lt;/li&gt;
+&lt;li&gt;The students will apply the princibles to modify an example reading a file and showing a table with the first 10 lines of the file.&lt;/li&gt;
+&lt;li&gt;The students will learn about and be aware of shiny examples in the gallery.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To formulate the objectives, one can use bloom’s taxonomy (and the extended version of it that Mine have shown during class).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;build-conceptual-maps&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Build conceptual maps&lt;/h2&gt;
+&lt;p&gt;Build concept maps for each of the topics in the course. I.e., for each class there is a concept map that highlights the topics and the connections between them. Again, referring to the steps in Bloom’s taxonomy as the building blocks of those building blocks. While building the concept maps, remmember that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Roughly 5-9 items can fit in the short term memory. Consider that when building the concept map. Make sure it’s not too complicated.&lt;/li&gt;
+&lt;li&gt;To make things slightly easier, while teaching, you can use a whiteboard to expand the concept map and show the class where we are on the concept map.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;write-the-final-exam-and-formative-assesments&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Write the “final exam” and formative assesments&lt;/h2&gt;
+&lt;p&gt;Write the final exam, i.e., in the end of the session, what should they be able to answer? This should correspond to the aferomentioned learning objectives.&lt;/p&gt;
+&lt;p&gt;Generate formative assesments (short questions for “check-ins”), that will be used during the lesson. These will help you check if the crowd is with you or lost got lost.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-the-presentation-and-learning-materials&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Create the presentation and learning materials&lt;/h2&gt;
+&lt;p&gt;Finally, create the learning material around the previous steps. Re-iterate as needed to improve the materials.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;some-more-useful-tools-and-tips&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Some more useful tools and tips&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sticky notes&lt;/strong&gt; are very useful during programming lessons. This way you can see during the lesson where the class is at. Have 4 colors:
+&lt;ul&gt;
+&lt;li&gt;Green = “everything is fine”&lt;/li&gt;
+&lt;li&gt;Red = “need help”&lt;/li&gt;
+&lt;li&gt;Blue = “want a break”&lt;/li&gt;
+&lt;li&gt;Orange = “want to ask a question”&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;For “check-ins” You can use &lt;em&gt;poll everywhere&lt;/em&gt; or a similar solution.&lt;/li&gt;
+&lt;li&gt;Interactions between students are very useful. Ask a question. Let them talk with one another to get the answer.&lt;/li&gt;
+&lt;li&gt;“Baby steps” - use faded examples or incremental examples when teaching. Avoid a “novice blank page” when starting.&lt;/li&gt;
+&lt;li&gt;Encourage the students: “what would you type into stackoverflow to find a solution to this problem?”&lt;/li&gt;
+&lt;li&gt;No opting-out. If someone doesn’t know the answer, ask someone else - then go back to that person and ask something else. No one will “fall asleep”, you make sure that everyone are with you. Jump between locations in class (not in the sitting order).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use &lt;a href=&#34;https://rstudio.cloud&#34;&gt;rstudio.cloud&lt;/a&gt;&lt;/strong&gt; when a uniform R environment is desired. We can even start from a flat base instance with all the packages pre-loaded.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feedback&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Feedback&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Choose an element from above. Use feedback to understand if it was good or not. Choose an existing thing you do and check that you didn’t lose it either.&lt;/li&gt;
+&lt;li&gt;Encourage the students to give feedback to one another by interacting in exercises (can scale up to larger classes).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further reading&lt;/h2&gt;
+&lt;p&gt;Check the online materials of the course. Everything is on a creative commons - BY RStudio - license.&lt;/p&gt;
+&lt;p&gt;All resources for teaching techniques are available at Greg Wilson’s website &lt;a href=&#34;http://teachtogether.tech&#34;&gt;teachtogether.tech&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Resources specific for Shiny teaching are available at the workshop’s website, including Mine’s teaching notes for 1hr, 2hr, 1/2day, 1day, 2day workshops. See &lt;a href=&#34;https://teach-shiny.rbind.io&#34;&gt;http://teach-shiny.rbind.io&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conference-day-1&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conference Day 1&lt;/h1&gt;
+&lt;p&gt;Here are some highlights:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Joe Chang’s keynote: lots of tools for testing and profiling shiny apps. Speed improvments for shiny apps using cache (&lt;code&gt;plotCacheRender()&lt;/code&gt;). Showd some techniques to make apps much quicker.&lt;/li&gt;
+&lt;li&gt;API development with R and Tensor flow at T-mobile: A really cool use case for using shiny apps and plumber API. This is an example for scaling up a plumber api for a customer facing app.&lt;/li&gt;
+&lt;li&gt;Databases using R: the latest: Edgar demonstrated how he connects to a google big query database. The big query server does all the computations and the clean (and smaller data) is input into R for continued analysis. Very cool.&lt;/li&gt;
+&lt;li&gt;Working with categorial data in R without loosing your mind: some best practices for working with factors. Advocating &lt;code&gt;forecats&lt;/code&gt; (actually much of these I already implement in my work anyhow).&lt;/li&gt;
+&lt;li&gt;Melt the clock: tidy time series analysis: a talk about &lt;code&gt;tsibble&lt;/code&gt; and &lt;code&gt;fable&lt;/code&gt;, the packages which are about to replace the &lt;code&gt;forecast&lt;/code&gt; and &lt;code&gt;ts()&lt;/code&gt;, in a tidy-er version. Can be installed from github and should make life much easier for time series analysis.&lt;/li&gt;
+&lt;li&gt;3D mapping, plotting, and printing with rayshader: an extremely cool package for ploting maps from x-y-z (elevation data). A lot of options, and even includes an export for 3d printing of the models.&lt;/li&gt;
+&lt;li&gt;gganimate Live Cookbook: A nice package for animating ggplots. But need to carefully choose when to use and when not to use it…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conference-day-2&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conference Day 2&lt;/h1&gt;
+&lt;p&gt;Great RMarkdown session - kind of made me rethink about how I do my work. For me personally a lot of the work envolves power point and word, but from now on, I think I’ll try to do it on RMarkdown. More reproduceable, easier to recreate, or update if needed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Yihui Xie talked about blogdown, bookdown, and more recently pagedown (for academic publications). I also came to know about Radix - a package for Academic style blogs. In the new RStudio (version 1.2 and above, currently in preview), there is an option to export RMarkdown documents into power point presentation. Works seamlessly, just change the yaml at the top:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: &amp;quot;This is a power point presentation&amp;quot;
+author: &amp;quot;I&amp;#39;m the author&amp;quot;
+date: &amp;quot;...&amp;quot;
+output: powerpoint_presentation
+---&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;gt&lt;/code&gt; package was presented. A package which is great for generating html or &lt;span class=&#34;math inline&#34;&gt;\(\LaTeX\)&lt;/span&gt; tables.&lt;/li&gt;
+&lt;li&gt;A cool feature of RMarkdown which I didn’t know about is parameters. It enables to creat variants of an RMarkdown document without actually changing the document. For more info see &lt;a href=&#34;https://rmarkdown.rstudio.com/lesson-6.html&#34;&gt;parameterized reports&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Hadley Wikam talked about a new package in development &lt;code&gt;vctrs&lt;/code&gt; that is supposed to improve type consistency in R. Here’s an example with &lt;code&gt;factor&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt;’s default behaviour vs. the &lt;code&gt;vec_c&lt;/code&gt; solution in &lt;code&gt;vctrs&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;c(factor(&amp;quot;a&amp;quot;), factor(&amp;quot;b&amp;quot;))
+## [1] 1 1
+
+vctrs::vec_c(factor(&amp;quot;a&amp;quot;), factor(&amp;quot;b&amp;quot;))
+## [1] a b
+## Levels: a b&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Jenny Bryan talked about lazy evaluation. Finally made some sense to me about when to use &lt;code&gt;enquo()&lt;/code&gt; and when to use &lt;code&gt;!!&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Another good talk about the &lt;code&gt;ipc&lt;/code&gt; package for Shiny apps which require heavy and async computations. That package is able to pass queue and interrupt messages between processes.&lt;/li&gt;
+&lt;li&gt;David Robinson from DataCamp gave a really inspiring talk about what you can and should do openly (hence me writing this blog post, in the hopes that it’ll be the first of many).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;venue&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Venue&lt;/h1&gt;
+&lt;p&gt;I landed on Monday and the workshops started on Tuesday, so not too much time to hand around, but following the recommendation of the receptionist in my hotel (which was great, Holiday Inn Austin Town Center), I went to Terry Black’s - an original BBQ resteraunt, which was very good (apparantly also very high on TripAdvisor).&lt;/p&gt;
+&lt;p&gt;I also checked out the South of Colorado (SoCo) area - it was nice to walk around and by some small things for the wife and kids.&lt;/p&gt;
+&lt;p&gt;Parks around the Colorado River - real nice to walk around or jog.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;takeaways&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Takeaways&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Use more RMarkdown and less powerpoint/word.&lt;/li&gt;
+&lt;li&gt;Lot of tips on how to improve my R courses (which I should implement).&lt;/li&gt;
+&lt;li&gt;Shiny is extremly powerful, much more than what I’m using today. Should probably find the time to improve my own Shiny building/programming skills.&lt;/li&gt;
+&lt;li&gt;Do a lot more blogging with R and blogdown.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

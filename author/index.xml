@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Authors on Adi Sarid - Personal Blog</title>
+    <title>Adi Sarid - Personal Blog</title>
     <link>/author/</link>
-    <description>Recent content in Authors on Adi Sarid - Personal Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="/author/index.xml" rel="self" type="application/rss+xml" />
-    
+      <atom:link href="/author/index.xml" rel="self" type="application/rss+xml" />
+    <description>Adi Sarid - Personal Blog</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright>
+    <image>
+      <url>/author/avatar_hucc2d93568af678868867e27512426d6f_1365475_270x270_fill_q90_lanczos_center.jpg</url>
+      <title>Adi Sarid - Personal Blog</title>
+      <link>/author/</link>
+    </image>
     
   </channel>
 </rss>

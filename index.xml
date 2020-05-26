@@ -1,18 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Adi Sarid - Personal Blog on Adi Sarid - Personal Blog</title>
+    <title>Adi Sarid - Personal Blog</title>
     <link>/</link>
-    <description>Recent content in Adi Sarid - Personal Blog on Adi Sarid - Personal Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 06 Mar 2020 22:00:00 +0000</lastBuildDate>
-    <atom:link href="/" rel="self" type="application/rss+xml" />
+      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <description>Adi Sarid - Personal Blog</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright><lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0100</lastBuildDate>
+    <image>
+      <url>/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png</url>
+      <title>Adi Sarid - Personal Blog</title>
+      <link>/</link>
+    </image>
+    
+    <item>
+      <title>Teaching with zoom breakout-rooms and the learnr package</title>
+      <link>/post/2020-05-26-break-rooms-and-learnr/</link>
+      <pubDate>Tue, 26 May 2020 11:06:00 +0000</pubDate>
+      <guid>/post/2020-05-26-break-rooms-and-learnr/</guid>
+      <description>
+
+
+&lt;p&gt;Corona has put us in an awkward situation, where we must rethink and revise our ways of doing things (teaching, working, baby sitting, balancing work and life, or any other related field of your choosing). I also see this as an opportunity to experiment and improve various things. Specifically I dedicate this post to some teaching methods I have adopted. Mostly: using breakout rooms (a zoom feature) and &lt;code&gt;learnr&lt;/code&gt; tutorials.&lt;/p&gt;
+&lt;div id=&#34;the-challenges&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The challenges&lt;/h2&gt;
+&lt;p&gt;I teach an undergraduate course in &lt;em&gt;introduction to statistics and data analysis with R&lt;/em&gt;, in Tel-Aviv university. The course involves statistical theory and practice with R. In general students found challenging to follow both theory and practice, and more so, considering that all lectures are conducted via zoom, due to Corona constraints.&lt;/p&gt;
+&lt;p&gt;In order to alleviate some of these challenges, &lt;strong&gt;I decided to split the lectures to theory and labs in smaller groups.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;methodology&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Methodology&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;learnr&lt;/code&gt; is an R package which allows you to create an interactive html document (under the hood it’s based on RMarkdown and shiny). The result includes quizzes and chunks which can run R code. The chunks can come preloaded with some of the code and with hints/solutions.&lt;/p&gt;
+&lt;p&gt;I teach a theoretical subject, and prepare a corresponding learnr tutorial on recent data sets from &lt;a href=&#34;https://github.com/rfordatascience/tidytuesday&#34;&gt;tidytuesday&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;During my lecture, I have specific checkpoints in which I split the zoom session into breakout rooms. Breakout rooms is a zoom feature which splits the main session into smaller sessions and allows the host to jump between the smaller sessions. I found that splitting the main room into groups of 3-4 participants which then together tackle the learnr tutorial is both fun and a fruitful experience. I cycle between the rooms to provide individual help for the groups. Every few minutes (10-15 minuts, depending on the tutorial section’s length and complexity), I merge the group back together to the main session, solve the tutorial section and either continue with theory or give them another section of the tutorial to work on in the smaller groups.&lt;/p&gt;
+&lt;p&gt;Each tutorial includes important blocks of data analysis, sort of a “mini project” such as: data import, visualizations, data transformations, and modeling. I direct the blocks according to the topic I covered in the theoretical part.&lt;/p&gt;
+&lt;p&gt;Here are two examples for tutorials I made, which went very well in class:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://sarid.shinyapps.io/food_consumption_lab/&#34;&gt;Food consumption footprint&lt;/a&gt; with the source code &lt;a href=&#34;https://github.com/adisarid/intro_statistics_R/blob/master/labs/food_consumption.Rmd&#34;&gt;here&lt;/a&gt;. This one is about getting to know your data, visualizations, descriptive statistics, confidence intervals and hypothesis tests for the expectancy of a distribution.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sarid.shinyapps.io/independence_test/&#34;&gt;Volcanos&lt;/a&gt; with the source code &lt;a href=&#34;https://github.com/adisarid/intro_statistics_R/blob/master/labs/Independence%20test.Rmd&#34;&gt;here&lt;/a&gt;. This one is about independence Chi square test, and also includes a lot of data preparations and visualizations. By the end of it, students test if volcano type and elevation are related (independent statistically or not).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;important-notes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Important notes&lt;/h2&gt;
+&lt;p&gt;The first time you implement this, make sure the students understand how the zoom breakout feature works. Let them know you will be cycling through the rooms but that they can also use a ping/raise hand feature to call you.&lt;/p&gt;
+&lt;p&gt;Zoom comes with two options for assignment to breakout rooms: either random or manual (by host). Both are sub-optimal. Manually assigning 30 students to 10 breakout rooms will take too long and random ignores study groups the students already have. You can fine tune the random assignment, but that too takes too long. There is another option to upload a csv file with the participant’s names in advanced which is done via the settings of the meeting (on the zoom web page settings).&lt;/p&gt;
+&lt;p&gt;When you setup the rooms, you have an option to set a time-limit. I found it sub-optimal, because you don’t always know in advanced how long the exercise will take. Instead cycling through the rooms should give you a good sense on when to merge back the breakout rooms into the main session.&lt;/p&gt;
+&lt;p&gt;For more help on using breakout rooms, follow this &lt;a href=&#34;https://support.zoom.us/hc/en-us/articles/206476093-Enabling-breakout-rooms&#34;&gt;link&lt;/a&gt; from zoom’s support website.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusions&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusions&lt;/h1&gt;
+&lt;p&gt;This method, of using the zoom breakout rooms feature in combination with interactive &lt;code&gt;learnr&lt;/code&gt; looks like a good formula for getting the students engaged while learning the necessary theoretical and practical aspects of data analysis.&lt;/p&gt;
+&lt;p&gt;If you are teaching interactively, I encourage you to give it a try! If you do, let me know how it went @&lt;a href=&#34;https://twitter.com/SaridResearch&#34;&gt;SaridResearch&lt;/a&gt; on twitter.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Set up RStudio server with Let&#39;s Encrypt SSL certificate</title>
       <link>/post/2020-03-06-setup_rstudio_server_with_ssl/</link>
       <pubDate>Fri, 06 Mar 2020 22:00:00 +0000</pubDate>
-      
       <guid>/post/2020-03-06-setup_rstudio_server_with_ssl/</guid>
       <description>
 
@@ -151,7 +195,6 @@ chmod u+x /opt/renewCerts.sh&lt;/code&gt;&lt;/pre&gt;
       <title>Impressions and notes from rstudio::conf2020</title>
       <link>/post/2020-01-31-rstudio-conf2020-recap/</link>
       <pubDate>Fri, 31 Jan 2020 06:08:00 -1000</pubDate>
-      
       <guid>/post/2020-01-31-rstudio-conf2020-recap/</guid>
       <description>
 
@@ -242,10 +285,10 @@ surface_plot&lt;/code&gt;&lt;/pre&gt;
     <item>
       <title>Want to talk to R? just call your plumber</title>
       <link>/talk/plumber_api_meetup/</link>
-      <pubDate>Fri, 17 Jan 2020 00:00:00 +0200</pubDate>
-      
+      <pubDate>Fri, 17 Jan 2020 19:10:00 +0200</pubDate>
       <guid>/talk/plumber_api_meetup/</guid>
-      <description>&lt;p&gt;Presentation and source code are available  &lt;a href=&#34;https://github.com/adisarid/startrek_plumber_api/&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Presentation and source code are available  
+&lt;a href=&#34;https://github.com/adisarid/startrek_plumber_api/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -253,7 +296,6 @@ surface_plot&lt;/code&gt;&lt;/pre&gt;
       <title>Confidence and prediction intervals explained... (with a Shiny app!)</title>
       <link>/post/2019-12-13-confidence_prediction_intervals_explained/</link>
       <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-12-13-confidence_prediction_intervals_explained/</guid>
       <description>
 
@@ -363,10 +405,20 @@ ggplot() +
     </item>
     
     <item>
+      <title>Not So Shiny?</title>
+      <link>/talk/not_so_shiny/</link>
+      <pubDate>Thu, 24 Oct 2019 18:05:00 +0200</pubDate>
+      <guid>/talk/not_so_shiny/</guid>
+      <description>&lt;p&gt;Presentation and source code are available  
+&lt;a href=&#34;https://github.com/adisarid/meetup_not_so_shiny/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;, accompanying shiny app used for demonstrations is available 
+&lt;a href=&#34;https://sarid.shinyapps.io/not_so_shiny&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Retrieving google drive item shares and permissions (in R)</title>
       <link>/post/2019-09-17-google_drive_dir_structure_permissions/</link>
       <pubDate>Tue, 17 Sep 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-09-17-google_drive_dir_structure_permissions/</guid>
       <description>
 
@@ -436,7 +488,6 @@ You can either run it on all items in your google drive or on selected folders (
       <title>Securing Shiny apps with AWS Cognito authentication</title>
       <link>/post/2019-08-10-cognito-shiny-authentication/</link>
       <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-08-10-cognito-shiny-authentication/</guid>
       <description>
 
@@ -767,7 +818,6 @@ fluidPage(
       <title>What NOT to do when building a shiny app (lessons learned the hard way)</title>
       <link>/post/2019-07-03-shiny_app_lessons/</link>
       <pubDate>Fri, 19 Jul 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-07-03-shiny_app_lessons/</guid>
       <description>
 
@@ -843,7 +893,6 @@ fluidPage(
       <title>Test your tidyness - a short quiz to check your tidyverse capabilities</title>
       <link>/post/2019-04-28-test_your_tidyness/</link>
       <pubDate>Sun, 28 Apr 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-04-28-test_your_tidyness/</guid>
       <description>
 
@@ -1022,10 +1071,24 @@ as a preprocessing step?&lt;/p&gt;
     </item>
     
     <item>
+      <title>An example preprint / working paper</title>
+      <link>/publication/preprint/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/preprint/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The teachR&#39;s::cheat sheet</title>
       <link>/post/2019-03-12-the_teachr_cheat_sheet/</link>
       <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-03-12-the_teachr_cheat_sheet/</guid>
       <description>
 
@@ -1105,10 +1168,142 @@ The learners put them on their computers according to their progress:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Slides</title>
+      <link>/slides/example/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>/slides/example/</guid>
+      <description>&lt;h1 id=&#34;create-slides-in-markdown-with-academic&#34;&gt;Create slides in Markdown with Academic&lt;/h1&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic&lt;/a&gt; | 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
+&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
+&lt;li&gt;Supports speaker notes&lt;/li&gt;
+&lt;li&gt;Mobile friendly slides&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
+&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Code block:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
+if porridge == &amp;quot;blueberry&amp;quot;:
+    print(&amp;quot;Eating...&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
+&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
+&lt;p&gt;Block math:&lt;/p&gt;
+&lt;p&gt;$$
+f\left( x \right) = ;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+One
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+&lt;strong&gt;Two&lt;/strong&gt;
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+Three
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/img/boards.jpg&#34;
+  &gt;
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://spectrum.chat/academic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Settling class action lawsuits with conjoint analysis and R (&#43;a conjoint shiny app)</title>
       <link>/post/2019-02-03-class-action-conjoint/</link>
       <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-02-03-class-action-conjoint/</guid>
       <description>
 
@@ -1341,7 +1536,6 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
       <title>Purrring progress bars (adding a progress bar to `purrr::map`)</title>
       <link>/post/2019-01-24-purrrying-progress-bars/</link>
       <pubDate>Fri, 25 Jan 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-01-24-purrrying-progress-bars/</guid>
       <description>
 
@@ -1378,7 +1572,6 @@ res &amp;lt;- file_list %&amp;gt;%
       <title>Short note about tidyeval</title>
       <link>/post/2019-01-20-short-note-about-tidy-eval/</link>
       <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-01-20-short-note-about-tidy-eval/</guid>
       <description>
 
@@ -1513,34 +1706,9 @@ mtcars %&amp;gt;%
     </item>
     
     <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>
-
-&lt;h1 id=&#34;adi-sarid&#34;&gt;Adi Sarid&lt;/h1&gt;
-
-&lt;p&gt;I&amp;rsquo;m a Partner and the Head of Operations Research Department at &lt;a href=&#34;http://www.sarid-ins.com&#34; target=&#34;_blank&#34;&gt;Sarid Research Services&lt;/a&gt; (a boutique market research agency). I&amp;rsquo;m also a PhD student at Tel-Aviv university, researching robustness and equity in power grid expansion planning. Very broadly, my interests include:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Data science,&lt;/li&gt;
-&lt;li&gt;Operations research,&lt;/li&gt;
-&lt;li&gt;Market research.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can reach out via my &lt;a href=&#34;https://www.linkedin.com/in/adi-sarid&#34; target=&#34;_blank&#34;&gt;linkedin&lt;/a&gt;, or simply email me &lt;a href=&#34;mailto:adi@sarid-ins.co.il&#34; target=&#34;_blank&#34;&gt;adi@sarid-ins.co.il&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;For more information about Sarid Research Institute, check out &lt;a href=&#34;http://www.sarid-ins.com&#34; target=&#34;_blank&#34;&gt;Sarid Research (English site)&lt;/a&gt; or &lt;a href=&#34;https://www.sarid-ins.co.il&#34; target=&#34;_blank&#34;&gt;Sarid Research (Hebrew site)&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Recap: what I learned in rstudio::conf2019</title>
       <link>/post/2019-01-19-rstudio-conf-recap/</link>
       <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
-      
       <guid>/post/2019-01-19-rstudio-conf-recap/</guid>
       <description>
 
@@ -1717,22 +1885,82 @@ vctrs::vec_c(factor(&amp;quot;a&amp;quot;), factor(&amp;quot;b&amp;quot;))
     </item>
     
     <item>
-      <title>Example Page</title>
-      <link>/tutorial/example/</link>
-      <pubDate>Sun, 09 Sep 2018 00:00:00 +0300</pubDate>
-      
-      <guid>/tutorial/example/</guid>
-      <description>
-
-&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
-
-&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
-
-&lt;p&gt;&amp;hellip;&lt;/p&gt;
-
-&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
-
-&lt;p&gt;&amp;hellip;&lt;/p&gt;
+      <title>Privacy Policy</title>
+      <link>/privacy/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
+      <guid>/privacy/</guid>
+      <description>&lt;p&gt;We do not personally collect any data on this website. 
+However, we do use google analytics which places a cookie in the computer of site visitors, and collects some basic demographics and site behaviour information.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Terms</title>
+      <link>/terms/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
+      <guid>/terms/</guid>
+      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>External Project</title>
+      <link>/projects/external-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/projects/external-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internal Project</title>
+      <link>/projects/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/projects/internal-project/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example journal article</title>
+      <link>/publication/journal-article/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example conference paper</title>
+      <link>/publication/conference-paper/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

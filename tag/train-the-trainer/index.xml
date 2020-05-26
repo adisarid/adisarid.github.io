@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Train the Trainer | Adi Sarid - Personal Blog</title>
+    <link>/tag/train-the-trainer/</link>
+      <atom:link href="/tag/train-the-trainer/index.xml" rel="self" type="application/rss+xml" />
+    <description>Train the Trainer</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright><lastBuildDate>Tue, 12 Mar 2019 12:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png</url>
+      <title>Train the Trainer</title>
+      <link>/tag/train-the-trainer/</link>
+    </image>
+    
+    <item>
+      <title>The teachR&#39;s::cheat sheet</title>
+      <link>/post/2019-03-12-the_teachr_cheat_sheet/</link>
+      <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
+      <guid>/post/2019-03-12-the_teachr_cheat_sheet/</guid>
+      <description>
+
+
+&lt;p&gt;A few months ago I attended the 2019 rstudio::conf, including the shiny train-the-trainer workshop. It was a two day workshop and it inspired me in many ways. The first day of the workshop focused on the very basics of teaching (R or anything else), and for me it put the spotlight on things I never considered before.&lt;/p&gt;
+&lt;p&gt;One of the important takeways from the workshop was how to approach educating others: preparing for a course, things you can do during the lessons, and how to self-learn and improve my own teaching methods afterwards.&lt;/p&gt;
+&lt;p&gt;This led me to create the teachR’s cheatsheet. It outlines the basics of teaching and I chose to give it the flavour of R (in the examples and illustrations within the cheatsheet).&lt;/p&gt;
+&lt;p&gt;I have contributed it to RStudio’s cheat sheet repo, so you can download it directly from: &lt;a href=&#34;https://github.com/rstudio/cheatsheets/raw/master/teachR.pdf&#34; class=&#34;uri&#34;&gt;https://github.com/rstudio/cheatsheets/raw/master/teachR.pdf&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the cheat sheet you will find three segments:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Preparing a new course / workshop / lesson.&lt;/li&gt;
+&lt;li&gt;Things you can do during the lesson itself.&lt;/li&gt;
+&lt;li&gt;Things you should do when the course is completed in order to improve your own teaching methods.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I previously blogged about some of the things learned at the train-the-trainer, and not everything made it to the cheat sheet, so if you’re interested you can read more &lt;a href=&#34;https://adisarid.github.io/post/2019-01-19-rstudio-conf-recap/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here’s an example for some of the things you can find in the cheat sheet.&lt;/p&gt;
+&lt;div id=&#34;designing-a-new-course&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Designing a new course&lt;/h2&gt;
+&lt;p&gt;The cheat sheet covers the various steps of designing a course, i.e.:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Persona analysis of your learners.&lt;/li&gt;
+&lt;li&gt;Defining the course’s goals using Bloom’s taxonomy.&lt;/li&gt;
+&lt;li&gt;Using conceptual maps to grasp what the the course should look like and what related terms/materials should appear.&lt;/li&gt;
+&lt;li&gt;Writing the final exam, the slides, check-ins and faded examples.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here are some examples relating to 1-2:&lt;/p&gt;
+&lt;div id=&#34;persona-analysis&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Persona analysis&lt;/h3&gt;
+&lt;p&gt;Take a while to understand and characterize your learners: are the novice? advanced? false experts?&lt;/p&gt;
+&lt;p&gt;What are the learner’s goals from the course? what prior knowledge you can assume (and what not), and do they have any special needs.&lt;/p&gt;
+&lt;p&gt;If end up with too many personas anticipate trouble - it’s hard to accomodate a diverse crowd, what are you going to miss out on?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;define-goals-using-blooms-taxonomy&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Define goals using Bloom’s taxonomy&lt;/h3&gt;
+&lt;p&gt;Bloom’s taxonomy illustrates the levels of learning new concepts or topics.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://wp0.vanderbilt.edu/cft/guides-sub-pages/blooms-taxonomy/&#34;&gt;Vanderbilt University Center for Teaching&lt;/a&gt; has a nice illustration for it.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/blooms_taxonomy.png&#34; alt=&#34;Blooms Taxonomy&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Blooms Taxonomy&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;You can visit the Vanderbilt website for a more thorough explanation about the taxonomy, but suffice it to say that “remember” is the most basic form of acquired knowledge, and the highest levels (at the top of the pyramid) are evaluate and create (being able to evaluate someone else’s work, or create your own noval work).&lt;/p&gt;
+&lt;p&gt;If we translate that to R, “remember” might translate to: “learners will be able to state the main packages in &lt;code&gt;tidyverse&lt;/code&gt; and their purpose” versus “create” which in that context would translate to: “learners will be able to contribute to a &lt;code&gt;tidyverse&lt;/code&gt; packages or create their own tidy package.” You can see that the first is something you can teach an R beginner but the latter is much more complex and can be mastered by an advanced useR.&lt;/p&gt;
+&lt;p&gt;Working with Bloom’s taxonomy can help you set your goals for the course and also help you set the expectations with the learners of your course.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;during-the-course&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;During the course&lt;/h2&gt;
+&lt;p&gt;Some tips I learned at the train-the-trainer workshop, for when you are during the lesson itself.&lt;/p&gt;
+&lt;div id=&#34;sticky-notes&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Sticky notes&lt;/h3&gt;
+&lt;p&gt;At the start of the lesson, give each learner three sticky notes (green, red, and blue).
+The learners put them on their computers according to their progress:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Green = I’m doing fine / finished teh exercise.&lt;/li&gt;
+&lt;li&gt;Red = Something is wrong, I need help.&lt;/li&gt;
+&lt;li&gt;Blue = I need a break&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you see a lot of greens - try to up the pace. If you see a lot of reds, maybe take it easier.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;check-ins&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Check-ins&lt;/h3&gt;
+&lt;p&gt;Try to set a few check-ins every hour, to evaluate the progress and make sure that the learners are “with you”. You can even use some kind of online surveying tool to turn this into a “game”.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;after-the-course&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;After the course&lt;/h2&gt;
+&lt;p&gt;Make sure you debrief properly, and learn from your experience. Use surveys to collect feedback. Also measure the time each chapter really takes you, so you can better estimate the time for each type of lesson.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Teaching can be challenging, but it is also rewarding and fun.&lt;/p&gt;
+&lt;p&gt;It is important to come well prepared, and this cheat sheet can help you checklist what you need to do:
+&lt;a href=&#34;https://github.com/rstudio/cheatsheets/raw/master/teachR.pdf&#34; class=&#34;uri&#34;&gt;https://github.com/rstudio/cheatsheets/raw/master/teachR.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Teaching is an iterative process in which you can keep improving each time, if you measure and learn from your mistakes.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

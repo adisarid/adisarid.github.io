@@ -1,33 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Authors on Adi Sarid - Personal Blog</title>
+    <title>Authors | Adi Sarid - Personal Blog</title>
     <link>/authors/</link>
-    <description>Recent content in Authors on Adi Sarid - Personal Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 01 Sep 2015 00:00:00 +0300</lastBuildDate>
-    
-	<atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>GA Cushen</title>
-      <link>/authors/ga-cushen/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0300</pubDate>
-      
-      <guid>/authors/ga-cushen/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MS Nixon</title>
-      <link>/authors/ms-nixon/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0300</pubDate>
-      
-      <guid>/authors/ms-nixon/</guid>
-      <description></description>
-    </item>
+      <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
+    <description>Authors</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright><lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png</url>
+      <title>Authors</title>
+      <link>/authors/</link>
+    </image>
     
   </channel>
 </rss>

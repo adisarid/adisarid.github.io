@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tidyverse | Adi Sarid - Personal Blog</title>
+    <link>/tag/tidyverse/</link>
+      <atom:link href="/tag/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    <description>Tidyverse</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright><lastBuildDate>Sun, 28 Apr 2019 12:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png</url>
+      <title>Tidyverse</title>
+      <link>/tag/tidyverse/</link>
+    </image>
+    
+    <item>
+      <title>Test your tidyness - a short quiz to check your tidyverse capabilities</title>
+      <link>/post/2019-04-28-test_your_tidyness/</link>
+      <pubDate>Sun, 28 Apr 2019 12:00:00 +0000</pubDate>
+      <guid>/post/2019-04-28-test_your_tidyness/</guid>
+      <description>
+
+
+&lt;p&gt;Over the last month I gave a tidyverse + intro to data science corporate training in a startup in Tel-Aviv. We had two groups (beginners and intermediates), and for the last assignment of the course I was aiming for a short quiz comprised of various topics which we covered during the course, such that can also be automated easily (i.e., multiple choice questions).&lt;/p&gt;
+&lt;p&gt;I came up with the following quiz, which I thought would be nice to share here. I guess that experts should probably be able to complete this in a few minutes, intermediate/beginners would probably complete this by up to 30 minutes.&lt;/p&gt;
+&lt;div id=&#34;exam-instructions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Exam instructions&lt;/h2&gt;
+&lt;p&gt;The following exam contains 10 questions which spans across the different topics regaring tidyverse, and some analysis dilemmas. Each question has four options but only one correct answer. Each correct answer provides you with 10 points.&lt;/p&gt;
+&lt;p&gt;You can use any materials you want including but not limited to: cheat sheets, our course materials, stack overflow, package documentation, running code and seeing what it does.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 1:&lt;/h2&gt;
+&lt;p&gt;When would you use an R markdown file (.Rmd) versus a script file (.R) to save your work?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;If I want the relative position of the file retained (so that it is easier to load files from the same directory), I will use an .Rmd file, otherwise I will use a .R file.&lt;/li&gt;
+&lt;li&gt;When I want a complete documentation of my work in a report I will use a .Rmd. I will use a .R file for debugging and sourcing functions.&lt;/li&gt;
+&lt;li&gt;There is no significant difference between the two formats, and they can be used for the same things interchangably.&lt;/li&gt;
+&lt;li&gt;There is no benefit to using .R script files, the .Rmd format is always superior.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 2:&lt;/h2&gt;
+&lt;p&gt;Look at the following segments of code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# segment 1:
+new_data &amp;lt;- read.csv(&amp;quot;myfilename.csv&amp;quot;)
+
+# segment 2:
+new_data %&amp;gt;% 
+   group_by(some_cool_suff) %&amp;gt;% 
+   summarize(average = mean(avg_me, na.rm = T)) -&amp;gt; updated_df
+   
+# segment 3:
+avg_var &amp;lt;- mean(new_data$avg_me[!is.na(some_cool_stuff)], na.rm = T)
+   
+# segment 4:
+data.frame(a = 1:10, b = letters[1:10]) %&amp;gt;% 
+   sample_n(3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which segments would you classify as &lt;code&gt;tidyverse&lt;/code&gt; syntax?
+(&lt;code&gt;tidyverse&lt;/code&gt; syntax = code which uses functions from tidyverse packages, in which there is no function that you can replace to a &lt;code&gt;tidyverse&lt;/code&gt; equivalent)&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Segment 1 and segment 3.&lt;/li&gt;
+&lt;li&gt;Segment 2 and segment 4.&lt;/li&gt;
+&lt;li&gt;Segment 4.&lt;/li&gt;
+&lt;li&gt;Segment 2.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-3&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 3:&lt;/h2&gt;
+&lt;p&gt;What &lt;code&gt;ggplot2&lt;/code&gt; geoms would you use to generate the following charts?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Figure 1: not generated with &lt;code&gt;ggplot2&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Figure 1: &lt;code&gt;geom_boxplot&lt;/code&gt;, Figure 2: &lt;code&gt;geom_line&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Figure 1: &lt;code&gt;geom_violin&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Figure 1: &lt;code&gt;geom_boxplot&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt; + &lt;code&gt;geom_line&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-4&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 4:&lt;/h2&gt;
+&lt;p&gt;What is the difference between the &lt;code&gt;matrix&lt;/code&gt; and the &lt;code&gt;tibble&lt;/code&gt; in the following?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;matrix(cbind(1:10, letters[1:10], LETTERS[1:10]), ncol = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       [,1] [,2] [,3]
+##  [1,] &amp;quot;1&amp;quot;  &amp;quot;a&amp;quot;  &amp;quot;A&amp;quot; 
+##  [2,] &amp;quot;2&amp;quot;  &amp;quot;b&amp;quot;  &amp;quot;B&amp;quot; 
+##  [3,] &amp;quot;3&amp;quot;  &amp;quot;c&amp;quot;  &amp;quot;C&amp;quot; 
+##  [4,] &amp;quot;4&amp;quot;  &amp;quot;d&amp;quot;  &amp;quot;D&amp;quot; 
+##  [5,] &amp;quot;5&amp;quot;  &amp;quot;e&amp;quot;  &amp;quot;E&amp;quot; 
+##  [6,] &amp;quot;6&amp;quot;  &amp;quot;f&amp;quot;  &amp;quot;F&amp;quot; 
+##  [7,] &amp;quot;7&amp;quot;  &amp;quot;g&amp;quot;  &amp;quot;G&amp;quot; 
+##  [8,] &amp;quot;8&amp;quot;  &amp;quot;h&amp;quot;  &amp;quot;H&amp;quot; 
+##  [9,] &amp;quot;9&amp;quot;  &amp;quot;i&amp;quot;  &amp;quot;I&amp;quot; 
+## [10,] &amp;quot;10&amp;quot; &amp;quot;j&amp;quot;  &amp;quot;J&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(num = 1:10, sl = letters[1:10], cl = LETTERS[1:10])&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 3
+##      num sl    cl   
+##    &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;
+##  1     1 a     A    
+##  2     2 b     B    
+##  3     3 c     C    
+##  4     4 d     D    
+##  5     5 e     E    
+##  6     6 f     F    
+##  7     7 g     G    
+##  8     8 h     H    
+##  9     9 i     I    
+## 10    10 j     J&lt;/code&gt;&lt;/pre&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;The tibble has named variables (columns) and the matrix does not name the columns.&lt;/li&gt;
+&lt;li&gt;The tibble retains the original data type and the matrix converts the data types.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;matrix&lt;/code&gt; is a base R function and &lt;code&gt;tibble&lt;/code&gt; is a tidyverse function.&lt;/li&gt;
+&lt;li&gt;All of the above.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-5&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 5:&lt;/h2&gt;
+&lt;p&gt;What &lt;code&gt;stringr&lt;/code&gt; function would you use to simplify the following code?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;some_string &amp;lt;- c(&amp;quot;How are you today?&amp;quot;, &amp;quot;Is this test ok?&amp;quot;, &amp;quot;You&amp;#39;re already half way in!&amp;quot;)
+map_chr(some_string, ~paste0(stringi::stri_wrap(., width = 5), collapse = &amp;quot;\n&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;code&gt;str_count&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;str_wrap&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;str_sub&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;No such function: must use a combination of a &lt;code&gt;stringr&lt;/code&gt; and a loop (or a &lt;code&gt;map&lt;/code&gt; function).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-6&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 6:&lt;/h2&gt;
+&lt;p&gt;What is the difference between &lt;code&gt;contains&lt;/code&gt; and &lt;code&gt;one_of&lt;/code&gt;?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Both are “select helpers”, &lt;code&gt;one_of&lt;/code&gt; is used to specify strings which starts with one of the specified expressions, and &lt;code&gt;contains&lt;/code&gt; lets you specify the variable names in “non standard evaluation” (unquoted) style.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;contains&lt;/code&gt; selects variables based on the regular expression you feed as an argument. &lt;code&gt;one_of&lt;/code&gt; needs you to specify the variable names as strings.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;contains&lt;/code&gt; selects variables which contain the literal string you feed into it. &lt;code&gt;one_of&lt;/code&gt; needs you to specify the variables names as strings.&lt;/li&gt;
+&lt;li&gt;Both functions do the same thing with the same arguments.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-7&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 7:&lt;/h2&gt;
+&lt;p&gt;When reshaping data with the &lt;code&gt;gather&lt;/code&gt; function, what is the meaning of the &lt;code&gt;...&lt;/code&gt; argument?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Specify which variables to gather by.&lt;/li&gt;
+&lt;li&gt;Specify which variables &lt;strong&gt;not&lt;/strong&gt; to gather by (using the “-” sign).&lt;/li&gt;
+&lt;li&gt;Specify either &lt;em&gt;a&lt;/em&gt; or &lt;em&gt;b&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Provide variable by which to group the resulting tibble.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-8&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 8:&lt;/h2&gt;
+&lt;p&gt;What function would you use to get all the rows in &lt;code&gt;tibble1&lt;/code&gt; which are not in &lt;code&gt;tibble2&lt;/code&gt;?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;code&gt;setdiff(tibble1, tibble2)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;setdiff(tibble2, tibble1)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;intersect(tibble1, tibble2)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;semi_join(tibble1, tibble2)&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-9&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 9:&lt;/h2&gt;
+&lt;p&gt;Assume you examine the data which appears in the following scatter plot using per-axis boxplots. Would classify point A as an outlier?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Yes, only accoring to the y-axis.&lt;/li&gt;
+&lt;li&gt;Yes, only according to the x-axis.&lt;/li&gt;
+&lt;li&gt;Yes, according to either x-axis or y-axis.&lt;/li&gt;
+&lt;li&gt;No, it will not be classified as an outlier.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-04-28-Test_your_tidyness_files/figure-html/outlier%20question-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;question-10&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Question 10:&lt;/h2&gt;
+&lt;p&gt;You encountered a data set in which all variables are normally distributed with an unequal variance and
+unequal expectancy (mean). You wish to run a KMeans clustering to cluster the data. What would you do
+as a preprocessing step?&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Scale and center the data using the function scale.&lt;/li&gt;
+&lt;li&gt;Scale and center the data using min-max scaling and centering.&lt;/li&gt;
+&lt;li&gt;Either a or b.&lt;/li&gt;
+&lt;li&gt;Nothing - since the data is already normally distributed, no scaling or centering is required.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bonus-question-5-points-bonus&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bonus question (5 points bonus):&lt;/h2&gt;
+&lt;p&gt;Did you sign up for &lt;a href=&#34;https://www.r-bloggers.com&#34;&gt;R-Bloggers&lt;/a&gt; updates? (feed to receive R related news and updates)&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;Yes (5 points bonus).&lt;/li&gt;
+&lt;li&gt;No, but I’m doing it now (2.5 points bonus).&lt;/li&gt;
+&lt;li&gt;No, and I don’t intend to.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;P.S. I’m not getting any benefits from R-bloggers for “advertising” them, I genuinly think it’s a great source to stay updated, and improve your R capabilities.&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;quiz-answers&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Quiz answers&lt;/h2&gt;
+&lt;p&gt;Answers available &lt;a href=&#34;https://gist.github.com/adisarid/6c7dbd38b5da09e0de99b90aa8300403&#34;&gt;in the following gist&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
