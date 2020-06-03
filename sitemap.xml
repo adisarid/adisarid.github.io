@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/author/</loc>
+    <lastmod>2020-06-03T20:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/</loc>
+    <lastmod>2020-06-03T20:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/talk/leveraging_data_science_in_mr/</loc>
+    <lastmod>2020-06-03T20:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <lastmod>2020-05-26T11:06:00+00:00</lastmod>
   </url>
@@ -149,11 +164,6 @@
   
   <url>
     <loc>/publication/preprint/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -315,10 +325,6 @@
   <url>
     <loc>/publication/conference-paper/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/author/</loc>
   </url>
   
 </urlset>

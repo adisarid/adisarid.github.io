@@ -5,12 +5,23 @@
     <link>/author/</link>
       <atom:link href="/author/index.xml" rel="self" type="application/rss+xml" />
     <description>Adi Sarid - Personal Blog</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright><lastBuildDate>Wed, 03 Jun 2020 20:30:00 +0200</lastBuildDate>
     <image>
       <url>/author/avatar_hucc2d93568af678868867e27512426d6f_1365475_270x270_fill_q90_lanczos_center.jpg</url>
       <title>Adi Sarid - Personal Blog</title>
       <link>/author/</link>
     </image>
+    
+    <item>
+      <title>Leveraging Data Science in Market Research</title>
+      <link>/talk/leveraging_data_science_in_mr/</link>
+      <pubDate>Wed, 03 Jun 2020 20:30:00 +0200</pubDate>
+      <guid>/talk/leveraging_data_science_in_mr/</guid>
+      <description>&lt;p&gt;The presentation is available 
+&lt;a href=&#34;/pdf/2020-06-02_Leveraging_data_science_in_market_research.pdf&#34;&gt;here&lt;/a&gt;, and the recording 
+&lt;a href=&#34;https://youtu.be/KLQmHAOt-lk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
   </channel>
 </rss>
