@@ -754,15 +754,15 @@ class_action_conjoint &lt;- read_csv(&quot;https://raw.githubusercontent.com/adi
 ##   score_selection = col_double()
 ## )</code></pre>
 <pre class="r"><code>glimpse(class_action_conjoint)</code></pre>
-<pre><code>## Observations: 7,020
-## Variables: 7
-## $ `Response ID`           &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10...
-## $ `Set Number`            &lt;dbl&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,...
-## $ `Card Number`           &lt;dbl&gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1,...
-## $ compensation_push_pull  &lt;chr&gt; &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;pull&quot;...
-## $ compensation_amount_ILS &lt;dbl&gt; 75, 50, 25, 100, 25, 100, 75, 100, 50,...
-## $ compensation_type       &lt;chr&gt; &quot;another_product&quot;, &quot;credit_cart&quot;, &quot;ban...
-## $ score_selection         &lt;dbl&gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 10...</code></pre>
+<pre><code>## Rows: 7,020
+## Columns: 7
+## $ `Response ID`           &lt;dbl&gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,...
+## $ `Set Number`            &lt;dbl&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5...
+## $ `Card Number`           &lt;dbl&gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3...
+## $ compensation_push_pull  &lt;chr&gt; &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;push&quot;, &quot;pull&quot;, &quot;pu...
+## $ compensation_amount_ILS &lt;dbl&gt; 75, 50, 25, 100, 25, 100, 75, 100, 50, 25, ...
+## $ compensation_type       &lt;chr&gt; &quot;another_product&quot;, &quot;credit_cart&quot;, &quot;bank_che...
+## $ score_selection         &lt;dbl&gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 100, 0,...</code></pre>
 <pre class="r"><code>class_action_conjoint %&gt;% count(compensation_push_pull)</code></pre>
 <pre><code>## # A tibble: 2 x 2
 ##   compensation_push_pull     n
@@ -822,26 +822,16 @@ summary(conjoint_glm_model)</code></pre>
 ## -1.8635  -0.8111  -0.5139   0.8796   2.6557  
 ## 
 ## Coefficients:
-##                                       Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept)                           -3.49667    0.11341 -30.832   &lt;2e-16
-## compensation_push_pullpush             0.74140    0.05807  12.767   &lt;2e-16
-## compensation_amount_ILS50              1.01476    0.09385  10.813   &lt;2e-16
-## compensation_amount_ILS75              1.73623    0.09224  18.823   &lt;2e-16
-## compensation_amount_ILS100             2.40149    0.09281  25.876   &lt;2e-16
-## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418
-## compensation_typecoupon                1.10396    0.09588  11.514   &lt;2e-16
-## compensation_typebank_cheque           1.53888    0.09473  16.245   &lt;2e-16
-## compensation_typecredit_cart           1.89640    0.09586  19.782   &lt;2e-16
-##                                          
-## (Intercept)                           ***
-## compensation_push_pullpush            ***
-## compensation_amount_ILS50             ***
-## compensation_amount_ILS75             ***
-## compensation_amount_ILS100            ***
-## compensation_typerefund_next_purchase    
-## compensation_typecoupon               ***
-## compensation_typebank_cheque          ***
-## compensation_typecredit_cart          ***
+##                                       Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                           -3.49667    0.11341 -30.832   &lt;2e-16 ***
+## compensation_push_pullpush             0.74140    0.05807  12.767   &lt;2e-16 ***
+## compensation_amount_ILS50              1.01476    0.09385  10.813   &lt;2e-16 ***
+## compensation_amount_ILS75              1.73623    0.09224  18.823   &lt;2e-16 ***
+## compensation_amount_ILS100             2.40149    0.09281  25.876   &lt;2e-16 ***
+## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418    
+## compensation_typecoupon                1.10396    0.09588  11.514   &lt;2e-16 ***
+## compensation_typebank_cheque           1.53888    0.09473  16.245   &lt;2e-16 ***
+## compensation_typecredit_cart           1.89640    0.09586  19.782   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -910,14 +900,13 @@ package_responses &lt;- package_comparison %&gt;%
 
 package_responses</code></pre>
 <pre><code>## # A tibble: 5 x 6
-##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit
-##   &lt;chr&gt;        &lt;chr&gt;            &lt;fct&gt;            &lt;chr&gt;             &lt;dbl&gt;
-## 1 pkg1         pull             25               credit_cart      0.168 
-## 2 pkg2         pull             75               refund_next_pur~ 0.158 
-## 3 pkg3         push             25               coupon           0.161 
-## 4 worst        pull             25               another_product  0.0294
-## 5 best         push             100              credit_cart      0.824 
-## # ... with 1 more variable: se.fit &lt;dbl&gt;</code></pre>
+##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit  se.fit
+##   &lt;chr&gt;        &lt;chr&gt;            &lt;fct&gt;            &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt;
+## 1 pkg1         pull             25               credit_cart      0.168  0.0129 
+## 2 pkg2         pull             75               refund_next_pur~ 0.158  0.0122 
+## 3 pkg3         push             25               coupon           0.161  0.0129 
+## 4 worst        pull             25               another_product  0.0294 0.00324
+## 5 best         push             100              credit_cart      0.824  0.0123</code></pre>
 <pre class="r"><code># P.S. - excuse the &quot;credit_cart&quot; typo (I build the model that way, only then noticed...)
 
 ggplot(package_responses %&gt;% slice(1:3) , aes(x = package_name, y = fit)) + 

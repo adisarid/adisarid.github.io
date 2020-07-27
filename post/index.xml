@@ -1090,7 +1090,7 @@ as a preprocessing step?&lt;/p&gt;
 &lt;p&gt;Bloom’s taxonomy illustrates the levels of learning new concepts or topics.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://wp0.vanderbilt.edu/cft/guides-sub-pages/blooms-taxonomy/&#34;&gt;Vanderbilt University Center for Teaching&lt;/a&gt; has a nice illustration for it.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/img/blooms_taxonomy.png&#34; alt=&#34;Blooms Taxonomy&#34; /&gt;
+&lt;img src=&#34;/img/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Blooms Taxonomy&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can visit the Vanderbilt website for a more thorough explanation about the taxonomy, but suffice it to say that “remember” is the most basic form of acquired knowledge, and the highest levels (at the top of the pyramid) are evaluate and create (being able to evaluate someone else’s work, or create your own noval work).&lt;/p&gt;
@@ -1168,15 +1168,15 @@ class_action_conjoint &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent
 ##   score_selection = col_double()
 ## )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(class_action_conjoint)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Observations: 7,020
-## Variables: 7
-## $ `Response ID`           &amp;lt;dbl&amp;gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10...
-## $ `Set Number`            &amp;lt;dbl&amp;gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,...
-## $ `Card Number`           &amp;lt;dbl&amp;gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1,...
-## $ compensation_push_pull  &amp;lt;chr&amp;gt; &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;pull&amp;quot;...
-## $ compensation_amount_ILS &amp;lt;dbl&amp;gt; 75, 50, 25, 100, 25, 100, 75, 100, 50,...
-## $ compensation_type       &amp;lt;chr&amp;gt; &amp;quot;another_product&amp;quot;, &amp;quot;credit_cart&amp;quot;, &amp;quot;ban...
-## $ score_selection         &amp;lt;dbl&amp;gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 10...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 7,020
+## Columns: 7
+## $ `Response ID`           &amp;lt;dbl&amp;gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,...
+## $ `Set Number`            &amp;lt;dbl&amp;gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5...
+## $ `Card Number`           &amp;lt;dbl&amp;gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3...
+## $ compensation_push_pull  &amp;lt;chr&amp;gt; &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;pull&amp;quot;, &amp;quot;pu...
+## $ compensation_amount_ILS &amp;lt;dbl&amp;gt; 75, 50, 25, 100, 25, 100, 75, 100, 50, 25, ...
+## $ compensation_type       &amp;lt;chr&amp;gt; &amp;quot;another_product&amp;quot;, &amp;quot;credit_cart&amp;quot;, &amp;quot;bank_che...
+## $ score_selection         &amp;lt;dbl&amp;gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 100, 0,...&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class_action_conjoint %&amp;gt;% count(compensation_push_pull)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 2
 ##   compensation_push_pull     n
@@ -1236,26 +1236,16 @@ summary(conjoint_glm_model)&lt;/code&gt;&lt;/pre&gt;
 ## -1.8635  -0.8111  -0.5139   0.8796   2.6557  
 ## 
 ## Coefficients:
-##                                       Estimate Std. Error z value Pr(&amp;gt;|z|)
-## (Intercept)                           -3.49667    0.11341 -30.832   &amp;lt;2e-16
-## compensation_push_pullpush             0.74140    0.05807  12.767   &amp;lt;2e-16
-## compensation_amount_ILS50              1.01476    0.09385  10.813   &amp;lt;2e-16
-## compensation_amount_ILS75              1.73623    0.09224  18.823   &amp;lt;2e-16
-## compensation_amount_ILS100             2.40149    0.09281  25.876   &amp;lt;2e-16
-## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418
-## compensation_typecoupon                1.10396    0.09588  11.514   &amp;lt;2e-16
-## compensation_typebank_cheque           1.53888    0.09473  16.245   &amp;lt;2e-16
-## compensation_typecredit_cart           1.89640    0.09586  19.782   &amp;lt;2e-16
-##                                          
-## (Intercept)                           ***
-## compensation_push_pullpush            ***
-## compensation_amount_ILS50             ***
-## compensation_amount_ILS75             ***
-## compensation_amount_ILS100            ***
-## compensation_typerefund_next_purchase    
-## compensation_typecoupon               ***
-## compensation_typebank_cheque          ***
-## compensation_typecredit_cart          ***
+##                                       Estimate Std. Error z value Pr(&amp;gt;|z|)    
+## (Intercept)                           -3.49667    0.11341 -30.832   &amp;lt;2e-16 ***
+## compensation_push_pullpush             0.74140    0.05807  12.767   &amp;lt;2e-16 ***
+## compensation_amount_ILS50              1.01476    0.09385  10.813   &amp;lt;2e-16 ***
+## compensation_amount_ILS75              1.73623    0.09224  18.823   &amp;lt;2e-16 ***
+## compensation_amount_ILS100             2.40149    0.09281  25.876   &amp;lt;2e-16 ***
+## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418    
+## compensation_typecoupon                1.10396    0.09588  11.514   &amp;lt;2e-16 ***
+## compensation_typebank_cheque           1.53888    0.09473  16.245   &amp;lt;2e-16 ***
+## compensation_typecredit_cart           1.89640    0.09586  19.782   &amp;lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
 ## 
@@ -1324,14 +1314,13 @@ package_responses &amp;lt;- package_comparison %&amp;gt;%
 
 package_responses&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 6
-##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit
-##   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;            &amp;lt;fct&amp;gt;            &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;
-## 1 pkg1         pull             25               credit_cart      0.168 
-## 2 pkg2         pull             75               refund_next_pur~ 0.158 
-## 3 pkg3         push             25               coupon           0.161 
-## 4 worst        pull             25               another_product  0.0294
-## 5 best         push             100              credit_cart      0.824 
-## # ... with 1 more variable: se.fit &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit  se.fit
+##   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;            &amp;lt;fct&amp;gt;            &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 pkg1         pull             25               credit_cart      0.168  0.0129 
+## 2 pkg2         pull             75               refund_next_pur~ 0.158  0.0122 
+## 3 pkg3         push             25               coupon           0.161  0.0129 
+## 4 worst        pull             25               another_product  0.0294 0.00324
+## 5 best         push             100              credit_cart      0.824  0.0123&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# P.S. - excuse the &amp;quot;credit_cart&amp;quot; typo (I build the model that way, only then noticed...)
 
 ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit)) + 
@@ -1465,6 +1454,19 @@ mtcars %&amp;gt;%
 mtcars %&amp;gt;%
   select(cyl:carb) %&amp;gt;%
   test1(groupby_vars = cyl)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `funs()` is deprecated as of dplyr 0.8.0.
+## Please use a list of either functions or lambdas: 
+## 
+##   # Simple named list: 
+##   list(mean = mean, median = median)
+## 
+##   # Auto named with `tibble::lst()`: 
+##   tibble::lst(mean, median)
+## 
+##   # Using lambdas
+##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 10
 ##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
