@@ -3,13 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-11-11T08:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/error-handling/</loc>
+    <lastmod>2020-11-11T08:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-11-11T08:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/purrr/</loc>
+    <lastmod>2020-11-11T08:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/r/</loc>
+    <lastmod>2020-11-11T08:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-11-11T08:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/yet-another-post-on-error-handling/</loc>
+    <lastmod>2020-11-11T08:30:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/author/</loc>
-    <lastmod>2020-06-03T20:30:00+02:00</lastmod>
+    <lastmod>2020-11-05T20:30:00+02:00</lastmod>
   </url>
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2020-06-03T20:30:00+02:00</lastmod>
+    <lastmod>2020-11-05T20:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/talk/landing_your_first_awesome_data_science_job/</loc>
+    <lastmod>2020-11-05T20:30:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/talk/r_you_ready/</loc>
+    <lastmod>2020-10-14T20:30:00+02:00</lastmod>
   </url>
   
   <url>
@@ -18,27 +63,7 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-05-26T11:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tag/learnr/</loc>
-    <lastmod>2020-05-26T11:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-05-26T11:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/r/</loc>
-    <lastmod>2020-05-26T11:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-05-26T11:06:00+00:00</lastmod>
   </url>
   
@@ -224,11 +249,6 @@
   
   <url>
     <loc>/tag/progress-bars/</loc>
-    <lastmod>2019-01-25T12:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/purrr/</loc>
     <lastmod>2019-01-25T12:00:00+00:00</lastmod>
   </url>
   

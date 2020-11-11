@@ -27,7 +27,8 @@
   
     
   
-  <meta name="description" content="Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.">
+  <meta name="description" content="Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.
+There are many posts about error handling in R (and in fact the examples in the purrr package documentation are not bad either).">
 
   
   <link rel="alternate" hreflang="en-us" href="../../post/yet-another-post-on-error-handling/">
@@ -279,13 +280,14 @@
   <meta property="og:site_name" content="Adi Sarid - Personal Blog">
   <meta property="og:url" content="/post/yet-another-post-on-error-handling/">
   <meta property="og:title" content="YAPOEH! (Yet another post on error handling) | Adi Sarid - Personal Blog">
-  <meta property="og:description" content="Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly."><meta property="og:image" content="/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png">
+  <meta property="og:description" content="Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.
+There are many posts about error handling in R (and in fact the examples in the purrr package documentation are not bad either)."><meta property="og:image" content="/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
-      <meta property="article:published_time" content="2020-11-09T00:00:00&#43;00:00">
+      <meta property="article:published_time" content="2020-11-11T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2020-11-09T14:49:13&#43;00:00">
+    <meta property="article:modified_time" content="2020-11-11T08:30:00&#43;00:00">
   
 
   
@@ -313,8 +315,8 @@
   },
   "headline": "YAPOEH! (Yet another post on error handling)",
   
-  "datePublished": "2020-11-09T00:00:00Z",
-  "dateModified": "2020-11-09T14:49:13Z",
+  "datePublished": "2020-11-11T00:00:00Z",
+  "dateModified": "2020-11-11T08:30:00Z",
   
   "publisher": {
     "@type": "Organization",
@@ -324,7 +326,7 @@
       "url": "/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly."
+  "description": "Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.\nThere are many posts about error handling in R (and in fact the examples in the purrr package documentation are not bad either)."
 }
 </script>
 
@@ -677,7 +679,7 @@
           Last updated on
       
     
-    Nov 9, 2020
+    Nov 11, 2020
   </span>
   
 
@@ -727,9 +729,6 @@
 
     <div class="article-style">
       
-<script src="../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
-<link href="../../rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="../../rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
 <p>Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.</p>
@@ -870,7 +869,7 @@ map(list(&quot;foobar&quot;, pi, 10), try_divide2)</code></pre>
 <div id="bonus-a-benchmark" class="section level2">
 <h2>Bonus: a benchmark</h2>
 <p>Before going off on your merry, error handled way, I also provide a short comparison between <code>safely</code>, <code>possibly</code>, and <code>tryCatch</code>.</p>
-<p>Let’s assume a data set with 20% errors. For simplicity, we’ll use a modified <code>log</code> instead of our <code>divide2</code> (similar to the example provided in <code>purrr</code>’s documentation). It makes sense to to fail <code>log</code> in an all numeric vector (yield an error if there is a negative value). Since a negative log is <code>NaN</code> (not an error but rather a warning) I’m creating an <code>error_prone_log</code> function.</p>
+<p>Let’s assume a data set with 20% errors. For simplicity, we’ll use a modified <code>log</code> instead of our <code>divide2</code> (similar to the example provided in <code>purrr</code>’s documentation). It makes sense to fail <code>log</code> in an all numeric vector (yield an error if there is a negative value). Since a negative log is <code>NaN</code> (not an error but rather a warning) I’m creating an <code>error_prone_log</code> function.</p>
 <pre class="r"><code>library(tibble)
 library(dplyr)
 library(microbenchmark)
@@ -1259,32 +1258,32 @@ gt::gt(summary(bench_results)) %&gt;%
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_center">map(test_values, safe_log)</td>
-      <td class="gt_row gt_right">2.80</td>
-      <td class="gt_row gt_right">2.94</td>
-      <td class="gt_row gt_right">3.15</td>
-      <td class="gt_row gt_right">2.99</td>
-      <td class="gt_row gt_right">3.06</td>
-      <td class="gt_row gt_right">9.57</td>
+      <td class="gt_row gt_right">2.89</td>
+      <td class="gt_row gt_right">3.28</td>
+      <td class="gt_row gt_right">3.50</td>
+      <td class="gt_row gt_right">3.34</td>
+      <td class="gt_row gt_right">3.42</td>
+      <td class="gt_row gt_right">11.94</td>
       <td class="gt_row gt_right">1000</td>
     </tr>
     <tr>
       <td class="gt_row gt_center">map(test_values, possible_log)</td>
-      <td class="gt_row gt_right">2.66</td>
-      <td class="gt_row gt_right">2.77</td>
-      <td class="gt_row gt_right">3.04</td>
-      <td class="gt_row gt_right">2.82</td>
-      <td class="gt_row gt_right">2.89</td>
-      <td class="gt_row gt_right">65.99</td>
+      <td class="gt_row gt_right">2.62</td>
+      <td class="gt_row gt_right">3.14</td>
+      <td class="gt_row gt_right">3.35</td>
+      <td class="gt_row gt_right">3.21</td>
+      <td class="gt_row gt_right">3.28</td>
+      <td class="gt_row gt_right">7.62</td>
       <td class="gt_row gt_right">1000</td>
     </tr>
     <tr>
       <td class="gt_row gt_center">map(test_values, tryCatch_log)</td>
-      <td class="gt_row gt_right">1.95</td>
-      <td class="gt_row gt_right">2.03</td>
-      <td class="gt_row gt_right">2.18</td>
-      <td class="gt_row gt_right">2.07</td>
-      <td class="gt_row gt_right">2.12</td>
-      <td class="gt_row gt_right">5.08</td>
+      <td class="gt_row gt_right">1.96</td>
+      <td class="gt_row gt_right">2.29</td>
+      <td class="gt_row gt_right">2.52</td>
+      <td class="gt_row gt_right">2.33</td>
+      <td class="gt_row gt_right">2.38</td>
+      <td class="gt_row gt_right">77.12</td>
       <td class="gt_row gt_right">1000</td>
     </tr>
   </tbody>
@@ -1295,7 +1294,7 @@ gt::gt(summary(bench_results)) %&gt;%
   ggtitle(&quot;Comparison of safely, possibly, and tryCatch&quot;) + 
   coord_flip(ylim = c(1.5, 15))</code></pre>
 <p><img src="../../post/2020-11-09-YAPOEH-yet-another-post-on-error-handling.en_files/figure-html/error%20prone%20data%20set-1.png" width="672" /></p>
-<p>As can be seen from the benchmark’s results, there is no doubt about it: <code>tryCatch</code> is the fastest (a mean time of 2.15 ms compared to 3-3.12ms, and a median time of 2.05ms compared to 2.8-2.96ms). The <code>purrr</code> functions <code>safely</code> and <code>possibly</code> take longer to run. In my opinion though they are slightly more convenient in terms of syntax.</p>
+<p>As can be seen from the benchmark’s results, there is no doubt about it: <code>tryCatch</code> is the fastest. The <code>purrr</code> functions <code>safely</code> and <code>possibly</code> take longer to run. In my opinion though they are slightly more convenient in terms of syntax.</p>
 <p>In addition, the <code>safely</code> variation allows us to retrieve the error messages conveniently for later examination. Again, this capability comes with a price when compared to <code>tryCatch</code>, but it is roughly the same run time when compared to <code>possibly</code>.</p>
 </div>
 <div id="conclusion" class="section level2">
@@ -1315,9 +1314,9 @@ gt::gt(summary(bench_results)) %&gt;%
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="../../tag/purrr/">purrr</a>
-  
   <a class="badge badge-light" href="../../tag/error-handling/">Error handling</a>
+  
+  <a class="badge badge-light" href="../../tag/purrr/">purrr</a>
   
 </div>
 
@@ -1334,7 +1333,7 @@ gt::gt(summary(bench_results)) %&gt;%
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=../../post/yet-another-post-on-error-handling/&amp;text=YAPOEH!%20%28Yet%20another%20post%20on%20error%20handling%29" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/yet-another-post-on-error-handling/&amp;text=YAPOEH!%20%28Yet%20another%20post%20on%20error%20handling%29" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1373,7 +1372,7 @@ gt::gt(summary(bench_results)) %&gt;%
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=../../post/yet-another-post-on-error-handling/&amp;title=YAPOEH!%20%28Yet%20another%20post%20on%20error%20handling%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/yet-another-post-on-error-handling/&amp;title=YAPOEH!%20%28Yet%20another%20post%20on%20error%20handling%29" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>

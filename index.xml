@@ -13,12 +13,616 @@
     </image>
     
     <item>
+      <title>YAPOEH! (Yet another post on error handling)</title>
+      <link>/post/yet-another-post-on-error-handling/</link>
+      <pubDate>Wed, 11 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>/post/yet-another-post-on-error-handling/</guid>
+      <description>
+
+
+&lt;p&gt;Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.&lt;/p&gt;
+&lt;p&gt;There are many posts about error handling in R (and in fact the examples in the &lt;code&gt;purrr&lt;/code&gt; package documentation are not bad either). In this sense, this post is not original.&lt;/p&gt;
+&lt;p&gt;However, I do demonstrate two approaches: both the base-R approach (&lt;code&gt;tryCatch&lt;/code&gt;) and the &lt;code&gt;purrr&lt;/code&gt; approach (&lt;code&gt;safely&lt;/code&gt; and &lt;code&gt;possibly&lt;/code&gt;). The post contains a concise summary of the two methods, with a very simple example.&lt;/p&gt;
+&lt;p&gt;In this post I’m assuming you’re familiar with the basic concepts of functional programming.&lt;/p&gt;
+&lt;div id=&#34;a-simple-example-for-a-function-with-errors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A simple example for a function with errors&lt;/h2&gt;
+&lt;p&gt;Let’s analyze a very simple function which divides &lt;code&gt;number&lt;/code&gt; by 2. The function should return an error if its input is not an actual number, otherwise it will return &lt;code&gt;number/2&lt;/code&gt;. This function looks like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;divide2 &amp;lt;- function(number){
+  
+  # make sure the input is numeric (otherwise yield an error)
+  if (!is.numeric(number)) {
+    stop(paste(number, &amp;quot;is not a number!&amp;quot;))
+  }
+  
+  # everything is fine, return the result
+  number/2
+}
+
+divide2(10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;divide2(pi)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.570796&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But trying a string will yield an error:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;divide2(&amp;quot;foobar&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in divide2(&amp;quot;foobar&amp;quot;) : foobar is not a number!&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;where-is-the-problem&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Where is the problem?&lt;/h2&gt;
+&lt;p&gt;What happens if we have a dataframe (or a list, or any other object for that matter) and we want to try to divide numbers within that object? Invalid values might crash our attempt completely.&lt;/p&gt;
+&lt;p&gt;For example, this loops through two values (10 and &lt;span class=&#34;math inline&#34;&gt;\(\pi\)&lt;/span&gt;) and yields their division by 2.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(purrr)
+map(list(10, pi), divide2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] 5
+## 
+## [[2]]
+## [1] 1.570796&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But the next version fails completely, because it tries to loop through “foobar” which cannot be divided.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map(list(&amp;quot;foobar&amp;quot;, 10, pi), divide2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in .f(.x[[i]], ...) : foobar is not a number!&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No matter where we place the invalid value “foobar”, it will fail our code completely, and we get nothing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-solution-a-safelypossibly-wrapper&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The solution: a &lt;code&gt;safely&lt;/code&gt;/&lt;code&gt;possibly&lt;/code&gt; wrapper&lt;/h2&gt;
+&lt;p&gt;Fortunately, there are very simple wrappers which can help us handle the errors elegantly. These are the two functions from the &lt;code&gt;purrr&lt;/code&gt; package: &lt;code&gt;safely&lt;/code&gt; and &lt;code&gt;possibly&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We’ll first demonstrate the simpler version, &lt;code&gt;possibly&lt;/code&gt;. It allows us to replace errors with a chosen value. Since we expect a number, let’s replace errors with &lt;code&gt;NA_real_&lt;/code&gt; (which is like saying an unknown value which is a real number).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;possibly_divide2 &amp;lt;- possibly(divide2, otherwise = NA_real_, quiet = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;quiet = TRUE&lt;/code&gt; argument is just so errors will not be printed during the loop. Now we are ready to try our error safe variation.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;possibly_out &amp;lt;- map(list(&amp;quot;foobar&amp;quot;, 10, pi), possibly_divide2)
+possibly_out&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] NA
+## 
+## [[2]]
+## [1] 5
+## 
+## [[3]]
+## [1] 1.570796&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can also use &lt;code&gt;unlist&lt;/code&gt; to turn the output into a simple vector, i.e. &lt;code&gt;unlist(possibly_out)&lt;/code&gt; will yield the vector &lt;em&gt;NA, 5, 1.5707963&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;safely&lt;/code&gt; variation has some more strength into it, since it also provides the error messages. The output is slightly more complex though.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;safely_divide2 &amp;lt;- safely(.f = divide2, otherwise = NA_real_, quiet = T)
+safely_out &amp;lt;- map(list(&amp;quot;foobar&amp;quot;, 10, pi), safely_divide2)
+safely_out&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [[1]]$result
+## [1] NA
+## 
+## [[1]]$error
+## &amp;lt;simpleError in .f(...): foobar is not a number!&amp;gt;
+## 
+## 
+## [[2]]
+## [[2]]$result
+## [1] 5
+## 
+## [[2]]$error
+## NULL
+## 
+## 
+## [[3]]
+## [[3]]$result
+## [1] 1.570796
+## 
+## [[3]]$error
+## NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Following the approach suggested in the documentation of &lt;code&gt;safely&lt;/code&gt; (in the examples section), we can use &lt;code&gt;transpose()&lt;/code&gt; and &lt;code&gt;simplify_all()&lt;/code&gt; to arrange the output.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;simply_safe &amp;lt;- safely_out %&amp;gt;% 
+  transpose() %&amp;gt;% 
+  simplify_all()
+
+simply_safe$result  # for the output values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]       NA 5.000000 1.570796&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;simply_safe$error  # for the error messages&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## &amp;lt;simpleError in .f(...): foobar is not a number!&amp;gt;
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;for-comparisons-sake-how-would-you-trycatch-it&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;For comparison’s sake, how would you &lt;code&gt;tryCatch&lt;/code&gt; it?&lt;/h2&gt;
+&lt;p&gt;The function &lt;code&gt;tryCatch&lt;/code&gt; is a base-R approach for error handling. The concept is similar but the syntax is different. Here is an example of how to build a safe &lt;code&gt;divide2&lt;/code&gt; function with &lt;code&gt;tryCatch&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;try_divide2 &amp;lt;- function(number){
+  tryCatch(expr = {
+    divide2(number)
+  }, 
+  error = function(e){
+    NA_real_
+  }
+  )
+}
+
+map(list(&amp;quot;foobar&amp;quot;, pi, 10), try_divide2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] NA
+## 
+## [[2]]
+## [1] 1.570796
+## 
+## [[3]]
+## [1] 5&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As said - same output, different syntax. Choose your approach. As an appetizer, the same works with base-R functional programming as well. For example, with &lt;code&gt;lapply&lt;/code&gt; it will look like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lapply(list(&amp;quot;foobar&amp;quot;, pi, 10), try_divide2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] NA
+## 
+## [[2]]
+## [1] 1.570796
+## 
+## [[3]]
+## [1] 5&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bonus-a-benchmark&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bonus: a benchmark&lt;/h2&gt;
+&lt;p&gt;Before going off on your merry, error handled way, I also provide a short comparison between &lt;code&gt;safely&lt;/code&gt;, &lt;code&gt;possibly&lt;/code&gt;, and &lt;code&gt;tryCatch&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s assume a data set with 20% errors. For simplicity, we’ll use a modified &lt;code&gt;log&lt;/code&gt; instead of our &lt;code&gt;divide2&lt;/code&gt; (similar to the example provided in &lt;code&gt;purrr&lt;/code&gt;’s documentation). It makes sense to fail &lt;code&gt;log&lt;/code&gt; in an all numeric vector (yield an error if there is a negative value). Since a negative log is &lt;code&gt;NaN&lt;/code&gt; (not an error but rather a warning) I’m creating an &lt;code&gt;error_prone_log&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tibble)
+library(dplyr)
+library(microbenchmark)
+library(ggplot2)
+
+error_prone_log &amp;lt;- function(x){
+  if (x &amp;lt; 0){
+    stop(&amp;quot;Negative x&amp;quot;)
+  }
+  
+  log(x)
+}
+
+safe_log &amp;lt;- safely(error_prone_log, otherwise = NaN, quiet = T)
+possible_log &amp;lt;- possibly(error_prone_log, otherwise = NaN, quiet = T)
+tryCatch_log &amp;lt;- function(x){
+  tryCatch(expr = error_prone_log(x),
+           error = function(e){
+             NaN
+             })
+}
+
+set.seed(42)
+test_values &amp;lt;- sample(
+  c(runif(n = 80, min = 0, max = 100),
+    runif(n = 20, min = -100, max = 0)),
+  size = 100, replace = FALSE)
+
+bench_results &amp;lt;- microbenchmark(map(test_values, safe_log),
+                                map(test_values, possible_log),
+                                map(test_values, tryCatch_log), 
+                                times = 1000)
+
+gt::gt(summary(bench_results)) %&amp;gt;% 
+  gt::fmt_number(columns = 2:7, decimals = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#zbltwciejw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zbltwciejw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zbltwciejw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zbltwciejw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zbltwciejw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zbltwciejw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zbltwciejw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zbltwciejw .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zbltwciejw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zbltwciejw .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#zbltwciejw .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#zbltwciejw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zbltwciejw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#zbltwciejw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zbltwciejw .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zbltwciejw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zbltwciejw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zbltwciejw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zbltwciejw .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zbltwciejw .gt_left {
+  text-align: left;
+}
+
+#zbltwciejw .gt_center {
+  text-align: center;
+}
+
+#zbltwciejw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zbltwciejw .gt_font_normal {
+  font-weight: normal;
+}
+
+#zbltwciejw .gt_font_bold {
+  font-weight: bold;
+}
+
+#zbltwciejw .gt_font_italic {
+  font-style: italic;
+}
+
+#zbltwciejw .gt_super {
+  font-size: 65%;
+}
+
+#zbltwciejw .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;zbltwciejw&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_center&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;expr&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;min&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;lq&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;mean&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;median&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;uq&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;max&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;neval&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, safe_log)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.89&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.28&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.50&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.34&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.42&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;11.94&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, possible_log)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.62&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.14&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.35&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.21&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.28&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;7.62&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, tryCatch_log)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;1.96&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.29&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.52&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.33&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.38&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;77.12&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(bench_results) + 
+  ggtitle(&amp;quot;Comparison of safely, possibly, and tryCatch&amp;quot;) + 
+  coord_flip(ylim = c(1.5, 15))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2020-11-09-YAPOEH-yet-another-post-on-error-handling.en_files/figure-html/error%20prone%20data%20set-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;As can be seen from the benchmark’s results, there is no doubt about it: &lt;code&gt;tryCatch&lt;/code&gt; is the fastest. The &lt;code&gt;purrr&lt;/code&gt; functions &lt;code&gt;safely&lt;/code&gt; and &lt;code&gt;possibly&lt;/code&gt; take longer to run. In my opinion though they are slightly more convenient in terms of syntax.&lt;/p&gt;
+&lt;p&gt;In addition, the &lt;code&gt;safely&lt;/code&gt; variation allows us to retrieve the error messages conveniently for later examination. Again, this capability comes with a price when compared to &lt;code&gt;tryCatch&lt;/code&gt;, but it is roughly the same run time when compared to &lt;code&gt;possibly&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;When you have a long looping process which is prone to errors, for example a pricey web API call or a really large data set, you should aim to catch and handle errors gracefully instead of hoping for the best.&lt;/p&gt;
+&lt;p&gt;If you really need to be efficient, it’s probably worth while to &lt;code&gt;tryCatch&lt;/code&gt;, and if your looking more for ease of use and code readability you should use &lt;code&gt;possibly&lt;/code&gt;. In case you need to examine the error messages more thoroughly, use &lt;code&gt;safely&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Good luck hunting down the errors!&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Landing Your First Awesome Data Science Job - The tricks you need up your sleeve</title>
+      <link>/talk/landing_your_first_awesome_data_science_job/</link>
+      <pubDate>Thu, 05 Nov 2020 20:30:00 +0200</pubDate>
+      <guid>/talk/landing_your_first_awesome_data_science_job/</guid>
+      <description>&lt;p&gt;The presentation is available 
+&lt;a href=&#34;./pdf/2020-11-01_Landing_your_first_data_science_job_tricks_up_your_sleeve.pdf&#34;&gt;here&lt;/a&gt;. The recording is available 
+&lt;a href=&#34;https://www.youtube.com/watch?v=rISH_hgdckg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; (Hebrew).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R you ready? A short intro into R (Hebrew).</title>
+      <link>/talk/r_you_ready/</link>
+      <pubDate>Wed, 14 Oct 2020 20:30:00 +0200</pubDate>
+      <guid>/talk/r_you_ready/</guid>
+      <description>&lt;p&gt;The presentation is available 
+&lt;a href=&#34;./pdf/2020-10-14_R_U_Ready_Short_intro_to_R.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Leveraging Data Science in Market Research</title>
       <link>/talk/leveraging_data_science_in_mr/</link>
       <pubDate>Wed, 03 Jun 2020 20:30:00 +0200</pubDate>
       <guid>/talk/leveraging_data_science_in_mr/</guid>
       <description>&lt;p&gt;The presentation is available 
-&lt;a href=&#34;/pdf/2020-06-02_Leveraging_data_science_in_market_research.pdf&#34;&gt;here&lt;/a&gt;, and the recording 
+&lt;a href=&#34;./pdf/2020-06-02_Leveraging_data_science_in_market_research.pdf&#34;&gt;here&lt;/a&gt;, and the recording 
 &lt;a href=&#34;https://youtu.be/KLQmHAOt-lk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
@@ -92,7 +696,7 @@
 &lt;h3&gt;AWS Lightsail’s firewall settings&lt;/h3&gt;
 &lt;p&gt;When using &lt;strong&gt;AWS Lightsail&lt;/strong&gt; (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).&lt;/p&gt;
 &lt;p&gt;Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#39;/img/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#39;./img/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
 &lt;p&gt;If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -211,7 +815,7 @@ chmod u+x /opt/renewCerts.sh&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future. I’m listing them by order of appearance in the conference.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/Hexagons_conf2020.jpg&#34; alt=&#34;The hexawall at rstudio::conf2020&#34; style=&#34;zoom:10%; float:right; padding-left:30px&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./img/Hexagons_conf2020.jpg&#34; alt=&#34;The hexawall at rstudio::conf2020&#34; style=&#34;zoom:10%; float:right; padding-left:30px&#34;&gt;&lt;/p&gt;
 &lt;div id=&#34;the-rmarkdown-and-interactive-dashboards-workshop&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;The RMarkdown and Interactive Dashboards Workshop&lt;/h2&gt;
 &lt;p&gt;I participated as a TA in the RMarkdown and Interactive Dashboard workshop led by Carl Howe and Yihui Xie. The workshop dealt with creating RMarkdown documents. Specifically adding interactivity using the &lt;code&gt;flexdashboard&lt;/code&gt; package to turn a simple docuement into an interactive html with just a few &lt;code&gt;yaml&lt;/code&gt; configurations.&lt;/p&gt;
@@ -239,7 +843,7 @@ data_set &amp;lt;- crossing(frame = seq(0, 360, 30), x = seq(0, 2*pi, pi/10)) %&
 map(data_set$data, ~{
   ggplot(., aes(x, y)) + geom_line()
 })&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/img/ggplot2_animated_wave.gif&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./img/ggplot2_animated_wave.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Cool, isn’t it?&lt;/p&gt;
 &lt;p&gt;If you’re into animations, there are other packages which can also accomplish this, such as the &lt;code&gt;gganimate&lt;/code&gt; package.&lt;/p&gt;
 &lt;/div&gt;
@@ -279,10 +883,10 @@ map(data_set$data, ~{
 surface_plot &amp;lt;- ggplot(surface, aes(x = x, y = y, fill = z)) + 
   geom_tile()
 surface_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-01-31-rstudio-conf2020-recap_files/figure-html/surface%20as%20a%20tile%20countour-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2020-01-31-rstudio-conf2020-recap_files/figure-html/surface%20as%20a%20tile%20countour-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Projected as a 3d model using the rayshader here:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rayshader::plot_gg(surface_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/img/rayshader_snap.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./img/rayshader_snap.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Tyler also demonstrated how you can generate a movie with the camera browsing around the chart. Beware, rendering takes long.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;
@@ -405,7 +1009,7 @@ ggplot() +
   xlab(&amp;quot;x&amp;quot;) + 
   ylab(&amp;quot;y&amp;quot;) + 
   ggtitle(&amp;quot;Log-linear: Model, Fit, Confidence and Prediction Intervals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Conclusions&lt;/h2&gt;
@@ -529,7 +1133,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Important!&lt;/strong&gt; in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.&lt;/p&gt;
 &lt;p&gt;Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./img/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Optional&lt;/strong&gt;: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.&lt;/p&gt;
 &lt;p&gt;Complete the wizard and create your user pool.&lt;/p&gt;
 &lt;div id=&#34;email-communications&#34; class=&#34;section level3&#34;&gt;
@@ -544,7 +1148,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;p&gt;Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.&lt;/p&gt;
 &lt;p&gt;Set a domain name for your login screen and customize the UI of the login screen if you wish.&lt;/p&gt;
 &lt;p&gt;You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./img/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;enable-identity-provides-optional&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Enable identity provides (Optional)&lt;/h3&gt;
@@ -851,7 +1455,7 @@ fluidPage(
 &lt;p&gt;Also, when you’re looking at a mockup (even if it’s just a simple drawing or a non-interactive slide), it helps in the next stages of building the app’s UI.&lt;/p&gt;
 &lt;p&gt;Here is an example of how a mockup would look like when I’m drawing it on a piece of paper. Note how I’ve already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you’re actually looking at one of these.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/img/mockup_draw_example.jpg&#34; alt=&#34;Example for a mockup drawing&#34; /&gt;
+&lt;img src=&#34;./img/mockup_draw_example.jpg&#34; alt=&#34;Example for a mockup drawing&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Example for a mockup drawing&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -961,7 +1565,7 @@ data.frame(a = 1:10, b = letters[1:10]) %&amp;gt;%
 &lt;li&gt;Figure 1: &lt;code&gt;geom_violin&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Figure 1: &lt;code&gt;geom_boxplot&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt; + &lt;code&gt;geom_line&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-1.png&#34; width=&#34;672&#34; /&gt;&lt;img src=&#34;./post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;question-4&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Question 4:&lt;/h2&gt;
@@ -1050,7 +1654,7 @@ map_chr(some_string, ~paste0(stringi::stri_wrap(., width = 5), collapse = &amp;q
 &lt;li&gt;Yes, according to either x-axis or y-axis.&lt;/li&gt;
 &lt;li&gt;No, it will not be classified as an outlier.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-04-28-Test_your_tidyness_files/figure-html/outlier%20question-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2019-04-28-Test_your_tidyness_files/figure-html/outlier%20question-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;question-10&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Question 10:&lt;/h2&gt;
@@ -1137,7 +1741,7 @@ as a preprocessing step?&lt;/p&gt;
 &lt;p&gt;Bloom’s taxonomy illustrates the levels of learning new concepts or topics.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://wp0.vanderbilt.edu/cft/guides-sub-pages/blooms-taxonomy/&#34;&gt;Vanderbilt University Center for Teaching&lt;/a&gt; has a nice illustration for it.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/img/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;./img/blooms_taxonomy.png&#34; alt=&#34;Blooms Taxonomy&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Blooms Taxonomy&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can visit the Vanderbilt website for a more thorough explanation about the taxonomy, but suffice it to say that “remember” is the most basic form of acquired knowledge, and the highest levels (at the top of the pyramid) are evaluate and create (being able to evaluate someone else’s work, or create your own noval work).&lt;/p&gt;
@@ -1348,15 +1952,15 @@ class_action_conjoint &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent
 ##   score_selection = col_double()
 ## )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(class_action_conjoint)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Rows: 7,020
-## Columns: 7
-## $ `Response ID`           &amp;lt;dbl&amp;gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,...
-## $ `Set Number`            &amp;lt;dbl&amp;gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5...
-## $ `Card Number`           &amp;lt;dbl&amp;gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3...
-## $ compensation_push_pull  &amp;lt;chr&amp;gt; &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;pull&amp;quot;, &amp;quot;pu...
-## $ compensation_amount_ILS &amp;lt;dbl&amp;gt; 75, 50, 25, 100, 25, 100, 75, 100, 50, 25, ...
-## $ compensation_type       &amp;lt;chr&amp;gt; &amp;quot;another_product&amp;quot;, &amp;quot;credit_cart&amp;quot;, &amp;quot;bank_che...
-## $ score_selection         &amp;lt;dbl&amp;gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 100, 0,...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 7,020
+## Variables: 7
+## $ `Response ID`           &amp;lt;dbl&amp;gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10...
+## $ `Set Number`            &amp;lt;dbl&amp;gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,...
+## $ `Card Number`           &amp;lt;dbl&amp;gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1,...
+## $ compensation_push_pull  &amp;lt;chr&amp;gt; &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;pull&amp;quot;...
+## $ compensation_amount_ILS &amp;lt;dbl&amp;gt; 75, 50, 25, 100, 25, 100, 75, 100, 50,...
+## $ compensation_type       &amp;lt;chr&amp;gt; &amp;quot;another_product&amp;quot;, &amp;quot;credit_cart&amp;quot;, &amp;quot;ban...
+## $ score_selection         &amp;lt;dbl&amp;gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 10...&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class_action_conjoint %&amp;gt;% count(compensation_push_pull)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 2
 ##   compensation_push_pull     n
@@ -1416,16 +2020,26 @@ summary(conjoint_glm_model)&lt;/code&gt;&lt;/pre&gt;
 ## -1.8635  -0.8111  -0.5139   0.8796   2.6557  
 ## 
 ## Coefficients:
-##                                       Estimate Std. Error z value Pr(&amp;gt;|z|)    
-## (Intercept)                           -3.49667    0.11341 -30.832   &amp;lt;2e-16 ***
-## compensation_push_pullpush             0.74140    0.05807  12.767   &amp;lt;2e-16 ***
-## compensation_amount_ILS50              1.01476    0.09385  10.813   &amp;lt;2e-16 ***
-## compensation_amount_ILS75              1.73623    0.09224  18.823   &amp;lt;2e-16 ***
-## compensation_amount_ILS100             2.40149    0.09281  25.876   &amp;lt;2e-16 ***
-## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418    
-## compensation_typecoupon                1.10396    0.09588  11.514   &amp;lt;2e-16 ***
-## compensation_typebank_cheque           1.53888    0.09473  16.245   &amp;lt;2e-16 ***
-## compensation_typecredit_cart           1.89640    0.09586  19.782   &amp;lt;2e-16 ***
+##                                       Estimate Std. Error z value Pr(&amp;gt;|z|)
+## (Intercept)                           -3.49667    0.11341 -30.832   &amp;lt;2e-16
+## compensation_push_pullpush             0.74140    0.05807  12.767   &amp;lt;2e-16
+## compensation_amount_ILS50              1.01476    0.09385  10.813   &amp;lt;2e-16
+## compensation_amount_ILS75              1.73623    0.09224  18.823   &amp;lt;2e-16
+## compensation_amount_ILS100             2.40149    0.09281  25.876   &amp;lt;2e-16
+## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418
+## compensation_typecoupon                1.10396    0.09588  11.514   &amp;lt;2e-16
+## compensation_typebank_cheque           1.53888    0.09473  16.245   &amp;lt;2e-16
+## compensation_typecredit_cart           1.89640    0.09586  19.782   &amp;lt;2e-16
+##                                          
+## (Intercept)                           ***
+## compensation_push_pullpush            ***
+## compensation_amount_ILS50             ***
+## compensation_amount_ILS75             ***
+## compensation_amount_ILS100            ***
+## compensation_typerefund_next_purchase    
+## compensation_typecoupon               ***
+## compensation_typebank_cheque          ***
+## compensation_typecredit_cart          ***
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
 ## 
@@ -1494,13 +2108,14 @@ package_responses &amp;lt;- package_comparison %&amp;gt;%
 
 package_responses&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 6
-##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit  se.fit
-##   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;            &amp;lt;fct&amp;gt;            &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
-## 1 pkg1         pull             25               credit_cart      0.168  0.0129 
-## 2 pkg2         pull             75               refund_next_pur~ 0.158  0.0122 
-## 3 pkg3         push             25               coupon           0.161  0.0129 
-## 4 worst        pull             25               another_product  0.0294 0.00324
-## 5 best         push             100              credit_cart      0.824  0.0123&lt;/code&gt;&lt;/pre&gt;
+##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit
+##   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;            &amp;lt;fct&amp;gt;            &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;
+## 1 pkg1         pull             25               credit_cart      0.168 
+## 2 pkg2         pull             75               refund_next_pur~ 0.158 
+## 3 pkg3         push             25               coupon           0.161 
+## 4 worst        pull             25               another_product  0.0294
+## 5 best         push             100              credit_cart      0.824 
+## # ... with 1 more variable: se.fit &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# P.S. - excuse the &amp;quot;credit_cart&amp;quot; typo (I build the model that way, only then noticed...)
 
 ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit)) + 
@@ -1510,7 +2125,7 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
   ylab(&amp;quot;Predicted response (glm logit)&amp;quot;) + 
   xlab(&amp;quot;Package name&amp;quot;) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(package_responses, aes(x = package_name, y = fit)) + 
   geom_point() +
   geom_errorbar(aes(ymin = fit - se.fit, ymax = fit + se.fit)) + 
@@ -1518,7 +2133,7 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
   ylab(&amp;quot;Predicted response (glm logit)&amp;quot;) +
   xlab(&amp;quot;Package name&amp;quot;) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We see that the three packages (pkg1, pkg2, and pkg3) are relatively similar, within one standard error from one another. When compared to the worst package they are roughly &lt;span class=&#34;math inline&#34;&gt;\(\sim8\)&lt;/span&gt; times better (via odds ratio), but the best package is &lt;span class=&#34;math inline&#34;&gt;\(\sim5\)&lt;/span&gt; times better than packages 1-3.&lt;/p&gt;
 &lt;p&gt;One can use these concepts to illustrate the benefits of each parameter on the different packages, and let the user experience how different features make the packages more or less “attractive”.&lt;/p&gt;
 &lt;p&gt;As an experiment, I prepared a nice little shiny app which lets the user experiment with the different features: build two packages and then compare them. You can checkout the code at the &lt;a href=&#34;https://github.com/adisarid/class-action-IL-survey/tree/master/settlement-app/SettlementAttractive&#34;&gt;github repo&lt;/a&gt;, or check out the live app &lt;a href=&#34;https://sarid.shinyapps.io/class-action&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -1634,19 +2249,6 @@ mtcars %&amp;gt;%
 mtcars %&amp;gt;%
   select(cyl:carb) %&amp;gt;%
   test1(groupby_vars = cyl)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Warning: `funs()` is deprecated as of dplyr 0.8.0.
-## Please use a list of either functions or lambdas: 
-## 
-##   # Simple named list: 
-##   list(mean = mean, median = median)
-## 
-##   # Auto named with `tibble::lst()`: 
-##   tibble::lst(mean, median)
-## 
-##   # Using lambdas
-##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 10
 ##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
@@ -1902,7 +2504,7 @@ vctrs::vec_c(factor(&amp;quot;a&amp;quot;), factor(&amp;quot;b&amp;quot;))
       <link>/privacy/</link>
       <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
       <guid>/privacy/</guid>
-      <description>&lt;p&gt;We do not personally collect any data on this website. 
+      <description>&lt;p&gt;We do not personally collect any data on this website.
 However, we do use google analytics which places a cookie in the computer of site visitors, and collects some basic demographics and site behaviour information.&lt;/p&gt;
 </description>
     </item>

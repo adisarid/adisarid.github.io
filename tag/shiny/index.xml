@@ -114,7 +114,7 @@ ggplot() +
   xlab(&amp;quot;x&amp;quot;) + 
   ylab(&amp;quot;y&amp;quot;) + 
   ggtitle(&amp;quot;Log-linear: Model, Fit, Confidence and Prediction Intervals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Conclusions&lt;/h2&gt;
@@ -158,7 +158,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Important!&lt;/strong&gt; in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.&lt;/p&gt;
 &lt;p&gt;Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../img/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Optional&lt;/strong&gt;: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.&lt;/p&gt;
 &lt;p&gt;Complete the wizard and create your user pool.&lt;/p&gt;
 &lt;div id=&#34;email-communications&#34; class=&#34;section level3&#34;&gt;
@@ -173,7 +173,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;p&gt;Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.&lt;/p&gt;
 &lt;p&gt;Set a domain name for your login screen and customize the UI of the login screen if you wish.&lt;/p&gt;
 &lt;p&gt;You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/img/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../img/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;enable-identity-provides-optional&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Enable identity provides (Optional)&lt;/h3&gt;
@@ -480,7 +480,7 @@ fluidPage(
 &lt;p&gt;Also, when you’re looking at a mockup (even if it’s just a simple drawing or a non-interactive slide), it helps in the next stages of building the app’s UI.&lt;/p&gt;
 &lt;p&gt;Here is an example of how a mockup would look like when I’m drawing it on a piece of paper. Note how I’ve already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you’re actually looking at one of these.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/img/mockup_draw_example.jpg&#34; alt=&#34;Example for a mockup drawing&#34; /&gt;
+&lt;img src=&#34;../../img/mockup_draw_example.jpg&#34; alt=&#34;Example for a mockup drawing&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Example for a mockup drawing&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -566,15 +566,15 @@ class_action_conjoint &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent
 ##   score_selection = col_double()
 ## )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(class_action_conjoint)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Rows: 7,020
-## Columns: 7
-## $ `Response ID`           &amp;lt;dbl&amp;gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,...
-## $ `Set Number`            &amp;lt;dbl&amp;gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5...
-## $ `Card Number`           &amp;lt;dbl&amp;gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3...
-## $ compensation_push_pull  &amp;lt;chr&amp;gt; &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;pull&amp;quot;, &amp;quot;pu...
-## $ compensation_amount_ILS &amp;lt;dbl&amp;gt; 75, 50, 25, 100, 25, 100, 75, 100, 50, 25, ...
-## $ compensation_type       &amp;lt;chr&amp;gt; &amp;quot;another_product&amp;quot;, &amp;quot;credit_cart&amp;quot;, &amp;quot;bank_che...
-## $ score_selection         &amp;lt;dbl&amp;gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 100, 0,...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 7,020
+## Variables: 7
+## $ `Response ID`           &amp;lt;dbl&amp;gt; 10, 10, 10, 10, 10, 10, 10, 10, 10, 10...
+## $ `Set Number`            &amp;lt;dbl&amp;gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5,...
+## $ `Card Number`           &amp;lt;dbl&amp;gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1,...
+## $ compensation_push_pull  &amp;lt;chr&amp;gt; &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;push&amp;quot;, &amp;quot;pull&amp;quot;...
+## $ compensation_amount_ILS &amp;lt;dbl&amp;gt; 75, 50, 25, 100, 25, 100, 75, 100, 50,...
+## $ compensation_type       &amp;lt;chr&amp;gt; &amp;quot;another_product&amp;quot;, &amp;quot;credit_cart&amp;quot;, &amp;quot;ban...
+## $ score_selection         &amp;lt;dbl&amp;gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 10...&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class_action_conjoint %&amp;gt;% count(compensation_push_pull)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 2
 ##   compensation_push_pull     n
@@ -634,16 +634,26 @@ summary(conjoint_glm_model)&lt;/code&gt;&lt;/pre&gt;
 ## -1.8635  -0.8111  -0.5139   0.8796   2.6557  
 ## 
 ## Coefficients:
-##                                       Estimate Std. Error z value Pr(&amp;gt;|z|)    
-## (Intercept)                           -3.49667    0.11341 -30.832   &amp;lt;2e-16 ***
-## compensation_push_pullpush             0.74140    0.05807  12.767   &amp;lt;2e-16 ***
-## compensation_amount_ILS50              1.01476    0.09385  10.813   &amp;lt;2e-16 ***
-## compensation_amount_ILS75              1.73623    0.09224  18.823   &amp;lt;2e-16 ***
-## compensation_amount_ILS100             2.40149    0.09281  25.876   &amp;lt;2e-16 ***
-## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418    
-## compensation_typecoupon                1.10396    0.09588  11.514   &amp;lt;2e-16 ***
-## compensation_typebank_cheque           1.53888    0.09473  16.245   &amp;lt;2e-16 ***
-## compensation_typecredit_cart           1.89640    0.09586  19.782   &amp;lt;2e-16 ***
+##                                       Estimate Std. Error z value Pr(&amp;gt;|z|)
+## (Intercept)                           -3.49667    0.11341 -30.832   &amp;lt;2e-16
+## compensation_push_pullpush             0.74140    0.05807  12.767   &amp;lt;2e-16
+## compensation_amount_ILS50              1.01476    0.09385  10.813   &amp;lt;2e-16
+## compensation_amount_ILS75              1.73623    0.09224  18.823   &amp;lt;2e-16
+## compensation_amount_ILS100             2.40149    0.09281  25.876   &amp;lt;2e-16
+## compensation_typerefund_next_purchase  0.08431    0.10399   0.811    0.418
+## compensation_typecoupon                1.10396    0.09588  11.514   &amp;lt;2e-16
+## compensation_typebank_cheque           1.53888    0.09473  16.245   &amp;lt;2e-16
+## compensation_typecredit_cart           1.89640    0.09586  19.782   &amp;lt;2e-16
+##                                          
+## (Intercept)                           ***
+## compensation_push_pullpush            ***
+## compensation_amount_ILS50             ***
+## compensation_amount_ILS75             ***
+## compensation_amount_ILS100            ***
+## compensation_typerefund_next_purchase    
+## compensation_typecoupon               ***
+## compensation_typebank_cheque          ***
+## compensation_typecredit_cart          ***
 ## ---
 ## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
 ## 
@@ -712,13 +722,14 @@ package_responses &amp;lt;- package_comparison %&amp;gt;%
 
 package_responses&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 6
-##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit  se.fit
-##   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;            &amp;lt;fct&amp;gt;            &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
-## 1 pkg1         pull             25               credit_cart      0.168  0.0129 
-## 2 pkg2         pull             75               refund_next_pur~ 0.158  0.0122 
-## 3 pkg3         push             25               coupon           0.161  0.0129 
-## 4 worst        pull             25               another_product  0.0294 0.00324
-## 5 best         push             100              credit_cart      0.824  0.0123&lt;/code&gt;&lt;/pre&gt;
+##   package_name compensation_pu~ compensation_am~ compensation_ty~    fit
+##   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;            &amp;lt;fct&amp;gt;            &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;
+## 1 pkg1         pull             25               credit_cart      0.168 
+## 2 pkg2         pull             75               refund_next_pur~ 0.158 
+## 3 pkg3         push             25               coupon           0.161 
+## 4 worst        pull             25               another_product  0.0294
+## 5 best         push             100              credit_cart      0.824 
+## # ... with 1 more variable: se.fit &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# P.S. - excuse the &amp;quot;credit_cart&amp;quot; typo (I build the model that way, only then noticed...)
 
 ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit)) + 
@@ -728,7 +739,7 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
   ylab(&amp;quot;Predicted response (glm logit)&amp;quot;) + 
   xlab(&amp;quot;Package name&amp;quot;) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(package_responses, aes(x = package_name, y = fit)) + 
   geom_point() +
   geom_errorbar(aes(ymin = fit - se.fit, ymax = fit + se.fit)) + 
@@ -736,7 +747,7 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
   ylab(&amp;quot;Predicted response (glm logit)&amp;quot;) +
   xlab(&amp;quot;Package name&amp;quot;) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We see that the three packages (pkg1, pkg2, and pkg3) are relatively similar, within one standard error from one another. When compared to the worst package they are roughly &lt;span class=&#34;math inline&#34;&gt;\(\sim8\)&lt;/span&gt; times better (via odds ratio), but the best package is &lt;span class=&#34;math inline&#34;&gt;\(\sim5\)&lt;/span&gt; times better than packages 1-3.&lt;/p&gt;
 &lt;p&gt;One can use these concepts to illustrate the benefits of each parameter on the different packages, and let the user experience how different features make the packages more or less “attractive”.&lt;/p&gt;
 &lt;p&gt;As an experiment, I prepared a nice little shiny app which lets the user experiment with the different features: build two packages and then compare them. You can checkout the code at the &lt;a href=&#34;https://github.com/adisarid/class-action-IL-survey/tree/master/settlement-app/SettlementAttractive&#34;&gt;github repo&lt;/a&gt;, or check out the live app &lt;a href=&#34;https://sarid.shinyapps.io/class-action&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;

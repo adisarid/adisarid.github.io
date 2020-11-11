@@ -40,7 +40,7 @@
 &lt;h3&gt;AWS Lightsail’s firewall settings&lt;/h3&gt;
 &lt;p&gt;When using &lt;strong&gt;AWS Lightsail&lt;/strong&gt; (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).&lt;/p&gt;
 &lt;p&gt;Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#39;/img/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#39;../../img/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
 &lt;p&gt;If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;

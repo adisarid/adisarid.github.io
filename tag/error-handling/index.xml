@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>purrr | Adi Sarid - Personal Blog</title>
-    <link>/tag/purrr/</link>
-      <atom:link href="/tag/purrr/index.xml" rel="self" type="application/rss+xml" />
-    <description>purrr</description>
+    <title>Error handling | Adi Sarid - Personal Blog</title>
+    <link>/tag/error-handling/</link>
+      <atom:link href="/tag/error-handling/index.xml" rel="self" type="application/rss+xml" />
+    <description>Error handling</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Adi Sarid, all rights reserved 2020 (c).</copyright><lastBuildDate>Wed, 11 Nov 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu43b43d5328abc9bf881ba3e56738a448_12724_512x512_fill_lanczos_center_2.png</url>
-      <title>purrr</title>
-      <link>/tag/purrr/</link>
+      <title>Error handling</title>
+      <link>/tag/error-handling/</link>
     </image>
     
     <item>
@@ -592,42 +592,6 @@ gt::gt(summary(bench_results)) %&amp;gt;%
 &lt;p&gt;If you really need to be efficient, it’s probably worth while to &lt;code&gt;tryCatch&lt;/code&gt;, and if your looking more for ease of use and code readability you should use &lt;code&gt;possibly&lt;/code&gt;. In case you need to examine the error messages more thoroughly, use &lt;code&gt;safely&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Good luck hunting down the errors!&lt;/p&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Purrring progress bars (adding a progress bar to `purrr::map`)</title>
-      <link>/post/2019-01-24-purrrying-progress-bars/</link>
-      <pubDate>Fri, 25 Jan 2019 12:00:00 +0000</pubDate>
-      <guid>/post/2019-01-24-purrrying-progress-bars/</guid>
-      <description>
-
-
-&lt;p&gt;With all the functional programming going on (i.e., &lt;code&gt;purrr::map&lt;/code&gt; and the likes), there is at least one thing that I found missing: progress bars. The &lt;code&gt;plyr::do&lt;/code&gt; function had a nice looking progress bar open up by default if the operation took more than 2 seconds and had at least two more to go (as per Hadley’s description in &lt;a href=&#34;https://github.com/tidyverse/purrr/issues/149&#34;&gt;Issue#149 in tidyverse/purrr&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;The issue is still open, for the time of writing these lines, and will probably be solved sometime in the near future as a feature of &lt;code&gt;purrr::map&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Personally, I like &lt;span class=&#34;citation&#34;&gt;@cderv&lt;/span&gt;’s elegent solution suggested at that same &lt;a href=&#34;https://github.com/tidyverse/purrr/issues/149&#34;&gt;github issue&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here is an example implementation for reading multiple files within a directory and combining them into a single tibble while showing a progress bar when reading the files. The file reading is very similar to what was suggested in &lt;a href=&#34;https://serialmentor.com/blog/2016/6/13/reading-and-combining-many-tidy-data-files-in-R&#34;&gt;this post&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(purrr)
-library(readr)
-library(dplyr)
-
-# directory from which to read a bunch of files (the example here uses csv)
-file_list &amp;lt;- dir(path = &amp;quot;PATH_TO_DIRECTORY&amp;quot;, pattern = &amp;quot;.csv&amp;quot;)
-
-# define reading function which includes the progress bar updates and printing
-read_with_progress &amp;lt;- function(filename){
-  pb$tick()$print()
-  data_read &amp;lt;- read_csv(filename)
-  # you can add additional operations on data_read, or 
-  # decide on entirely different task that this function should do.
-}
-
-# create the progress bar with a dplyr function. 
-pb &amp;lt;- progress_estimated(length(file_list))
-res &amp;lt;- file_list %&amp;gt;%
-  map_df(~read_with_progress(.))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That’s it. You’re set to go with a cool progress bar which will print out something like this while the operation is carried out:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;|=====================================           |80% ~23 s remaining&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
