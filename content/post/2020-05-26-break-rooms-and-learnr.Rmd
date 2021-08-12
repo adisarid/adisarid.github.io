@@ -1,0 +1,46 @@
+---
+title: "Teaching with zoom breakout-rooms and the learnr package"
+author: "Adi Sarid"
+date: 2020-05-26T11:06:00-00:00
+categories: ["R"]
+tags: ["learnr"]
+---
+
+Corona has put us in an awkward situation, where we must rethink and revise our ways of doing things (teaching, working, baby sitting, balancing work and life, or any other related field of your choosing). I also see this as an opportunity to experiment and improve various things. Specifically I dedicate this post to some teaching methods I have adopted. Mostly: using breakout rooms (a zoom feature) and `learnr` tutorials.
+
+## The challenges
+
+I teach an undergraduate course in *introduction to statistics and data analysis with R*, in Tel-Aviv university. The course involves statistical theory and practice with R. In general students found challenging to follow both theory and practice, and more so, considering that all lectures are conducted via zoom, due to Corona constraints.
+
+In order to alleviate some of these challenges, **I decided to split the lectures to theory and labs in smaller groups.**
+
+## Methodology
+
+`learnr` is an R package which allows you to create an interactive html document (under the hood it's based on RMarkdown and shiny). The result includes quizzes and chunks which can run R code. The chunks can come preloaded with some of the code and with hints/solutions.
+
+I teach a theoretical subject, and prepare a corresponding learnr tutorial on recent data sets from [tidytuesday](https://github.com/rfordatascience/tidytuesday).
+
+During my lecture, I have specific checkpoints in which I split the zoom session into breakout rooms. Breakout rooms is a zoom feature which splits the main session into smaller sessions and allows the host to jump between the smaller sessions. I found that splitting the main room into groups of 3-4 participants which then together tackle the learnr tutorial is both fun and a fruitful experience. I cycle between the rooms to provide individual help for the groups. Every few minutes (10-15 minuts, depending on the tutorial section's length and complexity), I merge the group back together to the main session, solve the tutorial section and either continue with theory or give them another section of the tutorial to work on in the smaller groups.
+
+Each tutorial includes important blocks of data analysis, sort of a "mini project" such as: data import, visualizations, data transformations, and modeling. I direct the blocks according to the topic I covered in the theoretical part.
+
+Here are two examples for tutorials I made, which went very well in class:
+
+   * [Food consumption footprint](https://sarid.shinyapps.io/food_consumption_lab/) with the source code [here](https://github.com/adisarid/intro_statistics_R/blob/master/labs/food_consumption.Rmd). This one is about getting to know your data, visualizations, descriptive statistics, confidence intervals and hypothesis tests for the expectancy of a distribution.
+   * [Volcanos](https://sarid.shinyapps.io/independence_test/) with the source code [here](https://github.com/adisarid/intro_statistics_R/blob/master/labs/Independence%20test.Rmd). This one is about independence Chi square test, and also includes a lot of data preparations and visualizations. By the end of it, students test if volcano type and elevation are related (independent statistically or not).
+
+## Important notes
+
+The first time you implement this, make sure the students understand how the zoom breakout feature works. Let them know you will be cycling through the rooms but that they can also use a ping/raise hand feature to call you. 
+
+Zoom comes with two options for assignment to breakout rooms: either random or manual (by host). Both are sub-optimal. Manually assigning 30 students to 10 breakout rooms will take too long and random ignores study groups the students already have. You can fine tune the random assignment, but that too takes too long. There is another option to upload a csv file with the participant's names in advanced which is done via the settings of the meeting (on the zoom web page settings).
+
+When you setup the rooms, you have an option to set a time-limit. I found it sub-optimal, because you don't always know in advanced how long the exercise will take. Instead cycling through the rooms should give you a good sense on when to merge back the breakout rooms into the main session.
+
+For more help on using breakout rooms, follow this [link](https://support.zoom.us/hc/en-us/articles/206476093-Enabling-breakout-rooms) from zoom's support website.
+
+# Conclusions
+
+This method, of using the zoom breakout rooms feature in combination with interactive `learnr` looks like a good formula for getting the students engaged while learning the necessary theoretical and practical aspects of data analysis.
+
+If you are teaching interactively, I encourage you to give it a try! If you do, let me know how it went @[SaridResearch](https://twitter.com/SaridResearch) on twitter.

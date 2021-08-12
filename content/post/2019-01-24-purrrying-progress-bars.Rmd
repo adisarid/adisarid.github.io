@@ -1,0 +1,46 @@
+---
+title: 'Purrring progress bars (adding a progress bar to `purrr::map`)'
+author: "Adi Sarid"
+date: 2019-01-25T12:00:00-00:00
+categories: ["R"]
+tags: ["purrr", "progress bars"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+With all the functional programming going on (i.e., `purrr::map` and the likes), there is at least one thing that I found missing: progress bars. The `plyr::do` function had a nice looking progress bar open up by default if the operation took more than 2 seconds and had at least two more to go (as per Hadley's description in [Issue#149 in tidyverse/purrr](https://github.com/tidyverse/purrr/issues/149)).
+
+The issue is still open, for the time of writing these lines, and will probably be solved sometime in the near future as a feature of `purrr::map`.
+
+Personally, I like @cderv's elegent solution suggested at that same [github issue](https://github.com/tidyverse/purrr/issues/149).
+
+Here is an example implementation for reading multiple files within a directory and combining them into a single tibble while showing a progress bar when reading the files. The file reading is very similar to what was suggested in [this post](https://serialmentor.com/blog/2016/6/13/reading-and-combining-many-tidy-data-files-in-R).
+
+```{r read multiple files with progress bars, eval=FALSE}
+library(purrr)
+library(readr)
+library(dplyr)
+
+# directory from which to read a bunch of files (the example here uses csv)
+file_list <- dir(path = "PATH_TO_DIRECTORY", pattern = ".csv")
+
+# define reading function which includes the progress bar updates and printing
+read_with_progress <- function(filename){
+  pb$tick()$print()
+  data_read <- read_csv(filename)
+  # you can add additional operations on data_read, or 
+  # decide on entirely different task that this function should do.
+}
+
+# create the progress bar with a dplyr function. 
+pb <- progress_estimated(length(file_list))
+res <- file_list %>%
+  map_df(~read_with_progress(.))
+```
+
+That's it. You're set to go with a cool progress bar which will print out something like this while the operation is carried out:
+```
+|=====================================           |80% ~23 s remaining
+```

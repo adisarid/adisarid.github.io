@@ -1,0 +1,112 @@
+---
+title: "Confidence and prediction intervals explained... (with a Shiny app!)"
+author: "Adi Sarid"
+date: 2019-12-13T12:00:00-00:00
+categories: ["R"]
+tags: ["linear models", "Shiny"]
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.</p>
+<p>I put in a lot of efforts into bringing practical challenges, examples from real life, and a lot of demonstrations of statistical theory with R. This post is an example for how I’ve been using R code (and specifically Shiny apps) to demonstrate statistical theory, concepts and provide intuition.</p>
+<div id="whats-the-difference-between-confidence-and-prediction-intervals" class="section level2">
+<h2>What’s the difference between confidence and prediction intervals?</h2>
+<p>Last week I taught multiple linear regression, and I noticed that students have a hard time comprehending the difference between confidence intervals and prediction intervals. The former being an interval for the model (i.e., interval for the underlying model), and the latter being an interval for a noval observation.</p>
+<p>As the sample size increases, our uncertainty of the model’s parameters decreases, but the uncertainty in the value of a new observation, <span class="math inline">\(y_0\)</span> is associated with variance of <span class="math inline">\(Y\)</span> (the random variable from which <span class="math inline">\(y_0\)</span> is drawn). Hence, it has a lower bound, based on that variance.</p>
+<p>In R, you can get a prediction or a confidence interval by using either</p>
+<p><code>predict(object, newdata, interval = "prediction")</code></p>
+<p>Or</p>
+<p><code>predict(object, newdata, interval = "confidence")</code></p>
+<p>For a prediction or for a confidence interval, respectively.</p>
+<p>To help me illustrate the differences between the two, I decided to build a small Shiny web app. It shows the differences between confidence intervals, prediction intervals, the regression fit, and the actual (original) model.</p>
+<p>The app is available <a href="https://sarid.shinyapps.io/intervals_demo/">here</a>, and the source code is available on <a href="https://github.com/adisarid/prediction_confidence_intervals_demo">github</a>.</p>
+<p>With this app you can choose three types of models to demonstrate. Simple linear regression, and regression with a twist (<span class="math inline">\(\log\)</span> transformation on the <span class="math inline">\(y\)</span> or <span class="math inline">\(\sin\)</span> transformation on the <span class="math inline">\(x\)</span>:</p>
+<ul>
+<li><p>Linear model <span class="math inline">\(y = a + bx + \epsilon\)</span></p></li>
+<li><p>Log-linear model <span class="math inline">\(\log(y)=a+bx+\epsilon\)</span></p></li>
+<li><p>Sine <span class="math inline">\(y = a + b\sin(x) + \epsilon\)</span></p></li>
+</ul>
+<p>All the models are based on simple linear regression (<code>lm</code> function), for the latter two models with either a <code>log</code> or <code>sin</code> transformation.</p>
+<p>The app allows you to play around with various values such as the <span class="math inline">\(x\)</span> range, the model’s parameters (<span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>), the error’s standard deviation (<span class="math inline">\(\epsilon\)</span>), and show or hide any of the following elements, on the chart:</p>
+<ul>
+<li><p>The original function (i.e., the original model)</p></li>
+<li><p>The sampled points</p></li>
+<li><p>The confidence interval</p></li>
+<li><p>The prediction interval</p></li>
+<li><p>The model’s fit</p></li>
+</ul>
+<p>Feel free to share the app or the app’s code. As mentioned above, the <strong>source code for the app</strong> is available here: <a href="https://github.com/adisarid/prediction_confidence_intervals_demo">https://github.com/adisarid/prediction_confidence_intervals_demo</a>.</p>
+<p>Here’s an example for what the app’s generating code and output looks like, for a model of the type <span class="math inline">\(\log(y) = 1 + \frac{x}{2} + \epsilon\)</span>:</p>
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+library(tibble)
+library(ggplot2)
+
+sample_size &lt;- 90
+x_range &lt;- c(0, 1.5)
+a &lt;- 1
+b &lt;- 1.5
+sigma &lt;- 0.3
+
+actual_function &lt;- tibble(x = seq(x_range[1], x_range[2], by = 0.01)) %&gt;% 
+  mutate(actual_y = exp(a + b*x))
+
+random_sample &lt;- tibble(epsilon_err = rnorm(n = sample_size, 
+                                            mean = 0,
+                                            sd = sigma),
+                        x = runif(n = sample_size,
+                                  min = x_range[1],
+                                  max = x_range[2])) %&gt;% 
+  mutate(sampled_y = exp(a + b*x + epsilon_err))
+
+linear_model &lt;- lm(formula = log(sampled_y) ~ x, data = random_sample)
+
+prediction_i &lt;- predict(object = linear_model,
+                         newdata = actual_function,
+                         interval = &quot;prediction&quot;) %&gt;% 
+  as_tibble() %&gt;% 
+  rename_at(vars(lwr,upr), ~paste0(., &quot;_pi&quot;)) %&gt;% 
+  mutate_all(exp)
+
+confidence_i &lt;- predict(object = linear_model,
+                         newdata = actual_function,
+                         interval = &quot;confidence&quot;) %&gt;% 
+  as_tibble() %&gt;% 
+  rename_at(vars(lwr,upr), ~paste0(., &quot;_ci&quot;)) %&gt;% 
+  select(-fit) %&gt;% 
+  mutate_all(exp)
+
+intervals &lt;- actual_function %&gt;% 
+  bind_cols(prediction_i,
+            confidence_i)
+
+ggplot() + 
+  geom_line(data = actual_function, aes(x, actual_y, color = &quot;Original Model&quot;), size = 1) + 
+  geom_point(data = random_sample, aes(x, sampled_y), alpha = 0.5) + 
+  geom_line(data = intervals, 
+            aes(x, fit, color = &quot;Regression Fit&quot;), size = 1) + 
+  geom_line(data = intervals, 
+            aes(x, lwr_pi, color = &quot;Prediction Interval&quot;), 
+            linetype = 2, size = 1) +
+  geom_line(data = intervals, 
+            aes(x, upr_pi, color = &quot;Prediction Interval&quot;), 
+            linetype = 2, size = 1) + 
+  geom_line(data = intervals, 
+            aes(x, lwr_ci, color = &quot;Confidence Interval&quot;), 
+            linetype = 2, size = 1) + 
+  geom_line(data = intervals, 
+            aes(x, upr_ci, color = &quot;Confidence Interval&quot;), 
+            linetype = 2, size = 1) + 
+  theme_bw() + 
+  xlab(&quot;x&quot;) + 
+  ylab(&quot;y&quot;) + 
+  ggtitle(&quot;Log-linear: Model, Fit, Confidence and Prediction Intervals&quot;)</code></pre>
+<p><img src="/post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png" width="672" /></p>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>Shiny apps are a great way to illustrate theoretical concepts, to provide intuition, and to let students experiment with parameters and see the outcomes. In this post I demonstrated how a Shiny app can be used to explain the concepts of a regression fit, confidence, and prediction intervals.</p>
+<p>If you used Shiny for interesting educational demonstrations I’d love to hear about it! feel free to share in the comments or message me on twitter <span class="citation">@SaridResearch</span>.</p>
+</div>

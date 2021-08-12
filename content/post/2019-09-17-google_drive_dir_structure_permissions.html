@@ -1,0 +1,69 @@
+---
+title: "Retrieving google drive item shares and permissions (in R)"
+author: "Adi Sarid"
+date: 2019-09-17T12:00:00-00:00
+categories: ["R"]
+tags: ["googledrive"]
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Google drive is a great tool, specifically we’ve been using “G Suite” (the equivalent of google drive but for businesses), for a long time. Lately I noticed it’s missing an important feature - monitoring file shares and permission of google drive items across organization is non-trival (at least in the G suite basic subscription).</p>
+<p>I wanted to get a better sense of how my files and folders are shared across users within and outside the organization. I decided to give the <code>googledrive</code> package a try and extract the shares and permissions of important folders I had on my account. Here’s how I did that.</p>
+<div id="using-googledrive-to-mass-extract-shares-and-permission-of-google-drive-items" class="section level2">
+<h2>Using <code>googledrive</code> to mass extract shares and permission of google drive items</h2>
+<p>First, I wanted to focus on specific folders which contain a lot of subfolders. My goal was to generate a <code>tibble</code> with the names of all sub-items (folder or files one level under the specific folders), along with all users which have access to these folders.</p>
+<p>Here is a description of what you need to do in order to accomplish what I described, followed by the code I used.</p>
+<ol style="list-style-type: decimal">
+<li>Get the id (or URL) for the folder you want to retrieve data from. You can get the id by just visiting the folder, and the id is in the URL, i.e., <code>https://drive.google.com/drive/u/1/folders/&lt;HERE YOU WILL SEE THE FOLDER ID&gt;</code>.</li>
+<li>Then, retrieve all items within the folder.</li>
+<li>Use <code>purrr</code> functions (i.e., <code>map</code> and <code>map_df</code> to iterate over the results and bring them into a tidy form).</li>
+<li>(Optional) Use <code>pivot_wider</code> to create a <code>tibble</code> in a wide format where each row is an item and each column is the type of access each user has on the item.</li>
+</ol>
+<p>The first function I’m using is a function I defined called <code>get_permissions_df()</code>:</p>
+<pre class="r"><code>library(tidyverse)
+library(googledrive)  # the package used to iterface with the google api
+
+# Function to retrieve email addresses of permissions (read/write) --------
+
+get_permissions_df &lt;- function(permission_list){
+  map_df(permission_list, ~{
+    if (!is.null(.$emailAddress)){
+      tibble(user_email = .$emailAddress, user_role = .$role)
+    } else {
+      tibble(user_email = NA, user_role = NA)
+    }
+  })
+}</code></pre>
+<p>The function returns a tibble with two columns: user_email and user_role, according to the users with access to the folder (access can be owner/writer/reader).</p>
+<p>Now, to actually pulling the data and processing it:</p>
+<pre class="r"><code># Read the contents of the folder -----
+# note that the first time you run this, you will be asked to login into your gmail using a web browser.
+folder_contents &lt;- drive_ls(as_id(&quot;&lt;FOLDER ID OR URL&gt;&quot;)) # replace here with the URL or ID of the folder.
+
+# Get a tidy form of all shares and permissions of subfolders
+tidy_permissions &lt;- folder_contents %&gt;% 
+  mutate(new_creds = 
+           map(drive_resource, 
+                  ~{get_permissions_df(.$permissions)})
+  ) %&gt;% 
+  select(name, new_creds) %&gt;% 
+  unnest(new_creds) %&gt;% 
+  filter(!is.na(user_email))
+
+# Optional - turn into a wider form where each column is a user,
+# each row is a subfolder, and values are permissions of users.
+
+wide_permissions &lt;- tidy_permissions %&gt;% 
+  distinct(name, user_email, .keep_all = T) %&gt;% 
+  pivot_wider(id_cols = name, 
+              names_from = user_email, values_from = user_role, values_fill = list(user_role = &quot;none&quot;))</code></pre>
+<p>There you have it: <code>tidy_permissions</code> will hold the names of all subfolders with permissions. A folder will appear as many times as it has permissions (with the user email and the type of permission). The <code>wide_permissions</code> will hold a wide version in which each row is a folder and each column is a user.</p>
+<p>Note that this works for specific folders. You can also use <code>drive_ls()</code> without any arguments (or use it with <code>recursive=TRUE</code>), to pull everything on the drive (or everything within all subfolders, recursively). When I did that it took me around 5-10 minutes to pull all the data and about 5 minutes to prepare it, since I have <span class="math inline">\(&gt;100k\)</span> items.</p>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>The post provides a method to create a concise tibble with the contents of you google drive items, and their user permissions.
+You can either run it on all items in your google drive or on selected folders (and sub-folders within). The method is especially useful in the context of data safety and security, when you want to make sure you are not sharing sensitive items in an undesired manner.</p>
+</div>

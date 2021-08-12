@@ -1,0 +1,174 @@
+---
+title: "Recap: what I learned in rstudio::conf2019"
+author: "Adi Sarid"
+date: 2019-01-19T12:00:00-00:00
+categories: ["R"]
+tags: ["rstudio::conf","conference"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+First, let me start by saying wow!, what a wonderful experience. 
+
+When I booked the trip from Israel to Austin, TX, I thought that I'll see some good content, and learn at the conference (as I in fact did). It was much more enjoyable than I could've imagined. In part I guess this can be contributed to the awesome R community. The ease in which you start a conversation with just about anyone in the conference - about R, professional life (or even personal life), that's great. 
+
+Besides that, visiting Texas (for the first time) was interesting, but for more on that - see [venue](#venue).
+
+
+# Workshop "Shiny Train-the-Trainer"
+
+This was a two day workshop. The first day was taught by Greg Wilson, and touched different points of teaching in general, and teaching programming lanugages. The second day was taught by Mine, and zoomed-in on Shiny apps and how to teach building Shiny apps.
+
+Starting from the theory and building up, Greg was very charismatic. For me, some takeaways from the workshop were:
+
+   * Each time you start a new course, choose 1-2 things you want to improve/tryout. Don't try to go "all-in" because then you might miss. Also, make sure that when you do implement new techniques, you don't fall short on things you were doing so far which were good.
+
+This is going to be slightly cumbersome (I'm also summarizing this for my own good).
+
+A few things that helps organize and conduct sessions.
+
+## Figure out who are your learners
+Figure out who are your learners: what are they interested in? what do they already know, and what they don't know. What is the diversity you're going to get in the crowd (persona analysis).
+
+Here's are examples for different personas we cooked up during the workshop.
+
+### A shiny novice
+
+   * **Background**: Statisticians and Data Scientists from the pharma industry. 
+   * **Prior knowledge**: Some knowledge but not state of the art.
+   * **Motivation**: Want to build shiny apps to share information with other functions in the company.
+   * **How the course will help them**: Able to build simple shiny apps and grow from there.
+   * **Special needs**: "*Think they know but actually don't*".
+
+### A shiny expert
+
+   * **Background**: New company moving from a start-up. Biostatistics PhD.
+   * **Prior knowledge**: Used R, made apps for paper presentations, done some shiny apps. Looks good but they know that there are stuff that they don't know. Mix of formal (for the statistics) but a lot of fun learning on their own.
+   * **Motivation**: Utilize what they have done, but in the context of the organization, and learn about new and cool things.
+   * **How the course will help them**: Teach them the newest and best things of Shiny, in the context of the company. This is how make it production and enterprise ready.
+   * **Special needs**: Work from home. Interaction remote. Dog that barks. Online course.
+
+### A student you expect to encounter at a shiny workshop you teach
+
+   * **Background**: Danny is studying industrial engineering.  Undergrad. He is in his third year, and about to finish next year. He likes data science and likes aquiring new programming skills.
+   * **Prior knowledge**: Danny has learned some python and some base R, throghout the last few semsters, but he is not fluent in either. Still struggling with some commands in R.
+   * **Motivation**: Danny wants to aquire a new tools that will help him next year when he looks for new work, and will help him impress potential employers.
+   * **How the course will help them**: Danny will be able to build apps and use them as showcase while he is looking for work next year. In addition, he will be able to build shiny apps that will help him publish and distribute findings.
+   * **Special needs**: Danny has a lot of motivation, but is a novice to R and programming in general. He doesn't have a lot of time for exercise because the semster courses take up a lot of his time, nonetheless, he is willing to invest the time in projects at specific "peaks" in order to advance his skills. 
+
+## Write the learning objectives
+
+Write learning objectives which are observable (by the learners) and also measureable. For example:
+
+   1. The student will build a shiny app that does...
+   2. The students will learn and use the `renderPlot()` function, etc.
+   
+Here's another example for learning objectives of a short introductory 1-hour session:
+
+   1. The students will understand the basic elements of a shiny app and describe the difference between ui, server and global.
+   2. The students will apply the princibles to modify an example reading a file and showing a table with the first 10 lines of the file.
+   3. The students will learn about and be aware of shiny examples in the gallery.
+   
+To formulate the objectives, one can use bloom's taxonomy (and the extended version of it that Mine have shown during class).
+
+## Build conceptual maps
+
+Build concept maps for each of the topics in the course. I.e., for each class there is a concept map that highlights the topics and the connections between them. Again, referring to the steps in Bloom's taxonomy as the building blocks of those building blocks. While building the concept maps, remmember that:
+
+   * Roughly 5-9 items can fit in the short term memory. Consider that when building the concept map. Make sure it's not too complicated.
+   * To make things slightly easier, while teaching, you can use a whiteboard to expand the concept map and show the class where we are on the concept map.
+
+## Write the "final exam" and formative assesments
+
+Write the final exam, i.e., in the end of the session, what should they be able to answer? This should correspond to the aferomentioned learning objectives.
+
+Generate formative assesments (short questions for "check-ins"), that will be used during the lesson. These will help you check if the crowd is with you or lost got lost.
+
+## Create the presentation and learning materials
+
+Finally, create the learning material around the previous steps. Re-iterate as needed to improve the materials.
+   
+## Some more useful tools and tips
+
+   * **Sticky notes** are very useful during programming lessons. This way you can see during the lesson where the class is at. Have 4 colors:
+      * Green = "everything is fine"
+      * Red = "need help"
+      * Blue = "want a break"
+      * Orange = "want to ask a question"
+   * For "check-ins" You can use _poll everywhere_ or a similar solution.
+   * Interactions between students are very useful. Ask a question. Let them talk with one another to get the answer.
+   * "Baby steps" - use faded examples or incremental examples when teaching. Avoid a "novice blank page" when starting.
+   * Encourage the students: "what would you type into stackoverflow to find a solution to this problem?"
+   * No opting-out. If someone doesn't know the answer, ask someone else - then go back to that person and ask something else. No one will "fall asleep", you make sure that everyone are with you. Jump between locations in class (not in the sitting order).
+   * **Use [rstudio.cloud](https://rstudio.cloud)** when a uniform R environment is desired. We can even start from a flat base instance with all the packages pre-loaded.
+   
+## Feedback
+
+   * Choose an element from above. Use feedback to understand if it was good or not. Choose an existing thing you do and check that you didn't lose it either.
+   * Encourage the students to give feedback to one another by interacting in exercises (can scale up to larger classes).
+   
+## Further reading
+
+Check the online materials of the course. Everything is on a creative commons - BY RStudio - license.
+
+All resources for teaching techniques are available at Greg Wilson's website [teachtogether.tech](http://teachtogether.tech).
+
+Resources specific for Shiny teaching are available at the workshop's website, including Mine's teaching notes for 1hr, 2hr, 1/2day, 1day, 2day workshops. See [http://teach-shiny.rbind.io](https://teach-shiny.rbind.io).
+
+# Conference Day 1
+
+Here are some highlights:
+
+   * Joe Chang's keynote: lots of tools for testing and profiling shiny apps. Speed improvments for shiny apps using cache (`plotCacheRender()`). Showd some techniques to make apps much quicker.
+   * API development with R and Tensor flow at T-mobile: A really cool use case for using shiny apps and plumber API. This is an example for scaling up a plumber api for a customer facing app.
+   * Databases using R: the latest: Edgar demonstrated how he connects to a google big query database. The big query server does all the computations and the clean (and smaller data) is input into R for continued analysis. Very cool.
+   * Working with categorial data in R without loosing your mind: some best practices for working with factors. Advocating `forecats` (actually much of these I already implement in my work anyhow).
+   * Melt the clock: tidy time series analysis: a talk about `tsibble` and `fable`, the packages which are about to replace the `forecast` and `ts()`, in a tidy-er version. Can be installed from github and should make life much easier for time series analysis.
+   * 3D mapping, plotting, and printing with rayshader: an extremely cool package for ploting maps from x-y-z (elevation data). A lot of options, and even includes an export for 3d printing of the models.
+   * gganimate Live Cookbook: A nice package for animating ggplots. But need to carefully choose when to use and when not to use it...
+
+# Conference Day 2
+
+Great RMarkdown session - kind of made me rethink about how I do my work. For me personally a lot of the work envolves power point and word, but from now on, I think I'll try to do it on RMarkdown. More reproduceable, easier to recreate, or update if needed.
+   
+   * Yihui Xie talked about blogdown, bookdown, and more recently pagedown (for academic publications). I also came to know about Radix - a package for Academic style blogs. In the new RStudio (version 1.2 and above, currently in preview), there is an option to export RMarkdown documents into power point presentation. Works seamlessly, just change the yaml at the top:
+   
+```
+---
+title: "This is a power point presentation"
+author: "I'm the author"
+date: "..."
+output: powerpoint_presentation
+---
+```
+
+   * The `gt` package was presented. A package which is great for generating html or $\LaTeX$ tables.
+   * A cool feature of RMarkdown which I didn't know about is parameters. It enables to creat variants of an RMarkdown document without actually changing the document. For more info see [parameterized reports](https://rmarkdown.rstudio.com/lesson-6.html).
+   * Hadley Wikam talked about a new package in development `vctrs` that is supposed to improve type consistency in R. Here's an example with `factor` and `c`'s default behaviour vs. the `vec_c` solution in `vctrs`:
+   
+```{r vctrs example}
+c(factor("a"), factor("b"))
+
+vctrs::vec_c(factor("a"), factor("b"))
+```
+
+   * Jenny Bryan talked about lazy evaluation. Finally made some sense to me about when to use `enquo()` and when to use `!!`.
+   * Another good talk about the `ipc` package for Shiny apps which require heavy and async computations. That package is able to pass queue and interrupt messages between processes.
+   * David Robinson from DataCamp gave a really inspiring talk about what you can and should do openly (hence me writing this blog post, in the hopes that it'll be the first of many).
+
+# Venue{#venue}
+
+I landed on Monday and the workshops started on Tuesday, so not too much time to hand around, but following the recommendation of the receptionist in my hotel (which was great, Holiday Inn Austin Town Center), I went to Terry Black's - an original BBQ resteraunt, which was very good (apparantly also very high on TripAdvisor).
+
+I also checked out the South of Colorado (SoCo) area - it was nice to walk around and by some small things for the wife and kids.
+
+Parks around the Colorado River - real nice to walk around or jog.
+
+# Takeaways
+
+   * Use more RMarkdown and less powerpoint/word.
+   * Lot of tips on how to improve my R courses (which I should implement).
+   * Shiny is extremly powerful, much more than what I'm using today. Should probably find the time to improve my own Shiny building/programming skills.
+   * Do a lot more blogging with R and blogdown.

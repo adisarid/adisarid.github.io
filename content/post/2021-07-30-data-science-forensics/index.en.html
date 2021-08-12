@@ -1,0 +1,61 @@
+---
+title: A data science detective story (and there's a villain too)
+author: Adi Sarid
+date: '2021-07-30'
+slug: Data Science Forensics
+categories:
+  - R
+tags:
+  - Safe Links
+  - Spam
+  - Microsoft
+  - Alchemer
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-07-30T06:23:55Z'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>Here is a detective story about some data science forensics, and there is a villain too.</p>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>As a partner at a market research firm, I get involved in quite a lot of surveys. Some of them (such as voice of customer surveys/customer satisfaction) include sending a personal email invitation with “an invite link”.</p>
+<p>Lately, we’ve started noticing a weird phenomenon: a lot of the links are opened (the email invitation link is clicked) but left unanswered. Also, we see a lot of cases where expect responses from a specific location, but see that originate all over Europe.</p>
+<p>We started asking ourselves, are we witnessing an abuse of our surveys?</p>
+</div>
+<div id="validating-respondents" class="section level1">
+<h1>Validating Respondents</h1>
+<p>One of my team members noticed some irregularities during our routine QA validations: responses were originating from unexpected remote locations all over Europe. A lot of duplicated IPs, as if a lot of people were suddenly using a VPN or something like that. Using a <code>whois</code> service I understood that the links are being opened by Microsoft owned IPs.</p>
+<p><img src="Bot-ip-range.jpg" /></p>
+<p>My first thought was that they started using some bot which examines the survey link within the email. Why exactly? at that point I hypothesized it was some kind of caching going on, probably for speed improvements (but that’s not the deal).</p>
+<p>Since no false information was being entered in these “partial surveys”, no actual harm was done by this bot. Except that it’s not entirely accurate, you see - in some surveys, the practice is to embed the first question of the survey within the invitation email. That way the first click of the recipient includes the answer to the first question, e.g., a “Net Promoters Score” (NPS) or general satisfaction question. It helps with response rates, but unfortunately the bot started clicking the links randomely and entering grabage data.</p>
+</div>
+<div id="a-bot-with-random-thoughts" class="section level1">
+<h1>A bot with random thoughts</h1>
+<p>Trying to analyze when the problem started affecting my clients, I created a chart similar to following, which compares partial answers (which are affected by the bot) versus complete answers (the bot doesn’t complete the survey entirely, so complete answers are real people). I’ve added an illustration (I’m not using real data here so not to expose actual client’s data).</p>
+<pre class="r"><code>library(tidyverse)
+
+responses &lt;- read_csv(&quot;example_data.csv&quot;) %&gt;% 
+  mutate(response_time = factor(response_time, c(&quot;Before 2021-06-01&quot;, &quot;After 2021-06-01&quot;)))
+
+ggplot(responses, aes(x = type, fill = factor(rating))) + 
+  geom_bar(position = &quot;fill&quot;) + 
+  facet_wrap(~response_time) + 
+  scale_fill_brewer(palette = &quot;RdYlGn&quot;) + 
+  guides(fill = guide_legend(&quot;Rating&quot;)) + 
+  theme_bw() + 
+  scale_y_continuous(labels = scales::percent) + 
+  ylab(&quot;Respondents [%]&quot;) + 
+  xlab(&quot;&quot;) + 
+  ggtitle(&quot;Distribution of complete vs. partial responses,\nbefore/after June 21&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/comparison-1.png" width="672" /></p>
+</div>

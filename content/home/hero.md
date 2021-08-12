@@ -3,7 +3,7 @@ widget: hero
 headless: true
 active: false
 weight: 10
-title: Hugo Academic Starter
+title: Dr. Adi Sarid
 hero_media: hero-academic.png
 cta:
   label: '**Get Started**'

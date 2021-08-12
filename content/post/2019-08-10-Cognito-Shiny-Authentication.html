@@ -1,0 +1,330 @@
+---
+title: "Securing Shiny apps with AWS Cognito authentication"
+author: "Adi Sarid"
+date: 2019-08-30T12:00:00-00:00
+categories: ["R"]
+tags: ["Shiny", "AWS", "Cognito", "Authentication"]
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Shiny apps are a great way to share information and empower your users. Sometimes you want to make sure that only authenticated and authorized users will be able to view your shiny apps.</p>
+<p>There are a number of ways to make sure only certain users have access to your apps. For example, you can subscribe to the professional plan in shinyapps.io which has this option built-in. You can program the authentication flow internally by yourself, or you just use a 3rd party service such as google firebase, AWS Cognito, Auth0, or others).</p>
+<p>The benefit of using a dedicated service is that you get a lot of features which will be a serious headake to program yourself, such as social logins, two factor authentication, logs, and user blocks on suspicious attempts (or warnings on unauthorized attempts, depending on settings).</p>
+<p>The down side is that it takes some time to implement. In this guide I aim to make the process as simple and painless as possible, using the Amazon Web Service’s authentication solution, called <em>AWS Cognito</em>. But first, some theory about authentication.</p>
+</div>
+<div id="how-authentication-works" class="section level2">
+<h2>How authentication works</h2>
+<p>The logic behind authentication with AWS Cognito (or similar alternatives) is that you direct your users to a login page hosted by AWS, in which the user completes a process which confirms the user’s indentity. For example, by entering an e-mail and password, or by using a social sign-in (i.e., login via gmail, amazon, facebook). Then, once Cognito is finished, the user is redirected to your app with a URL variable which contain a specially issued code (i.e., <code>https://your-app-address/?code=AMAZON_ISSUED_CODE</code>.</p>
+<p>Then, you use an http request (i.e., with package <code>httr</code>) to query the Cognito API with this code, and in return you receive the information behind this code (i.e., the user’s <em>token</em>, with information such as the name of the user, what is the user’s email, validity of the token, etc.). This <code>httr</code> query is performed by using a password known only to you (i.e., only your app “knows” this password, this is not the user’s password).</p>
+<p>The code is usable only once, and the token is valid for a limited duration, to minimize the risk that an unauthorized party will hijack the token and re-use it to access your app.</p>
+<p>After authenticating the user, you can authorize the user according to privileges (which you would have to manage within your app, i.e. if the users email is X, then he can view Y).</p>
+<p>This process description was a very simplified, down-to-earth, nutshell description of oauth2. It might be inaccurate, but it will be enough for our goal here which is to actually implement it within a shiny app, integrating to Cognito. If you wish, you can find more information about oauth2 in detail <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2">here</a>.</p>
+<p>Let’s get to business.</p>
+</div>
+<div id="step-1-define-a-user-pool" class="section level2">
+<h2>Step 1: Define a user pool</h2>
+<p>This step is actually performed within the AWS Console. Log into your AWS console and find the Cognito service.
+Click on “Manage User Pools”, and then create a new user pool. The step-by-step wizard is pretty self explanatory, so I’ll focus on the important things:</p>
+<ul>
+<li>Make sure that you require a relevant field upon your user sign-up which you can “count on” in order to perform user authorization within your app based on that field later on. I usually check the email address as a required field, and then add logic in my app which maps email addresses to what each user is allowed to view.</li>
+<li>Multi-factor authentication can be “off”, “optional” or “required”. If your app contains sensitive information, then you should consider making it required.</li>
+</ul>
+<p><strong>Important!</strong> in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.</p>
+<p>Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.</p>
+<p><img src="/img/aws_app_info.jpg" /></p>
+<p><strong>Optional</strong>: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.</p>
+<p>Complete the wizard and create your user pool.</p>
+<div id="email-communications" class="section level3">
+<h3>Email communications</h3>
+<p>You must have the AWS SES (simple email service) configured properly, in order for the registration of new users and “forgot password” flows to work. By default, SES is in sandbox mode, which means you can only register users with pre-verified emails. Defining SES is outside the scope of this guide, but note that you have to open a ticket in the AWS support center, asking for these privilleges.</p>
+<p>Make sure you supply AWS support with a lot of information about how you make sure emails don’t bounce, and about spam prevention. Even though it’s trivial, since this is an internal AWS system using the email service, they made me jump through hoops, untill granting me a 50k daily email cap, which is more than enough for me.</p>
+</div>
+<div id="app-client-settings" class="section level3">
+<h3>App client settings</h3>
+<p>Under the “App integration -&gt; App client settings” you need to add the Callback URL of your app (where the user is directed upon login). For example, if your app is going to be hosted on shinyapps.io that would be: <code>https://YOUR_USER_NAME.shinyapps.io/YOUR_APP_NAME</code>. Your sign-out url can be the same, if you want the app to allow the user to restart the login, or a different page showing that the user has logged out.</p>
+<p>Under OAuth 2.0/“Allowed OAuth Flows” you should check the: <em>Authorization code grant</em>. This is the authentication flow we are going to use for our shiny app. The “implicit grant” is not as secure, and the “client credentials” is used for machine-to-machine authentication.</p>
+<p>Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.</p>
+<p>Set a domain name for your login screen and customize the UI of the login screen if you wish.</p>
+<p>You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.</p>
+<p><img src="/img/aws_app_client_settings.jpg" /></p>
+</div>
+<div id="enable-identity-provides-optional" class="section level3">
+<h3>Enable identity provides (Optional)</h3>
+<p>If you want to offer your users a social login such as Facebook or Google, you would need to issue the proper credentials via google console and facebook. This is a nice addition, but is out of the scope of this guide.</p>
+<p>Finally, we get into the R code part of this post.</p>
+</div>
+</div>
+<div id="step-2-authorization-code-within-r" class="section level2">
+<h2>Step 2: Authorization code (within R)</h2>
+<p>Now we need to add logic to our shiny app which will redirect the user to the AWS Cognito login page, and once the user authenticates and redirected to the shiny app, our shiny app will verify the token’s validity.</p>
+<p>Very basically, the Shiny app should read query url variables, and:</p>
+<ol style="list-style-type: decimal">
+<li>If no variables appear, show a login button to the user (which will redirect to the AWS Cognito login screen with the proper parameters).</li>
+<li>If a url variable called <code>code</code> appears, our app will read its value, and use AWS Cognito to apply a second layer of verification and identification according to the code (read the token issued by Cognito).</li>
+<li>If the user is logged on, show a “logout” button which will redirect the user into AWS Cognito logout link.</li>
+</ol>
+<div id="redirect-links-to-loginlogout-screen-authorization-logout-endpoints" class="section level3">
+<h3>Redirect links to login/logout screen (AUTHORIZATION, LOGOUT Endpoints)</h3>
+<p>There are two “endpoints” (urls) that your users will be redirected to:</p>
+<ol style="list-style-type: decimal">
+<li>During their login flow into the app, or;</li>
+<li>After they click “logout”.</li>
+</ol>
+<p>The first is the “AUTHORIZATION Endpoint”. It is a redirection of the client to a url of the following form (I have already put it into a <code>paste0</code> command, which we will later use in our app).</p>
+<pre class="r"><code>base_cognito_url &lt;- &quot;https://YOUR_PREEDEFINED_AWS_COGNITO_DOMAIN.amazoncognito.com/&quot;
+app_client_id &lt;- &quot;YOUR_APP_CLIENT_ID&quot;
+app_client_secret &lt;- &quot;YOUR_APP_CLIENT_SECRET&quot;
+redirect_uri &lt;- &quot;https://YOUR_APP/redirect_uri&quot; 
+# e.g., if you are using shinyapps.io this would be: 
+# https://ACCOUNT_NAME.shinyapps.io/YOUR_APP_NAME
+
+aws_auth_redirect &lt;-
+  paste0(
+    base_cognito_url,
+    &quot;oauth2/authorize?&quot;,
+    &quot;response_type=code&amp;&quot;,
+    &quot;client_id=&quot;, app_client_id, &quot;&amp;&quot;,
+    &quot;redirect_uri=&quot;, redirect_uri, &quot;&amp;&quot;,
+    &quot;state=appredirect&quot;
+  )
+
+aws_auth_redirect</code></pre>
+<pre><code>## [1] &quot;https://YOUR_PREEDEFINED_AWS_COGNITO_DOMAIN.amazoncognito.com/oauth2/authorize?response_type=code&amp;client_id=YOUR_APP_CLIENT_ID&amp;redirect_uri=https://YOUR_APP/redirect_uri&amp;state=appredirect&quot;</code></pre>
+<p>You can also specify the “scopes” (what information should Cognito hold for your next query, email, phone, etc.). If you don’t specify any scopes, all the information available on the user will be provided (see the next section of this post “<strong>Querying Cognito with the grant code</strong>”).</p>
+<p>The second endpoint is the “LOGOUT Endpoint” which will logout the user. It is important to provide a logout button so that users can safely close your app, without worrying about other users in the same computer abusing their credentials.</p>
+<pre class="r"><code>aws_auth_logout &lt;-
+  paste0(
+    base_cognito_url, &quot;logout?&quot;,
+    &quot;client_id=&quot;, app_client_id, &quot;&amp;&quot;,
+    &quot;logout_uri=&quot;, redirect_uri
+  )
+
+aws_auth_logout</code></pre>
+<pre><code>## [1] &quot;https://YOUR_PREEDEFINED_AWS_COGNITO_DOMAIN.amazoncognito.com/logout?client_id=YOUR_APP_CLIENT_ID&amp;logout_uri=https://YOUR_APP/redirect_uri&quot;</code></pre>
+<p>Once a user has completed the login process (via the authorization endpoint), he will be redirected to your app (the link you provided in the redirect_uri and in the Cognito setup at step 1). If the login is successful, the user will return with a url variable called code, i.e. <code>https://YOUR_APP/redirect_uri?code=####-####-####-####</code>. The next step will be to make sure that this code is indeed valid, and to check who is the user trying to access behind this code.</p>
+</div>
+<div id="querying-cognito-with-the-grant-code" class="section level3">
+<h3>Querying Cognito with the grant code</h3>
+<p>This is a crucial part, in which we make sure that the user is indeed valid, and allowed to access your app. We’re going to use the <code>httr</code> package for that.</p>
+<p>Let’s assume we have already pulled the authorization code from the Shiny app’s url variables (we’re going to show how to do that in step 3).</p>
+<p>We’re going to build a function which gets the code as an argument and provides the user’s information (or an error if the user is not authenticated or there was a different failure). I usually place this code in my <code>global.r</code> file, which is a part of the shiny app’s bundle (<code>ui.r</code>, <code>server.r</code>, <code>global.r</code>), and is used to define an environment variables and functions which will be availble to the shiny app. You can also place it at the begining of the <code>server.r</code> if you don’t want a <code>global.r</code> file. If you are using a single <code>app.r</code> just put it before the app itself.</p>
+<p>Here is the code that goes into your <code>global.r</code> file:</p>
+<pre><code>base_cognito_url &lt;- &quot;https://YOUR_DOMAIN.YOUR_AMAZON_REGION.amazoncognito.com/&quot;
+app_client_id &lt;- &quot;YOUR_APP_CLIENT_ID&quot;
+app_client_secret &lt;- &quot;YOUR_APP_CLIENT_SECRET&quot;
+redirect_uri &lt;- &quot;https://YOUR_APP/redirect_uri&quot;
+
+library(httr)
+
+app &lt;- oauth_app(appname = &quot;my_shiny_app&quot;,
+                 key = app_client_id,
+                 secret = app_client_secret,
+                 redirect_uri = redirect_uri)
+cognito &lt;- oauth_endpoint(authorize = &quot;authorize&quot;,
+                          access = &quot;token&quot;,
+                          base_url = paste0(base_cognito_url, &quot;oauth2&quot;))
+
+
+retrieve_user_data &lt;- function(user_code){
+  
+  failed_token &lt;- FALSE
+  
+  # get the token
+  tryCatch({token_res &lt;- oauth2.0_access_token(endpoint = cognito,
+                                              app = app,
+                                              code = user_code,
+                                              user_params = list(client_id = app_client_id,
+                                                                 grant_type = &quot;authorization_code&quot;),
+                                              use_basic_auth = TRUE)},
+           error = function(e){failed_token &lt;&lt;- TRUE})
+  
+  # check result status, make sure token is valid and that the process did not fail
+  if (failed_token) {
+    return(NULL)
+  }
+  
+  # The token did not fail, go ahead and use the token to retrieve user information
+  user_information &lt;- GET(url = paste0(base_cognito_url, &quot;oauth2/userInfo&quot;), 
+                          add_headers(Authorization = paste(&quot;Bearer&quot;, token_res$access_token)))
+  
+  return(content(user_information))
+  
+}</code></pre>
+</div>
+</div>
+<div id="step-3-define-your-shiny-apps-server.r-and-ui.r" class="section level2">
+<h2>Step 3: define your Shiny app’s <code>server.r</code> and <code>ui.r</code></h2>
+<p>In our shiny app, we need to pull the code and use the <code>retrieve_user_data</code> function we’ve just defined as part of our verification of the user. Here is the code we will use for this. This should go into the <code>server.r</code> file.</p>
+<pre><code>library(shiny)
+library(shinyjs)
+
+# define a tibble of allwed users (this can also be read from a local file or from a database)
+allowed_users &lt;- tibble(
+  user_email = c(&quot;user1@example.com&quot;,
+                 &quot;user2@example.com&quot;))
+
+function(input, output, session){
+   
+   # initialize authenticated reactive values ----
+   # In addition to these three (auth, name, email)
+   # you can add additional reactive values here, if you want them to be based on the user which logged on, e.g. privileges.
+   user &lt;- reactiveValues(auth = FALSE, # is the user authenticated or not
+                          name = NULL, # user&#39;s name as stored and returned by cognito
+                          email = NULL)  # user&#39;s email as stored and returned by cognito
+   
+   # get the url variables ----
+   observe({
+        query &lt;- parseQueryString(session$clientData$url_search)
+        if (!(&quot;code&quot; %in% names(query))){
+            # no code in the url variables means the user hasn&#39;t logged in yet
+            showElement(&quot;login&quot;)
+        } else {
+            current_user &lt;- retrieve_user_data(query$code)
+            # if an error occurred during login
+            if (is.null(current_user)){
+                hideElement(&quot;login&quot;)
+                showElement(&quot;login_error_aws_flow&quot;)
+                showElement(&quot;submit_sign_out_div&quot;)
+                user$auth &lt;- FALSE
+            } else {
+                # check if user is in allowed user list
+                # for more robustness, use stringr::str_to_lower to avoid case sensitivity
+                # i.e., (str_to_lower(current_user$email) %in% str_to_lower(allowed_users$user_email))
+                if (current_user$email %in% allowed_users$user_email){
+                    hideElement(&quot;login&quot;)
+                    showElement(&quot;login_confirmed&quot;)
+                    showElement(&quot;submit_sign_out_div&quot;)
+                    
+                    user$auth &lt;- TRUE
+                    user$email &lt;- current_user$email
+                    user$name &lt;- current_user$name
+                    
+                    # ==== User is valid, continue prep ====
+                    
+                    # show the welcome box with user name
+                    output$confirmed_login_name &lt;-
+                        renderText({
+                            paste0(&quot;Hi there!, &quot;,
+                                    user$name)
+                        })
+                    
+                    # ==== Put additional login dependent steps here (e.g. db read from source) ====
+                    
+                    # ADD HERE YOUR REQUIRED LOGIC
+                    # I personally like to select the first tab for the user to see, i.e.:
+                    showTab(&quot;main_navigation&quot;, &quot;content_tab_id&quot;, select = TRUE) 
+                    # (see the next chunk for how this tab is defined in terms of ui elements)
+                    
+                    # ==== Finish loading and go to tab ====
+                    
+                } else {
+                    # user not allowed. Only show sign-out, perhaps also show a login error message.
+                    hideElement(&quot;login&quot;)
+                    showElement(&quot;login_error_user&quot;)
+                    showElement(&quot;submit_sign_out_div&quot;)
+                }
+            }
+        }
+    })
+   
+   # This is where you will put your actual elements (the server side that is) ----
+   # For example:
+    
+    output$some_plot &lt;- renderPlot({
+        # *** THIS IS EXTREMELY IMPORTANT!!! ***
+        validate(need(user$auth, &quot;No privileges to watch data. Please contact support.&quot;))
+        # since shinyjs is not safe for hiding content, make sure that any information is covered
+        # by the validate(...) expression as was specified. 
+        # Rendered elements which were not preceded by a validate expression can be viewed in the html code (even if you use hideElement).
+        
+        # only if user is confirmed the information will render (a plot in this case)
+        plot(cars)
+    })
+}
+</code></pre>
+<p>The accompanying user interface (<code>ui.r</code>) will look like the following:</p>
+<pre><code>
+library(shiny)
+library(shinyjs)
+
+fluidPage(
+    useShinyjs(), # to enable the show/hide of elements such as login and buttons
+    hidden( # this is how the logout button will like:
+        div(
+            id = &quot;submit_sign_out_div&quot;,
+            a(id = &quot;submit_sign_out&quot;,
+              &quot;logout&quot;,
+              href = aws_auth_logout,
+              style = &quot;color: black; 
+              -webkit-appearance: button; 
+              -moz-appearance: button; 
+              appearance: button; 
+              text-decoration: none; 
+              background:#ff9999; 
+              position: absolute; 
+              top: 0px; left: 20px; 
+              z-index: 10000;
+              padding: 5px 10px 5px 10px;&quot;
+              )
+            )
+    ),
+    navbarPage(
+        &quot;Cognito auth example&quot;,
+        id = &quot;main_navigation&quot;,
+        tabPanel(
+            &quot;identification&quot;,
+            value = &quot;login_tab_id&quot;,
+            h1(&quot;Login&quot;),
+            div(
+                id = &quot;login&quot;,
+                p(&quot;To login you must identify with a username and password&quot;),
+                # This defines a login button which upon click will redirect to the AWS Cognito login page
+                a(id = &quot;login_link&quot;,
+                  &quot;Click here to login&quot;,
+                  href = aws_auth_redirect,
+                  style = &quot;color: black;
+                  -webkit-appearance: button;
+                  -moz-appearance: button;
+                  appearance: button;
+                  text-decoration: none;
+                  background:#95c5ff;
+                  padding: 5px 10px 5px 10px;&quot;)
+            ),
+            hidden(div(
+                id = &quot;login_error_aws_flow&quot;,
+                p(&quot;An error has occurred.&quot;),
+                p(&quot;Please contact support&quot;)
+            )),
+            hidden(
+                div(
+                    id = &quot;login_confirmed&quot;,
+                    h3(&quot;User confirmed&quot;),
+                    fluidRow(
+                        textOutput(&quot;confirmed_login_name&quot;)),
+                    fluidRow(
+                        p(&quot;Use the menu bar to navigate.&quot;),
+                        p(
+                            &quot;Don&#39;t forget to logout when you want to close the system.&quot;
+                        )
+                    )
+                )
+            ),
+        ),
+        tabPanel(&quot;Your actual content&quot;, 
+                 value = &quot;content_tab_id&quot;,
+                 fluidRow(plotOutput(&quot;some_plot&quot;)))
+    )
+)
+</code></pre>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>The post contains essential things you need in order to get started with AWS Cognito authentication for your shiny apps.</p>
+<p>You can extend this process to any authentication service (for example, digital ocean has a similar service to Cognito). There are some packages which implement the entire process for other services, like <code>googleAuthR</code> for a gmail login <a href="https://code.markedmondson.me/googleAuthR/articles/google-authentication-types.html">see this link</a>.</p>
+<p>If you found this post useful, let me know!, either in comments below, or twitter, or email.</p>
+<p>As always, be careful of how you implement this process in your own apps, to make sure there are no security risks or loopholes. Also, DISCLAIMER: The information in this post is free, you can use this however like. Note that it is published with the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+</div>

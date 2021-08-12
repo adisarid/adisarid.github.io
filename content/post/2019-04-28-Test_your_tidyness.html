@@ -1,0 +1,183 @@
+---
+title: "Test your tidyness - a short quiz to check your tidyverse capabilities"
+author: "Adi Sarid"
+date: 2019-04-28T12:00:00-00:00
+categories: ["R"]
+tags: ["Tidyverse"]
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Over the last month I gave a tidyverse + intro to data science corporate training in a startup in Tel-Aviv. We had two groups (beginners and intermediates), and for the last assignment of the course I was aiming for a short quiz comprised of various topics which we covered during the course, such that can also be automated easily (i.e., multiple choice questions).</p>
+<p>I came up with the following quiz, which I thought would be nice to share here. I guess that experts should probably be able to complete this in a few minutes, intermediate/beginners would probably complete this by up to 30 minutes.</p>
+<div id="exam-instructions" class="section level2">
+<h2>Exam instructions</h2>
+<p>The following exam contains 10 questions which spans across the different topics regaring tidyverse, and some analysis dilemmas. Each question has four options but only one correct answer. Each correct answer provides you with 10 points.</p>
+<p>You can use any materials you want including but not limited to: cheat sheets, our course materials, stack overflow, package documentation, running code and seeing what it does.</p>
+</div>
+<div id="question-1" class="section level2">
+<h2>Question 1:</h2>
+<p>When would you use an R markdown file (.Rmd) versus a script file (.R) to save your work?</p>
+<ol style="list-style-type: lower-alpha">
+<li>If I want the relative position of the file retained (so that it is easier to load files from the same directory), I will use an .Rmd file, otherwise I will use a .R file.</li>
+<li>When I want a complete documentation of my work in a report I will use a .Rmd. I will use a .R file for debugging and sourcing functions.</li>
+<li>There is no significant difference between the two formats, and they can be used for the same things interchangably.</li>
+<li>There is no benefit to using .R script files, the .Rmd format is always superior.</li>
+</ol>
+</div>
+<div id="question-2" class="section level2">
+<h2>Question 2:</h2>
+<p>Look at the following segments of code.</p>
+<pre><code># segment 1:
+new_data &lt;- read.csv(&quot;myfilename.csv&quot;)
+
+# segment 2:
+new_data %&gt;% 
+   group_by(some_cool_suff) %&gt;% 
+   summarize(average = mean(avg_me, na.rm = T)) -&gt; updated_df
+   
+# segment 3:
+avg_var &lt;- mean(new_data$avg_me[!is.na(some_cool_stuff)], na.rm = T)
+   
+# segment 4:
+data.frame(a = 1:10, b = letters[1:10]) %&gt;% 
+   sample_n(3)
+</code></pre>
+<p>Which segments would you classify as <code>tidyverse</code> syntax?
+(<code>tidyverse</code> syntax = code which uses functions from tidyverse packages, in which there is no function that you can replace to a <code>tidyverse</code> equivalent)</p>
+<ol style="list-style-type: lower-alpha">
+<li>Segment 1 and segment 3.</li>
+<li>Segment 2 and segment 4.</li>
+<li>Segment 4.</li>
+<li>Segment 2.</li>
+</ol>
+</div>
+<div id="question-3" class="section level2">
+<h2>Question 3:</h2>
+<p>What <code>ggplot2</code> geoms would you use to generate the following charts?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Figure 1: not generated with <code>ggplot2</code>, Figure 2: <code>geom_point</code>.</li>
+<li>Figure 1: <code>geom_boxplot</code>, Figure 2: <code>geom_line</code>.</li>
+<li>Figure 1: <code>geom_violin</code>, Figure 2: <code>geom_point</code>.</li>
+<li>Figure 1: <code>geom_boxplot</code>, Figure 2: <code>geom_point</code> + <code>geom_line</code>.</li>
+</ol>
+<p><img src="/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-1.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-2.png" width="672" /></p>
+</div>
+<div id="question-4" class="section level2">
+<h2>Question 4:</h2>
+<p>What is the difference between the <code>matrix</code> and the <code>tibble</code> in the following?</p>
+<pre class="r"><code>matrix(cbind(1:10, letters[1:10], LETTERS[1:10]), ncol = 3)</code></pre>
+<pre><code>##       [,1] [,2] [,3]
+##  [1,] &quot;1&quot;  &quot;a&quot;  &quot;A&quot; 
+##  [2,] &quot;2&quot;  &quot;b&quot;  &quot;B&quot; 
+##  [3,] &quot;3&quot;  &quot;c&quot;  &quot;C&quot; 
+##  [4,] &quot;4&quot;  &quot;d&quot;  &quot;D&quot; 
+##  [5,] &quot;5&quot;  &quot;e&quot;  &quot;E&quot; 
+##  [6,] &quot;6&quot;  &quot;f&quot;  &quot;F&quot; 
+##  [7,] &quot;7&quot;  &quot;g&quot;  &quot;G&quot; 
+##  [8,] &quot;8&quot;  &quot;h&quot;  &quot;H&quot; 
+##  [9,] &quot;9&quot;  &quot;i&quot;  &quot;I&quot; 
+## [10,] &quot;10&quot; &quot;j&quot;  &quot;J&quot;</code></pre>
+<pre class="r"><code>tibble(num = 1:10, sl = letters[1:10], cl = LETTERS[1:10])</code></pre>
+<pre><code>## # A tibble: 10 x 3
+##      num sl    cl   
+##    &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+##  1     1 a     A    
+##  2     2 b     B    
+##  3     3 c     C    
+##  4     4 d     D    
+##  5     5 e     E    
+##  6     6 f     F    
+##  7     7 g     G    
+##  8     8 h     H    
+##  9     9 i     I    
+## 10    10 j     J</code></pre>
+<ol style="list-style-type: lower-alpha">
+<li>The tibble has named variables (columns) and the matrix does not name the columns.</li>
+<li>The tibble retains the original data type and the matrix converts the data types.</li>
+<li><code>matrix</code> is a base R function and <code>tibble</code> is a tidyverse function.</li>
+<li>All of the above.</li>
+</ol>
+</div>
+<div id="question-5" class="section level2">
+<h2>Question 5:</h2>
+<p>What <code>stringr</code> function would you use to simplify the following code?</p>
+<pre><code>some_string &lt;- c(&quot;How are you today?&quot;, &quot;Is this test ok?&quot;, &quot;You&#39;re already half way in!&quot;)
+map_chr(some_string, ~paste0(stringi::stri_wrap(., width = 5), collapse = &quot;\n&quot;))</code></pre>
+<ol style="list-style-type: lower-alpha">
+<li><code>str_count</code>.</li>
+<li><code>str_wrap</code>.</li>
+<li><code>str_sub</code>.</li>
+<li>No such function: must use a combination of a <code>stringr</code> and a loop (or a <code>map</code> function).</li>
+</ol>
+</div>
+<div id="question-6" class="section level2">
+<h2>Question 6:</h2>
+<p>What is the difference between <code>contains</code> and <code>one_of</code>?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Both are “select helpers”, <code>one_of</code> is used to specify strings which starts with one of the specified expressions, and <code>contains</code> lets you specify the variable names in “non standard evaluation” (unquoted) style.</li>
+<li><code>contains</code> selects variables based on the regular expression you feed as an argument. <code>one_of</code> needs you to specify the variable names as strings.</li>
+<li><code>contains</code> selects variables which contain the literal string you feed into it. <code>one_of</code> needs you to specify the variables names as strings.</li>
+<li>Both functions do the same thing with the same arguments.</li>
+</ol>
+</div>
+<div id="question-7" class="section level2">
+<h2>Question 7:</h2>
+<p>When reshaping data with the <code>gather</code> function, what is the meaning of the <code>...</code> argument?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Specify which variables to gather by.</li>
+<li>Specify which variables <strong>not</strong> to gather by (using the “-” sign).</li>
+<li>Specify either <em>a</em> or <em>b</em>.</li>
+<li>Provide variable by which to group the resulting tibble.</li>
+</ol>
+</div>
+<div id="question-8" class="section level2">
+<h2>Question 8:</h2>
+<p>What function would you use to get all the rows in <code>tibble1</code> which are not in <code>tibble2</code>?</p>
+<ol style="list-style-type: lower-alpha">
+<li><code>setdiff(tibble1, tibble2)</code></li>
+<li><code>setdiff(tibble2, tibble1)</code></li>
+<li><code>intersect(tibble1, tibble2)</code></li>
+<li><code>semi_join(tibble1, tibble2)</code></li>
+</ol>
+</div>
+<div id="question-9" class="section level2">
+<h2>Question 9:</h2>
+<p>Assume you examine the data which appears in the following scatter plot using per-axis boxplots. Would classify point A as an outlier?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Yes, only accoring to the y-axis.</li>
+<li>Yes, only according to the x-axis.</li>
+<li>Yes, according to either x-axis or y-axis.</li>
+<li>No, it will not be classified as an outlier.</li>
+</ol>
+<p><img src="/post/2019-04-28-Test_your_tidyness_files/figure-html/outlier%20question-1.png" width="672" /></p>
+</div>
+<div id="question-10" class="section level2">
+<h2>Question 10:</h2>
+<p>You encountered a data set in which all variables are normally distributed with an unequal variance and
+unequal expectancy (mean). You wish to run a KMeans clustering to cluster the data. What would you do
+as a preprocessing step?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Scale and center the data using the function scale.</li>
+<li>Scale and center the data using min-max scaling and centering.</li>
+<li>Either a or b.</li>
+<li>Nothing - since the data is already normally distributed, no scaling or centering is required.</li>
+</ol>
+</div>
+<div id="bonus-question-5-points-bonus" class="section level2">
+<h2>Bonus question (5 points bonus):</h2>
+<p>Did you sign up for <a href="https://www.r-bloggers.com">R-Bloggers</a> updates? (feed to receive R related news and updates)</p>
+<ol style="list-style-type: lower-alpha">
+<li>Yes (5 points bonus).</li>
+<li>No, but I’m doing it now (2.5 points bonus).</li>
+<li>No, and I don’t intend to.</li>
+</ol>
+<p><em>P.S. I’m not getting any benefits from R-bloggers for “advertising” them, I genuinly think it’s a great source to stay updated, and improve your R capabilities.</em></p>
+</div>
+<div id="quiz-answers" class="section level2">
+<h2>Quiz answers</h2>
+<p>Answers available <a href="https://gist.github.com/adisarid/6c7dbd38b5da09e0de99b90aa8300403">in the following gist</a>.</p>
+</div>

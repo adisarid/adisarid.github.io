@@ -1,0 +1,36 @@
+---
+title: 'Purrring progress bars (adding a progress bar to `purrr::map`)'
+author: "Adi Sarid"
+date: 2019-01-25T12:00:00-00:00
+categories: ["R"]
+tags: ["purrr", "progress bars"]
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>With all the functional programming going on (i.e., <code>purrr::map</code> and the likes), there is at least one thing that I found missing: progress bars. The <code>plyr::do</code> function had a nice looking progress bar open up by default if the operation took more than 2 seconds and had at least two more to go (as per Hadley’s description in <a href="https://github.com/tidyverse/purrr/issues/149">Issue#149 in tidyverse/purrr</a>).</p>
+<p>The issue is still open, for the time of writing these lines, and will probably be solved sometime in the near future as a feature of <code>purrr::map</code>.</p>
+<p>Personally, I like <span class="citation">@cderv</span>’s elegent solution suggested at that same <a href="https://github.com/tidyverse/purrr/issues/149">github issue</a>.</p>
+<p>Here is an example implementation for reading multiple files within a directory and combining them into a single tibble while showing a progress bar when reading the files. The file reading is very similar to what was suggested in <a href="https://serialmentor.com/blog/2016/6/13/reading-and-combining-many-tidy-data-files-in-R">this post</a>.</p>
+<pre class="r"><code>library(purrr)
+library(readr)
+library(dplyr)
+
+# directory from which to read a bunch of files (the example here uses csv)
+file_list &lt;- dir(path = &quot;PATH_TO_DIRECTORY&quot;, pattern = &quot;.csv&quot;)
+
+# define reading function which includes the progress bar updates and printing
+read_with_progress &lt;- function(filename){
+  pb$tick()$print()
+  data_read &lt;- read_csv(filename)
+  # you can add additional operations on data_read, or 
+  # decide on entirely different task that this function should do.
+}
+
+# create the progress bar with a dplyr function. 
+pb &lt;- progress_estimated(length(file_list))
+res &lt;- file_list %&gt;%
+  map_df(~read_with_progress(.))</code></pre>
+<p>That’s it. You’re set to go with a cool progress bar which will print out something like this while the operation is carried out:</p>
+<pre><code>|=====================================           |80% ~23 s remaining</code></pre>
