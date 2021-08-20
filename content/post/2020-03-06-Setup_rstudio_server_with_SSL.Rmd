@@ -37,7 +37,7 @@ When using **AWS Lightsail** (which I've been using), a default firewall rule is
 
 Click on the instance you've opened, and then go to the Networking tab. In this page you'll see a "Firewall" title and beneath it a table with the currently open ports. Under the table click on "+ Add another". Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot: 
 
-<img src='/img/lightsail_firewall_configuration.jpg'>
+<img src='/media/lightsail_firewall_configuration.jpg'>
 
 
 If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use "Custom" under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).

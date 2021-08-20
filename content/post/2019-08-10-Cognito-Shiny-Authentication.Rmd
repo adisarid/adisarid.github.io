@@ -47,7 +47,7 @@ Click on "Manage User Pools", and then create a new user pool. The step-by-step 
 
 Make sure you click on "Show Details" after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.
 
-![](/img/aws_app_info.jpg)
+![](/media/aws_app_info.jpg)
 
 **Optional**: right after you add your app and click "next step", you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.
 
@@ -71,7 +71,7 @@ Set a domain name for your login screen and customize the UI of the login screen
 
 You can see in the following screenshot, that I'm using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.
 
-![](/img/aws_app_client_settings.jpg)
+![](/media/aws_app_client_settings.jpg)
 
 ### Enable identity provides (Optional)
 

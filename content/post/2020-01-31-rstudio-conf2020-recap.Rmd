@@ -13,7 +13,8 @@ library(tidyverse)
 
 I'm just on my way back from this year's rstudio::conf. Here's an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future. I'm listing them by order of appearance in the conference.
 
-<img src="/img/Hexagons_conf2020.jpg" alt="The hexawall at rstudio::conf2020" style="zoom:10%; float:right; padding-left:30px">
+<img src="/media/Hexagons_conf2020.jpg" alt="The hexawall at rstudio::conf2020" style="zoom:10%; float:right; padding-left:30px">
+<!-- ![](/post/2020-01-31-rstudio-conf2020-recap_files/icon.png) -->
 
 ## The RMarkdown and Interactive Dashboards Workshop
 
@@ -44,7 +45,7 @@ map(data_set$data, ~{
   ggplot(., aes(x, y)) + geom_line()
 })
 ```
-![](/img/ggplot2_animated_wave.gif)
+![](/media/ggplot2_animated_wave.gif)
 
 Cool, isn't it?
 
@@ -105,7 +106,7 @@ Projected as a 3d model using the rayshader here:
 rayshader::plot_gg(surface_plot)
 ```
 
-![](/img/rayshader_snap.png)
+![](/media/rayshader_snap.png)
 
 Tyler also demonstrated how you can generate a movie with the camera browsing around the chart. Beware, rendering takes long.
 

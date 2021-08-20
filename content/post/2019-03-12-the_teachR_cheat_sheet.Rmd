@@ -55,7 +55,7 @@ Bloom's taxonomy illustrates the levels of learning new concepts or topics.
 
 The [Vanderbilt University Center for Teaching](https://wp0.vanderbilt.edu/cft/guides-sub-pages/blooms-taxonomy/) has a nice illustration for it.
 
-![Blooms Taxonomy](/img/blooms_taxonomy.png)
+![Blooms Taxonomy](/media/blooms_taxonomy.png)
 
 You can visit the Vanderbilt website for a more thorough explanation about the taxonomy, but suffice it to say that "remember" is the most basic form of acquired knowledge, and the highest levels (at the top of the pyramid) are evaluate and create (being able to evaluate someone else's work, or create your own noval work).
 

@@ -37,7 +37,7 @@ Also, when you're looking at a mockup (even if it's just a simple drawing or a n
 
 Here is an example of how a mockup would look like when I'm drawing it on a piece of paper. Note how I've already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you're actually looking at one of these.
 
-![Example for a mockup drawing](/img/mockup_draw_example.jpg)
+![Example for a mockup drawing](/media/mockup_draw_example.jpg)
 
 
 ### Research
