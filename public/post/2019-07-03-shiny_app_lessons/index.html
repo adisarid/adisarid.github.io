@@ -1,0 +1,1253 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="I’ve been building R shiny apps for a while now, and ever since I started working with shiny, it has significantly increased the set of services I offer my clients." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f0cf03b20998d63e314819fa4a90c13f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Adi Sarid" />
+  <meta property="og:url" content="https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/" />
+  <meta property="og:title" content="What NOT to do when building a shiny app (lessons learned the hard way) | Adi Sarid" />
+  <meta property="og:description" content="I’ve been building R shiny apps for a while now, and ever since I started working with shiny, it has significantly increased the set of services I offer my clients." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2019-07-19T12:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2019-07-19T12:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/"
+  },
+  "headline": "What NOT to do when building a shiny app (lessons learned the hard way)",
+  
+  "datePublished": "2019-07-19T12:00:00Z",
+  "dateModified": "2019-07-19T12:00:00Z",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adi Sarid",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "I’ve been building R shiny apps for a while now, and ever since I started working with shiny, it has significantly increased the set of services I offer my clients."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>What NOT to do when building a shiny app (lessons learned the hard way) | Adi Sarid</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="8d10b47a62962dcb8ce6ad96e0cbfbaa" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#intro"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>What NOT to do when building a shiny app (lessons learned the hard way)</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jul 19, 2019
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>I’ve been building R shiny apps for a while now, and ever since I started working with shiny, it has significantly increased the set of services I offer my clients.</p>
+<p>Here’s a documentations of some of the many lessons I learned in previous projects I did. Hopefully, others can avoid them in the future.</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Shiny is a really great tool that allows data scientists to communicate their analysis in an appealing and an effective way. However, as data scientists we are used to thinking about things a certain way. Our way of thinking, and our practices are different than these of a software developer or a DevOps.</p>
+<p>Here are some of things I learned along the path of my Shiny app developing experiences - some things that you should and should not do.</p>
+</div>
+<div id="dont-skip-the-planning-phase" class="section level2">
+<h2>Don’t skip the planning phase</h2>
+<p>Do a mockup, research your implementation options.</p>
+<div id="mockup" class="section level3">
+<h3>Mockup</h3>
+<p><strong>Do a mockup</strong>, even if it’s just a piece of paper which took you 5 minutes to draw. It will be worth it.</p>
+<p>Shiny is very tempting in the sense that once you understand the concept of reactive programming, you can go from idea to a full app in a few days work. Why invest time in preparing a mockup or planning, when you can just go ahead and do the actual thing?</p>
+<p>My experience tells me that the app is much more successful in capturing the customer’s needs, when he’s a part of the technical planning phase (when you share your dillemas with the client). It sets expectations, frames what you can and can’t (or won’t) do for the customer, and enables you to find solutions together.</p>
+<p>Also, when you’re looking at a mockup (even if it’s just a simple drawing or a non-interactive slide), it helps in the next stages of building the app’s UI.</p>
+<p>Here is an example of how a mockup would look like when I’m drawing it on a piece of paper. Note how I’ve already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you’re actually looking at one of these.</p>
+<div class="figure">
+<img src="/img/mockup_draw_example.jpg" alt="" />
+<p class="caption">Example for a mockup drawing</p>
+</div>
+</div>
+<div id="research" class="section level3">
+<h3>Research</h3>
+<p>When you encounter a requirement you did not encounter before, and wondering about how to accomplish it, research.</p>
+<ul>
+<li>Is there more than a single way to accomplish what you’re trying?</li>
+<li>What are the pros and cons of each method?</li>
+</ul>
+<p>For example, when I needed to show a table and incorporate data intake into the table, I was researching two options, one with the <code>DataTable</code> package (via the <code>editable=TRUE</code> argument) and the other is the <code>rhandsontable</code> package.</p>
+<p>Both provide data editing, eventually I chose <code>randsontable</code> which had some limitations (e.g., slower rendering than <code>DataTable</code>, no search box), but provided more features out-of-the-box (e.g., data validation displaying factors as a list, checkboxes, etc.).</p>
+</div>
+</div>
+<div id="be-sure-you-can-live-up-to-your-promises" class="section level2">
+<h2>Be sure you can live up to your promises</h2>
+<p>This is more of a broad issue (you can say its true for anything).</p>
+<p>In my case, in the past I promised some clients I’ll provide “realtime” dashboards. However, as it turned out, I was reading from a csv data dump which provided the data with delays going up to 15-30 minutes.</p>
+<p>In most projects I do, 15 minutes and realtime are pretty much equivalent from a practical standpoint, but in a specific project I did recently, I had a client which wanted to check the data as it was changing minute-by-minute.</p>
+<p>This gap in expectations caused some confusion and dissappointment. We eventually learned from this, and in the future, when realtime is a requirement, we will use a better data source (i.e., data base instead of the delayed data dump).</p>
+</div>
+<div id="dont-forget-to-plan-your-budget" class="section level2">
+<h2>Don’t forget to plan your budget</h2>
+<p>Make sure you consider all the elements you need for the project. Plan the budget accordingly, and understand the ramifications of scaling the app.</p>
+<p>For example, if you’re using shinyapps.io, get familiar with the pricing packages, figure out what will you need to provide a good SLA (relative to the number of users of the app).</p>
+<p>Same goes for other cloud services, e.g., using a data base - how many users? how many connections? size of data base?</p>
+<p>In most cloud providers you can also set up <strong>billing alerts</strong> which lets you know when something is exceeding a predetermined threshold.</p>
+<p>All of these are very important when you’re building your quote, and obviously when going into production with your App.</p>
+</div>
+<div id="dont-skip-testing-and-staging-on-your-way-to-production" class="section level2">
+<h2>Don’t skip testing and staging on your way to production</h2>
+<p>In software development there are various levels of environments, starting from your desktop (“local”), through development server, integration, testing, staging/acceptance, and production. See Wikipedia’s <a href="https://en.wikipedia.org/wiki/Deployment_environment">Deployment environment</a> entry.</p>
+<p>When building an app, make sure you go through these steps. Specifically relating to testing, staging, and production). What I found to be particularly useful is to upload the app twice (in two seperate locations/urls):</p>
+<ol style="list-style-type: decimal">
+<li>Deploy as a beta app (client acceptance/demo) in which I demonstrate additional features and discuss them with the client, before incorporating them into production.</li>
+<li>Deploy as a production/live app.</li>
+</ol>
+<p>As you iterate and improve the app, fix bugs, and add new features, you are also at the risk of breaking things. Thus, you should first update the beta app, share the new additions, and let the client experiment with the app. This way you can double check you didn’t break anything else.</p>
+<p>Only when the client authorizes the corrections, redeploy the new app to the production.</p>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>As data scientists using Shiny, we’ve also become software developers. We’re developing not just for ourselves or for other useRs in our community.</p>
+<p>With Shiny we’re building for end-users. We’re building customer facing apps, and we need to keep that in mind. We should make sure that we adopt and use best practices of software development.</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/shiny/">shiny</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/&amp;text=What%20NOT%20to%20do%20when%20building%20a%20shiny%20app%20%28lessons%20learned%20the%20hard%20way%29" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/&amp;t=What%20NOT%20to%20do%20when%20building%20a%20shiny%20app%20%28lessons%20learned%20the%20hard%20way%29" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=What%20NOT%20to%20do%20when%20building%20a%20shiny%20app%20%28lessons%20learned%20the%20hard%20way%29&amp;body=https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/&amp;title=What%20NOT%20to%20do%20when%20building%20a%20shiny%20app%20%28lessons%20learned%20the%20hard%20way%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=What%20NOT%20to%20do%20when%20building%20a%20shiny%20app%20%28lessons%20learned%20the%20hard%20way%29%20https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/&amp;title=What%20NOT%20to%20do%20when%20building%20a%20shiny%20app%20%28lessons%20learned%20the%20hard%20way%29" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://adisarid.github.io"></a></h5>
+      <h6 class="card-subtitle">Partner and Head of Operations Research Department</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/SaridResearch" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=Lza4mMoAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/adisarid" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/post/2019-12-13-confidence_prediction_intervals_explained/">Confidence and prediction intervals explained... (with a Shiny app!)</a></li>
+      
+      <li><a href="/post/2019-08-10-cognito-shiny-authentication/">Securing Shiny apps with AWS Cognito authentication</a></li>
+      
+      <li><a href="/post/2019-02-03-class-action-conjoint/">Settling class action lawsuits with conjoint analysis and R (&#43;a conjoint shiny app)</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2021 Adi Sarid
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

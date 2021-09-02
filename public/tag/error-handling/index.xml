@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Error handling | Adi Sarid</title>
+    <link>https://adisarid.github.io/tag/error-handling/</link>
+      <atom:link href="https://adisarid.github.io/tag/error-handling/index.xml" rel="self" type="application/rss+xml" />
+    <description>Error handling</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Wed, 11 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Error handling</title>
+      <link>https://adisarid.github.io/tag/error-handling/</link>
+    </image>
+    
+    <item>
+      <title>YAPOEH! (Yet another post on error handling)</title>
+      <link>https://adisarid.github.io/post/yet-another-post-on-error-handling/</link>
+      <pubDate>Wed, 11 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/post/yet-another-post-on-error-handling/</guid>
+      <description>
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.&lt;/p&gt;
+&lt;p&gt;There are many posts about error handling in R (and in fact the examples in the &lt;code&gt;purrr&lt;/code&gt; package documentation are not bad either). In this sense, this post is not original.&lt;/p&gt;
+&lt;p&gt;However, I do demonstrate two approaches: both the base-R approach (&lt;code&gt;tryCatch&lt;/code&gt;) and the &lt;code&gt;purrr&lt;/code&gt; approach (&lt;code&gt;safely&lt;/code&gt; and &lt;code&gt;possibly&lt;/code&gt;). The post contains a concise summary of the two methods, with a very simple example.&lt;/p&gt;
+&lt;p&gt;In this post I’m assuming you’re familiar with the basic concepts of functional programming.&lt;/p&gt;
+&lt;div id=&#34;a-simple-example-for-a-function-with-errors&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A simple example for a function with errors&lt;/h2&gt;
+&lt;p&gt;Let’s analyze a very simple function which divides &lt;code&gt;number&lt;/code&gt; by 2. The function should return an error if its input is not an actual number, otherwise it will return &lt;code&gt;number/2&lt;/code&gt;. This function looks like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;divide2 &amp;lt;- function(number){
+  
+  # make sure the input is numeric (otherwise yield an error)
+  if (!is.numeric(number)) {
+    stop(paste(number, &amp;quot;is not a number!&amp;quot;))
+  }
+  
+  # everything is fine, return the result
+  number/2
+}
+
+divide2(10)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 5&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;divide2(pi)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.570796&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But trying a string will yield an error:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;divide2(&amp;quot;foobar&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in divide2(&amp;quot;foobar&amp;quot;) : foobar is not a number!&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;where-is-the-problem&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Where is the problem?&lt;/h2&gt;
+&lt;p&gt;What happens if we have a dataframe (or a list, or any other object for that matter) and we want to try to divide numbers within that object? Invalid values might crash our attempt completely.&lt;/p&gt;
+&lt;p&gt;For example, this loops through two values (10 and &lt;span class=&#34;math inline&#34;&gt;\(\pi\)&lt;/span&gt;) and yields their division by 2.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(purrr)
+map(list(10, pi), divide2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] 5
+## 
+## [[2]]
+## [1] 1.570796&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But the next version fails completely, because it tries to loop through “foobar” which cannot be divided.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map(list(&amp;quot;foobar&amp;quot;, 10, pi), divide2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in .f(.x[[i]], ...) : foobar is not a number!&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No matter where we place the invalid value “foobar”, it will fail our code completely, and we get nothing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-solution-a-safelypossibly-wrapper&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The solution: a &lt;code&gt;safely&lt;/code&gt;/&lt;code&gt;possibly&lt;/code&gt; wrapper&lt;/h2&gt;
+&lt;p&gt;Fortunately, there are very simple wrappers which can help us handle the errors elegantly. These are the two functions from the &lt;code&gt;purrr&lt;/code&gt; package: &lt;code&gt;safely&lt;/code&gt; and &lt;code&gt;possibly&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We’ll first demonstrate the simpler version, &lt;code&gt;possibly&lt;/code&gt;. It allows us to replace errors with a chosen value. Since we expect a number, let’s replace errors with &lt;code&gt;NA_real_&lt;/code&gt; (which is like saying an unknown value which is a real number).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;possibly_divide2 &amp;lt;- possibly(divide2, otherwise = NA_real_, quiet = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;quiet = TRUE&lt;/code&gt; argument is just so errors will not be printed during the loop. Now we are ready to try our error safe variation.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;possibly_out &amp;lt;- map(list(&amp;quot;foobar&amp;quot;, 10, pi), possibly_divide2)
+possibly_out&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] NA
+## 
+## [[2]]
+## [1] 5
+## 
+## [[3]]
+## [1] 1.570796&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can also use &lt;code&gt;unlist&lt;/code&gt; to turn the output into a simple vector, i.e. &lt;code&gt;unlist(possibly_out)&lt;/code&gt; will yield the vector &lt;em&gt;NA, 5, 1.5707963&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;safely&lt;/code&gt; variation has some more strength into it, since it also provides the error messages. The output is slightly more complex though.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;safely_divide2 &amp;lt;- safely(.f = divide2, otherwise = NA_real_, quiet = T)
+safely_out &amp;lt;- map(list(&amp;quot;foobar&amp;quot;, 10, pi), safely_divide2)
+safely_out&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [[1]]$result
+## [1] NA
+## 
+## [[1]]$error
+## &amp;lt;simpleError in .f(...): foobar is not a number!&amp;gt;
+## 
+## 
+## [[2]]
+## [[2]]$result
+## [1] 5
+## 
+## [[2]]$error
+## NULL
+## 
+## 
+## [[3]]
+## [[3]]$result
+## [1] 1.570796
+## 
+## [[3]]$error
+## NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Following the approach suggested in the documentation of &lt;code&gt;safely&lt;/code&gt; (in the examples section), we can use &lt;code&gt;transpose()&lt;/code&gt; and &lt;code&gt;simplify_all()&lt;/code&gt; to arrange the output.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;simply_safe &amp;lt;- safely_out %&amp;gt;% 
+  transpose() %&amp;gt;% 
+  simplify_all()
+
+simply_safe$result  # for the output values&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]       NA 5.000000 1.570796&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;simply_safe$error  # for the error messages&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## &amp;lt;simpleError in .f(...): foobar is not a number!&amp;gt;
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;for-comparisons-sake-how-would-you-trycatch-it&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;For comparison’s sake, how would you &lt;code&gt;tryCatch&lt;/code&gt; it?&lt;/h2&gt;
+&lt;p&gt;The function &lt;code&gt;tryCatch&lt;/code&gt; is a base-R approach for error handling. The concept is similar but the syntax is different. Here is an example of how to build a safe &lt;code&gt;divide2&lt;/code&gt; function with &lt;code&gt;tryCatch&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;try_divide2 &amp;lt;- function(number){
+  tryCatch(expr = {
+    divide2(number)
+  }, 
+  error = function(e){
+    NA_real_
+  }
+  )
+}
+
+map(list(&amp;quot;foobar&amp;quot;, pi, 10), try_divide2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] NA
+## 
+## [[2]]
+## [1] 1.570796
+## 
+## [[3]]
+## [1] 5&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As said - same output, different syntax. Choose your approach. As an appetizer, the same works with base-R functional programming as well. For example, with &lt;code&gt;lapply&lt;/code&gt; it will look like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lapply(list(&amp;quot;foobar&amp;quot;, pi, 10), try_divide2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] NA
+## 
+## [[2]]
+## [1] 1.570796
+## 
+## [[3]]
+## [1] 5&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;bonus-a-benchmark&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Bonus: a benchmark&lt;/h2&gt;
+&lt;p&gt;Before going off on your merry, error handled way, I also provide a short comparison between &lt;code&gt;safely&lt;/code&gt;, &lt;code&gt;possibly&lt;/code&gt;, and &lt;code&gt;tryCatch&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s assume a data set with 20% errors. For simplicity, we’ll use a modified &lt;code&gt;log&lt;/code&gt; instead of our &lt;code&gt;divide2&lt;/code&gt; (similar to the example provided in &lt;code&gt;purrr&lt;/code&gt;’s documentation). It makes sense to fail &lt;code&gt;log&lt;/code&gt; in an all numeric vector (yield an error if there is a negative value). Since a negative log is &lt;code&gt;NaN&lt;/code&gt; (not an error but rather a warning) I’m creating an &lt;code&gt;error_prone_log&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tibble)
+library(dplyr)
+library(microbenchmark)
+library(ggplot2)
+
+error_prone_log &amp;lt;- function(x){
+  if (x &amp;lt; 0){
+    stop(&amp;quot;Negative x&amp;quot;)
+  }
+  
+  log(x)
+}
+
+safe_log &amp;lt;- safely(error_prone_log, otherwise = NaN, quiet = T)
+possible_log &amp;lt;- possibly(error_prone_log, otherwise = NaN, quiet = T)
+tryCatch_log &amp;lt;- function(x){
+  tryCatch(expr = error_prone_log(x),
+           error = function(e){
+             NaN
+             })
+}
+
+set.seed(42)
+test_values &amp;lt;- sample(
+  c(runif(n = 80, min = 0, max = 100),
+    runif(n = 20, min = -100, max = 0)),
+  size = 100, replace = FALSE)
+
+bench_results &amp;lt;- microbenchmark(map(test_values, safe_log),
+                                map(test_values, possible_log),
+                                map(test_values, tryCatch_log), 
+                                times = 1000)
+
+gt::gt(summary(bench_results)) %&amp;gt;% 
+  gt::fmt_number(columns = 2:7, decimals = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;style&gt;html {
+  font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
+}
+
+#acvreehjjd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#acvreehjjd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#acvreehjjd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#acvreehjjd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#acvreehjjd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#acvreehjjd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#acvreehjjd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#acvreehjjd .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#acvreehjjd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#acvreehjjd .gt_from_md &gt; :first-child {
+  margin-top: 0;
+}
+
+#acvreehjjd .gt_from_md &gt; :last-child {
+  margin-bottom: 0;
+}
+
+#acvreehjjd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#acvreehjjd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#acvreehjjd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#acvreehjjd .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#acvreehjjd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#acvreehjjd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#acvreehjjd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#acvreehjjd .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#acvreehjjd .gt_left {
+  text-align: left;
+}
+
+#acvreehjjd .gt_center {
+  text-align: center;
+}
+
+#acvreehjjd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#acvreehjjd .gt_font_normal {
+  font-weight: normal;
+}
+
+#acvreehjjd .gt_font_bold {
+  font-weight: bold;
+}
+
+#acvreehjjd .gt_font_italic {
+  font-style: italic;
+}
+
+#acvreehjjd .gt_super {
+  font-size: 65%;
+}
+
+#acvreehjjd .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+&lt;/style&gt;
+&lt;div id=&#34;acvreehjjd&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+  
+  &lt;thead class=&#34;gt_col_headings&#34;&gt;
+    &lt;tr&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_center&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;expr&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;min&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;lq&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;mean&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;median&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;uq&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;max&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;neval&lt;/th&gt;
+      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;cld&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody class=&#34;gt_table_body&#34;&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, safe_log)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.96&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.08&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.55&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.16&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.94&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;10.10&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_left&#34;&gt;  c&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, possible_log)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.74&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.86&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.27&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.92&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.64&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;9.60&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_left&#34;&gt; b &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, tryCatch_log)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.97&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.05&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.45&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.09&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.68&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;73.99&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_left&#34;&gt;a  &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  
+  
+&lt;/table&gt;&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(bench_results) + 
+  ggtitle(&amp;quot;Comparison of safely, possibly, and tryCatch&amp;quot;) + 
+  coord_flip(ylim = c(1.5, 15))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2020-11-09-YAPOEH-yet-another-post-on-error-handling.en_files/figure-html/error%20prone%20data%20set-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;As can be seen from the benchmark’s results, there is no doubt about it: &lt;code&gt;tryCatch&lt;/code&gt; is the fastest. The &lt;code&gt;purrr&lt;/code&gt; functions &lt;code&gt;safely&lt;/code&gt; and &lt;code&gt;possibly&lt;/code&gt; take longer to run. In my opinion though they are slightly more convenient in terms of syntax.&lt;/p&gt;
+&lt;p&gt;In addition, the &lt;code&gt;safely&lt;/code&gt; variation allows us to retrieve the error messages conveniently for later examination. Again, this capability comes with a price when compared to &lt;code&gt;tryCatch&lt;/code&gt;, but it is roughly the same run time when compared to &lt;code&gt;possibly&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;When you have a long looping process which is prone to errors, for example a pricey web API call or a really large data set, you should aim to catch and handle errors gracefully instead of hoping for the best.&lt;/p&gt;
+&lt;p&gt;If you really need to be efficient, it’s probably worth while to &lt;code&gt;tryCatch&lt;/code&gt;, and if your looking more for ease of use and code readability you should use &lt;code&gt;possibly&lt;/code&gt;. In case you need to examine the error messages more thoroughly, use &lt;code&gt;safely&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Good luck hunting down the errors!&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

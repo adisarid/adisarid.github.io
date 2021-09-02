@@ -1,0 +1,1247 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f0cf03b20998d63e314819fa4a90c13f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Adi Sarid" />
+  <meta property="og:url" content="https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/" />
+  <meta property="og:title" content="Impressions and notes from rstudio::conf2020 | Adi Sarid" />
+  <meta property="og:description" content="I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-01-31T06:08:00-10:00"
+      />
+    
+    <meta property="article:modified_time" content="2020-01-31T06:08:00-10:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/"
+  },
+  "headline": "Impressions and notes from rstudio::conf2020",
+  
+  "datePublished": "2020-01-31T06:08:00-10:00",
+  "dateModified": "2020-01-31T06:08:00-10:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adi Sarid",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Impressions and notes from rstudio::conf2020 | Adi Sarid</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="613765b194701be693f1401cb31b61b9" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#intro"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Impressions and notes from rstudio::conf2020</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 31, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future. I’m listing them by order of appearance in the conference.</p>
+<p><img src="/img/Hexagons_conf2020.jpg" alt="The hexawall at rstudio::conf2020" style="zoom:10%; float:right; padding-left:30px"></p>
+<div id="the-rmarkdown-and-interactive-dashboards-workshop" class="section level2">
+<h2>The RMarkdown and Interactive Dashboards Workshop</h2>
+<p>I participated as a TA in the RMarkdown and Interactive Dashboard workshop led by Carl Howe and Yihui Xie. The workshop dealt with creating RMarkdown documents. Specifically adding interactivity using the <code>flexdashboard</code> package to turn a simple docuement into an interactive html with just a few <code>yaml</code> configurations.</p>
+<p>Some attention was also given to combining different programming languages within documents, i.e. python via the <code>reticulate</code> package, but also <code>css</code> and many more.</p>
+<p>A lesser known feature (at least for me) was the <code>crosstalk</code> package which makes it really easy for different widgets in an RMarkdown document talk to each other.</p>
+<p>Yihui talked about some cool tips and tricks and features of rmarkdown (and surrounding packages). For example:</p>
+<ul>
+<li>The use of the <code>xaringan::infinite_moon_reader()</code> to continously render an Rmd upon save (automatically knits the document)</li>
+<li>Creating animation inside Rmds</li>
+<li>LaTeX tricks within Rmds</li>
+<li>Caching time consuming Rmd chunks</li>
+<li>Many more</li>
+</ul>
+<p>Actually, these are just a few, and there were 23 distinct tips. Yihui’s presentation is <a href="https://slides.yihui.org/2020-rstudio-conf-rmarkdown-recipes.html">available here</a>. All the materials of this workshop, and in fact all the workshops, is available <a href="https://github.com/rstudio-conf-2020">in this github repo</a>.</p>
+<p>Here’s an example of an animation of a wave in an Rmd file. To replicate the example, use the following code in the chunk specifications: <code>{r, animation.hook='gifski', fig.height=3, interval = 0.15}</code>.</p>
+<pre class="r"><code>data_set &lt;- crossing(frame = seq(0, 360, 30), x = seq(0, 2*pi, pi/10)) %&gt;% 
+  mutate(y = sin(x - frame*pi/360)) %&gt;% 
+  nest(data = c(x,y))
+
+map(data_set$data, ~{
+  ggplot(., aes(x, y)) + geom_line()
+})</code></pre>
+<p><img src="/img/ggplot2_animated_wave.gif" /></p>
+<p>Cool, isn’t it?</p>
+<p>If you’re into animations, there are other packages which can also accomplish this, such as the <code>gganimate</code> package.</p>
+</div>
+<div id="deploying-end-to-end-data-science-with-shiny-plumber-and-pins" class="section level2">
+<h2>Deploying End-to-End Data Science with Shiny, Plumber, and Pins</h2>
+<p>A nice talk by Alex Gold from RStudio. Showed a use case for a plumber api combined with a shiny app that talk to each other. For me, mainly the concept of <code>pins</code> as a quick approach for small to medium sized data sets was nice to see. You can easily put a data set in an S3 or any other means of storage on Azure, GCP, Github, etc. The downside compared to a database is that there is no frequent backup or an option to roll back changes.</p>
+</div>
+<div id="were-hitting-r-a-million-times-a-day-so-we-made-a-talk-about-it" class="section level2">
+<h2>We’re hitting R a million times a day so we made a talk about it</h2>
+<p>A talk by Heather and Jacqueline Nolis from T-Mobile. This was kind of a follow-up talk on what they discussed in the previous rstudio::conf (2019), but this time they came with some important lessons from their in-field experiences.</p>
+<p>For example, talking about garbage collection in R which happens once in a while and causes response times to lag. Can be avoided by manually calling the garbage collection with <code>gc()</code>.</p>
+</div>
+<div id="asynchronous-programming-in-r" class="section level2">
+<h2>Asynchronous programming in R</h2>
+<p>Winston Chang demonstrating some ways for Asynchronous programming with the <code>later</code> package.</p>
+<p>An interesting thing he Winston demonstrated was that you can open up a server using <code>websocket</code> and <code>httpuv</code> to interact with the R process even if the rstudio console is busy (i.e., for example during a shiny app run).</p>
+<p>Materials of the talk will probably be available here <a href="https://github.com/wch/2020-01-later">https://github.com/wch/2020-01-later</a>, though as of the time of writing these lines, the repo is empty. Maybe <code>later</code>.</p>
+</div>
+<div id="of-teacups-giraffes-r-markdown" class="section level2">
+<h2>Of Teacups, Giraffes, &amp; R Markdown</h2>
+<p>A lovely and ispiring talk by Desiree De Lean, about how she (and a co-author) used a sort of Gamification to develop a statistics course. The course is based on the mysterious world of teacup Giraffes, and introduces statistical concepts with a nice and appealing twist.</p>
+<p>Another innovative approach this used was to combine <code>learnr</code> iframes within the RMarkdown book they used, which makes the experience of the learner interactive. The <code>learnr</code> segments are hosted in turn on shinyapps.io.</p>
+<p>The book is available online <a href="https://tinystats.github.io/teacups-giraffes-and-statistics">here</a>.</p>
+</div>
+<div id="styling-shiny-apps-with-saas-and-bootstrap-4" class="section level2">
+<h2>Styling Shiny apps with Saas and Bootstrap 4</h2>
+<p>Joe Chang introduced the <code>bootstraplib</code>package which provides much more flexibilty when composing your own theme for a shiny app. It takes away a lot of the pains related with CSS-ing your way aound the complexities of a shiny app UI.</p>
+<p>The package is still experimental, more info <a href="https://rstudio.github.io/bootstraplib/">here</a>.</p>
+<p>I talked to Joe Chang a bit, the package is not going to solve problems such as right-to-left localization for Hebrew.</p>
+</div>
+<div id="d-ggplots-with-rayshader" class="section level2">
+<h2>3D ggplots with rayshader</h2>
+<p>A cool presentation by Tyler Morgan Wall author of the <code>rayshader</code> package. Demonstrated how ggplot2 charts can be easily rendered into a 3d model.</p>
+<p>Mostly relevant for illustrating surfaces. The rayshader can be used to turn this plot:</p>
+<pre class="r"><code>surface &lt;- crossing(x = seq(0, 2*pi, pi/20), y = seq(0, 2*pi, pi/20)) %&gt;% 
+  mutate(z = sin(x)*x + cos(3*y))
+surface_plot &lt;- ggplot(surface, aes(x = x, y = y, fill = z)) + 
+  geom_tile()
+surface_plot</code></pre>
+<p><img src="/post/2020-01-31-rstudio-conf2020-recap_files/figure-html/surface%20as%20a%20tile%20countour-1.png" width="672" /></p>
+<p>Projected as a 3d model using the rayshader here:</p>
+<pre class="r"><code>rayshader::plot_gg(surface_plot)</code></pre>
+<p><img src="/img/rayshader_snap.png" /></p>
+<p>Tyler also demonstrated how you can generate a movie with the camera browsing around the chart. Beware, rendering takes long.</p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>Obviously, there were many more notable talks at the conference, but this post was meant as a short list highlighting just a few.</p>
+<p>To sum up, the rstudio conf, was a great opportunity to meet up with collegues (old and new), brush up on some of the advanced and noval packages, see how the rstudio team is planning and seeing the future of RStudio and of the R ecosystem, and enjoy San Fransisco!</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/rstudio-conference/">rstudio conference</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/&amp;text=Impressions%20and%20notes%20from%20rstudio::conf2020" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/&amp;t=Impressions%20and%20notes%20from%20rstudio::conf2020" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Impressions%20and%20notes%20from%20rstudio::conf2020&amp;body=https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/&amp;title=Impressions%20and%20notes%20from%20rstudio::conf2020" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Impressions%20and%20notes%20from%20rstudio::conf2020%20https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/&amp;title=Impressions%20and%20notes%20from%20rstudio::conf2020" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://adisarid.github.io"></a></h5>
+      <h6 class="card-subtitle">Partner and Head of Operations Research Department</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/SaridResearch" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=Lza4mMoAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/adisarid" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2021 Adi Sarid
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1305 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).
+After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f0cf03b20998d63e314819fa4a90c13f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Adi Sarid" />
+  <meta property="og:url" content="https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/" />
+  <meta property="og:title" content="Set up RStudio server with Let&#39;s Encrypt SSL certificate | Adi Sarid" />
+  <meta property="og:description" content="For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).
+After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-03-06T22:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2020-03-06T22:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/"
+  },
+  "headline": "Set up RStudio server with Let's Encrypt SSL certificate",
+  
+  "datePublished": "2020-03-06T22:00:00Z",
+  "dateModified": "2020-03-06T22:00:00Z",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adi Sarid",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).\nAfter browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Set up RStudio server with Let&#39;s Encrypt SSL certificate | Adi Sarid</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="9d527107842058e21b347763aa147fe3" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#intro"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Set up RStudio server with Let&#39;s Encrypt SSL certificate</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Mar 6, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).</p>
+<p>After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i.e., with SSL certificates.</p>
+<p>I’ve put together this step-by-step post to close this gap (in part for self-documentation). I don’t cover dockerized versions here.</p>
+<div id="step-1-or-actually-steps-1-10" class="section level2">
+<h2>Step 1 (or actually steps 1-10)</h2>
+<p>Install rstudio server and shiny server on your choice of cloud provider. Common choices are AWS (EC2 or Lightsail, Digital Ocean, Azure, and Google. Anything works actually).</p>
+<p>Installation instructions are covered in detail in Dean Attali’s post <a href="https://deanattali.com/2015/05/09/setup-rstudio-shiny-server-digital-ocean">here</a> which uses Digital Ocean.</p>
+<p>No use repeating everything in its entirety. I will however highlight two things I’ve found helpful and are a bit different from Dean’s post.</p>
+<ol style="list-style-type: decimal">
+<li>Selection of instance size (resources)</li>
+<li>AWS Lightsail’s deafult firewall settings</li>
+</ol>
+<div id="selection-of-instance-size" class="section level3">
+<h3>Selection of instance size</h3>
+<p>I’ve found that opening an instance with low memory (i.e., 0.5-1Gb) is problematic. Its cheap, but if you’re installing packages such as <code>dplyr</code> (included in <code>tidyverse</code>), compiling the package within your server, will require more memory than what you have available. You can workaround this by increasing your swap file size (step 6 in Dean’s post), but eventually even R processes might give you a hard time in the future. I’ve been using a 4GB server, which seems to be ok for my purposes (and at the time of writing this post costs about $20 USD per month).</p>
+</div>
+<div id="aws-lightsails-firewall-settings" class="section level3">
+<h3>AWS Lightsail’s firewall settings</h3>
+<p>When using <strong>AWS Lightsail</strong> (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).</p>
+<p>Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:</p>
+<p><img src='/img/lightsail_firewall_configuration.jpg'></p>
+<p>If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).</p>
+</div>
+</div>
+<div id="secure-you-server-with-ssl-encryption" class="section level2">
+<h2>Secure you server with SSL encryption</h2>
+<p>Since you will probably be passing data back and forth between your remote server and local computer, you want to secure this data transfer with encryption. The best way to do this is using SSL certificates (it’s actually called TSL, the name SSL refers to a deprecated protocol, but everyone seems to still be using the SSL initials, <a href="https://www.cloudflare.com/learning/ssl/what-is-ssl/">see here</a>).</p>
+<p>There is a free service called Let’s Encrypt which provides SSL certificates, which is what we’re going to use here. I’m actually adopting the approach of <a href="https://docs.fuga.cloud/how-to-use-lets-encrypt-certificates-to-secure-nginxs-ssl-configuration">this tutorial</a>.</p>
+<div id="install-lets-encrypt-and-get-certficates" class="section level3">
+<h3>Install Let’s Encrypt and get certficates</h3>
+<p>Install the following software on your linux server</p>
+<pre><code>sudo apt instal letsencrypt</code></pre>
+<p>Update your nginx configuration as preperation for obtaining the let’s encrypt certificate. This step is needed because when requesting a certificate from let’s encrypt, the let’s encrypt server will try to authenticate your server.</p>
+<p>Use</p>
+<pre><code>sudo nano /etc/nginx/sites-enabled/default</code></pre>
+<p>And add the following (replace <code>r.example.com</code> with your domain):</p>
+<pre><code>server {
+        listen 80;
+        listen [::]:80;
+        root /var/www/r.example.com/html;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name r.example.com;
+}</code></pre>
+<p>Get your SSL certificates using the following line, just replace <code>r.example.com</code> with your subdomain.</p>
+<pre><code>letsencrypt certonly -a webroot --webroot-path=/var/www/r.example.com/html/ -d r.example.com
+</code></pre>
+<p>Update your nginx settings again</p>
+<pre><code>sudo nano /etc/nginx/sites-enabled/default</code></pre>
+<p>To have the following setup (remember to replace <code>r.example.com</code> with your domain):</p>
+<pre><code>map $http_upgrade $connection_upgrade {
+  default upgrade;
+  &#39;&#39;      close;
+}
+
+# listens on port 80 and redirects traffic to secure alternative
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        server_name r.example.com;
+        return 301 https://r.example.com$request_uri;
+}
+
+server {
+        
+        # SSL configuration
+        
+        listen 443 ssl;
+        ssl_certificate /etc/letsencrypt/live/r.example.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/r.example.com/privkey.pem;
+        ssl_protocols TLSv1.2;
+
+        ssl_ciphers EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+        ssl_prefer_server_ciphers On;
+        ssl_session_cache shared:SSL:128m;
+        add_header Strict-Transport-Security &quot;max-age=31557600; includeSubDomains&quot;;
+        ssl_stapling on;
+        ssl_stapling_verify on;
+
+        root /var/www/r.example.com/html;
+
+        server_name _;
+
+        # Reroute traffic to shiny server (i.e., reverse proxy for port 3838)
+        location /shiny/ {
+           proxy_pass http://127.0.0.1:3838/;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection $connection_upgrade;
+           rewrite ^(/shiny/[^/]+)$ $1/ permanent;
+        }
+
+        # Reroute traffic to rstudio server (i.e., reverse proxy for port 8787)
+        location /rstudio/ {
+           proxy_pass http://127.0.0.1:8787/;
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection $connection_upgrade;
+        }
+}
+</code></pre>
+<p>Your server should be working now, but since Let’s Encrypt certificates only last 90 days, lets put an automatically renewal process in place.</p>
+<pre><code>sudo nano /opt/renewCerts.sh</code></pre>
+<p>Paste the following text:</p>
+<pre><code>#!/bin/sh
+# This script renews all the Let&#39;s Encrypt certificates with a validity &lt; 30 days
+if ! letsencrypt renew &gt; /var/log/letsencrypt/renew.log 2&gt;&amp;1 ; then
+    echo Automated renewal failed:
+    cat /var/log/letsencrypt/renew.log
+    exit 1
+fi
+nginx -t &amp;&amp; nginx -s reload</code></pre>
+<p>Make sure the script is owned and executable by root:</p>
+<pre><code>chown root.root /opt/renewCerts.sh
+chmod u+x /opt/renewCerts.sh</code></pre>
+<p>Add it to cron for auto execution:</p>
+<pre><code>sudo crontab -e</code></pre>
+<p>Add</p>
+<pre><code>@weekly /opt/renewCerts.sh</code></pre>
+</div>
+</div>
+<div id="all-should-be-set" class="section level2">
+<h2>All should be set!</h2>
+<p>Go ahead and browse to your domain (e.g., <code>https://r.example.com/rstudio</code>). Check that you’re able to login properly and that all pages are secure on <code>https</code>.</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/rstudio-server/">RStudio server</a>
+  
+  <a class="badge badge-light" href="/tag/nginx/">nginx</a>
+  
+  <a class="badge badge-light" href="/tag/lets-encrypt/">Let&#39;s Encrypt</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/&amp;text=Set%20up%20RStudio%20server%20with%20Let&amp;#39;s%20Encrypt%20SSL%20certificate" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/&amp;t=Set%20up%20RStudio%20server%20with%20Let&amp;#39;s%20Encrypt%20SSL%20certificate" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Set%20up%20RStudio%20server%20with%20Let&amp;#39;s%20Encrypt%20SSL%20certificate&amp;body=https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/&amp;title=Set%20up%20RStudio%20server%20with%20Let&amp;#39;s%20Encrypt%20SSL%20certificate" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Set%20up%20RStudio%20server%20with%20Let&amp;#39;s%20Encrypt%20SSL%20certificate%20https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/&amp;title=Set%20up%20RStudio%20server%20with%20Let&amp;#39;s%20Encrypt%20SSL%20certificate" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://adisarid.github.io"></a></h5>
+      <h6 class="card-subtitle">Partner and Head of Operations Research Department</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/SaridResearch" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=Lza4mMoAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/adisarid" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2021 Adi Sarid
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

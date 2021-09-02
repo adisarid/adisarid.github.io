@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tidyeval | Adi Sarid</title>
+    <link>https://adisarid.github.io/tag/tidyeval/</link>
+      <atom:link href="https://adisarid.github.io/tag/tidyeval/index.xml" rel="self" type="application/rss+xml" />
+    <description>tidyeval</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Sun, 20 Jan 2019 12:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>tidyeval</title>
+      <link>https://adisarid.github.io/tag/tidyeval/</link>
+    </image>
+    
+    <item>
+      <title>Short note about tidyeval</title>
+      <link>https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/</link>
+      <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/</guid>
+      <description>
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Following Jenny Bryan’s talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).&lt;/p&gt;
+&lt;div id=&#34;what-is-tidyeval&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;What is tidyeval?&lt;/h1&gt;
+&lt;p&gt;Tidy evaluation, or non standard evaluation, allows us to pass column names between functions. This is the “classic” behaviour of most tidyverse functions. For example, we use:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+
+mtcars %&amp;gt;% 
+  select(mpg, cyl)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                      mpg cyl
+## Mazda RX4           21.0   6
+## Mazda RX4 Wag       21.0   6
+## Datsun 710          22.8   4
+## Hornet 4 Drive      21.4   6
+## Hornet Sportabout   18.7   8
+## Valiant             18.1   6
+## Duster 360          14.3   8
+## Merc 240D           24.4   4
+## Merc 230            22.8   4
+## Merc 280            19.2   6
+## Merc 280C           17.8   6
+## Merc 450SE          16.4   8
+## Merc 450SL          17.3   8
+## Merc 450SLC         15.2   8
+## Cadillac Fleetwood  10.4   8
+## Lincoln Continental 10.4   8
+## Chrysler Imperial   14.7   8
+## Fiat 128            32.4   4
+## Honda Civic         30.4   4
+## Toyota Corolla      33.9   4
+## Toyota Corona       21.5   4
+## Dodge Challenger    15.5   8
+## AMC Javelin         15.2   8
+## Camaro Z28          13.3   8
+## Pontiac Firebird    19.2   8
+## Fiat X1-9           27.3   4
+## Porsche 914-2       26.0   4
+## Lotus Europa        30.4   4
+## Ford Pantera L      15.8   8
+## Ferrari Dino        19.7   6
+## Maserati Bora       15.0   8
+## Volvo 142E          21.4   4&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The two variables were selected out of the &lt;code&gt;mtcars&lt;/code&gt; data set, and we specified them as names without using any quotation marks. They are symbolic, not characters (although they could also be specified as characters, &lt;code&gt;select&lt;/code&gt; is smart enough that way).&lt;/p&gt;
+&lt;p&gt;But assume we want to pass variables “tidy style” between functions which do different operations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;variation-one---a-basic-example&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Variation one - a basic example&lt;/h1&gt;
+&lt;p&gt;We’ll start simple: a function which has two parameters. The first parameter is a dataset. The second parameters is a grouping variable. All other variables in the data set will have their mean computed using &lt;code&gt;summarize_all&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test1 &amp;lt;- function(dataset, groupby_vars){
+  grouping_vars &amp;lt;- enquo(groupby_vars)
+  dataset %&amp;gt;% 
+    group_by(!! grouping_vars) %&amp;gt;%
+    summarize_all(funs(mean(.))) %&amp;gt;%
+    return()
+}
+
+mtcars %&amp;gt;%
+  select(cyl:carb) %&amp;gt;%
+  test1(groupby_vars = cyl)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `funs()` was deprecated in dplyr 0.8.0.
+## Please use a list of either functions or lambdas: 
+## 
+##   # Simple named list: 
+##   list(mean = mean, median = median)
+## 
+##   # Auto named with `tibble::lst()`: 
+##   tibble::lst(mean, median)
+## 
+##   # Using lambdas
+##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 10
+##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1     4  105.  82.6  4.07  2.29  19.1 0.909 0.727  4.09  1.55
+## 2     6  183. 122.   3.59  3.12  18.0 0.571 0.429  3.86  3.43
+## 3     8  353. 209.   3.23  4.00  16.8 0     0.143  3.29  3.5&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can see that &lt;code&gt;mtcars&lt;/code&gt; was grouped by &lt;code&gt;cyl&lt;/code&gt; which was passed as a name (not characters). The function &lt;code&gt;test1&lt;/code&gt; took it, then &lt;code&gt;enquo()&lt;/code&gt;-ed it, and eventually used it in the tidy chain using &lt;code&gt;!!&lt;/code&gt;.
+The function &lt;code&gt;enquo&lt;/code&gt; turns the input into a “quosure”. Then the &lt;code&gt;!!&lt;/code&gt; “uses” the quosure to select the proper variable from mtcars.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;passing-arguments-using-...&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Passing arguments using &lt;code&gt;...&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;A slightly more complex situation is passing multiple arguments to the function. Assume that this time we want to construct a function which gets one input by which to group by, and what are the variables to be summarized:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test2 &amp;lt;- function(dataset, groupby_vars, ...){
+  grouping_vars &amp;lt;- enquo(groupby_vars)
+  dataset %&amp;gt;% 
+    group_by(!! grouping_vars) %&amp;gt;%
+    summarize_at(vars(...), funs(mean(.))) %&amp;gt;%
+    return()
+}
+
+mtcars %&amp;gt;%
+  select(cyl:carb) %&amp;gt;%
+  test2(groupby_vars = cyl, disp:drat)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 4
+##     cyl  disp    hp  drat
+##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1     4  105.  82.6  4.07
+## 2     6  183. 122.   3.59
+## 3     8  353. 209.   3.23&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What happend is that &lt;code&gt;test2&lt;/code&gt; treats the grouping variable the same way that &lt;code&gt;test1&lt;/code&gt; treated it, but it also passed along the variables &lt;code&gt;disp:drat&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;maximum-flexibility---multiple-enquos&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Maximum flexibility - multiple &lt;code&gt;enquo()&lt;/code&gt;s&lt;/h1&gt;
+&lt;p&gt;Sometime passing the dots, i.e., &lt;code&gt;...&lt;/code&gt; is not enough.
+For example, if we want specify behaviour for different columns of the data frame (e.g., compute the mean for some and the std for others). In such cases we need a more flexible version. We can extend the flexibilty of this approach using multiple &lt;code&gt;enqou()&lt;/code&gt;s.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test3 &amp;lt;- function(dataset, groupby_vars, computemean_vars, computestd_vars){
+  grouping_vars &amp;lt;- enquo(groupby_vars)
+  mean_vars &amp;lt;- enquo(computemean_vars)
+  std_vars &amp;lt;- enquo(computestd_vars)
+  dataset %&amp;gt;% 
+    group_by(!! grouping_vars) %&amp;gt;%
+    summarize_at(vars(!!mean_vars), funs(mean(.))) %&amp;gt;%
+    left_join(dataset %&amp;gt;%
+                group_by(!! grouping_vars) %&amp;gt;%
+                summarize_at(vars(!!std_vars), funs(sd(.))))
+}
+mtcars %&amp;gt;% 
+  test3(groupby_vars = cyl, disp:drat, wt:carb)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Joining, by = &amp;quot;cyl&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 10
+##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1     4  105.  82.6  4.07 0.570  1.68 0.302 0.467 0.539 0.522
+## 2     6  183. 122.   3.59 0.356  1.71 0.535 0.535 0.690 1.81 
+## 3     8  353. 209.   3.23 0.759  1.20 0     0.363 0.726 1.56&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the resulting table, the first column &lt;code&gt;cyl&lt;/code&gt; is the grouping variable, columns &lt;code&gt;disp&lt;/code&gt; through &lt;code&gt;drat&lt;/code&gt; have the mean of the corresponding variables, and columns &lt;code&gt;wt&lt;/code&gt; through &lt;code&gt;carb&lt;/code&gt; have their standard deviation computed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;additional-uses-of-tidy-evaluation&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Additional uses of tidy evaluation&lt;/h1&gt;
+&lt;p&gt;This evaluation is very useful when building flexible functions, but also when using the &lt;code&gt;ggplot2&lt;/code&gt; syntax within functions, and more so when using Shiny applications, in which input parameters need to go in as grouping or as plotting parameters.&lt;/p&gt;
+&lt;p&gt;However, this is a topic for a different post.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusions&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusions&lt;/h1&gt;
+&lt;p&gt;Tidy evaluation empowers you with great tools - it offers a great degree of flexibilty, but it’s a bit tricky to master.&lt;/p&gt;
+&lt;p&gt;My suggestion is that if you’re trying to master tidy evaluation, just think about your use case: which of the three variations presented in this post it resembles too?&lt;/p&gt;
+&lt;p&gt;Work your way up - from the simplest version (if it works for you) and up to the complex (but most flexible) version.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

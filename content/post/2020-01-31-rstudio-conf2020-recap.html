@@ -10,7 +10,8 @@ tags: ["rstudio conference"]
 
 
 <p>I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future. I’m listing them by order of appearance in the conference.</p>
-<p><img src="/img/Hexagons_conf2020.jpg" alt="The hexawall at rstudio::conf2020" style="zoom:10%; float:right; padding-left:30px"></p>
+<p><img src="/media/Hexagons_conf2020.jpg" alt="The hexawall at rstudio::conf2020" style="zoom:10%; float:right; padding-left:30px">
+<!-- ![](/post/2020-01-31-rstudio-conf2020-recap_files/icon.png) --></p>
 <div id="the-rmarkdown-and-interactive-dashboards-workshop" class="section level2">
 <h2>The RMarkdown and Interactive Dashboards Workshop</h2>
 <p>I participated as a TA in the RMarkdown and Interactive Dashboard workshop led by Carl Howe and Yihui Xie. The workshop dealt with creating RMarkdown documents. Specifically adding interactivity using the <code>flexdashboard</code> package to turn a simple docuement into an interactive html with just a few <code>yaml</code> configurations.</p>
@@ -33,7 +34,7 @@ tags: ["rstudio conference"]
 map(data_set$data, ~{
   ggplot(., aes(x, y)) + geom_line()
 })</code></pre>
-<p><img src="/img/ggplot2_animated_wave.gif" /></p>
+<p><img src="/media/ggplot2_animated_wave.gif" /></p>
 <p>Cool, isn’t it?</p>
 <p>If you’re into animations, there are other packages which can also accomplish this, such as the <code>gganimate</code> package.</p>
 </div>
@@ -76,7 +77,7 @@ surface_plot</code></pre>
 <p><img src="/post/2020-01-31-rstudio-conf2020-recap_files/figure-html/surface%20as%20a%20tile%20countour-1.png" width="672" /></p>
 <p>Projected as a 3d model using the rayshader here:</p>
 <pre class="r"><code>rayshader::plot_gg(surface_plot)</code></pre>
-<p><img src="/img/rayshader_snap.png" /></p>
+<p><img src="/media/rayshader_snap.png" /></p>
 <p>Tyler also demonstrated how you can generate a movie with the camera browsing around the chart. Beware, rendering takes long.</p>
 </div>
 <div id="summary" class="section level2">

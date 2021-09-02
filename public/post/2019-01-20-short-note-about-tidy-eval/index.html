@@ -1,0 +1,1315 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Following Jenny Bryan’s talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).
+What is tidyeval? Tidy evaluation, or non standard evaluation, allows us to pass column names between functions." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f0cf03b20998d63e314819fa4a90c13f.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Adi Sarid" />
+  <meta property="og:url" content="https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/" />
+  <meta property="og:title" content="Short note about tidyeval | Adi Sarid" />
+  <meta property="og:description" content="Following Jenny Bryan’s talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).
+What is tidyeval? Tidy evaluation, or non standard evaluation, allows us to pass column names between functions." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2019-01-20T12:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2019-01-20T12:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/"
+  },
+  "headline": "Short note about tidyeval",
+  
+  "datePublished": "2019-01-20T12:00:00Z",
+  "dateModified": "2019-01-20T12:00:00Z",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adi Sarid",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Following Jenny Bryan’s talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).\nWhat is tidyeval? Tidy evaluation, or non standard evaluation, allows us to pass column names between functions."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Short note about tidyeval | Adi Sarid</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="bffee4df110f883415ea043910de9482" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#intro"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Short note about tidyeval</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 20, 2019
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Following Jenny Bryan’s talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).</p>
+<div id="what-is-tidyeval" class="section level1">
+<h1>What is tidyeval?</h1>
+<p>Tidy evaluation, or non standard evaluation, allows us to pass column names between functions. This is the “classic” behaviour of most tidyverse functions. For example, we use:</p>
+<pre class="r"><code>library(tidyverse)
+
+mtcars %&gt;% 
+  select(mpg, cyl)</code></pre>
+<pre><code>##                      mpg cyl
+## Mazda RX4           21.0   6
+## Mazda RX4 Wag       21.0   6
+## Datsun 710          22.8   4
+## Hornet 4 Drive      21.4   6
+## Hornet Sportabout   18.7   8
+## Valiant             18.1   6
+## Duster 360          14.3   8
+## Merc 240D           24.4   4
+## Merc 230            22.8   4
+## Merc 280            19.2   6
+## Merc 280C           17.8   6
+## Merc 450SE          16.4   8
+## Merc 450SL          17.3   8
+## Merc 450SLC         15.2   8
+## Cadillac Fleetwood  10.4   8
+## Lincoln Continental 10.4   8
+## Chrysler Imperial   14.7   8
+## Fiat 128            32.4   4
+## Honda Civic         30.4   4
+## Toyota Corolla      33.9   4
+## Toyota Corona       21.5   4
+## Dodge Challenger    15.5   8
+## AMC Javelin         15.2   8
+## Camaro Z28          13.3   8
+## Pontiac Firebird    19.2   8
+## Fiat X1-9           27.3   4
+## Porsche 914-2       26.0   4
+## Lotus Europa        30.4   4
+## Ford Pantera L      15.8   8
+## Ferrari Dino        19.7   6
+## Maserati Bora       15.0   8
+## Volvo 142E          21.4   4</code></pre>
+<p>The two variables were selected out of the <code>mtcars</code> data set, and we specified them as names without using any quotation marks. They are symbolic, not characters (although they could also be specified as characters, <code>select</code> is smart enough that way).</p>
+<p>But assume we want to pass variables “tidy style” between functions which do different operations.</p>
+</div>
+<div id="variation-one---a-basic-example" class="section level1">
+<h1>Variation one - a basic example</h1>
+<p>We’ll start simple: a function which has two parameters. The first parameter is a dataset. The second parameters is a grouping variable. All other variables in the data set will have their mean computed using <code>summarize_all</code>.</p>
+<pre class="r"><code>test1 &lt;- function(dataset, groupby_vars){
+  grouping_vars &lt;- enquo(groupby_vars)
+  dataset %&gt;% 
+    group_by(!! grouping_vars) %&gt;%
+    summarize_all(funs(mean(.))) %&gt;%
+    return()
+}
+
+mtcars %&gt;%
+  select(cyl:carb) %&gt;%
+  test1(groupby_vars = cyl)</code></pre>
+<pre><code>## Warning: `funs()` was deprecated in dplyr 0.8.0.
+## Please use a list of either functions or lambdas: 
+## 
+##   # Simple named list: 
+##   list(mean = mean, median = median)
+## 
+##   # Auto named with `tibble::lst()`: 
+##   tibble::lst(mean, median)
+## 
+##   # Using lambdas
+##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
+<pre><code>## # A tibble: 3 x 10
+##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  105.  82.6  4.07  2.29  19.1 0.909 0.727  4.09  1.55
+## 2     6  183. 122.   3.59  3.12  18.0 0.571 0.429  3.86  3.43
+## 3     8  353. 209.   3.23  4.00  16.8 0     0.143  3.29  3.5</code></pre>
+<p>We can see that <code>mtcars</code> was grouped by <code>cyl</code> which was passed as a name (not characters). The function <code>test1</code> took it, then <code>enquo()</code>-ed it, and eventually used it in the tidy chain using <code>!!</code>.
+The function <code>enquo</code> turns the input into a “quosure”. Then the <code>!!</code> “uses” the quosure to select the proper variable from mtcars.</p>
+</div>
+<div id="passing-arguments-using-..." class="section level1">
+<h1>Passing arguments using <code>...</code></h1>
+<p>A slightly more complex situation is passing multiple arguments to the function. Assume that this time we want to construct a function which gets one input by which to group by, and what are the variables to be summarized:</p>
+<pre class="r"><code>test2 &lt;- function(dataset, groupby_vars, ...){
+  grouping_vars &lt;- enquo(groupby_vars)
+  dataset %&gt;% 
+    group_by(!! grouping_vars) %&gt;%
+    summarize_at(vars(...), funs(mean(.))) %&gt;%
+    return()
+}
+
+mtcars %&gt;%
+  select(cyl:carb) %&gt;%
+  test2(groupby_vars = cyl, disp:drat)</code></pre>
+<pre><code>## # A tibble: 3 x 4
+##     cyl  disp    hp  drat
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  105.  82.6  4.07
+## 2     6  183. 122.   3.59
+## 3     8  353. 209.   3.23</code></pre>
+<p>What happend is that <code>test2</code> treats the grouping variable the same way that <code>test1</code> treated it, but it also passed along the variables <code>disp:drat</code>.</p>
+</div>
+<div id="maximum-flexibility---multiple-enquos" class="section level1">
+<h1>Maximum flexibility - multiple <code>enquo()</code>s</h1>
+<p>Sometime passing the dots, i.e., <code>...</code> is not enough.
+For example, if we want specify behaviour for different columns of the data frame (e.g., compute the mean for some and the std for others). In such cases we need a more flexible version. We can extend the flexibilty of this approach using multiple <code>enqou()</code>s.</p>
+<pre class="r"><code>test3 &lt;- function(dataset, groupby_vars, computemean_vars, computestd_vars){
+  grouping_vars &lt;- enquo(groupby_vars)
+  mean_vars &lt;- enquo(computemean_vars)
+  std_vars &lt;- enquo(computestd_vars)
+  dataset %&gt;% 
+    group_by(!! grouping_vars) %&gt;%
+    summarize_at(vars(!!mean_vars), funs(mean(.))) %&gt;%
+    left_join(dataset %&gt;%
+                group_by(!! grouping_vars) %&gt;%
+                summarize_at(vars(!!std_vars), funs(sd(.))))
+}
+mtcars %&gt;% 
+  test3(groupby_vars = cyl, disp:drat, wt:carb)</code></pre>
+<pre><code>## Joining, by = &quot;cyl&quot;</code></pre>
+<pre><code>## # A tibble: 3 x 10
+##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  105.  82.6  4.07 0.570  1.68 0.302 0.467 0.539 0.522
+## 2     6  183. 122.   3.59 0.356  1.71 0.535 0.535 0.690 1.81 
+## 3     8  353. 209.   3.23 0.759  1.20 0     0.363 0.726 1.56</code></pre>
+<p>In the resulting table, the first column <code>cyl</code> is the grouping variable, columns <code>disp</code> through <code>drat</code> have the mean of the corresponding variables, and columns <code>wt</code> through <code>carb</code> have their standard deviation computed.</p>
+</div>
+<div id="additional-uses-of-tidy-evaluation" class="section level1">
+<h1>Additional uses of tidy evaluation</h1>
+<p>This evaluation is very useful when building flexible functions, but also when using the <code>ggplot2</code> syntax within functions, and more so when using Shiny applications, in which input parameters need to go in as grouping or as plotting parameters.</p>
+<p>However, this is a topic for a different post.</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>Tidy evaluation empowers you with great tools - it offers a great degree of flexibilty, but it’s a bit tricky to master.</p>
+<p>My suggestion is that if you’re trying to master tidy evaluation, just think about your use case: which of the three variations presented in this post it resembles too?</p>
+<p>Work your way up - from the simplest version (if it works for you) and up to the complex (but most flexible) version.</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/tidyeval/">tidyeval</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/&amp;text=Short%20note%20about%20tidyeval" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/&amp;t=Short%20note%20about%20tidyeval" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Short%20note%20about%20tidyeval&amp;body=https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/&amp;title=Short%20note%20about%20tidyeval" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Short%20note%20about%20tidyeval%20https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/&amp;title=Short%20note%20about%20tidyeval" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://adisarid.github.io"></a></h5>
+      <h6 class="card-subtitle">Partner and Head of Operations Research Department</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/SaridResearch" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=Lza4mMoAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/adisarid" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2021 Adi Sarid
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

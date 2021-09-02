@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spam | Adi Sarid</title>
+    <link>https://adisarid.github.io/tag/spam/</link>
+      <atom:link href="https://adisarid.github.io/tag/spam/index.xml" rel="self" type="application/rss+xml" />
+    <description>Spam</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Fri, 30 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <title>Spam</title>
+      <link>https://adisarid.github.io/tag/spam/</link>
+    </image>
+    
+    <item>
+      <title>A data science detective story (and there&#39;s a villain too)</title>
+      <link>https://adisarid.github.io/post/data-science-forensics/</link>
+      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/post/data-science-forensics/</guid>
+      <description>
+&lt;script src=&#34;https://adisarid.github.io/post/data-science-forensics/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Here is a detective story about some data science forensics, and there is a villain too.&lt;/p&gt;
+&lt;div id=&#34;background&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Background&lt;/h1&gt;
+&lt;p&gt;As a partner at a market research firm, I get involved in quite a lot of surveys. Some of them (such as voice of customer surveys/customer satisfaction) include sending a personal email invitation with “an invite link”.&lt;/p&gt;
+&lt;p&gt;Lately, we’ve started noticing a weird phenomenon: a lot of the links are opened (the email invitation link is clicked) but left unanswered. Also, we see a lot of cases where expect responses from a specific location, but see that originate all over Europe.&lt;/p&gt;
+&lt;p&gt;We started asking ourselves, are we witnessing an abuse of our surveys?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;validating-respondents&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Validating Respondents&lt;/h1&gt;
+&lt;p&gt;One of my team members noticed some irregularities during our routine QA validations: responses were originating from unexpected remote locations all over Europe. A lot of duplicated IPs, as if a lot of people were suddenly using a VPN or something like that. Using a &lt;code&gt;whois&lt;/code&gt; service I understood that the links are being opened by Microsoft owned IPs.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Bot-ip-range.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;My first thought was that they started using some bot which examines the survey link within the email. Why exactly? at that point I hypothesized it was some kind of caching going on, probably for speed improvements (but that’s not the deal).&lt;/p&gt;
+&lt;p&gt;Since no false information was being entered in these “partial surveys”, no actual harm was done by this bot. Except that it’s not entirely accurate, you see - in some surveys, the practice is to embed the first question of the survey within the invitation email. That way the first click of the recipient includes the answer to the first question, e.g., a “Net Promoters Score” (NPS) or general satisfaction question. It helps with response rates, but unfortunately the bot started clicking the links randomely and entering grabage data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-bot-with-random-thoughts&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;A bot with random thoughts&lt;/h1&gt;
+&lt;p&gt;Trying to analyze when the problem started affecting my clients, I created a chart similar to following, which compares partial answers (which are affected by the bot) versus complete answers (the bot doesn’t complete the survey entirely, so complete answers are real people). I’ve added an illustration (I’m not using real data here so not to expose actual client’s data).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+
+responses &amp;lt;- read_csv(&amp;quot;example_data.csv&amp;quot;) %&amp;gt;% 
+  mutate(response_time = factor(response_time, c(&amp;quot;Before 2021-06-01&amp;quot;, &amp;quot;After 2021-06-01&amp;quot;)))
+
+ggplot(responses, aes(x = type, fill = factor(rating))) + 
+  geom_bar(position = &amp;quot;fill&amp;quot;) + 
+  facet_wrap(~response_time) + 
+  scale_fill_brewer(palette = &amp;quot;RdYlGn&amp;quot;) + 
+  guides(fill = guide_legend(&amp;quot;Rating&amp;quot;)) + 
+  theme_bw() + 
+  scale_y_continuous(labels = scales::percent) + 
+  ylab(&amp;quot;Respondents [%]&amp;quot;) + 
+  xlab(&amp;quot;&amp;quot;) + 
+  ggtitle(&amp;quot;Distribution of complete vs. partial responses,\nbefore/after June 21&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

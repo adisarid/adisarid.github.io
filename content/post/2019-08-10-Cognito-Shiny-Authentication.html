@@ -35,7 +35,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 </ul>
 <p><strong>Important!</strong> in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.</p>
 <p>Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.</p>
-<p><img src="/img/aws_app_info.jpg" /></p>
+<p><img src="/media/aws_app_info.jpg" /></p>
 <p><strong>Optional</strong>: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.</p>
 <p>Complete the wizard and create your user pool.</p>
 <div id="email-communications" class="section level3">
@@ -50,7 +50,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 <p>Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.</p>
 <p>Set a domain name for your login screen and customize the UI of the login screen if you wish.</p>
 <p>You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.</p>
-<p><img src="/img/aws_app_client_settings.jpg" /></p>
+<p><img src="/media/aws_app_client_settings.jpg" /></p>
 </div>
 <div id="enable-identity-provides-optional" class="section level3">
 <h3>Enable identity provides (Optional)</h3>
