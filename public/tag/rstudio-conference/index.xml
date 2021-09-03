@@ -7,7 +7,7 @@
     <description>rstudio conference</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Fri, 31 Jan 2020 06:08:00 -1000</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>rstudio conference</title>
       <link>https://adisarid.github.io/tag/rstudio-conference/</link>
     </image>
@@ -22,7 +22,8 @@
 
 
 &lt;p&gt;I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future. I’m listing them by order of appearance in the conference.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/Hexagons_conf2020.jpg&#34; alt=&#34;The hexawall at rstudio::conf2020&#34; style=&#34;zoom:10%; float:right; padding-left:30px&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/Hexagons_conf2020.jpg&#34; alt=&#34;The hexawall at rstudio::conf2020&#34; style=&#34;zoom:10%; float:right; padding-left:30px&#34;&gt;
+&lt;!-- ![](/post/2020-01-31-rstudio-conf2020-recap_files/icon.png) --&gt;&lt;/p&gt;
 &lt;div id=&#34;the-rmarkdown-and-interactive-dashboards-workshop&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;The RMarkdown and Interactive Dashboards Workshop&lt;/h2&gt;
 &lt;p&gt;I participated as a TA in the RMarkdown and Interactive Dashboard workshop led by Carl Howe and Yihui Xie. The workshop dealt with creating RMarkdown documents. Specifically adding interactivity using the &lt;code&gt;flexdashboard&lt;/code&gt; package to turn a simple docuement into an interactive html with just a few &lt;code&gt;yaml&lt;/code&gt; configurations.&lt;/p&gt;
@@ -45,7 +46,7 @@
 map(data_set$data, ~{
   ggplot(., aes(x, y)) + geom_line()
 })&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/ggplot2_animated_wave.gif&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/ggplot2_animated_wave.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Cool, isn’t it?&lt;/p&gt;
 &lt;p&gt;If you’re into animations, there are other packages which can also accomplish this, such as the &lt;code&gt;gganimate&lt;/code&gt; package.&lt;/p&gt;
 &lt;/div&gt;
@@ -88,7 +89,7 @@ surface_plot&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap_files/figure-html/surface%20as%20a%20tile%20countour-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Projected as a 3d model using the rayshader here:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rayshader::plot_gg(surface_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/rayshader_snap.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/rayshader_snap.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Tyler also demonstrated how you can generate a movie with the camera browsing around the chart. Beware, rendering takes long.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;

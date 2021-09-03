@@ -5,132 +5,17 @@
     <link>https://adisarid.github.io/</link>
       <atom:link href="https://adisarid.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Adi Sarid</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Fri, 03 Sep 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Adi Sarid</title>
       <link>https://adisarid.github.io/</link>
     </image>
     
     <item>
-      <title>Python basics</title>
-      <link>https://adisarid.github.io/courses/example/python/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/courses/example/python/</guid>
-      <description>&lt;p&gt;Build a foundation in Python.&lt;/p&gt;
-&lt;p&gt;
-  &lt;i class=&#34;fas fa-clock  pr-1 fa-fw&#34;&gt;&lt;/i&gt; 1-2 hours per week, for 8 weeks&lt;/p&gt;
-&lt;h2 id=&#34;learn&#34;&gt;Learn&lt;/h2&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/rfscVS0vtbw&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;quiz&#34;&gt;Quiz&lt;/h2&gt;
-&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-2&#34;&gt;
-  &lt;summary&gt;What is the difference between lists and tuples?&lt;/summary&gt;
-  &lt;p&gt;&lt;p&gt;Lists&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Lists are mutable - they can be changed&lt;/li&gt;
-&lt;li&gt;Slower than tuples&lt;/li&gt;
-&lt;li&gt;Syntax: &lt;code&gt;a_list = [1, 2.0, &#39;Hello world&#39;]&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Tuples&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Tuples are immutable - they can&amp;rsquo;t be changed&lt;/li&gt;
-&lt;li&gt;Tuples are faster than lists&lt;/li&gt;
-&lt;li&gt;Syntax: &lt;code&gt;a_tuple = (1, 2.0, &#39;Hello world&#39;)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/p&gt;
-&lt;/details&gt;
-&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-3&#34;&gt;
-  &lt;summary&gt;Is Python case-sensitive?&lt;/summary&gt;
-  &lt;p&gt;Yes&lt;/p&gt;
-&lt;/details&gt;</description>
-    </item>
-    
-    <item>
-      <title>Visualization</title>
-      <link>https://adisarid.github.io/courses/example/visualization/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/courses/example/visualization/</guid>
-      <description>&lt;p&gt;Learn how to visualize data with Plotly.&lt;/p&gt;
-&lt;p&gt;
-  &lt;i class=&#34;fas fa-clock  pr-1 fa-fw&#34;&gt;&lt;/i&gt; 1-2 hours per week, for 8 weeks&lt;/p&gt;
-&lt;h2 id=&#34;learn&#34;&gt;Learn&lt;/h2&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/hSPmj7mK6ng&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;quiz&#34;&gt;Quiz&lt;/h2&gt;
-&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-2&#34;&gt;
-  &lt;summary&gt;When is a heatmap useful?&lt;/summary&gt;
-  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-&lt;/details&gt;
-&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-3&#34;&gt;
-  &lt;summary&gt;Write Plotly code to render a bar chart&lt;/summary&gt;
-  &lt;p&gt;&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.express as px
-data_canada = px.data.gapminder().query(&amp;quot;country == &#39;Canada&#39;&amp;quot;)
-fig = px.bar(data_canada, x=&#39;year&#39;, y=&#39;pop&#39;)
-fig.show()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/p&gt;
-&lt;/details&gt;</description>
-    </item>
-    
-    <item>
-      <title>Statistics</title>
-      <link>https://adisarid.github.io/courses/example/stats/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/courses/example/stats/</guid>
-      <description>&lt;p&gt;Introduction to statistics for data science.&lt;/p&gt;
-&lt;p&gt;
-  &lt;i class=&#34;fas fa-clock  pr-1 fa-fw&#34;&gt;&lt;/i&gt; 1-2 hours per week, for 8 weeks&lt;/p&gt;
-&lt;h2 id=&#34;learn&#34;&gt;Learn&lt;/h2&gt;
-&lt;p&gt;The general form of the &lt;strong&gt;normal&lt;/strong&gt; probability density function is:&lt;/p&gt;
-&lt;p&gt;$$
-f(x) = \frac{1}{\sigma \sqrt{2\pi} } e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
-$$&lt;/p&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    The parameter $\mu$ is the mean or expectation of the distribution.
-$\sigma$ is its standard deviation.
-The variance of the distribution is $\sigma^{2}$.
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;quiz&#34;&gt;Quiz&lt;/h2&gt;
-&lt;details class=&#34;spoiler &#34;  id=&#34;spoiler-2&#34;&gt;
-  &lt;summary&gt;What is the parameter $\mu$?&lt;/summary&gt;
-  &lt;p&gt;The parameter $\mu$ is the mean or expectation of the distribution.&lt;/p&gt;
-&lt;/details&gt;</description>
-    </item>
-    
-    <item>
-      <title>Example Talk</title>
-      <link>https://adisarid.github.io/talk/example-talk/</link>
-      <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/talk/example-talk/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Wowchemy&amp;rsquo;s &lt;a href=&#34;https://wowchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Slides&lt;/em&gt;&lt;/a&gt; feature and link using &lt;code&gt;slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Further event details, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;page elements&lt;/a&gt; such as image galleries, can be added to the body of this page.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>A data science detective story (and there&#39;s a villain too)</title>
       <link>https://adisarid.github.io/post/data-science-forensics/</link>
-      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
       <guid>https://adisarid.github.io/post/data-science-forensics/</guid>
       <description>
 &lt;script src=&#34;https://adisarid.github.io/post/data-science-forensics/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
@@ -139,20 +24,20 @@ The variance of the distribution is $\sigma^{2}$.
 &lt;p&gt;Here is a detective story about some data science forensics, and there is a villain too.&lt;/p&gt;
 &lt;div id=&#34;background&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Background&lt;/h1&gt;
-&lt;p&gt;As a partner at a market research firm, I get involved in quite a lot of surveys. Some of them (such as voice of customer surveys/customer satisfaction) include sending a personal email invitation with “an invite link”.&lt;/p&gt;
-&lt;p&gt;Lately, we’ve started noticing a weird phenomenon: a lot of the links are opened (the email invitation link is clicked) but left unanswered. Also, we see a lot of cases where expect responses from a specific location, but see that originate all over Europe.&lt;/p&gt;
-&lt;p&gt;We started asking ourselves, are we witnessing an abuse of our surveys?&lt;/p&gt;
+&lt;p&gt;As a partner at a market research firm, I get involved in quite a lot of surveys. Some of them (such as the voice of customer surveys/customer satisfaction) include sending a personal email invitation with “an invite link”.&lt;/p&gt;
+&lt;p&gt;Lately, we’ve started noticing a weird phenomenon: a lot of the links are opened (the email invitation link is clicked) but left unanswered. Also, we see a lot of cases where expect responses from a specific location but see that originate all over Europe.&lt;/p&gt;
+&lt;p&gt;We started asking ourselves, are we witnessing the abuse of our surveys?&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;validating-respondents&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Validating Respondents&lt;/h1&gt;
-&lt;p&gt;One of my team members noticed some irregularities during our routine QA validations: responses were originating from unexpected remote locations all over Europe. A lot of duplicated IPs, as if a lot of people were suddenly using a VPN or something like that. Using a &lt;code&gt;whois&lt;/code&gt; service I understood that the links are being opened by Microsoft owned IPs.&lt;/p&gt;
+&lt;p&gt;One of my team members noticed some irregularities during our routine QA validations: responses were originating from unexpected remote locations all over Europe. A lot of duplicated IPs, as if a lot of people were suddenly using a VPN or something like that. Using a &lt;code&gt;whois&lt;/code&gt; service I understood that the links are being opened by Microsoft-owned IPs.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;Bot-ip-range.jpg&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;My first thought was that they started using some bot which examines the survey link within the email. Why exactly? at that point I hypothesized it was some kind of caching going on, probably for speed improvements (but that’s not the deal).&lt;/p&gt;
-&lt;p&gt;Since no false information was being entered in these “partial surveys”, no actual harm was done by this bot. Except that it’s not entirely accurate, you see - in some surveys, the practice is to embed the first question of the survey within the invitation email. That way the first click of the recipient includes the answer to the first question, e.g., a “Net Promoters Score” (NPS) or general satisfaction question. It helps with response rates, but unfortunately the bot started clicking the links randomely and entering grabage data.&lt;/p&gt;
+&lt;p&gt;My first thought was that they started using some bot that examines the survey link within the email. Why exactly? at that point, I hypothesized it was some kind of caching going on, probably for speed improvements (but that’s not the deal).&lt;/p&gt;
+&lt;p&gt;Since no false information was being entered in these “partial surveys”, no actual harm was done by this bot. Except that it’s not entirely accurate, you see - in some surveys, the practice is to embed the first question of the survey within the invitation email. That way the first click of the recipient includes the answer to the first question, e.g., a “Net Promoters Score” (NPS) or general satisfaction question. It helps with response rates, but unfortunately, the bot started clicking the links randomly and entering garbage data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;a-bot-with-random-thoughts&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;A bot with random thoughts&lt;/h1&gt;
-&lt;p&gt;Trying to analyze when the problem started affecting my clients, I created a chart similar to following, which compares partial answers (which are affected by the bot) versus complete answers (the bot doesn’t complete the survey entirely, so complete answers are real people). I’ve added an illustration (I’m not using real data here so not to expose actual client’s data).&lt;/p&gt;
+&lt;p&gt;Trying to analyze when the problem started affecting my clients, I created a chart similar to the following, which compares partial answers (which are affected by the bot) versus complete answers (the bot doesn’t complete the survey entirely, so complete answers are real people). I’ve added an illustration (I’m not using real data here so as not to expose actual client’s data).&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 
 responses &amp;lt;- read_csv(&amp;quot;example_data.csv&amp;quot;) %&amp;gt;% 
@@ -169,6 +54,17 @@ ggplot(responses, aes(x = type, fill = factor(rating))) +
   xlab(&amp;quot;&amp;quot;) + 
   ggtitle(&amp;quot;Distribution of complete vs. partial responses,\nbefore/after June 21&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;See how the distribution of partial data after June 21’ is completely different from the distribution of the complete surveys and the partial surveys before June 21’?&lt;/p&gt;
+&lt;p&gt;Another thing we noticed was that a lot of the partial surveys were being answered within 2-3 minutes (another strong indication for the work of Microsoft’s bot).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;so-what-actually-went-on&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;So what actually went on?&lt;/h1&gt;
+&lt;p&gt;Microsoft has a feature called &lt;a href=&#34;https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/safe-links?view=o365-worldwide&#34;&gt;“Safe Links”&lt;/a&gt;, what this feature does is rewrite links, but in the process, it also visited some of the links in the email (or so I understand). It is supposed to prevent users from entering malicious websites through phishing emails (by scanning the links in every email which lands in the recipients’ inbox). In the process, it also screwed up our data collection.&lt;/p&gt;
+&lt;p&gt;Once I figured that out, the road to putting a javascript that will discern real people from bots was not too long. We started implementing the javascript code in our surveys, but fortunately, I think that there was some change in the method this bot is employed, since we saw no bot entries during August.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;By the time we figure the problem and implemented a fix, the problem was already miraculously solved by someone else (maybe by Microsoft, the survey software company we are using, or someone else in the process). However, it was intriguing to try and figure out what’s going on, using data analysis as a forensics tool.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -762,6 +658,33 @@ gt::gt(summary(bench_results)) %&amp;gt;%
     </item>
     
     <item>
+      <title>Landing Your First Awesome Data Science Job - The tricks you need up your sleeve</title>
+      <link>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</link>
+      <pubDate>Thu, 05 Nov 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-11-01_Landing_your_first_data_science_job_tricks_up_your_sleeve.pdf&#34;&gt;here&lt;/a&gt;. The recording is available &lt;a href=&#34;https://www.youtube.com/watch?v=rISH_hgdckg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; (Hebrew).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R you ready? A short intro into R (Hebrew).</title>
+      <link>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</link>
+      <pubDate>Wed, 14 Oct 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-10-14_R_U_Ready_Short_intro_to_R.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Leveraging Data Science in Market Research</title>
+      <link>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</link>
+      <pubDate>Wed, 03 Jun 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-06-02_Leveraging_data_science_in_market_research.pdf&#34;&gt;here&lt;/a&gt;, and the recording &lt;a href=&#34;https://youtu.be/KLQmHAOt-lk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Teaching with zoom breakout-rooms and the learnr package</title>
       <link>https://adisarid.github.io/post/2020-05-26-break-rooms-and-learnr/</link>
       <pubDate>Tue, 26 May 2020 11:06:00 +0000</pubDate>
@@ -832,7 +755,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
 &lt;h3&gt;AWS Lightsail’s firewall settings&lt;/h3&gt;
 &lt;p&gt;When using &lt;strong&gt;AWS Lightsail&lt;/strong&gt; (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).&lt;/p&gt;
 &lt;p&gt;Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#39;https://adisarid.github.io/img/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#39;https://adisarid.github.io/media/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
 &lt;p&gt;If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -952,7 +875,8 @@ chmod u+x /opt/renewCerts.sh&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future. I’m listing them by order of appearance in the conference.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/Hexagons_conf2020.jpg&#34; alt=&#34;The hexawall at rstudio::conf2020&#34; style=&#34;zoom:10%; float:right; padding-left:30px&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/Hexagons_conf2020.jpg&#34; alt=&#34;The hexawall at rstudio::conf2020&#34; style=&#34;zoom:10%; float:right; padding-left:30px&#34;&gt;
+&lt;!-- ![](/post/2020-01-31-rstudio-conf2020-recap_files/icon.png) --&gt;&lt;/p&gt;
 &lt;div id=&#34;the-rmarkdown-and-interactive-dashboards-workshop&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;The RMarkdown and Interactive Dashboards Workshop&lt;/h2&gt;
 &lt;p&gt;I participated as a TA in the RMarkdown and Interactive Dashboard workshop led by Carl Howe and Yihui Xie. The workshop dealt with creating RMarkdown documents. Specifically adding interactivity using the &lt;code&gt;flexdashboard&lt;/code&gt; package to turn a simple docuement into an interactive html with just a few &lt;code&gt;yaml&lt;/code&gt; configurations.&lt;/p&gt;
@@ -975,7 +899,7 @@ chmod u+x /opt/renewCerts.sh&lt;/code&gt;&lt;/pre&gt;
 map(data_set$data, ~{
   ggplot(., aes(x, y)) + geom_line()
 })&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/ggplot2_animated_wave.gif&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/ggplot2_animated_wave.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Cool, isn’t it?&lt;/p&gt;
 &lt;p&gt;If you’re into animations, there are other packages which can also accomplish this, such as the &lt;code&gt;gganimate&lt;/code&gt; package.&lt;/p&gt;
 &lt;/div&gt;
@@ -1018,7 +942,7 @@ surface_plot&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap_files/figure-html/surface%20as%20a%20tile%20countour-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Projected as a 3d model using the rayshader here:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rayshader::plot_gg(surface_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/rayshader_snap.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/rayshader_snap.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Tyler also demonstrated how you can generate a movie with the camera browsing around the chart. Beware, rendering takes long.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;
@@ -1026,6 +950,15 @@ surface_plot&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Obviously, there were many more notable talks at the conference, but this post was meant as a short list highlighting just a few.&lt;/p&gt;
 &lt;p&gt;To sum up, the rstudio conf, was a great opportunity to meet up with collegues (old and new), brush up on some of the advanced and noval packages, see how the rstudio team is planning and seeing the future of RStudio and of the R ecosystem, and enjoy San Fransisco!&lt;/p&gt;
 &lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Want to talk to R? just call your plumber</title>
+      <link>https://adisarid.github.io/talk/want-to-talk-to-r-just-call-your-plumber/</link>
+      <pubDate>Fri, 17 Jan 2020 19:10:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/want-to-talk-to-r-just-call-your-plumber/</guid>
+      <description>&lt;p&gt;Presentation and source code are available  &lt;a href=&#34;https://github.com/adisarid/startrek_plumber_api/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1143,6 +1076,15 @@ ggplot() +
     </item>
     
     <item>
+      <title>Not So Shiny?</title>
+      <link>https://adisarid.github.io/talk/not-so-shiny/</link>
+      <pubDate>Thu, 24 Oct 2019 18:05:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/not-so-shiny/</guid>
+      <description>&lt;p&gt;Presentation and source code are available  &lt;a href=&#34;https://github.com/adisarid/meetup_not_so_shiny/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;, accompanying shiny app used for demonstrations is available &lt;a href=&#34;https://sarid.shinyapps.io/not_so_shiny&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Retrieving google drive item shares and permissions (in R)</title>
       <link>https://adisarid.github.io/post/2019-09-17-google_drive_dir_structure_permissions/</link>
       <pubDate>Tue, 17 Sep 2019 12:00:00 +0000</pubDate>
@@ -1247,7 +1189,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Important!&lt;/strong&gt; in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.&lt;/p&gt;
 &lt;p&gt;Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Optional&lt;/strong&gt;: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.&lt;/p&gt;
 &lt;p&gt;Complete the wizard and create your user pool.&lt;/p&gt;
 &lt;div id=&#34;email-communications&#34; class=&#34;section level3&#34;&gt;
@@ -1262,7 +1204,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;p&gt;Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.&lt;/p&gt;
 &lt;p&gt;Set a domain name for your login screen and customize the UI of the login screen if you wish.&lt;/p&gt;
 &lt;p&gt;You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;enable-identity-provides-optional&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Enable identity provides (Optional)&lt;/h3&gt;
@@ -1570,7 +1512,7 @@ fluidPage(
 &lt;p&gt;Also, when you’re looking at a mockup (even if it’s just a simple drawing or a non-interactive slide), it helps in the next stages of building the app’s UI.&lt;/p&gt;
 &lt;p&gt;Here is an example of how a mockup would look like when I’m drawing it on a piece of paper. Note how I’ve already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you’re actually looking at one of these.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://adisarid.github.io/img/mockup_draw_example.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;https://adisarid.github.io/media/mockup_draw_example.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Example for a mockup drawing&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1859,7 +1801,7 @@ as a preprocessing step?&lt;/p&gt;
 &lt;p&gt;Bloom’s taxonomy illustrates the levels of learning new concepts or topics.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://wp0.vanderbilt.edu/cft/guides-sub-pages/blooms-taxonomy/&#34;&gt;Vanderbilt University Center for Teaching&lt;/a&gt; has a nice illustration for it.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://adisarid.github.io/img/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;https://adisarid.github.io/media/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Blooms Taxonomy&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can visit the Vanderbilt website for a more thorough explanation about the taxonomy, but suffice it to say that “remember” is the most basic form of acquired knowledge, and the highest levels (at the top of the pyramid) are evaluate and create (being able to evaluate someone else’s work, or create your own noval work).&lt;/p&gt;

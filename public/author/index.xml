@@ -5,12 +5,39 @@
     <link>https://adisarid.github.io/author/</link>
       <atom:link href="https://adisarid.github.io/author/index.xml" rel="self" type="application/rss+xml" />
     <description>Adi Sarid</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Thu, 05 Nov 2020 20:30:00 +0200</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Adi Sarid</title>
       <link>https://adisarid.github.io/author/</link>
     </image>
+    
+    <item>
+      <title>Landing Your First Awesome Data Science Job - The tricks you need up your sleeve</title>
+      <link>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</link>
+      <pubDate>Thu, 05 Nov 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-11-01_Landing_your_first_data_science_job_tricks_up_your_sleeve.pdf&#34;&gt;here&lt;/a&gt;. The recording is available &lt;a href=&#34;https://www.youtube.com/watch?v=rISH_hgdckg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; (Hebrew).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R you ready? A short intro into R (Hebrew).</title>
+      <link>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</link>
+      <pubDate>Wed, 14 Oct 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-10-14_R_U_Ready_Short_intro_to_R.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Leveraging Data Science in Market Research</title>
+      <link>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</link>
+      <pubDate>Wed, 03 Jun 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-06-02_Leveraging_data_science_in_market_research.pdf&#34;&gt;here&lt;/a&gt;, and the recording &lt;a href=&#34;https://youtu.be/KLQmHAOt-lk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
   </channel>
 </rss>

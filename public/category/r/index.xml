@@ -5,58 +5,12 @@
     <link>https://adisarid.github.io/category/r/</link>
       <atom:link href="https://adisarid.github.io/category/r/index.xml" rel="self" type="application/rss+xml" />
     <description>R</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Fri, 30 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Wed, 11 Nov 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>R</title>
       <link>https://adisarid.github.io/category/r/</link>
     </image>
-    
-    <item>
-      <title>A data science detective story (and there&#39;s a villain too)</title>
-      <link>https://adisarid.github.io/post/data-science-forensics/</link>
-      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/data-science-forensics/</guid>
-      <description>
-&lt;script src=&#34;https://adisarid.github.io/post/data-science-forensics/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;p&gt;Here is a detective story about some data science forensics, and there is a villain too.&lt;/p&gt;
-&lt;div id=&#34;background&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Background&lt;/h1&gt;
-&lt;p&gt;As a partner at a market research firm, I get involved in quite a lot of surveys. Some of them (such as voice of customer surveys/customer satisfaction) include sending a personal email invitation with “an invite link”.&lt;/p&gt;
-&lt;p&gt;Lately, we’ve started noticing a weird phenomenon: a lot of the links are opened (the email invitation link is clicked) but left unanswered. Also, we see a lot of cases where expect responses from a specific location, but see that originate all over Europe.&lt;/p&gt;
-&lt;p&gt;We started asking ourselves, are we witnessing an abuse of our surveys?&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;validating-respondents&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Validating Respondents&lt;/h1&gt;
-&lt;p&gt;One of my team members noticed some irregularities during our routine QA validations: responses were originating from unexpected remote locations all over Europe. A lot of duplicated IPs, as if a lot of people were suddenly using a VPN or something like that. Using a &lt;code&gt;whois&lt;/code&gt; service I understood that the links are being opened by Microsoft owned IPs.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;Bot-ip-range.jpg&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;My first thought was that they started using some bot which examines the survey link within the email. Why exactly? at that point I hypothesized it was some kind of caching going on, probably for speed improvements (but that’s not the deal).&lt;/p&gt;
-&lt;p&gt;Since no false information was being entered in these “partial surveys”, no actual harm was done by this bot. Except that it’s not entirely accurate, you see - in some surveys, the practice is to embed the first question of the survey within the invitation email. That way the first click of the recipient includes the answer to the first question, e.g., a “Net Promoters Score” (NPS) or general satisfaction question. It helps with response rates, but unfortunately the bot started clicking the links randomely and entering grabage data.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;a-bot-with-random-thoughts&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;A bot with random thoughts&lt;/h1&gt;
-&lt;p&gt;Trying to analyze when the problem started affecting my clients, I created a chart similar to following, which compares partial answers (which are affected by the bot) versus complete answers (the bot doesn’t complete the survey entirely, so complete answers are real people). I’ve added an illustration (I’m not using real data here so not to expose actual client’s data).&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
-
-responses &amp;lt;- read_csv(&amp;quot;example_data.csv&amp;quot;) %&amp;gt;% 
-  mutate(response_time = factor(response_time, c(&amp;quot;Before 2021-06-01&amp;quot;, &amp;quot;After 2021-06-01&amp;quot;)))
-
-ggplot(responses, aes(x = type, fill = factor(rating))) + 
-  geom_bar(position = &amp;quot;fill&amp;quot;) + 
-  facet_wrap(~response_time) + 
-  scale_fill_brewer(palette = &amp;quot;RdYlGn&amp;quot;) + 
-  guides(fill = guide_legend(&amp;quot;Rating&amp;quot;)) + 
-  theme_bw() + 
-  scale_y_continuous(labels = scales::percent) + 
-  ylab(&amp;quot;Respondents [%]&amp;quot;) + 
-  xlab(&amp;quot;&amp;quot;) + 
-  ggtitle(&amp;quot;Distribution of complete vs. partial responses,\nbefore/after June 21&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
     
     <item>
       <title>YAPOEH! (Yet another post on error handling)</title>
@@ -906,7 +860,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Important!&lt;/strong&gt; in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.&lt;/p&gt;
 &lt;p&gt;Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Optional&lt;/strong&gt;: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.&lt;/p&gt;
 &lt;p&gt;Complete the wizard and create your user pool.&lt;/p&gt;
 &lt;div id=&#34;email-communications&#34; class=&#34;section level3&#34;&gt;
@@ -921,7 +875,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;p&gt;Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.&lt;/p&gt;
 &lt;p&gt;Set a domain name for your login screen and customize the UI of the login screen if you wish.&lt;/p&gt;
 &lt;p&gt;You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/img/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;enable-identity-provides-optional&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Enable identity provides (Optional)&lt;/h3&gt;
@@ -1229,7 +1183,7 @@ fluidPage(
 &lt;p&gt;Also, when you’re looking at a mockup (even if it’s just a simple drawing or a non-interactive slide), it helps in the next stages of building the app’s UI.&lt;/p&gt;
 &lt;p&gt;Here is an example of how a mockup would look like when I’m drawing it on a piece of paper. Note how I’ve already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you’re actually looking at one of these.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://adisarid.github.io/img/mockup_draw_example.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;https://adisarid.github.io/media/mockup_draw_example.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Example for a mockup drawing&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1504,7 +1458,7 @@ as a preprocessing step?&lt;/p&gt;
 &lt;p&gt;Bloom’s taxonomy illustrates the levels of learning new concepts or topics.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://wp0.vanderbilt.edu/cft/guides-sub-pages/blooms-taxonomy/&#34;&gt;Vanderbilt University Center for Teaching&lt;/a&gt; has a nice illustration for it.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://adisarid.github.io/img/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;https://adisarid.github.io/media/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Blooms Taxonomy&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can visit the Vanderbilt website for a more thorough explanation about the taxonomy, but suffice it to say that “remember” is the most basic form of acquired knowledge, and the highest levels (at the top of the pyramid) are evaluate and create (being able to evaluate someone else’s work, or create your own noval work).&lt;/p&gt;

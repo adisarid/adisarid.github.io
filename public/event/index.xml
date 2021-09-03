@@ -5,30 +5,55 @@
     <link>https://adisarid.github.io/event/</link>
       <atom:link href="https://adisarid.github.io/event/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent &amp; Upcoming Talks</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0200</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Recent &amp; Upcoming Talks</title>
       <link>https://adisarid.github.io/event/</link>
     </image>
     
     <item>
-      <title>Example Talk</title>
-      <link>https://adisarid.github.io/talk/example-talk/</link>
-      <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/talk/example-talk/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Wowchemy&amp;rsquo;s &lt;a href=&#34;https://wowchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Slides&lt;/em&gt;&lt;/a&gt; feature and link using &lt;code&gt;slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Further event details, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;page elements&lt;/a&gt; such as image galleries, can be added to the body of this page.&lt;/p&gt;
+      <title>Landing Your First Awesome Data Science Job - The tricks you need up your sleeve</title>
+      <link>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</link>
+      <pubDate>Thu, 05 Nov 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-11-01_Landing_your_first_data_science_job_tricks_up_your_sleeve.pdf&#34;&gt;here&lt;/a&gt;. The recording is available &lt;a href=&#34;https://www.youtube.com/watch?v=rISH_hgdckg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; (Hebrew).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R you ready? A short intro into R (Hebrew).</title>
+      <link>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</link>
+      <pubDate>Wed, 14 Oct 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-10-14_R_U_Ready_Short_intro_to_R.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Leveraging Data Science in Market Research</title>
+      <link>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</link>
+      <pubDate>Wed, 03 Jun 2020 20:30:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-06-02_Leveraging_data_science_in_market_research.pdf&#34;&gt;here&lt;/a&gt;, and the recording &lt;a href=&#34;https://youtu.be/KLQmHAOt-lk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Want to talk to R? just call your plumber</title>
+      <link>https://adisarid.github.io/talk/want-to-talk-to-r-just-call-your-plumber/</link>
+      <pubDate>Fri, 17 Jan 2020 19:10:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/want-to-talk-to-r-just-call-your-plumber/</guid>
+      <description>&lt;p&gt;Presentation and source code are available  &lt;a href=&#34;https://github.com/adisarid/startrek_plumber_api/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Not So Shiny?</title>
+      <link>https://adisarid.github.io/talk/not-so-shiny/</link>
+      <pubDate>Thu, 24 Oct 2019 18:05:00 +0200</pubDate>
+      <guid>https://adisarid.github.io/talk/not-so-shiny/</guid>
+      <description>&lt;p&gt;Presentation and source code are available  &lt;a href=&#34;https://github.com/adisarid/meetup_not_so_shiny/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;, accompanying shiny app used for demonstrations is available &lt;a href=&#34;https://sarid.shinyapps.io/not_so_shiny&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

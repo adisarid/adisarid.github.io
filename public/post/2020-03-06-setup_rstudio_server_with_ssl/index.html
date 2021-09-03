@@ -288,8 +288,8 @@ After browsing internet tutorials on-and-off for the last couple of weeks I’ve
     <link rel="manifest" href="/manifest.webmanifest" />
   
 
-  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_3.png" />
-  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_3.png" />
+  <link rel="icon" type="image/png" href="/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_180x180_fill_lanczos_center_3.png" />
 
   <link rel="canonical" href="https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/" />
 
@@ -311,8 +311,8 @@ After browsing internet tutorials on-and-off for the last couple of weeks I’ve
   <meta property="og:url" content="https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/" />
   <meta property="og:title" content="Set up RStudio server with Let&#39;s Encrypt SSL certificate | Adi Sarid" />
   <meta property="og:description" content="For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).
-After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+After browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -356,7 +356,7 @@ After browsing internet tutorials on-and-off for the last couple of weeks I’ve
     "name": "Adi Sarid",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://adisarid.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
+      "url": "https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_192x192_fill_lanczos_center_3.png"
     }
   },
   "description": "For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).\nAfter browsing internet tutorials on-and-off for the last couple of weeks I’ve come to the conclusion that there is a small gap when it comes to setting up RStudio server and shiny server securely, i."
@@ -547,6 +547,43 @@ After browsing internet tutorials on-and-off for the last couple of weeks I’ve
 
         <li class="nav-item">
           <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
         </li>
 
         
@@ -781,7 +818,7 @@ After browsing internet tutorials on-and-off for the last couple of weeks I’ve
 <h3>AWS Lightsail’s firewall settings</h3>
 <p>When using <strong>AWS Lightsail</strong> (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).</p>
 <p>Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:</p>
-<p><img src='/img/lightsail_firewall_configuration.jpg'></p>
+<p><img src='/media/lightsail_firewall_configuration.jpg'></p>
 <p>If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).</p>
 </div>
 </div>
