@@ -21,3 +21,4 @@ options(
 
 # fix Hugo version
 options(blogdown.hugo.version = "0.86.1")
+options(blogdown.publishDir = "docs")
