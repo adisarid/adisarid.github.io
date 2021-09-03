@@ -12,12 +12,6 @@ subtitle: "Personal Blog"
 design:
   # Choose how many columns the section has. Valid values: 1 or 2.
   columns: '1'
-  background:
-     image: background-main.jpg
-     image_darken: 0.4
-     image_parallax: true
-     image_position: center
-     image_size: cover
   spacing:
     # Customize the section spacing. Order is top, right, bottom, left.
     padding: ["20px", "0", "20px", "0"]
