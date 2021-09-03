@@ -15,14 +15,7 @@ title: Teaching
 subtitle: Courses I have taught and/or scheduled to teach
 
 design:
-  columns: "1"
-  background:
-    image: open-book.jpg
-    image_darken: 1.0
-    image_parallax: true
-    image_position: center
-    image_size: cover
-    text_color_light: false
+  columns: "2"
   spacing:
     padding: ["20px", "0", "20px", "0"]
 ---
