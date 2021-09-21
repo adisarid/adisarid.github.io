@@ -1,0 +1,39 @@
+---
+title: Using Github Actions to update a shiny app
+author: Adi Sarid
+date: '2021-09-21'
+slug: using-github-actions-to-update-a-shiny-app
+categories:
+  - R
+tags:
+  - Shiny
+  - CI/CD
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-09-21T19:48:31Z'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc.). I assume you already have your server running shiny server, and that you are using Github for your development.
+
+If you're looking for continuous deployment of shiny apps to the shinyapps.io hosting service you can check out [this post](https://blog.rmhogervorst.nl/blog/2021/02/27/deploy-to-shinyapps-io-from-github-actions/).
+
+## Continuous what...?!
+
+**Continuous deployment** is the act of deploying your program (a shiny app in our case), every time it is updated, and doing so in an automated way.
+
+More rigorously, let's assume you already have a shiny app that you are developing, and using Github as your main version control tool. You are deploying your app to a private server (i.e., on an AWS EC2, a lightsail instance, Digital Ocean droplet, or similar). To get your app up to the server, you cloned the app's repository into the directory `/srv/shiny-server/YOUR_APP_NAME/` . Every time your app is updated, you get into the directory to do a `git pull` , to make sure the updates are applied to your production server.
+
+This can be quite of a headache, ssh-ing into the server, just to do a `git pull`. Wouldn't it be nice if the `git pull` in your server would magically happen every time you push your updates to the main branch automatically? this is what the rest of this post is about.
+
+## A small note about shiny app testing
+
+Before I continue with this post, I would like to mention that any continuous integration should be coupled with automated tests for your app. This post doesn't deal with testing at all (just the final act of deploying it). Rstudio has extensive documentation on shiny app testing [here](https://shiny.rstudio.com/articles/testing-overview.html), as well as [this chapter here](https://mastering-shiny.org/scaling-testing.html) from the "Mastering Shiny" book.
+
+Such tests should be placed before the next step I'm about to write about, and passing all tests should be a prerequisite for performing the actual deployment. For example, you can have tests run on every push (to any branch) thus making sure that your app is tested before you finally merge to your main branch (which is then automatically updated in production).
