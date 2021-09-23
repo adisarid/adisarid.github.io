@@ -30,11 +30,10 @@
   
     
   
-  <meta name="description" content="This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.
-I put in a lot of efforts into bringing practical challenges, examples from real life, and a lot of demonstrations of statistical theory with R." />
+  <meta name="description" content="This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/" />
+  <link rel="alternate" hreflang="en-us" href="https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/" />
 
   
 
@@ -291,7 +290,7 @@ I put in a lot of efforts into bringing practical challenges, examples from real
   <link rel="icon" type="image/png" href="/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/" />
+  <link rel="canonical" href="https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/" />
 
   
   
@@ -308,19 +307,18 @@ I put in a lot of efforts into bringing practical challenges, examples from real
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="Adi Sarid" />
-  <meta property="og:url" content="https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/" />
-  <meta property="og:title" content="Confidence and prediction intervals explained... (with a Shiny app!) | Adi Sarid" />
-  <meta property="og:description" content="This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.
-I put in a lot of efforts into bringing practical challenges, examples from real life, and a lot of demonstrations of statistical theory with R." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png" />
+  <meta property="og:url" content="https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/" />
+  <meta property="og:title" content="Using Github Actions to update a shiny app on a private server | Adi Sarid" />
+  <meta property="og:description" content="This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png" />
     <meta property="twitter:image" content="https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2019-12-13T12:00:00&#43;00:00"
+        content="2021-09-21T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2019-12-13T12:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2021-09-21T19:48:31&#43;00:00">
   
 
   
@@ -344,12 +342,12 @@ I put in a lot of efforts into bringing practical challenges, examples from real
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/"
+    "@id": "https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/"
   },
-  "headline": "Confidence and prediction intervals explained... (with a Shiny app!)",
+  "headline": "Using Github Actions to update a shiny app on a private server",
   
-  "datePublished": "2019-12-13T12:00:00Z",
-  "dateModified": "2019-12-13T12:00:00Z",
+  "datePublished": "2021-09-21T00:00:00Z",
+  "dateModified": "2021-09-21T19:48:31Z",
   
   "publisher": {
     "@type": "Organization",
@@ -359,7 +357,7 @@ I put in a lot of efforts into bringing practical challenges, examples from real
       "url": "https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.\nI put in a lot of efforts into bringing practical challenges, examples from real life, and a lot of demonstrations of statistical theory with R."
+  "description": "This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc."
 }
 </script>
 
@@ -375,11 +373,11 @@ I put in a lot of efforts into bringing practical challenges, examples from real
 
 
 
-  <title>Confidence and prediction intervals explained... (with a Shiny app!) | Adi Sarid</title>
+  <title>Using Github Actions to update a shiny app on a private server | Adi Sarid</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="70d819906bc1c287dc95c1bf14a45fc9" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="c8c159414e02ea5789443362e3b1fe86" >
 
   
   
@@ -736,7 +734,7 @@ I put in a lot of efforts into bringing practical challenges, examples from real
   
   
 <div class="article-container pt-3">
-  <h1>Confidence and prediction intervals explained... (with a Shiny app!)</h1>
+  <h1>Using Github Actions to update a shiny app on a private server</h1>
 
   
 
@@ -754,8 +752,10 @@ I put in a lot of efforts into bringing practical challenges, examples from real
     
     
       
+          Last updated on
+      
     
-    Dec 13, 2019
+    Sep 21, 2021
   </span>
   
 
@@ -764,7 +764,7 @@ I put in a lot of efforts into bringing practical challenges, examples from real
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    7 min read
   </span>
   
 
@@ -799,109 +799,105 @@ I put in a lot of efforts into bringing practical challenges, examples from real
 
     <div class="article-style">
       
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p>This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.</p>
-<p>I put in a lot of efforts into bringing practical challenges, examples from real life, and a lot of demonstrations of statistical theory with R. This post is an example for how I’ve been using R code (and specifically Shiny apps) to demonstrate statistical theory, concepts and provide intuition.</p>
-<div id="whats-the-difference-between-confidence-and-prediction-intervals" class="section level2">
-<h2>What’s the difference between confidence and prediction intervals?</h2>
-<p>Last week I taught multiple linear regression, and I noticed that students have a hard time comprehending the difference between confidence intervals and prediction intervals. The former being an interval for the model (i.e., interval for the underlying model), and the latter being an interval for a noval observation.</p>
-<p>As the sample size increases, our uncertainty of the model’s parameters decreases, but the uncertainty in the value of a new observation, <span class="math inline">\(y_0\)</span> is associated with variance of <span class="math inline">\(Y\)</span> (the random variable from which <span class="math inline">\(y_0\)</span> is drawn). Hence, it has a lower bound, based on that variance.</p>
-<p>In R, you can get a prediction or a confidence interval by using either</p>
-<p><code>predict(object, newdata, interval = "prediction")</code></p>
-<p>Or</p>
-<p><code>predict(object, newdata, interval = "confidence")</code></p>
-<p>For a prediction or for a confidence interval, respectively.</p>
-<p>To help me illustrate the differences between the two, I decided to build a small Shiny web app. It shows the differences between confidence intervals, prediction intervals, the regression fit, and the actual (original) model.</p>
-<p>The app is available <a href="https://sarid.shinyapps.io/intervals_demo/">here</a>, and the source code is available on <a href="https://github.com/adisarid/prediction_confidence_intervals_demo">github</a>.</p>
-<p>With this app you can choose three types of models to demonstrate. Simple linear regression, and regression with a twist (<span class="math inline">\(\log\)</span> transformation on the <span class="math inline">\(y\)</span> or <span class="math inline">\(\sin\)</span> transformation on the <span class="math inline">\(x\)</span>:</p>
-<ul>
-<li><p>Linear model <span class="math inline">\(y = a + bx + \epsilon\)</span></p></li>
-<li><p>Log-linear model <span class="math inline">\(\log(y)=a+bx+\epsilon\)</span></p></li>
-<li><p>Sine <span class="math inline">\(y = a + b\sin(x) + \epsilon\)</span></p></li>
-</ul>
-<p>All the models are based on simple linear regression (<code>lm</code> function), for the latter two models with either a <code>log</code> or <code>sin</code> transformation.</p>
-<p>The app allows you to play around with various values such as the <span class="math inline">\(x\)</span> range, the model’s parameters (<span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>), the error’s standard deviation (<span class="math inline">\(\epsilon\)</span>), and show or hide any of the following elements, on the chart:</p>
-<ul>
-<li><p>The original function (i.e., the original model)</p></li>
-<li><p>The sampled points</p></li>
-<li><p>The confidence interval</p></li>
-<li><p>The prediction interval</p></li>
-<li><p>The model’s fit</p></li>
-</ul>
-<p>Feel free to share the app or the app’s code. As mentioned above, the <strong>source code for the app</strong> is available here: <a href="https://github.com/adisarid/prediction_confidence_intervals_demo">https://github.com/adisarid/prediction_confidence_intervals_demo</a>.</p>
-<p>Here’s an example for what the app’s generating code and output looks like, for a model of the type <span class="math inline">\(\log(y) = 1 + \frac{x}{2} + \epsilon\)</span>:</p>
-<pre class="r"><code>library(dplyr)
-library(tidyr)
-library(tibble)
-library(ggplot2)
-
-sample_size &lt;- 90
-x_range &lt;- c(0, 1.5)
-a &lt;- 1
-b &lt;- 1.5
-sigma &lt;- 0.3
-
-actual_function &lt;- tibble(x = seq(x_range[1], x_range[2], by = 0.01)) %&gt;% 
-  mutate(actual_y = exp(a + b*x))
-
-random_sample &lt;- tibble(epsilon_err = rnorm(n = sample_size, 
-                                            mean = 0,
-                                            sd = sigma),
-                        x = runif(n = sample_size,
-                                  min = x_range[1],
-                                  max = x_range[2])) %&gt;% 
-  mutate(sampled_y = exp(a + b*x + epsilon_err))
-
-linear_model &lt;- lm(formula = log(sampled_y) ~ x, data = random_sample)
-
-prediction_i &lt;- predict(object = linear_model,
-                         newdata = actual_function,
-                         interval = &quot;prediction&quot;) %&gt;% 
-  as_tibble() %&gt;% 
-  rename_at(vars(lwr,upr), ~paste0(., &quot;_pi&quot;)) %&gt;% 
-  mutate_all(exp)
-
-confidence_i &lt;- predict(object = linear_model,
-                         newdata = actual_function,
-                         interval = &quot;confidence&quot;) %&gt;% 
-  as_tibble() %&gt;% 
-  rename_at(vars(lwr,upr), ~paste0(., &quot;_ci&quot;)) %&gt;% 
-  select(-fit) %&gt;% 
-  mutate_all(exp)
-
-intervals &lt;- actual_function %&gt;% 
-  bind_cols(prediction_i,
-            confidence_i)
-
-ggplot() + 
-  geom_line(data = actual_function, aes(x, actual_y, color = &quot;Original Model&quot;), size = 1) + 
-  geom_point(data = random_sample, aes(x, sampled_y), alpha = 0.5) + 
-  geom_line(data = intervals, 
-            aes(x, fit, color = &quot;Regression Fit&quot;), size = 1) + 
-  geom_line(data = intervals, 
-            aes(x, lwr_pi, color = &quot;Prediction Interval&quot;), 
-            linetype = 2, size = 1) +
-  geom_line(data = intervals, 
-            aes(x, upr_pi, color = &quot;Prediction Interval&quot;), 
-            linetype = 2, size = 1) + 
-  geom_line(data = intervals, 
-            aes(x, lwr_ci, color = &quot;Confidence Interval&quot;), 
-            linetype = 2, size = 1) + 
-  geom_line(data = intervals, 
-            aes(x, upr_ci, color = &quot;Confidence Interval&quot;), 
-            linetype = 2, size = 1) + 
-  theme_bw() + 
-  xlab(&quot;x&quot;) + 
-  ylab(&quot;y&quot;) + 
-  ggtitle(&quot;Log-linear: Model, Fit, Confidence and Prediction Intervals&quot;)</code></pre>
-<p><img src="/post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png" width="672" /></p>
+<p>This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc.). I assume you already have your server running shiny server, and that you are using Github for your development.</p>
+<p>If you’re looking for continuous deployment of shiny apps to the shinyapps.io hosting service you can check out <a href="https://blog.rmhogervorst.nl/blog/2021/02/27/deploy-to-shinyapps-io-from-github-actions/">this post</a>.</p>
+<div id="continuous-what" class="section level2">
+<h2>Continuous what…?!</h2>
+<p><strong>Continuous deployment</strong> is the act of deploying your program (a shiny app in our case), every time it is updated, and doing so in an automated way.</p>
+<p>More rigorously, let’s assume you already have a shiny app that you are developing, and using Github as your main version control tool. You are deploying your app to a private server (i.e., on an AWS EC2, a lightsail instance, Digital Ocean droplet, or similar). To get your app up to the server, you cloned the app’s repository into the directory <code>/srv/shiny-server/YOUR_APP_NAME/</code> . Every time your app is updated, you get into the directory to do a <code>git pull</code> , to make sure the updates are applied to your production server.</p>
+<p>This can be quite of a headache, ssh-ing into the server, just to do a <code>git pull</code>. Wouldn’t it be nice if the <code>git pull</code> in your server would magically happen every time you push your updates to the main branch automatically? this is what the rest of this post is about.</p>
 </div>
-<div id="conclusions" class="section level2">
-<h2>Conclusions</h2>
-<p>Shiny apps are a great way to illustrate theoretical concepts, to provide intuition, and to let students experiment with parameters and see the outcomes. In this post I demonstrated how a Shiny app can be used to explain the concepts of a regression fit, confidence, and prediction intervals.</p>
-<p>If you used Shiny for interesting educational demonstrations I’d love to hear about it! feel free to share in the comments or message me on twitter <span class="citation">@SaridResearch</span>.</p>
+<div id="a-small-note-about-shiny-app-testing" class="section level2">
+<h2>A small note about shiny app testing</h2>
+<p>Before I continue with this post, I would like to mention that any continuous integration should be coupled with automated tests for your app. This post doesn’t deal with testing at all (just the final act of deploying it). Rstudio has extensive documentation on shiny app testing <a href="https://shiny.rstudio.com/articles/testing-overview.html">here</a>, as well as <a href="https://mastering-shiny.org/scaling-testing.html">this chapter here</a> from the “Mastering Shiny” book.</p>
+<p>Such tests should be placed before the step I’m about to write about, and passing all tests should be a prerequisite for performing the actual deployment. For example, you can have tests run on every push (to any branch) thus making sure that your app is tested before you finally merge to your main branch (which is then automatically updated in production).</p>
+</div>
+<div id="the-process" class="section level2">
+<h2>The process</h2>
+<p>Before diving deeper into the process, a short overview of the steps we’re going to do. We’re going to:</p>
+<ol style="list-style-type: decimal">
+<li>Log in to the server, and create a new user with read/write access to the directory of the app we want to update.</li>
+<li>Create an SSH key for this user which will enable Github Actions to log in to the server.</li>
+<li>Add secrets to the Github repository (the SSH private key, hostname, user name, port).</li>
+<li>Add the SSH key as a repository deployment key.</li>
+<li>Create the workflow in the repository.</li>
+</ol>
+<div id="creating-an-additional-user" class="section level3">
+<h3>Creating an additional user</h3>
+<p>The first step is to create a new user which will be the user Github Actions is using to log in to your server. You can also use an existing user for that, but I prefer to separate my credentials with the credentials I provide external services (such as Github Actions). Log into your server and add a new user (replace <code>github_actions_user</code> with the name you want):</p>
+<pre class="bash"><code>sudo useradd github_actions_user</code></pre>
+<p>The next thing is to add write permissions for this newly created user on the directories we want Github Actions to be able to update. Let’s say that the app is called <code>my_shiny_app</code>, and that the current owner of the app is the user <code>ubuntu</code>. We’re going to replace the directory owner with our new user’s group and add <code>ubuntu</code> to this group as well (to retain <code>ubuntu</code>’s write permissions).</p>
+<pre class="bash"><code>cd /srv/shiny-server/
+sudo chown github_actions_user:github_actions_user -R my_shiny_app
+sudo usermod -a -G github_actions_user ubuntu</code></pre>
+<p>The middle line replaces the directory owner and the last line adds <code>ubuntu</code> to the directory ownership (group).</p>
+<p>In my setup, users must authenticate with a key to ssh into the server (a password is not enough), so let’s create the keys.</p>
+</div>
+<div id="creating-an-ssh-key-for-login" class="section level3">
+<h3>Creating an SSH key for login</h3>
+<p>First thing is to switch to the new user:</p>
+<pre class="bash"><code>su - github_actions_user</code></pre>
+<p>Following the instructions from <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">here</a> to create the new keys (when prompted for file location and for passphrase, just click Enter leaving the default location for the keys and no passphrase).</p>
+<pre class="bash"><code>ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;
+eval &quot;$(ssh-agent -s)&quot;
+ssh-add ~/.ssh/id_ed25519</code></pre>
+<p><strong>Important note about using a passphrase</strong>: after you type the first command you will be prompted for a passphrase. The passphrase encrypts the private key so that it can only be used by the user who knows the passphrase. However, if the repository of the app is private the Github Action will need the key to <code>git pull</code> from the repository. The Github Action we are using (as far as my experience goes) doesn’t work well with private repositories which we access with keys protected by a passphrase, hence I used no passphrase on these keys. I’m pretty sure there’s a better way around it, if you find it - let me know (<span class="citation">@SaridResearch</span> on twitter).</p>
+<p>Finally, add the key to the authorized list, like this:</p>
+<pre class="bash"><code>cat .ssh/id_ed25519.pub | ssh b@B &#39;cat &gt;&gt; .ssh/authorized_keys&#39;</code></pre>
+</div>
+<div id="adding-secrets-to-the-repository" class="section level3">
+<h3>Adding secrets to the repository</h3>
+<p>Now we want to add the required information to the repository. We need the following data: the private key for ssh-ing, the host, port, and user name.</p>
+<p>To get the private key while logged in as <code>github_actions_user</code> type:</p>
+<pre class="bash"><code>nano ~/.ssh/id_ed25519</code></pre>
+<p>Copy the key.</p>
+<p>Go to the repository of the app and click on <strong>settings</strong> (the top tabs) -&gt; <strong>secrets</strong> (on the left menu). Click on “New repository secret”. Add a secret named <em>KEY</em> and paste the contents of the key you just copied. Also add the following secrets in a similar manner <em>HOST</em> (the host name), <em>PORT</em> (for the most part it should be 22, unless you changed it), <em>USERNAME</em> (in this example github_actions_user), <em>APPNAME</em> (the location of the app within the shiny-server directory, e.g. <code>my_shiny_app</code>).</p>
+</div>
+<div id="adding-a-deployment-key" class="section level3">
+<h3>Adding a deployment key</h3>
+<p>You need this step only if your repository is private - the public key should be added to Github, so that Github will allow you access to the repository. For that we need the public key. Get it by typing:</p>
+<pre class="bash"><code>nano ~/.ssh/id_ed25519.pub</code></pre>
+<p>Copy the public key, in Github inside the repository of the app go to <strong>Deploy keys</strong> (on the left menu), add a title to your key, such as “key for pulling to production”, and paste the public key.</p>
+</div>
+<div id="create-the-workflow" class="section level3">
+<h3>Create the workflow</h3>
+<p>For the final step, we’re going to use the Github Action template, prepared by <code>appleboy</code> and others (<a href="https://github.com/appleboy/ssh-action">from here</a>). Just add the following yml file to your repository under: <code>.github/workflows/main.yml</code>:</p>
+<pre><code># SSH into machine and git pull for updates
+
+name: execute remote ssh to pull updates from master
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called &quot;build&quot;
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /srv/shiny-server/${{ secrets.APPNAME }}
+            git pull</code></pre>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>After completing these steps, every time you push something to the main branch it will magically update the app on your server. Be sure to check it works after a few commits (go to <strong>Actions</strong> in the top menu and see that it works.</p>
+<p>What’s going on behind the scene is that Github Actions spawns up a Docker which logs in to your server via ssh, and then runs <code>cd /srv/shiny-server/my_shiny_app/</code> and <code>git pull</code>.</p>
+<p>For more information on this specific Github Action read <a href="https://github.com/appleboy/ssh-action" class="uri">https://github.com/appleboy/ssh-action</a>.</p>
 </div>
 
     </div>
@@ -915,9 +911,9 @@ ggplot() +
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="/tag/linear-models/">linear models</a>
-  
   <a class="badge badge-light" href="/tag/shiny/">shiny</a>
+  
+  <a class="badge badge-light" href="/tag/ci/cd/">CI/CD</a>
   
 </div>
 
@@ -934,7 +930,7 @@ ggplot() +
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/&amp;text=Confidence%20and%20prediction%20intervals%20explained...%20%28with%20a%20Shiny%20app!%29" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/&amp;text=Using%20Github%20Actions%20to%20update%20a%20shiny%20app%20on%20a%20private%20server" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -947,7 +943,7 @@ ggplot() +
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/&amp;t=Confidence%20and%20prediction%20intervals%20explained...%20%28with%20a%20Shiny%20app!%29" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/&amp;t=Using%20Github%20Actions%20to%20update%20a%20shiny%20app%20on%20a%20private%20server" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -960,7 +956,7 @@ ggplot() +
       
       
       <li>
-        <a href="mailto:?subject=Confidence%20and%20prediction%20intervals%20explained...%20%28with%20a%20Shiny%20app!%29&amp;body=https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Using%20Github%20Actions%20to%20update%20a%20shiny%20app%20on%20a%20private%20server&amp;body=https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -973,7 +969,7 @@ ggplot() +
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/&amp;title=Confidence%20and%20prediction%20intervals%20explained...%20%28with%20a%20Shiny%20app!%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/&amp;title=Using%20Github%20Actions%20to%20update%20a%20shiny%20app%20on%20a%20private%20server" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -986,7 +982,7 @@ ggplot() +
       
       
       <li>
-        <a href="whatsapp://send?text=Confidence%20and%20prediction%20intervals%20explained...%20%28with%20a%20Shiny%20app!%29%20https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Using%20Github%20Actions%20to%20update%20a%20shiny%20app%20on%20a%20private%20server%20https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -999,7 +995,7 @@ ggplot() +
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/&amp;title=Confidence%20and%20prediction%20intervals%20explained...%20%28with%20a%20Shiny%20app!%29" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/&amp;title=Using%20Github%20Actions%20to%20update%20a%20shiny%20app%20on%20a%20private%20server" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1130,7 +1126,7 @@ ggplot() +
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/post/using-github-actions-to-update-a-shiny-app/">Using Github Actions to update a shiny app on a private server</a></li>
+      <li><a href="/post/2019-12-13-confidence_prediction_intervals_explained/">Confidence and prediction intervals explained... (with a Shiny app!)</a></li>
       
       <li><a href="/post/2019-08-10-cognito-shiny-authentication/">Securing Shiny apps with AWS Cognito authentication</a></li>
       

@@ -5,12 +5,121 @@
     <link>https://adisarid.github.io/tag/shiny/</link>
       <atom:link href="https://adisarid.github.io/tag/shiny/index.xml" rel="self" type="application/rss+xml" />
     <description>shiny</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Fri, 13 Dec 2019 12:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Tue, 21 Sep 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>shiny</title>
       <link>https://adisarid.github.io/tag/shiny/</link>
     </image>
+    
+    <item>
+      <title>Using Github Actions to update a shiny app on a private server</title>
+      <link>https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/</link>
+      <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/</guid>
+      <description>
+&lt;script src=&#34;https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc.). I assume you already have your server running shiny server, and that you are using Github for your development.&lt;/p&gt;
+&lt;p&gt;If you’re looking for continuous deployment of shiny apps to the shinyapps.io hosting service you can check out &lt;a href=&#34;https://blog.rmhogervorst.nl/blog/2021/02/27/deploy-to-shinyapps-io-from-github-actions/&#34;&gt;this post&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;continuous-what&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Continuous what…?!&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Continuous deployment&lt;/strong&gt; is the act of deploying your program (a shiny app in our case), every time it is updated, and doing so in an automated way.&lt;/p&gt;
+&lt;p&gt;More rigorously, let’s assume you already have a shiny app that you are developing, and using Github as your main version control tool. You are deploying your app to a private server (i.e., on an AWS EC2, a lightsail instance, Digital Ocean droplet, or similar). To get your app up to the server, you cloned the app’s repository into the directory &lt;code&gt;/srv/shiny-server/YOUR_APP_NAME/&lt;/code&gt; . Every time your app is updated, you get into the directory to do a &lt;code&gt;git pull&lt;/code&gt; , to make sure the updates are applied to your production server.&lt;/p&gt;
+&lt;p&gt;This can be quite of a headache, ssh-ing into the server, just to do a &lt;code&gt;git pull&lt;/code&gt;. Wouldn’t it be nice if the &lt;code&gt;git pull&lt;/code&gt; in your server would magically happen every time you push your updates to the main branch automatically? this is what the rest of this post is about.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-small-note-about-shiny-app-testing&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A small note about shiny app testing&lt;/h2&gt;
+&lt;p&gt;Before I continue with this post, I would like to mention that any continuous integration should be coupled with automated tests for your app. This post doesn’t deal with testing at all (just the final act of deploying it). Rstudio has extensive documentation on shiny app testing &lt;a href=&#34;https://shiny.rstudio.com/articles/testing-overview.html&#34;&gt;here&lt;/a&gt;, as well as &lt;a href=&#34;https://mastering-shiny.org/scaling-testing.html&#34;&gt;this chapter here&lt;/a&gt; from the “Mastering Shiny” book.&lt;/p&gt;
+&lt;p&gt;Such tests should be placed before the step I’m about to write about, and passing all tests should be a prerequisite for performing the actual deployment. For example, you can have tests run on every push (to any branch) thus making sure that your app is tested before you finally merge to your main branch (which is then automatically updated in production).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-process&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The process&lt;/h2&gt;
+&lt;p&gt;Before diving deeper into the process, a short overview of the steps we’re going to do. We’re going to:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Log in to the server, and create a new user with read/write access to the directory of the app we want to update.&lt;/li&gt;
+&lt;li&gt;Create an SSH key for this user which will enable Github Actions to log in to the server.&lt;/li&gt;
+&lt;li&gt;Add secrets to the Github repository (the SSH private key, hostname, user name, port).&lt;/li&gt;
+&lt;li&gt;Add the SSH key as a repository deployment key.&lt;/li&gt;
+&lt;li&gt;Create the workflow in the repository.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div id=&#34;creating-an-additional-user&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Creating an additional user&lt;/h3&gt;
+&lt;p&gt;The first step is to create a new user which will be the user Github Actions is using to log in to your server. You can also use an existing user for that, but I prefer to separate my credentials with the credentials I provide external services (such as Github Actions). Log into your server and add a new user (replace &lt;code&gt;github_actions_user&lt;/code&gt; with the name you want):&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;sudo useradd github_actions_user&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The next thing is to add write permissions for this newly created user on the directories we want Github Actions to be able to update. Let’s say that the app is called &lt;code&gt;my_shiny_app&lt;/code&gt;, and that the current owner of the app is the user &lt;code&gt;ubuntu&lt;/code&gt;. We’re going to replace the directory owner with our new user’s group and add &lt;code&gt;ubuntu&lt;/code&gt; to this group as well (to retain &lt;code&gt;ubuntu&lt;/code&gt;’s write permissions).&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd /srv/shiny-server/
+sudo chown github_actions_user:github_actions_user -R my_shiny_app
+sudo usermod -a -G github_actions_user ubuntu&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The middle line replaces the directory owner and the last line adds &lt;code&gt;ubuntu&lt;/code&gt; to the directory ownership (group).&lt;/p&gt;
+&lt;p&gt;In my setup, users must authenticate with a key to ssh into the server (a password is not enough), so let’s create the keys.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;creating-an-ssh-key-for-login&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Creating an SSH key for login&lt;/h3&gt;
+&lt;p&gt;First thing is to switch to the new user:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;su - github_actions_user&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Following the instructions from &lt;a href=&#34;https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent&#34;&gt;here&lt;/a&gt; to create the new keys (when prompted for file location and for passphrase, just click Enter leaving the default location for the keys and no passphrase).&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;ssh-keygen -t ed25519 -C &amp;quot;your_email@example.com&amp;quot;
+eval &amp;quot;$(ssh-agent -s)&amp;quot;
+ssh-add ~/.ssh/id_ed25519&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Important note about using a passphrase&lt;/strong&gt;: after you type the first command you will be prompted for a passphrase. The passphrase encrypts the private key so that it can only be used by the user who knows the passphrase. However, if the repository of the app is private the Github Action will need the key to &lt;code&gt;git pull&lt;/code&gt; from the repository. The Github Action we are using (as far as my experience goes) doesn’t work well with private repositories which we access with keys protected by a passphrase, hence I used no passphrase on these keys. I’m pretty sure there’s a better way around it, if you find it - let me know (&lt;span class=&#34;citation&#34;&gt;@SaridResearch&lt;/span&gt; on twitter).&lt;/p&gt;
+&lt;p&gt;Finally, add the key to the authorized list, like this:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cat .ssh/id_ed25519.pub | ssh b@B &amp;#39;cat &amp;gt;&amp;gt; .ssh/authorized_keys&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-secrets-to-the-repository&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding secrets to the repository&lt;/h3&gt;
+&lt;p&gt;Now we want to add the required information to the repository. We need the following data: the private key for ssh-ing, the host, port, and user name.&lt;/p&gt;
+&lt;p&gt;To get the private key while logged in as &lt;code&gt;github_actions_user&lt;/code&gt; type:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;nano ~/.ssh/id_ed25519&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Copy the key.&lt;/p&gt;
+&lt;p&gt;Go to the repository of the app and click on &lt;strong&gt;settings&lt;/strong&gt; (the top tabs) -&amp;gt; &lt;strong&gt;secrets&lt;/strong&gt; (on the left menu). Click on “New repository secret”. Add a secret named &lt;em&gt;KEY&lt;/em&gt; and paste the contents of the key you just copied. Also add the following secrets in a similar manner &lt;em&gt;HOST&lt;/em&gt; (the host name), &lt;em&gt;PORT&lt;/em&gt; (for the most part it should be 22, unless you changed it), &lt;em&gt;USERNAME&lt;/em&gt; (in this example github_actions_user), &lt;em&gt;APPNAME&lt;/em&gt; (the location of the app within the shiny-server directory, e.g. &lt;code&gt;my_shiny_app&lt;/code&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;adding-a-deployment-key&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Adding a deployment key&lt;/h3&gt;
+&lt;p&gt;You need this step only if your repository is private - the public key should be added to Github, so that Github will allow you access to the repository. For that we need the public key. Get it by typing:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;nano ~/.ssh/id_ed25519.pub&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Copy the public key, in Github inside the repository of the app go to &lt;strong&gt;Deploy keys&lt;/strong&gt; (on the left menu), add a title to your key, such as “key for pulling to production”, and paste the public key.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;create-the-workflow&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Create the workflow&lt;/h3&gt;
+&lt;p&gt;For the final step, we’re going to use the Github Action template, prepared by &lt;code&gt;appleboy&lt;/code&gt; and others (&lt;a href=&#34;https://github.com/appleboy/ssh-action&#34;&gt;from here&lt;/a&gt;). Just add the following yml file to your repository under: &lt;code&gt;.github/workflows/main.yml&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# SSH into machine and git pull for updates
+
+name: execute remote ssh to pull updates from master
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called &amp;quot;build&amp;quot;
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /srv/shiny-server/${{ secrets.APPNAME }}
+            git pull&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;After completing these steps, every time you push something to the main branch it will magically update the app on your server. Be sure to check it works after a few commits (go to &lt;strong&gt;Actions&lt;/strong&gt; in the top menu and see that it works.&lt;/p&gt;
+&lt;p&gt;What’s going on behind the scene is that Github Actions spawns up a Docker which logs in to your server via ssh, and then runs &lt;code&gt;cd /srv/shiny-server/my_shiny_app/&lt;/code&gt; and &lt;code&gt;git pull&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For more information on this specific Github Action read &lt;a href=&#34;https://github.com/appleboy/ssh-action&#34; class=&#34;uri&#34;&gt;https://github.com/appleboy/ssh-action&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Confidence and prediction intervals explained... (with a Shiny app!)</title>

@@ -1,5 +1,5 @@
 ---
-title: Using Github Actions to update a shiny app
+title: Using Github Actions to update a shiny app on a private server
 author: Adi Sarid
 date: '2021-09-21'
 slug: using-github-actions-to-update-a-shiny-app
@@ -86,10 +86,71 @@ ssh-add ~/.ssh/id_ed25519
 
 **Important note about using a passphrase**: after you type the first command you will be prompted for a passphrase. The passphrase encrypts the private key so that it can only be used by the user who knows the passphrase. However, if the repository of the app is private the Github Action will need the key to `git pull` from the repository. The Github Action we are using (as far as my experience goes) doesn't work well with private repositories which we access with keys protected by a passphrase, hence I used no passphrase on these keys. I'm pretty sure there's a better way around it, if you find it - let me know (@SaridResearch on twitter).
 
+Finally, add the key to the authorized list, like this:
+
+```{bash, eval=FALSE}
+cat .ssh/id_ed25519.pub | ssh b@B 'cat >> .ssh/authorized_keys'
+```
+
 ### Adding secrets to the repository
+
+Now we want to add the required information to the repository. We need the following data: the private key for ssh-ing, the host, port, and user name.
+
+To get the private key while logged in as `github_actions_user` type:
+
+```{bash, eval=FALSE}
+nano ~/.ssh/id_ed25519
+```
+
+Copy the key.
+
+Go to the repository of the app and click on **settings** (the top tabs) -\> **secrets** (on the left menu). Click on "New repository secret". Add a secret named *KEY* and paste the contents of the key you just copied. Also add the following secrets in a similar manner *HOST* (the host name), *PORT* (for the most part it should be 22, unless you changed it), *USERNAME* (in this example github_actions_user), *APPNAME* (the location of the app within the shiny-server directory, e.g. `my_shiny_app`).
 
 ### Adding a deployment key
 
+You need this step only if your repository is private - the public key should be added to Github, so that Github will allow you access to the repository. For that we need the public key. Get it by typing:
+
+```{bash, eval=FALSE}
+nano ~/.ssh/id_ed25519.pub
+```
+
+Copy the public key, in Github inside the repository of the app go to **Deploy keys** (on the left menu), add a title to your key, such as "key for pulling to production", and paste the public key.
+
 ### Create the workflow
 
+For the final step, we're going to use the Github Action template, prepared by `appleboy` and others ([from here](https://github.com/appleboy/ssh-action)). Just add the following yml file to your repository under: `.github/workflows/main.yml`:
+
+    # SSH into machine and git pull for updates
+
+    name: execute remote ssh to pull updates from master
+    on:
+      # Triggers the workflow on push or pull request events but only for the main branch
+      push:
+        branches: [ main ]
+    # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    jobs:
+      # This workflow contains a single job called "build"
+      build:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
+        
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+          # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+          - uses: appleboy/ssh-action@master
+            with:
+              host: ${{ secrets.HOST }}
+              username: ${{ secrets.USERNAME }}
+              key: ${{ secrets.KEY }}
+              port: ${{ secrets.PORT }}
+              script: |
+                cd /srv/shiny-server/${{ secrets.APPNAME }}
+                git pull
+
 ## Conclusion
+
+After completing these steps, every time you push something to the main branch it will magically update the app on your server. Be sure to check it works after a few commits (go to **Actions** in the top menu and see that it works.
+
+What's going on behind the scene is that Github Actions spawns up a Docker which logs in to your server via ssh, and then runs `cd /srv/shiny-server/my_shiny_app/` and `git pull`.
+
+For more information on this specific Github Action read <https://github.com/appleboy/ssh-action>.
