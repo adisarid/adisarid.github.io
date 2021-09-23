@@ -36,4 +36,60 @@ This can be quite of a headache, ssh-ing into the server, just to do a `git pull
 
 Before I continue with this post, I would like to mention that any continuous integration should be coupled with automated tests for your app. This post doesn't deal with testing at all (just the final act of deploying it). Rstudio has extensive documentation on shiny app testing [here](https://shiny.rstudio.com/articles/testing-overview.html), as well as [this chapter here](https://mastering-shiny.org/scaling-testing.html) from the "Mastering Shiny" book.
 
-Such tests should be placed before the next step I'm about to write about, and passing all tests should be a prerequisite for performing the actual deployment. For example, you can have tests run on every push (to any branch) thus making sure that your app is tested before you finally merge to your main branch (which is then automatically updated in production).
+Such tests should be placed before the step I'm about to write about, and passing all tests should be a prerequisite for performing the actual deployment. For example, you can have tests run on every push (to any branch) thus making sure that your app is tested before you finally merge to your main branch (which is then automatically updated in production).
+
+## The process
+
+Before diving deeper into the process, a short overview of the steps we're going to do. We're going to:
+
+1.  Log in to the server, and create a new user with read/write access to the directory of the app we want to update.
+2.  Create an SSH key for this user which will enable Github Actions to log in to the server.
+3.  Add secrets to the Github repository (the SSH private key, hostname, user name, port).
+4.  Add the SSH key as a repository deployment key.
+5.  Create the workflow in the repository.
+
+### Creating an additional user
+
+The first step is to create a new user which will be the user Github Actions is using to log in to your server. You can also use an existing user for that, but I prefer to separate my credentials with the credentials I provide external services (such as Github Actions). Log into your server and add a new user (replace `github_actions_user` with the name you want):
+
+```{bash, eval=FALSE}
+sudo useradd github_actions_user
+```
+
+The next thing is to add write permissions for this newly created user on the directories we want Github Actions to be able to update. Let's say that the app is called `my_shiny_app`, and that the current owner of the app is the user `ubuntu`. We're going to replace the directory owner with our new user's group and add `ubuntu` to this group as well (to retain `ubuntu`'s write permissions).
+
+```{bash, eval=FALSE}
+cd /srv/shiny-server/
+sudo chown github_actions_user:github_actions_user -R my_shiny_app
+sudo usermod -a -G github_actions_user ubuntu
+```
+
+The middle line replaces the directory owner and the last line adds `ubuntu` to the directory ownership (group).
+
+In my setup, users must authenticate with a key to ssh into the server (a password is not enough), so let's create the keys.
+
+### Creating an SSH key for login
+
+First thing is to switch to the new user:
+
+```{bash, eval=FALSE}
+su - github_actions_user
+```
+
+Following the instructions from [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) to create the new keys (when prompted for file location and for passphrase, just click Enter leaving the default location for the keys and no passphrase).
+
+```{bash, eval=FALSE}
+ssh-keygen -t ed25519 -C "your_email@example.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+**Important note about using a passphrase**: after you type the first command you will be prompted for a passphrase. The passphrase encrypts the private key so that it can only be used by the user who knows the passphrase. However, if the repository of the app is private the Github Action will need the key to `git pull` from the repository. The Github Action we are using (as far as my experience goes) doesn't work well with private repositories which we access with keys protected by a passphrase, hence I used no passphrase on these keys. I'm pretty sure there's a better way around it, if you find it - let me know (@SaridResearch on twitter).
+
+### Adding secrets to the repository
+
+### Adding a deployment key
+
+### Create the workflow
+
+## Conclusion
