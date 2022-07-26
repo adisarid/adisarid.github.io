@@ -1,0 +1,31 @@
+---
+title: What I learned from rstudio::conf 2020
+author: Adi Sarid
+date: '2022-07-25'
+slug: what-i-learned-from-rstudio-conf-2020
+categories:
+  - R
+tags:
+  - rstudio::conf
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2022-07-25T17:36:42Z'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+# Raw
+
+   * From the `tidymodels` workshop: the `vetiver` package for deploying models in a `plumber` API.
+   
+   * The `butcher` package makes models slimmer towards deployment (e.g., removing the data from the model)
+   
+   * The `stacks` package for stacking different models.
+   
+   * The `required.packages` from (some) package within `tidymodels` can be used on an object to see which packages are needed to predict it. Can be useful for migrating models to other repos (without the overhead of the complete `tidymodels`).
