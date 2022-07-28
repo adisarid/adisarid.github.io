@@ -1,0 +1,61 @@
+---
+title: What I learned from rstudio::conf 2022
+author: Adi Sarid
+date: '2022-07-25'
+slug: what-i-learned-from-rstudio-conf-2022
+categories:
+  - R
+tags:
+  - rstudio::conf
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2022-07-25T17:36:42Z'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+# Raw
+
+   * Brand change and broader perspective for DS (including python), i.e.: the new brand is not associated with R, a lot of the developments are bilingual (shiny for python, vetiver, quarto), extension for VS code.
+
+   * From the `tidymodels` workshop: the `vetiver` package for deploying models in a `plumber` API.
+   
+   * The `butcher` package makes models slimmer towards deployment (e.g., removing the data from the model)
+   
+   * The `stacks` package for stacking different models.
+   
+   * The `required.packages` from (some) package within `tidymodels` can be used on an object to see which packages are needed to predict it. Can be useful for migrating models to other repos (without the overhead of the complete `tidymodels`).
+   
+   * Check how `tidymodels` creates a docker container for production + how to upload it to AWS Lambda. Check this: https://rstudio.github.io/vetiver-r/reference/vetiver_write_docker.html also check this: https://stackoverflow.com/questions/66770652/how-to-access-a-dockerized-r-image-trough-lambdaapi-gateway
+   
+   * `step_lencode_mixed` a method for pooling variables using the log-odds: Supervised Factor Conversions into Linear Functions using Bayesian Likelihood Encodings.
+   
+   * bookdown.org/max/FES
+   
+   * (Update R and RStudio server for quarto support)
+   
+   * `quarto` makes it easier to collaborate with collegues not using R.
+   
+   * Censored regression in `tidymodels`: `proportional_hazards() %>% set_mode("sensored regression")` from the `survival` package.
+   
+   * The `tidyclust` package for clustering.
+   
+   * MLOps with vetiver (and tidymodels):
+   
+      * version (pins), deploy (plumber), monitor.
+      
+      * reporting, data validation.
+      
+      * https://vetiver.rstudio.com
+   
+   * `workboots` for prediction intervals with any regression models (uses bootstrap internally).
+   
+   * `dbcooper` for easier work with databases. Stores and manages the connection globally.
+
+   * `rhino` package for a shiny development ecosystem.

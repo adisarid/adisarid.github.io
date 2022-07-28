@@ -1,0 +1,50 @@
+---
+title: What I learned from rstudio::conf 2022
+author: Adi Sarid
+date: '2022-07-25'
+slug: what-i-learned-from-rstudio-conf-2022
+categories:
+  - R
+tags:
+  - rstudio::conf
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2022-07-25T17:36:42Z'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="raw" class="section level1">
+<h1>Raw</h1>
+<ul>
+<li><p>Brand change and broader perspective for DS (including python), i.e.: the new brand is not associated with R, a lot of the developments are bilingual (shiny for python, vetiver, quarto), extension for VS code.</p></li>
+<li><p>From the <code>tidymodels</code> workshop: the <code>vetiver</code> package for deploying models in a <code>plumber</code> API.</p></li>
+<li><p>The <code>butcher</code> package makes models slimmer towards deployment (e.g., removing the data from the model)</p></li>
+<li><p>The <code>stacks</code> package for stacking different models.</p></li>
+<li><p>The <code>required.packages</code> from (some) package within <code>tidymodels</code> can be used on an object to see which packages are needed to predict it. Can be useful for migrating models to other repos (without the overhead of the complete <code>tidymodels</code>).</p></li>
+<li><p>Check how <code>tidymodels</code> creates a docker container for production + how to upload it to AWS Lambda. Check this: <a href="https://rstudio.github.io/vetiver-r/reference/vetiver_write_docker.html" class="uri">https://rstudio.github.io/vetiver-r/reference/vetiver_write_docker.html</a> also check this: <a href="https://stackoverflow.com/questions/66770652/how-to-access-a-dockerized-r-image-trough-lambdaapi-gateway" class="uri">https://stackoverflow.com/questions/66770652/how-to-access-a-dockerized-r-image-trough-lambdaapi-gateway</a></p></li>
+<li><p><code>step_lencode_mixed</code> a method for pooling variables using the log-odds: Supervised Factor Conversions into Linear Functions using Bayesian Likelihood Encodings.</p></li>
+<li><p>bookdown.org/max/FES</p></li>
+<li><p>(Update R and RStudio server for quarto support)</p></li>
+<li><p><code>quarto</code> makes it easier to collaborate with collegues not using R.</p></li>
+<li><p>Censored regression in <code>tidymodels</code>: <code>proportional_hazards() %&gt;% set_mode("sensored regression")</code> from the <code>survival</code> package.</p></li>
+<li><p>The <code>tidyclust</code> package for clustering.</p></li>
+<li><p>MLOps with vetiver (and tidymodels):</p>
+<ul>
+<li><p>version (pins), deploy (plumber), monitor.</p></li>
+<li><p>reporting, data validation.</p></li>
+<li><p><a href="https://vetiver.rstudio.com" class="uri">https://vetiver.rstudio.com</a></p></li>
+</ul></li>
+<li><p><code>workboots</code> for prediction intervals with any regression models (uses bootstrap internally).</p></li>
+<li><p><code>dbcooper</code> for easier work with databases. Stores and manages the connection globally.</p></li>
+<li><p><code>rhino</code> package for a shiny development ecosystem.</p></li>
+</ul>
+</div>
