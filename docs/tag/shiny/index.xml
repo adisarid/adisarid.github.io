@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>shiny | Adi Sarid</title>
-    <link>https://adisarid.github.io/tag/shiny/</link>
-      <atom:link href="https://adisarid.github.io/tag/shiny/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/shiny/</link>
+      <atom:link href="/tag/shiny/index.xml" rel="self" type="application/rss+xml" />
     <description>shiny</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Tue, 21 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2022 Adi Sarid</copyright><lastBuildDate>Tue, 21 Sep 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>shiny</title>
-      <link>https://adisarid.github.io/tag/shiny/</link>
+      <link>/tag/shiny/</link>
     </image>
     
     <item>
       <title>Using Github Actions to update a shiny app on a private server</title>
-      <link>https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/</link>
+      <link>/post/using-github-actions-to-update-a-shiny-app/</link>
       <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/</guid>
+      <guid>/post/using-github-actions-to-update-a-shiny-app/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../post/using-github-actions-to-update-a-shiny-app/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc.). I assume you already have your server running shiny server, and that you are using Github for your development.&lt;/p&gt;
@@ -123,11 +123,11 @@ jobs:
     
     <item>
       <title>Confidence and prediction intervals explained... (with a Shiny app!)</title>
-      <link>https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/</link>
+      <link>/post/2019-12-13-confidence_prediction_intervals_explained/</link>
       <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/</guid>
+      <guid>/post/2019-12-13-confidence_prediction_intervals_explained/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.&lt;/p&gt;
@@ -224,7 +224,7 @@ ggplot() +
   xlab(&amp;quot;x&amp;quot;) + 
   ylab(&amp;quot;y&amp;quot;) + 
   ggtitle(&amp;quot;Log-linear: Model, Fit, Confidence and Prediction Intervals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Conclusions&lt;/h2&gt;
@@ -236,11 +236,11 @@ ggplot() +
     
     <item>
       <title>Securing Shiny apps with AWS Cognito authentication</title>
-      <link>https://adisarid.github.io/post/2019-08-10-cognito-shiny-authentication/</link>
+      <link>/post/2019-08-10-cognito-shiny-authentication/</link>
       <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-08-10-cognito-shiny-authentication/</guid>
+      <guid>/post/2019-08-10-cognito-shiny-authentication/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;background&#34; class=&#34;section level2&#34;&gt;
@@ -269,7 +269,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Important!&lt;/strong&gt; in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.&lt;/p&gt;
 &lt;p&gt;Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../media/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Optional&lt;/strong&gt;: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.&lt;/p&gt;
 &lt;p&gt;Complete the wizard and create your user pool.&lt;/p&gt;
 &lt;div id=&#34;email-communications&#34; class=&#34;section level3&#34;&gt;
@@ -284,7 +284,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;p&gt;Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.&lt;/p&gt;
 &lt;p&gt;Set a domain name for your login screen and customize the UI of the login screen if you wish.&lt;/p&gt;
 &lt;p&gt;You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../media/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;enable-identity-provides-optional&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Enable identity provides (Optional)&lt;/h3&gt;
@@ -567,11 +567,11 @@ fluidPage(
     
     <item>
       <title>What NOT to do when building a shiny app (lessons learned the hard way)</title>
-      <link>https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/</link>
+      <link>/post/2019-07-03-shiny_app_lessons/</link>
       <pubDate>Fri, 19 Jul 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/</guid>
+      <guid>/post/2019-07-03-shiny_app_lessons/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I’ve been building R shiny apps for a while now, and ever since I started working with shiny, it has significantly increased the set of services I offer my clients.&lt;/p&gt;
@@ -592,7 +592,7 @@ fluidPage(
 &lt;p&gt;Also, when you’re looking at a mockup (even if it’s just a simple drawing or a non-interactive slide), it helps in the next stages of building the app’s UI.&lt;/p&gt;
 &lt;p&gt;Here is an example of how a mockup would look like when I’m drawing it on a piece of paper. Note how I’ve already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you’re actually looking at one of these.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://adisarid.github.io/media/mockup_draw_example.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;../../media/mockup_draw_example.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Example for a mockup drawing&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -643,11 +643,11 @@ fluidPage(
     
     <item>
       <title>Settling class action lawsuits with conjoint analysis and R (&#43;a conjoint shiny app)</title>
-      <link>https://adisarid.github.io/post/2019-02-03-class-action-conjoint/</link>
+      <link>/post/2019-02-03-class-action-conjoint/</link>
       <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-02-03-class-action-conjoint/</guid>
+      <guid>/post/2019-02-03-class-action-conjoint/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;A few days ago I presented at the 9th Israeli class action lawsuit conference. You’re probably asking yourself what would a data scientist do in a room full of lawyers?&lt;/p&gt;
@@ -842,7 +842,7 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
   ylab(&amp;quot;Predicted response (glm logit)&amp;quot;) + 
   xlab(&amp;quot;Package name&amp;quot;) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(package_responses, aes(x = package_name, y = fit)) + 
   geom_point() +
   geom_errorbar(aes(ymin = fit - se.fit, ymax = fit + se.fit)) + 
@@ -850,7 +850,7 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
   ylab(&amp;quot;Predicted response (glm logit)&amp;quot;) +
   xlab(&amp;quot;Package name&amp;quot;) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We see that the three packages (pkg1, pkg2, and pkg3) are relatively similar, within one standard error from one another. When compared to the worst package they are roughly &lt;span class=&#34;math inline&#34;&gt;\(\sim8\)&lt;/span&gt; times better (via odds ratio), but the best package is &lt;span class=&#34;math inline&#34;&gt;\(\sim5\)&lt;/span&gt; times better than packages 1-3.&lt;/p&gt;
 &lt;p&gt;One can use these concepts to illustrate the benefits of each parameter on the different packages, and let the user experience how different features make the packages more or less “attractive”.&lt;/p&gt;
 &lt;p&gt;As an experiment, I prepared a nice little shiny app which lets the user experiment with the different features: build two packages and then compare them. You can checkout the code at the &lt;a href=&#34;https://github.com/adisarid/class-action-IL-survey/tree/master/settlement-app/SettlementAttractive&#34;&gt;github repo&lt;/a&gt;, or check out the live app &lt;a href=&#34;https://sarid.shinyapps.io/class-action&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;

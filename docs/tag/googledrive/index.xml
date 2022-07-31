@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>googledrive | Adi Sarid</title>
-    <link>https://adisarid.github.io/tag/googledrive/</link>
-      <atom:link href="https://adisarid.github.io/tag/googledrive/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/googledrive/</link>
+      <atom:link href="/tag/googledrive/index.xml" rel="self" type="application/rss+xml" />
     <description>googledrive</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Tue, 17 Sep 2019 12:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2022 Adi Sarid</copyright><lastBuildDate>Tue, 17 Sep 2019 12:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>googledrive</title>
-      <link>https://adisarid.github.io/tag/googledrive/</link>
+      <link>/tag/googledrive/</link>
     </image>
     
     <item>
       <title>Retrieving google drive item shares and permissions (in R)</title>
-      <link>https://adisarid.github.io/post/2019-09-17-google_drive_dir_structure_permissions/</link>
+      <link>/post/2019-09-17-google_drive_dir_structure_permissions/</link>
       <pubDate>Tue, 17 Sep 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-09-17-google_drive_dir_structure_permissions/</guid>
+      <guid>/post/2019-09-17-google_drive_dir_structure_permissions/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Google drive is a great tool, specifically we’ve been using “G Suite” (the equivalent of google drive but for businesses), for a long time. Lately I noticed it’s missing an important feature - monitoring file shares and permission of google drive items across organization is non-trival (at least in the G suite basic subscription).&lt;/p&gt;

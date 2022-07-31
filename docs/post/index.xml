@@ -2,23 +2,104 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts | Adi Sarid</title>
-    <link>https://adisarid.github.io/post/</link>
-      <atom:link href="https://adisarid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>/post/</link>
+      <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Thu, 25 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2022 Adi Sarid</copyright><lastBuildDate>Sun, 31 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
-      <link>https://adisarid.github.io/post/</link>
+      <link>/post/</link>
     </image>
     
     <item>
-      <title>Creating your google chat R bot in under 5 minutes</title>
-      <link>https://adisarid.github.io/post/creating-your-google-chat-r-bot-in-under-5-minutes/</link>
-      <pubDate>Thu, 25 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/creating-your-google-chat-r-bot-in-under-5-minutes/</guid>
+      <title>Some takeaways from rstudio::conf 2022</title>
+      <link>/post/what-i-learned-from-rstudio-conf-2022/</link>
+      <pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>/post/what-i-learned-from-rstudio-conf-2022/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/post/creating-your-google-chat-r-bot-in-under-5-minutes/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Last week I participated in the annual RStudio conference which took place in Washington DC.&lt;/p&gt;
+&lt;p&gt;As always, a great experience, with a lot of hex stickers.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;me_at_conf22.jpg&#34; width=&#34;700&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;(Me at rstudio::conf2022, with a background of a hex stickers wall)&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Here are some of my takeaways from the conference.&lt;/p&gt;
+&lt;div id=&#34;rstudio-extending-its-reach&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;RStudio extending its reach&lt;/h2&gt;
+&lt;p&gt;For a long time now, RStudio has been developing products for R and Python (e.g., via the &lt;code&gt;reticulate&lt;/code&gt; package which allows for using python from R, the support of the IDE for python scripts, and more).&lt;/p&gt;
+&lt;p&gt;To my understanding, RStudio has figured out that in order to grow significantly, it must put more emphasis on developing python products &lt;em&gt;directly&lt;/em&gt;. This will allow it to sell its products in a “language agnostic” manner. Or using their words “a broader focus”:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We are embracing multi-lingual data science… we want to make scientific communication better for everyone.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is reflected in multiple directions presented during the conference:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Re branding - RStudio is changing its name to posit. The new brand will sound more “natural” to non-useRs (or at least not cause aversion). See website &lt;a href=&#34;https://posit.co/&#34;&gt;here&lt;/a&gt;, and scroll down - there is a video of Hadley Wickam explaninng the brand change.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Packages which are developed with R and python in mind, such is the &lt;code&gt;vetiver&lt;/code&gt; package which allows deployment of &lt;code&gt;tidymodels&lt;/code&gt;. See &lt;a href=&#34;https://www.tidyverse.org/blog/2022/06/announce-vetiver/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The development of &lt;code&gt;quarto&lt;/code&gt;, a program (command line interface actually), which generates documents. Those who are familiar will see that it is very similar to RMarkdown, however since it is a standalone software, it does not require R. Quarto support Jupyter notebooks as well as RMarkdown. It also has extensions to common IDEs such as VS Code. It can generate almost anything that RMarkdown can generate (and more coming in the future). Check out quarto &lt;a href=&#34;https://quarto.org/&#34;&gt;here&lt;/a&gt;. Quatro is already integrated to RStudio IDE in its more recent versions.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The development of shiny for python. Joe Chang announced this in his very interesting (and emotional) keynote. Joe also told the story of how shiny came to be, how R “fits like a glove” to shiny (due to way function arguments are passed), and eventually surprised the audience with the fact that shiny for python is under way, and already in an Alpha version. The shinyapps.io service will also support shiny, there will be a shiny server for python, and additional surprises (e.g., shiny for python can be deployed without a server, using static html and by &lt;a href=&#34;https://shiny.rstudio.com/py/docs/shinylive.html&#34;&gt;translating the python code to WebAssembly&lt;/a&gt;). For more information abot shiny for python, read &lt;a href=&#34;https://shiny.rstudio.com/py/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-tidymodels-workshop&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The &lt;code&gt;tidymodels&lt;/code&gt; workshop&lt;/h2&gt;
+&lt;p&gt;I took the opportunity of the conference to join the &lt;code&gt;tidymodels&lt;/code&gt; workshop.&lt;/p&gt;
+&lt;p&gt;So far I didn’t do much work in &lt;code&gt;tidymodels&lt;/code&gt;, but after the workshop I see that it does seem like a very good unifying framework. The workshop contained a lot of information and examples and was overwhelming to consume in just two days! Definitely a lot more to try out and learn independently.&lt;/p&gt;
+&lt;p&gt;Interesting thing to see in the workshop was the &lt;code&gt;vetiver&lt;/code&gt; package for MLOps - it makes it easy to generate a model in production (a plumber api). It uses the &lt;code&gt;butcher&lt;/code&gt; package to make the model slimmer, removing unnecessary data.&lt;/p&gt;
+&lt;p&gt;It will be interesting to try and upload a plumber api to an AWS Lambda function using Docker (the &lt;code&gt;vetiver&lt;/code&gt; package is able to generate a dockerfile, see &lt;a href=&#34;https://rstudio.github.io/vetiver-r/reference/vetiver_write_docker.html&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://stackoverflow.com/questions/66770652/how-to-access-a-dockerized-r-image-trough-lambdaapi-gateway&#34;&gt;here&lt;/a&gt; for more information).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;recipe&lt;/code&gt; package is pretty rich in data engineering tools, a good reference is the following book on feature engineering and selection: &lt;a href=&#34;https://bookdown.org/max/FES&#34;&gt;bookdown.org/max/FES&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I also liked the method in which &lt;code&gt;tidymodels&lt;/code&gt; makes it really easy to tune your models by setting tuning on feature engineering parameters or on the model’s parameters (package &lt;code&gt;tune&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Some additional tools (extensions for &lt;code&gt;tidymodels&lt;/code&gt;), from other talks, include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Survival analysis from the &lt;code&gt;survival&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;tidyclust&lt;/code&gt; for clustering (unsupervised learning).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;quarto&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Quarto&lt;/h2&gt;
+&lt;p&gt;Already mentioned above, I have already installed quarto and experienced with it. Since it is standalone, it is quicker than using RMarkdown. It also has some cool features like very easily switching from one format to another (e.g., from a document to a website).&lt;/p&gt;
+&lt;p&gt;The format is slowly gaining additional features, and most likely by 2023’s end it will include almost all of the RMarkdown features.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-dbcooper-package&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The &lt;code&gt;dbcooper&lt;/code&gt; package&lt;/h2&gt;
+&lt;p&gt;David Robinson showed the &lt;code&gt;dbcooper&lt;/code&gt; package which can make a function out of database tables. Mainly aimed at reading from databases, and creates a nice interface.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-vetiver-package&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The &lt;code&gt;vetiver&lt;/code&gt; package&lt;/h2&gt;
+&lt;p&gt;Already mentioned above - a package around MLOps, can be very helpful to deploy models, though my next goal is to figure out how to take its docker image output and turn it into an AWS Lambda function.&lt;/p&gt;
+&lt;p&gt;It has a lot of features other than deployment such as reporting and documentation.&lt;/p&gt;
+&lt;p&gt;Check out here: &lt;a href=&#34;https://vetiver.rstudio.com&#34; class=&#34;uri&#34;&gt;https://vetiver.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;building-a-shiny-app-using-a-drag-and-drop-interface&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Building a shiny app using a drag-and-drop interface&lt;/h2&gt;
+&lt;p&gt;Mostly, when we build shiny apps, we build the interface programmatically, however a new package called &lt;code&gt;shinyuieditor&lt;/code&gt; allows building the app with a nice drag-and-drop interface. Additional details &lt;a href=&#34;https://www.youtube.com/watch?v=Zac1qdaYNsY&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://rstudio.github.io/shinyuieditor/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;to-conclude&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;To conclude&lt;/h1&gt;
+&lt;p&gt;The conference had an abundance of innovations, methods, packages and more to learn from. I detailed just a few of the things I remember the most. I’m guessing that in the following days/weeks the posit team will upload all the talks to youtube (as they do after every conference), so that additional information can be consumed.&lt;/p&gt;
+&lt;p&gt;To end this post with a small anecdote, someone asked Joe Chang how did the inspiration for the name “shiny” came to be. Apparently, Joe watched the series “FireFly” by Joss Whedon in which the characters use the description “shiny” a lot, and the name kind of stuck.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;firefly.jpg&#34; width=&#34;700&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;(The Firefly sci-fi series gave the inspiration to the shiny package’s name)&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Since you made it to the end of this post, I might as well tell you that I also visited the Smithsonian natural history museum (I’m a fan of nature museums). A great museum, not part of conf, but a great visit opportunity. Here’s a Megalogon about to eat my head.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;megalodon.jpg&#34; width=&#34;800&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;(A Megalogon in the Smisthonian, hanging from the wall, about to eat my head)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating your google chat R bot in under 5 minutes</title>
+      <link>/post/creating-your-google-chat-r-bot-in-under-5-minutes/</link>
+      <pubDate>Thu, 25 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>/post/creating-your-google-chat-r-bot-in-under-5-minutes/</guid>
+      <description>
+&lt;script src=&#34;../post/creating-your-google-chat-r-bot-in-under-5-minutes/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;We use Google workspace as our email and document solution (i.e., the gmail solution for businesses). A few days ago I was chatting with one of my colleagues and noticed this feature called: “Manage webhooks” in the chat window. Apparently it’s a quick hack to create your own chat bot, which can communicate with a google chat, a group chat, or a chat space (different variations of a chat room, basically).&lt;/p&gt;
@@ -53,11 +134,11 @@ httr::POST(url = chat_url,
     
     <item>
       <title>Using Github Actions to update a shiny app on a private server</title>
-      <link>https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/</link>
+      <link>/post/using-github-actions-to-update-a-shiny-app/</link>
       <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/</guid>
+      <guid>/post/using-github-actions-to-update-a-shiny-app/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../post/using-github-actions-to-update-a-shiny-app/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc.). I assume you already have your server running shiny server, and that you are using Github for your development.&lt;/p&gt;
@@ -162,11 +243,11 @@ jobs:
     
     <item>
       <title>A data science detective story (and there&#39;s a villain too)</title>
-      <link>https://adisarid.github.io/post/data-science-forensics/</link>
+      <link>/post/data-science-forensics/</link>
       <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/data-science-forensics/</guid>
+      <guid>/post/data-science-forensics/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/post/data-science-forensics/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../post/data-science-forensics/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Here is a detective story about some data science forensics, and there is a villain too.&lt;/p&gt;
@@ -201,7 +282,7 @@ ggplot(responses, aes(x = type, fill = factor(rating))) +
   ylab(&amp;quot;Respondents [%]&amp;quot;) + 
   xlab(&amp;quot;&amp;quot;) + 
   ggtitle(&amp;quot;Distribution of complete vs. partial responses,\nbefore/after June 21&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;See how the distribution of partial data after June 21’ is completely different from the distribution of the complete surveys and the partial surveys before June 21’?&lt;/p&gt;
 &lt;p&gt;Another thing we noticed was that a lot of the partial surveys were being answered within 2-3 minutes (another strong indication for the work of Microsoft’s bot).&lt;/p&gt;
 &lt;/div&gt;
@@ -219,11 +300,11 @@ ggplot(responses, aes(x = type, fill = factor(rating))) +
     
     <item>
       <title>YAPOEH! (Yet another post on error handling)</title>
-      <link>https://adisarid.github.io/post/yet-another-post-on-error-handling/</link>
+      <link>/post/yet-another-post-on-error-handling/</link>
       <pubDate>Wed, 11 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/yet-another-post-on-error-handling/</guid>
+      <guid>/post/yet-another-post-on-error-handling/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.&lt;/p&gt;
@@ -792,7 +873,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(bench_results) + 
   ggtitle(&amp;quot;Comparison of safely, possibly, and tryCatch&amp;quot;) + 
   coord_flip(ylim = c(1.5, 15))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2020-11-09-YAPOEH-yet-another-post-on-error-handling.en_files/figure-html/error%20prone%20data%20set-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/2020-11-09-YAPOEH-yet-another-post-on-error-handling.en_files/figure-html/error%20prone%20data%20set-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As can be seen from the benchmark’s results, there is no doubt about it: &lt;code&gt;tryCatch&lt;/code&gt; is the fastest. The &lt;code&gt;purrr&lt;/code&gt; functions &lt;code&gt;safely&lt;/code&gt; and &lt;code&gt;possibly&lt;/code&gt; take longer to run. In my opinion though they are slightly more convenient in terms of syntax.&lt;/p&gt;
 &lt;p&gt;In addition, the &lt;code&gt;safely&lt;/code&gt; variation allows us to retrieve the error messages conveniently for later examination. Again, this capability comes with a price when compared to &lt;code&gt;tryCatch&lt;/code&gt;, but it is roughly the same run time when compared to &lt;code&gt;possibly&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
@@ -807,11 +888,11 @@ gt::gt(summary(bench_results)) %&amp;gt;%
     
     <item>
       <title>Teaching with zoom breakout-rooms and the learnr package</title>
-      <link>https://adisarid.github.io/post/2020-05-26-break-rooms-and-learnr/</link>
+      <link>/post/2020-05-26-break-rooms-and-learnr/</link>
       <pubDate>Tue, 26 May 2020 11:06:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2020-05-26-break-rooms-and-learnr/</guid>
+      <guid>/post/2020-05-26-break-rooms-and-learnr/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Corona has put us in an awkward situation, where we must rethink and revise our ways of doing things (teaching, working, baby sitting, balancing work and life, or any other related field of your choosing). I also see this as an opportunity to experiment and improve various things. Specifically I dedicate this post to some teaching methods I have adopted. Mostly: using breakout rooms (a zoom feature) and &lt;code&gt;learnr&lt;/code&gt; tutorials.&lt;/p&gt;
@@ -849,11 +930,11 @@ gt::gt(summary(bench_results)) %&amp;gt;%
     
     <item>
       <title>Set up RStudio server with Let&#39;s Encrypt SSL certificate</title>
-      <link>https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/</link>
+      <link>/post/2020-03-06-setup_rstudio_server_with_ssl/</link>
       <pubDate>Fri, 06 Mar 2020 22:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/</guid>
+      <guid>/post/2020-03-06-setup_rstudio_server_with_ssl/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).&lt;/p&gt;
@@ -876,7 +957,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
 &lt;h3&gt;AWS Lightsail’s firewall settings&lt;/h3&gt;
 &lt;p&gt;When using &lt;strong&gt;AWS Lightsail&lt;/strong&gt; (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).&lt;/p&gt;
 &lt;p&gt;Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#39;https://adisarid.github.io/media/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#39;../media/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
 &lt;p&gt;If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -988,15 +1069,15 @@ chmod u+x /opt/renewCerts.sh&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Impressions and notes from rstudio::conf2020</title>
-      <link>https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/</link>
+      <link>/post/2020-01-31-rstudio-conf2020-recap/</link>
       <pubDate>Fri, 31 Jan 2020 06:08:00 -1000</pubDate>
-      <guid>https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/</guid>
+      <guid>/post/2020-01-31-rstudio-conf2020-recap/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I’m just on my way back from this year’s rstudio::conf. Here’s an account of a few of the things which I found interesting, inspiring, or that might have some other impact in the future. I’m listing them by order of appearance in the conference.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/Hexagons_conf2020.jpg&#34; alt=&#34;The hexawall at rstudio::conf2020&#34; style=&#34;zoom:10%; float:right; padding-left:30px&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;../media/Hexagons_conf2020.jpg&#34; alt=&#34;The hexawall at rstudio::conf2020&#34; style=&#34;zoom:10%; float:right; padding-left:30px&#34;&gt;
 &lt;!-- ![](/post/2020-01-31-rstudio-conf2020-recap_files/icon.png) --&gt;&lt;/p&gt;
 &lt;div id=&#34;the-rmarkdown-and-interactive-dashboards-workshop&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;The RMarkdown and Interactive Dashboards Workshop&lt;/h2&gt;
@@ -1020,7 +1101,7 @@ chmod u+x /opt/renewCerts.sh&lt;/code&gt;&lt;/pre&gt;
 map(data_set$data, ~{
   ggplot(., aes(x, y)) + geom_line()
 })&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/ggplot2_animated_wave.gif&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../media/ggplot2_animated_wave.gif&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Cool, isn’t it?&lt;/p&gt;
 &lt;p&gt;If you’re into animations, there are other packages which can also accomplish this, such as the &lt;code&gt;gganimate&lt;/code&gt; package.&lt;/p&gt;
 &lt;/div&gt;
@@ -1060,10 +1141,10 @@ map(data_set$data, ~{
 surface_plot &amp;lt;- ggplot(surface, aes(x = x, y = y, fill = z)) + 
   geom_tile()
 surface_plot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap_files/figure-html/surface%20as%20a%20tile%20countour-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/2020-01-31-rstudio-conf2020-recap_files/figure-html/surface%20as%20a%20tile%20countour-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Projected as a 3d model using the rayshader here:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rayshader::plot_gg(surface_plot)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/rayshader_snap.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../media/rayshader_snap.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Tyler also demonstrated how you can generate a movie with the camera browsing around the chart. Beware, rendering takes long.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;
@@ -1076,11 +1157,11 @@ surface_plot&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Confidence and prediction intervals explained... (with a Shiny app!)</title>
-      <link>https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/</link>
+      <link>/post/2019-12-13-confidence_prediction_intervals_explained/</link>
       <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/</guid>
+      <guid>/post/2019-12-13-confidence_prediction_intervals_explained/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.&lt;/p&gt;
@@ -1177,7 +1258,7 @@ ggplot() +
   xlab(&amp;quot;x&amp;quot;) + 
   ylab(&amp;quot;y&amp;quot;) + 
   ggtitle(&amp;quot;Log-linear: Model, Fit, Confidence and Prediction Intervals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Conclusions&lt;/h2&gt;
@@ -1189,11 +1270,11 @@ ggplot() +
     
     <item>
       <title>Retrieving google drive item shares and permissions (in R)</title>
-      <link>https://adisarid.github.io/post/2019-09-17-google_drive_dir_structure_permissions/</link>
+      <link>/post/2019-09-17-google_drive_dir_structure_permissions/</link>
       <pubDate>Tue, 17 Sep 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-09-17-google_drive_dir_structure_permissions/</guid>
+      <guid>/post/2019-09-17-google_drive_dir_structure_permissions/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Google drive is a great tool, specifically we’ve been using “G Suite” (the equivalent of google drive but for businesses), for a long time. Lately I noticed it’s missing an important feature - monitoring file shares and permission of google drive items across organization is non-trival (at least in the G suite basic subscription).&lt;/p&gt;
@@ -1259,11 +1340,11 @@ You can either run it on all items in your google drive or on selected folders (
     
     <item>
       <title>Securing Shiny apps with AWS Cognito authentication</title>
-      <link>https://adisarid.github.io/post/2019-08-10-cognito-shiny-authentication/</link>
+      <link>/post/2019-08-10-cognito-shiny-authentication/</link>
       <pubDate>Fri, 30 Aug 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-08-10-cognito-shiny-authentication/</guid>
+      <guid>/post/2019-08-10-cognito-shiny-authentication/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;background&#34; class=&#34;section level2&#34;&gt;
@@ -1292,7 +1373,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Important!&lt;/strong&gt; in the step where you are asked “Which app clients will have access to this user pool?” click on “Add an app client”. Give your app a name, the deafult options are sufficient so you shouldn’t change anything.&lt;/p&gt;
 &lt;p&gt;Make sure you click on “Show Details” after you added your app and document the App client id and the App client secret. You will need them later on to interact with the Cognito API.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../media/aws_app_info.jpg&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Optional&lt;/strong&gt;: right after you add your app and click “next step”, you will have a chance to add functions triggered by the various steps of the authentication flow. If you know what AWS Lambda functions are (and you defined such functions in your account) you can choose to trigger them depending on the authentication flow.&lt;/p&gt;
 &lt;p&gt;Complete the wizard and create your user pool.&lt;/p&gt;
 &lt;div id=&#34;email-communications&#34; class=&#34;section level3&#34;&gt;
@@ -1307,7 +1388,7 @@ Click on “Manage User Pools”, and then create a new user pool. The step-by-s
 &lt;p&gt;Under “Allowed OAuth Scopes” check the options by which you are going to recognize your users within the shiny app’s logic. I.e., if you are going to show specific data by the user’s email address than make sure you check the “email” under allowed OAuth scopes.&lt;/p&gt;
 &lt;p&gt;Set a domain name for your login screen and customize the UI of the login screen if you wish.&lt;/p&gt;
 &lt;p&gt;You can see in the following screenshot, that I’m using this authentication with one of my apps hosted in a shinyapps.io domain, under my account.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/media/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../media/aws_app_client_settings.jpg&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;enable-identity-provides-optional&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Enable identity provides (Optional)&lt;/h3&gt;
@@ -1590,11 +1671,11 @@ fluidPage(
     
     <item>
       <title>What NOT to do when building a shiny app (lessons learned the hard way)</title>
-      <link>https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/</link>
+      <link>/post/2019-07-03-shiny_app_lessons/</link>
       <pubDate>Fri, 19 Jul 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/</guid>
+      <guid>/post/2019-07-03-shiny_app_lessons/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I’ve been building R shiny apps for a while now, and ever since I started working with shiny, it has significantly increased the set of services I offer my clients.&lt;/p&gt;
@@ -1615,7 +1696,7 @@ fluidPage(
 &lt;p&gt;Also, when you’re looking at a mockup (even if it’s just a simple drawing or a non-interactive slide), it helps in the next stages of building the app’s UI.&lt;/p&gt;
 &lt;p&gt;Here is an example of how a mockup would look like when I’m drawing it on a piece of paper. Note how I’ve already written down the purpose of some of the elements and their expeted element ids. It helps building the UI when you’re actually looking at one of these.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://adisarid.github.io/media/mockup_draw_example.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;../media/mockup_draw_example.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Example for a mockup drawing&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1666,11 +1747,11 @@ fluidPage(
     
     <item>
       <title>Test your tidyness - a short quiz to check your tidyverse capabilities</title>
-      <link>https://adisarid.github.io/post/2019-04-28-test_your_tidyness/</link>
+      <link>/post/2019-04-28-test_your_tidyness/</link>
       <pubDate>Sun, 28 Apr 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-04-28-test_your_tidyness/</guid>
+      <guid>/post/2019-04-28-test_your_tidyness/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Over the last month I gave a tidyverse + intro to data science corporate training in a startup in Tel-Aviv. We had two groups (beginners and intermediates), and for the last assignment of the course I was aiming for a short quiz comprised of various topics which we covered during the course, such that can also be automated easily (i.e., multiple choice questions).&lt;/p&gt;
@@ -1726,9 +1807,9 @@ data.frame(a = 1:10, b = letters[1:10]) %&amp;gt;%
 &lt;li&gt;Figure 1: &lt;code&gt;geom_violin&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Figure 1: &lt;code&gt;geom_boxplot&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt; + &lt;code&gt;geom_line&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;question-4&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Question 4:&lt;/h2&gt;
@@ -1817,7 +1898,7 @@ map_chr(some_string, ~paste0(stringi::stri_wrap(., width = 5), collapse = &amp;q
 &lt;li&gt;Yes, according to either x-axis or y-axis.&lt;/li&gt;
 &lt;li&gt;No, it will not be classified as an outlier.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-04-28-Test_your_tidyness_files/figure-html/outlier%20question-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/2019-04-28-Test_your_tidyness_files/figure-html/outlier%20question-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;question-10&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Question 10:&lt;/h2&gt;
@@ -1850,11 +1931,11 @@ as a preprocessing step?&lt;/p&gt;
     
     <item>
       <title>The teachR&#39;s::cheat sheet</title>
-      <link>https://adisarid.github.io/post/2019-03-12-the_teachr_cheat_sheet/</link>
+      <link>/post/2019-03-12-the_teachr_cheat_sheet/</link>
       <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-03-12-the_teachr_cheat_sheet/</guid>
+      <guid>/post/2019-03-12-the_teachr_cheat_sheet/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;A few months ago I attended the 2019 rstudio::conf, including the shiny train-the-trainer workshop. It was a two day workshop and it inspired me in many ways. The first day of the workshop focused on the very basics of teaching (R or anything else), and for me it put the spotlight on things I never considered before.&lt;/p&gt;
@@ -1890,7 +1971,7 @@ as a preprocessing step?&lt;/p&gt;
 &lt;p&gt;Bloom’s taxonomy illustrates the levels of learning new concepts or topics.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://wp0.vanderbilt.edu/cft/guides-sub-pages/blooms-taxonomy/&#34;&gt;Vanderbilt University Center for Teaching&lt;/a&gt; has a nice illustration for it.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://adisarid.github.io/media/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;../media/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Blooms Taxonomy&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can visit the Vanderbilt website for a more thorough explanation about the taxonomy, but suffice it to say that “remember” is the most basic form of acquired knowledge, and the highest levels (at the top of the pyramid) are evaluate and create (being able to evaluate someone else’s work, or create your own noval work).&lt;/p&gt;
@@ -1933,11 +2014,11 @@ The learners put them on their computers according to their progress:&lt;/p&gt;
     
     <item>
       <title>Settling class action lawsuits with conjoint analysis and R (&#43;a conjoint shiny app)</title>
-      <link>https://adisarid.github.io/post/2019-02-03-class-action-conjoint/</link>
+      <link>/post/2019-02-03-class-action-conjoint/</link>
       <pubDate>Sun, 03 Feb 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-02-03-class-action-conjoint/</guid>
+      <guid>/post/2019-02-03-class-action-conjoint/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;A few days ago I presented at the 9th Israeli class action lawsuit conference. You’re probably asking yourself what would a data scientist do in a room full of lawyers?&lt;/p&gt;
@@ -2132,7 +2213,7 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
   ylab(&amp;quot;Predicted response (glm logit)&amp;quot;) + 
   xlab(&amp;quot;Package name&amp;quot;) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(package_responses, aes(x = package_name, y = fit)) + 
   geom_point() +
   geom_errorbar(aes(ymin = fit - se.fit, ymax = fit + se.fit)) + 
@@ -2140,7 +2221,7 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
   ylab(&amp;quot;Predicted response (glm logit)&amp;quot;) +
   xlab(&amp;quot;Package name&amp;quot;) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../post/2019-02-03-class-action-conjoint_files/figure-html/compute%20error%20with%20chart-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We see that the three packages (pkg1, pkg2, and pkg3) are relatively similar, within one standard error from one another. When compared to the worst package they are roughly &lt;span class=&#34;math inline&#34;&gt;\(\sim8\)&lt;/span&gt; times better (via odds ratio), but the best package is &lt;span class=&#34;math inline&#34;&gt;\(\sim5\)&lt;/span&gt; times better than packages 1-3.&lt;/p&gt;
 &lt;p&gt;One can use these concepts to illustrate the benefits of each parameter on the different packages, and let the user experience how different features make the packages more or less “attractive”.&lt;/p&gt;
 &lt;p&gt;As an experiment, I prepared a nice little shiny app which lets the user experiment with the different features: build two packages and then compare them. You can checkout the code at the &lt;a href=&#34;https://github.com/adisarid/class-action-IL-survey/tree/master/settlement-app/SettlementAttractive&#34;&gt;github repo&lt;/a&gt;, or check out the live app &lt;a href=&#34;https://sarid.shinyapps.io/class-action&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -2156,11 +2237,11 @@ ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit))
     
     <item>
       <title>Purrring progress bars (adding a progress bar to `purrr::map`)</title>
-      <link>https://adisarid.github.io/post/2019-01-24-purrrying-progress-bars/</link>
+      <link>/post/2019-01-24-purrrying-progress-bars/</link>
       <pubDate>Fri, 25 Jan 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-01-24-purrrying-progress-bars/</guid>
+      <guid>/post/2019-01-24-purrrying-progress-bars/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;With all the functional programming going on (i.e., &lt;code&gt;purrr::map&lt;/code&gt; and the likes), there is at least one thing that I found missing: progress bars. The &lt;code&gt;plyr::do&lt;/code&gt; function had a nice looking progress bar open up by default if the operation took more than 2 seconds and had at least two more to go (as per Hadley’s description in &lt;a href=&#34;https://github.com/tidyverse/purrr/issues/149&#34;&gt;Issue#149 in tidyverse/purrr&lt;/a&gt;).&lt;/p&gt;
@@ -2193,11 +2274,11 @@ res &amp;lt;- file_list %&amp;gt;%
     
     <item>
       <title>Short note about tidyeval</title>
-      <link>https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/</link>
+      <link>/post/2019-01-20-short-note-about-tidy-eval/</link>
       <pubDate>Sun, 20 Jan 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/</guid>
+      <guid>/post/2019-01-20-short-note-about-tidy-eval/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Following Jenny Bryan’s talk on tidyeval in the last rstudio::conf 2019, I decided to write this short note (mainly as a reminder to myself).&lt;/p&gt;
@@ -2342,11 +2423,11 @@ mtcars %&amp;gt;%
     
     <item>
       <title>Recap: what I learned in rstudio::conf2019</title>
-      <link>https://adisarid.github.io/post/2019-01-19-rstudio-conf-recap/</link>
+      <link>/post/2019-01-19-rstudio-conf-recap/</link>
       <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-01-19-rstudio-conf-recap/</guid>
+      <guid>/post/2019-01-19-rstudio-conf-recap/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;First, let me start by saying wow!, what a wonderful experience.&lt;/p&gt;

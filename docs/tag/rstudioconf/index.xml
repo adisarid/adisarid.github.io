@@ -2,23 +2,104 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>rstudio::conf | Adi Sarid</title>
-    <link>https://adisarid.github.io/tag/rstudioconf/</link>
-      <atom:link href="https://adisarid.github.io/tag/rstudioconf/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/rstudioconf/</link>
+      <atom:link href="/tag/rstudioconf/index.xml" rel="self" type="application/rss+xml" />
     <description>rstudio::conf</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2021 Adi Sarid</copyright><lastBuildDate>Sat, 19 Jan 2019 12:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2022 Adi Sarid</copyright><lastBuildDate>Sun, 31 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>rstudio::conf</title>
-      <link>https://adisarid.github.io/tag/rstudioconf/</link>
+      <link>/tag/rstudioconf/</link>
     </image>
     
     <item>
-      <title>Recap: what I learned in rstudio::conf2019</title>
-      <link>https://adisarid.github.io/post/2019-01-19-rstudio-conf-recap/</link>
-      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
-      <guid>https://adisarid.github.io/post/2019-01-19-rstudio-conf-recap/</guid>
+      <title>Some takeaways from rstudio::conf 2022</title>
+      <link>/post/what-i-learned-from-rstudio-conf-2022/</link>
+      <pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>/post/what-i-learned-from-rstudio-conf-2022/</guid>
       <description>
-&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Last week I participated in the annual RStudio conference which took place in Washington DC.&lt;/p&gt;
+&lt;p&gt;As always, a great experience, with a lot of hex stickers.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;me_at_conf22.jpg&#34; width=&#34;700&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;(Me at rstudio::conf2022, with a background of a hex stickers wall)&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Here are some of my takeaways from the conference.&lt;/p&gt;
+&lt;div id=&#34;rstudio-extending-its-reach&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;RStudio extending its reach&lt;/h2&gt;
+&lt;p&gt;For a long time now, RStudio has been developing products for R and Python (e.g., via the &lt;code&gt;reticulate&lt;/code&gt; package which allows for using python from R, the support of the IDE for python scripts, and more).&lt;/p&gt;
+&lt;p&gt;To my understanding, RStudio has figured out that in order to grow significantly, it must put more emphasis on developing python products &lt;em&gt;directly&lt;/em&gt;. This will allow it to sell its products in a “language agnostic” manner. Or using their words “a broader focus”:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We are embracing multi-lingual data science… we want to make scientific communication better for everyone.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is reflected in multiple directions presented during the conference:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Re branding - RStudio is changing its name to posit. The new brand will sound more “natural” to non-useRs (or at least not cause aversion). See website &lt;a href=&#34;https://posit.co/&#34;&gt;here&lt;/a&gt;, and scroll down - there is a video of Hadley Wickam explaninng the brand change.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Packages which are developed with R and python in mind, such is the &lt;code&gt;vetiver&lt;/code&gt; package which allows deployment of &lt;code&gt;tidymodels&lt;/code&gt;. See &lt;a href=&#34;https://www.tidyverse.org/blog/2022/06/announce-vetiver/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The development of &lt;code&gt;quarto&lt;/code&gt;, a program (command line interface actually), which generates documents. Those who are familiar will see that it is very similar to RMarkdown, however since it is a standalone software, it does not require R. Quarto support Jupyter notebooks as well as RMarkdown. It also has extensions to common IDEs such as VS Code. It can generate almost anything that RMarkdown can generate (and more coming in the future). Check out quarto &lt;a href=&#34;https://quarto.org/&#34;&gt;here&lt;/a&gt;. Quatro is already integrated to RStudio IDE in its more recent versions.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The development of shiny for python. Joe Chang announced this in his very interesting (and emotional) keynote. Joe also told the story of how shiny came to be, how R “fits like a glove” to shiny (due to way function arguments are passed), and eventually surprised the audience with the fact that shiny for python is under way, and already in an Alpha version. The shinyapps.io service will also support shiny, there will be a shiny server for python, and additional surprises (e.g., shiny for python can be deployed without a server, using static html and by &lt;a href=&#34;https://shiny.rstudio.com/py/docs/shinylive.html&#34;&gt;translating the python code to WebAssembly&lt;/a&gt;). For more information abot shiny for python, read &lt;a href=&#34;https://shiny.rstudio.com/py/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-tidymodels-workshop&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The &lt;code&gt;tidymodels&lt;/code&gt; workshop&lt;/h2&gt;
+&lt;p&gt;I took the opportunity of the conference to join the &lt;code&gt;tidymodels&lt;/code&gt; workshop.&lt;/p&gt;
+&lt;p&gt;So far I didn’t do much work in &lt;code&gt;tidymodels&lt;/code&gt;, but after the workshop I see that it does seem like a very good unifying framework. The workshop contained a lot of information and examples and was overwhelming to consume in just two days! Definitely a lot more to try out and learn independently.&lt;/p&gt;
+&lt;p&gt;Interesting thing to see in the workshop was the &lt;code&gt;vetiver&lt;/code&gt; package for MLOps - it makes it easy to generate a model in production (a plumber api). It uses the &lt;code&gt;butcher&lt;/code&gt; package to make the model slimmer, removing unnecessary data.&lt;/p&gt;
+&lt;p&gt;It will be interesting to try and upload a plumber api to an AWS Lambda function using Docker (the &lt;code&gt;vetiver&lt;/code&gt; package is able to generate a dockerfile, see &lt;a href=&#34;https://rstudio.github.io/vetiver-r/reference/vetiver_write_docker.html&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://stackoverflow.com/questions/66770652/how-to-access-a-dockerized-r-image-trough-lambdaapi-gateway&#34;&gt;here&lt;/a&gt; for more information).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;recipe&lt;/code&gt; package is pretty rich in data engineering tools, a good reference is the following book on feature engineering and selection: &lt;a href=&#34;https://bookdown.org/max/FES&#34;&gt;bookdown.org/max/FES&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I also liked the method in which &lt;code&gt;tidymodels&lt;/code&gt; makes it really easy to tune your models by setting tuning on feature engineering parameters or on the model’s parameters (package &lt;code&gt;tune&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Some additional tools (extensions for &lt;code&gt;tidymodels&lt;/code&gt;), from other talks, include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Survival analysis from the &lt;code&gt;survival&lt;/code&gt; package.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;tidyclust&lt;/code&gt; for clustering (unsupervised learning).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;quarto&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Quarto&lt;/h2&gt;
+&lt;p&gt;Already mentioned above, I have already installed quarto and experienced with it. Since it is standalone, it is quicker than using RMarkdown. It also has some cool features like very easily switching from one format to another (e.g., from a document to a website).&lt;/p&gt;
+&lt;p&gt;The format is slowly gaining additional features, and most likely by 2023’s end it will include almost all of the RMarkdown features.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-dbcooper-package&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The &lt;code&gt;dbcooper&lt;/code&gt; package&lt;/h2&gt;
+&lt;p&gt;David Robinson showed the &lt;code&gt;dbcooper&lt;/code&gt; package which can make a function out of database tables. Mainly aimed at reading from databases, and creates a nice interface.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-vetiver-package&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The &lt;code&gt;vetiver&lt;/code&gt; package&lt;/h2&gt;
+&lt;p&gt;Already mentioned above - a package around MLOps, can be very helpful to deploy models, though my next goal is to figure out how to take its docker image output and turn it into an AWS Lambda function.&lt;/p&gt;
+&lt;p&gt;It has a lot of features other than deployment such as reporting and documentation.&lt;/p&gt;
+&lt;p&gt;Check out here: &lt;a href=&#34;https://vetiver.rstudio.com&#34; class=&#34;uri&#34;&gt;https://vetiver.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;building-a-shiny-app-using-a-drag-and-drop-interface&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Building a shiny app using a drag-and-drop interface&lt;/h2&gt;
+&lt;p&gt;Mostly, when we build shiny apps, we build the interface programmatically, however a new package called &lt;code&gt;shinyuieditor&lt;/code&gt; allows building the app with a nice drag-and-drop interface. Additional details &lt;a href=&#34;https://www.youtube.com/watch?v=Zac1qdaYNsY&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://rstudio.github.io/shinyuieditor/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;to-conclude&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;To conclude&lt;/h1&gt;
+&lt;p&gt;The conference had an abundance of innovations, methods, packages and more to learn from. I detailed just a few of the things I remember the most. I’m guessing that in the following days/weeks the posit team will upload all the talks to youtube (as they do after every conference), so that additional information can be consumed.&lt;/p&gt;
+&lt;p&gt;To end this post with a small anecdote, someone asked Joe Chang how did the inspiration for the name “shiny” came to be. Apparently, Joe watched the series “FireFly” by Joss Whedon in which the characters use the description “shiny” a lot, and the name kind of stuck.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;firefly.jpg&#34; width=&#34;700&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;(The Firefly sci-fi series gave the inspiration to the shiny package’s name)&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Since you made it to the end of this post, I might as well tell you that I also visited the Smithsonian natural history museum (I’m a fan of nature museums). A great museum, not part of conf, but a great visit opportunity. Here’s a Megalogon about to eat my head.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;megalodon.jpg&#34; width=&#34;800&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;(A Megalogon in the Smisthonian, hanging from the wall, about to eat my head)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Recap: what I learned in rstudio::conf2019</title>
+      <link>/post/2019-01-19-rstudio-conf-recap/</link>
+      <pubDate>Sat, 19 Jan 2019 12:00:00 +0000</pubDate>
+      <guid>/post/2019-01-19-rstudio-conf-recap/</guid>
+      <description>
+&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;First, let me start by saying wow!, what a wonderful experience.&lt;/p&gt;
