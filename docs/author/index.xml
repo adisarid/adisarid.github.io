@@ -5,12 +5,21 @@
     <link>/author/</link>
       <atom:link href="/author/index.xml" rel="self" type="application/rss+xml" />
     <description>Adi Sarid</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2022 Adi Sarid</copyright><lastBuildDate>Thu, 05 Nov 2020 20:30:00 +0200</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2022 Adi Sarid</copyright><lastBuildDate>Tue, 08 Nov 2022 17:00:00 +0200</lastBuildDate>
     <image>
       <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Adi Sarid</title>
       <link>/author/</link>
     </image>
+    
+    <item>
+      <title>Using Data Science in Market Research - The Ugly Truth.</title>
+      <link>/talk/using-data-science-in-market-research-the-ugly-truth./</link>
+      <pubDate>Tue, 08 Nov 2022 17:00:00 +0200</pubDate>
+      <guid>/talk/using-data-science-in-market-research-the-ugly-truth./</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;../pdf/2022-11-08_ds_in_mr.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Landing Your First Awesome Data Science Job - The tricks you need up your sleeve</title>
