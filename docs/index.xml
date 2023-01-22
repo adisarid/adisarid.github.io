@@ -5,7 +5,7 @@
     <link>/</link>
       <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <description>Adi Sarid</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2022 Adi Sarid</copyright><lastBuildDate>Tue, 08 Nov 2022 17:00:00 +0200</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Tue, 08 Nov 2022 17:00:00 +0200</lastBuildDate>
     <image>
       <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Adi Sarid</title>
@@ -108,7 +108,7 @@
       <pubDate>Thu, 25 Nov 2021 00:00:00 +0000</pubDate>
       <guid>/post/creating-your-google-chat-r-bot-in-under-5-minutes/</guid>
       <description>
-&lt;script src=&#34;./post/creating-your-google-chat-r-bot-in-under-5-minutes/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;./rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;We use Google workspace as our email and document solution (i.e., the gmail solution for businesses). A few days ago I was chatting with one of my colleagues and noticed this feature called: “Manage webhooks” in the chat window. Apparently it’s a quick hack to create your own chat bot, which can communicate with a google chat, a group chat, or a chat space (different variations of a chat room, basically).&lt;/p&gt;
@@ -147,7 +147,7 @@ httr::POST(url = chat_url,
       <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
       <guid>/post/using-github-actions-to-update-a-shiny-app/</guid>
       <description>
-&lt;script src=&#34;./post/using-github-actions-to-update-a-shiny-app/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;./rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;This post will teach you how to set up continuous deployment of shiny apps hosted on your private server (i.e., on an EC2 instance, AWS lightsail, Digital Ocean droplet, etc.). I assume you already have your server running shiny server, and that you are using Github for your development.&lt;/p&gt;
@@ -256,7 +256,7 @@ jobs:
       <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
       <guid>/post/data-science-forensics/</guid>
       <description>
-&lt;script src=&#34;./post/data-science-forensics/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;./rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Here is a detective story about some data science forensics, and there is a villain too.&lt;/p&gt;
@@ -291,7 +291,7 @@ ggplot(responses, aes(x = type, fill = factor(rating))) +
   ylab(&amp;quot;Respondents [%]&amp;quot;) + 
   xlab(&amp;quot;&amp;quot;) + 
   ggtitle(&amp;quot;Distribution of complete vs. partial responses,\nbefore/after June 21&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;./post/data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2021-07-30-data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;See how the distribution of partial data after June 21’ is completely different from the distribution of the complete surveys and the partial surveys before June 21’?&lt;/p&gt;
 &lt;p&gt;Another thing we noticed was that a lot of the partial surveys were being answered within 2-3 minutes (another strong indication for the work of Microsoft’s bot).&lt;/p&gt;
 &lt;/div&gt;
@@ -494,7 +494,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   font-family: -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, Oxygen, Ubuntu, Cantarell, &#39;Helvetica Neue&#39;, &#39;Fira Sans&#39;, &#39;Droid Sans&#39;, Arial, sans-serif;
 }
 
-#acvreehjjd .gt_table {
+#zbltwciejw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -519,7 +519,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-left-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_heading {
+#zbltwciejw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -531,7 +531,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-right-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_title {
+#zbltwciejw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -541,7 +541,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-bottom-width: 0;
 }
 
-#acvreehjjd .gt_subtitle {
+#zbltwciejw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -551,13 +551,13 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-top-width: 0;
 }
 
-#acvreehjjd .gt_bottom_border {
+#zbltwciejw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_col_headings {
+#zbltwciejw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -572,7 +572,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-right-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_col_heading {
+#zbltwciejw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -592,7 +592,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   overflow-x: hidden;
 }
 
-#acvreehjjd .gt_column_spanner_outer {
+#zbltwciejw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -604,15 +604,15 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   padding-right: 4px;
 }
 
-#acvreehjjd .gt_column_spanner_outer:first-child {
+#zbltwciejw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#acvreehjjd .gt_column_spanner_outer:last-child {
+#zbltwciejw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#acvreehjjd .gt_column_spanner {
+#zbltwciejw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -624,7 +624,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   width: 100%;
 }
 
-#acvreehjjd .gt_group_heading {
+#zbltwciejw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -646,7 +646,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   vertical-align: middle;
 }
 
-#acvreehjjd .gt_empty_group_heading {
+#zbltwciejw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -661,15 +661,15 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   vertical-align: middle;
 }
 
-#acvreehjjd .gt_from_md &gt; :first-child {
+#zbltwciejw .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#acvreehjjd .gt_from_md &gt; :last-child {
+#zbltwciejw .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#acvreehjjd .gt_row {
+#zbltwciejw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -688,7 +688,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   overflow-x: hidden;
 }
 
-#acvreehjjd .gt_stub {
+#zbltwciejw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -700,7 +700,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   padding-left: 12px;
 }
 
-#acvreehjjd .gt_summary_row {
+#zbltwciejw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -710,7 +710,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   padding-right: 5px;
 }
 
-#acvreehjjd .gt_first_summary_row {
+#zbltwciejw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -720,7 +720,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-top-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_grand_summary_row {
+#zbltwciejw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -730,7 +730,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   padding-right: 5px;
 }
 
-#acvreehjjd .gt_first_grand_summary_row {
+#zbltwciejw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -740,11 +740,11 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-top-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_striped {
+#zbltwciejw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#acvreehjjd .gt_table_body {
+#zbltwciejw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -753,7 +753,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_footnotes {
+#zbltwciejw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -767,13 +767,13 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-right-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_footnote {
+#zbltwciejw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#acvreehjjd .gt_sourcenotes {
+#zbltwciejw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -787,46 +787,46 @@ gt::gt(summary(bench_results)) %&amp;gt;%
   border-right-color: #D3D3D3;
 }
 
-#acvreehjjd .gt_sourcenote {
+#zbltwciejw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#acvreehjjd .gt_left {
+#zbltwciejw .gt_left {
   text-align: left;
 }
 
-#acvreehjjd .gt_center {
+#zbltwciejw .gt_center {
   text-align: center;
 }
 
-#acvreehjjd .gt_right {
+#zbltwciejw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#acvreehjjd .gt_font_normal {
+#zbltwciejw .gt_font_normal {
   font-weight: normal;
 }
 
-#acvreehjjd .gt_font_bold {
+#zbltwciejw .gt_font_bold {
   font-weight: bold;
 }
 
-#acvreehjjd .gt_font_italic {
+#zbltwciejw .gt_font_italic {
   font-style: italic;
 }
 
-#acvreehjjd .gt_super {
+#zbltwciejw .gt_super {
   font-size: 65%;
 }
 
-#acvreehjjd .gt_footnote_marks {
+#zbltwciejw .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 &lt;/style&gt;
-&lt;div id=&#34;acvreehjjd&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
+&lt;div id=&#34;zbltwciejw&#34; style=&#34;overflow-x:auto;overflow-y:auto;width:auto;height:auto;&#34;&gt;&lt;table class=&#34;gt_table&#34;&gt;
   
   &lt;thead class=&#34;gt_col_headings&#34;&gt;
     &lt;tr&gt;
@@ -838,42 +838,38 @@ gt::gt(summary(bench_results)) %&amp;gt;%
       &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;uq&lt;/th&gt;
       &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;max&lt;/th&gt;
       &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_right&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;neval&lt;/th&gt;
-      &lt;th class=&#34;gt_col_heading gt_columns_bottom_border gt_left&#34; rowspan=&#34;1&#34; colspan=&#34;1&#34;&gt;cld&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody class=&#34;gt_table_body&#34;&gt;
     &lt;tr&gt;
       &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, safe_log)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.68&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.80&lt;/td&gt;
       &lt;td class=&#34;gt_row gt_right&#34;&gt;3.96&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.08&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.55&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.16&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.94&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;10.10&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.85&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.90&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;7.58&lt;/td&gt;
       &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_left&#34;&gt;  c&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, possible_log)&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.74&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.86&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.27&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.92&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;4.64&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;9.60&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.45&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.59&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.91&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.64&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.70&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;86.85&lt;/td&gt;
       &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_left&#34;&gt; b &lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td class=&#34;gt_row gt_center&#34;&gt;map(test_values, tryCatch_log)&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.70&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.79&lt;/td&gt;
       &lt;td class=&#34;gt_row gt_right&#34;&gt;2.97&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.05&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.45&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.09&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;3.68&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_right&#34;&gt;73.99&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.83&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;2.86&lt;/td&gt;
+      &lt;td class=&#34;gt_row gt_right&#34;&gt;6.85&lt;/td&gt;
       &lt;td class=&#34;gt_row gt_right&#34;&gt;1000&lt;/td&gt;
-      &lt;td class=&#34;gt_row gt_left&#34;&gt;a  &lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
   
@@ -1881,7 +1877,7 @@ data.frame(a = 1:10, b = letters[1:10]) %&amp;gt;%
 ##  [9,] &amp;quot;9&amp;quot;  &amp;quot;i&amp;quot;  &amp;quot;I&amp;quot; 
 ## [10,] &amp;quot;10&amp;quot; &amp;quot;j&amp;quot;  &amp;quot;J&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble(num = 1:10, sl = letters[1:10], cl = LETTERS[1:10])&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 10 x 3
+&lt;pre&gt;&lt;code&gt;## # A tibble: 10 × 3
 ##      num sl    cl   
 ##    &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;
 ##  1     1 a     A    
@@ -2236,17 +2232,12 @@ class_action_conjoint &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent
                                     c(&amp;quot;Response ID&amp;quot;, &amp;quot;Set Number&amp;quot;, &amp;quot;Card Number&amp;quot;, 
                                       &amp;quot;compensation_push_pull&amp;quot;, &amp;quot;compensation_amount_ILS&amp;quot;, &amp;quot;compensation_type&amp;quot;,
                                       &amp;quot;score_selection&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   `Response ID` = col_double(),
-##   `Set Number` = col_double(),
-##   `Card Number` = col_double(),
-##   compensation_push_pull = col_character(),
-##   compensation_amount_ILS = col_double(),
-##   compensation_type = col_character(),
-##   score_selection = col_double()
-## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 7020 Columns: 7── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &amp;quot;,&amp;quot;
+## chr (2): compensation_push_pull, compensation_type
+## dbl (5): Response ID, Set Number, Card Number, compensation_amount_ILS, scor...
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(class_action_conjoint)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Rows: 7,020
 ## Columns: 7
@@ -2258,13 +2249,13 @@ class_action_conjoint &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent
 ## $ compensation_type       &amp;lt;chr&amp;gt; &amp;quot;another_product&amp;quot;, &amp;quot;credit_cart&amp;quot;, &amp;quot;bank_cheque…
 ## $ score_selection         &amp;lt;dbl&amp;gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 100, 0, 10…&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class_action_conjoint %&amp;gt;% count(compensation_push_pull)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 2
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 × 2
 ##   compensation_push_pull     n
 ##   &amp;lt;chr&amp;gt;                  &amp;lt;int&amp;gt;
 ## 1 pull                    3516
 ## 2 push                    3504&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class_action_conjoint %&amp;gt;% count(compensation_amount_ILS)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 4 x 2
+&lt;pre&gt;&lt;code&gt;## # A tibble: 4 × 2
 ##   compensation_amount_ILS     n
 ##                     &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;
 ## 1                      25  1759
@@ -2272,7 +2263,7 @@ class_action_conjoint &amp;lt;- read_csv(&amp;quot;https://raw.githubusercontent
 ## 3                      75  1752
 ## 4                     100  1748&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;class_action_conjoint %&amp;gt;% count(compensation_type)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 2
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 × 2
 ##   compensation_type        n
 ##   &amp;lt;chr&amp;gt;                &amp;lt;int&amp;gt;
 ## 1 another_product       1391
@@ -2393,14 +2384,16 @@ package_responses &amp;lt;- package_comparison %&amp;gt;%
          se.fit = predicted_responses$se.fit)
 
 package_responses&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 5 x 6
-##   package_name compensation_pu… compensation_am… compensation_ty…    fit  se.fit
-##   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;            &amp;lt;fct&amp;gt;            &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
-## 1 pkg1         pull             25               credit_cart      0.168  0.0129 
-## 2 pkg2         pull             75               refund_next_pur… 0.158  0.0122 
-## 3 pkg3         push             25               coupon           0.161  0.0129 
-## 4 worst        pull             25               another_product  0.0294 0.00324
-## 5 best         push             100              credit_cart      0.824  0.0123&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 5 × 6
+##   package_name compensation_push_pull compensation_amou…¹ compe…²    fit  se.fit
+##   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;                  &amp;lt;fct&amp;gt;               &amp;lt;chr&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1 pkg1         pull                   25                  credit… 0.168  0.0129 
+## 2 pkg2         pull                   75                  refund… 0.158  0.0122 
+## 3 pkg3         push                   25                  coupon  0.161  0.0129 
+## 4 worst        pull                   25                  anothe… 0.0294 0.00324
+## 5 best         push                   100                 credit… 0.824  0.0123 
+## # … with abbreviated variable names ¹​compensation_amount_ILS,
+## #   ²​compensation_type&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# P.S. - excuse the &amp;quot;credit_cart&amp;quot; typo (I build the model that way, only then noticed...)
 
 ggplot(package_responses %&amp;gt;% slice(1:3) , aes(x = package_name, y = fit)) + 
@@ -2547,7 +2540,7 @@ mtcars %&amp;gt;%
 ## 
 ##   # Using lambdas
 ##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 10
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 10
 ##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
 ## 1     4  105.  82.6  4.07  2.29  19.1 0.909 0.727  4.09  1.55
@@ -2570,7 +2563,7 @@ The function &lt;code&gt;enquo&lt;/code&gt; turns the input into a “quosure”
 mtcars %&amp;gt;%
   select(cyl:carb) %&amp;gt;%
   test2(groupby_vars = cyl, disp:drat)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 4
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 4
 ##     cyl  disp    hp  drat
 ##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
 ## 1     4  105.  82.6  4.07
@@ -2596,7 +2589,7 @@ For example, if we want specify behaviour for different columns of the data fram
 mtcars %&amp;gt;% 
   test3(groupby_vars = cyl, disp:drat, wt:carb)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Joining, by = &amp;quot;cyl&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 10
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 10
 ##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
 ## 1     4  105.  82.6  4.07 0.570  1.68 0.302 0.467 0.539 0.522

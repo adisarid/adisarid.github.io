@@ -27,17 +27,12 @@ class_action_conjoint &lt;- read_csv(&quot;https://raw.githubusercontent.com/adi
                                     c(&quot;Response ID&quot;, &quot;Set Number&quot;, &quot;Card Number&quot;, 
                                       &quot;compensation_push_pull&quot;, &quot;compensation_amount_ILS&quot;, &quot;compensation_type&quot;,
                                       &quot;score_selection&quot;))</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   `Response ID` = col_double(),
-##   `Set Number` = col_double(),
-##   `Card Number` = col_double(),
-##   compensation_push_pull = col_character(),
-##   compensation_amount_ILS = col_double(),
-##   compensation_type = col_character(),
-##   score_selection = col_double()
-## )</code></pre>
+<pre><code>## Rows: 7020 Columns: 7── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (2): compensation_push_pull, compensation_type
+## dbl (5): Response ID, Set Number, Card Number, compensation_amount_ILS, scor...
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>glimpse(class_action_conjoint)</code></pre>
 <pre><code>## Rows: 7,020
 ## Columns: 7
@@ -49,13 +44,13 @@ class_action_conjoint &lt;- read_csv(&quot;https://raw.githubusercontent.com/adi
 ## $ compensation_type       &lt;chr&gt; &quot;another_product&quot;, &quot;credit_cart&quot;, &quot;bank_cheque…
 ## $ score_selection         &lt;dbl&gt; 0, 0, 100, 0, 100, 0, 0, 0, 100, 0, 100, 0, 10…</code></pre>
 <pre class="r"><code>class_action_conjoint %&gt;% count(compensation_push_pull)</code></pre>
-<pre><code>## # A tibble: 2 x 2
+<pre><code>## # A tibble: 2 × 2
 ##   compensation_push_pull     n
 ##   &lt;chr&gt;                  &lt;int&gt;
 ## 1 pull                    3516
 ## 2 push                    3504</code></pre>
 <pre class="r"><code>class_action_conjoint %&gt;% count(compensation_amount_ILS)</code></pre>
-<pre><code>## # A tibble: 4 x 2
+<pre><code>## # A tibble: 4 × 2
 ##   compensation_amount_ILS     n
 ##                     &lt;dbl&gt; &lt;int&gt;
 ## 1                      25  1759
@@ -63,7 +58,7 @@ class_action_conjoint &lt;- read_csv(&quot;https://raw.githubusercontent.com/adi
 ## 3                      75  1752
 ## 4                     100  1748</code></pre>
 <pre class="r"><code>class_action_conjoint %&gt;% count(compensation_type)</code></pre>
-<pre><code>## # A tibble: 5 x 2
+<pre><code>## # A tibble: 5 × 2
 ##   compensation_type        n
 ##   &lt;chr&gt;                &lt;int&gt;
 ## 1 another_product       1391
@@ -184,14 +179,16 @@ package_responses &lt;- package_comparison %&gt;%
          se.fit = predicted_responses$se.fit)
 
 package_responses</code></pre>
-<pre><code>## # A tibble: 5 x 6
-##   package_name compensation_pu… compensation_am… compensation_ty…    fit  se.fit
-##   &lt;chr&gt;        &lt;chr&gt;            &lt;fct&gt;            &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt;
-## 1 pkg1         pull             25               credit_cart      0.168  0.0129 
-## 2 pkg2         pull             75               refund_next_pur… 0.158  0.0122 
-## 3 pkg3         push             25               coupon           0.161  0.0129 
-## 4 worst        pull             25               another_product  0.0294 0.00324
-## 5 best         push             100              credit_cart      0.824  0.0123</code></pre>
+<pre><code>## # A tibble: 5 × 6
+##   package_name compensation_push_pull compensation_amou…¹ compe…²    fit  se.fit
+##   &lt;chr&gt;        &lt;chr&gt;                  &lt;fct&gt;               &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+## 1 pkg1         pull                   25                  credit… 0.168  0.0129 
+## 2 pkg2         pull                   75                  refund… 0.158  0.0122 
+## 3 pkg3         push                   25                  coupon  0.161  0.0129 
+## 4 worst        pull                   25                  anothe… 0.0294 0.00324
+## 5 best         push                   100                 credit… 0.824  0.0123 
+## # … with abbreviated variable names ¹​compensation_amount_ILS,
+## #   ²​compensation_type</code></pre>
 <pre class="r"><code># P.S. - excuse the &quot;credit_cart&quot; typo (I build the model that way, only then noticed...)
 
 ggplot(package_responses %&gt;% slice(1:3) , aes(x = package_name, y = fit)) + 

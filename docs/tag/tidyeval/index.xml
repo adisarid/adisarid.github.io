@@ -5,7 +5,7 @@
     <link>/tag/tidyeval/</link>
       <atom:link href="/tag/tidyeval/index.xml" rel="self" type="application/rss+xml" />
     <description>tidyeval</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2022 Adi Sarid</copyright><lastBuildDate>Sun, 20 Jan 2019 12:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Sun, 20 Jan 2019 12:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>tidyeval</title>
@@ -90,7 +90,7 @@ mtcars %&amp;gt;%
 ## 
 ##   # Using lambdas
 ##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 10
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 10
 ##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
 ## 1     4  105.  82.6  4.07  2.29  19.1 0.909 0.727  4.09  1.55
@@ -113,7 +113,7 @@ The function &lt;code&gt;enquo&lt;/code&gt; turns the input into a “quosure”
 mtcars %&amp;gt;%
   select(cyl:carb) %&amp;gt;%
   test2(groupby_vars = cyl, disp:drat)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 4
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 4
 ##     cyl  disp    hp  drat
 ##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
 ## 1     4  105.  82.6  4.07
@@ -139,7 +139,7 @@ For example, if we want specify behaviour for different columns of the data fram
 mtcars %&amp;gt;% 
   test3(groupby_vars = cyl, disp:drat, wt:carb)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Joining, by = &amp;quot;cyl&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 3 x 10
+&lt;pre&gt;&lt;code&gt;## # A tibble: 3 × 10
 ##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
 ## 1     4  105.  82.6  4.07 0.570  1.68 0.302 0.467 0.539 0.522

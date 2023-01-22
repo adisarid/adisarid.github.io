@@ -78,7 +78,7 @@ mtcars %&gt;%
 ## 
 ##   # Using lambdas
 ##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
-<pre><code>## # A tibble: 3 x 10
+<pre><code>## # A tibble: 3 × 10
 ##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     4  105.  82.6  4.07  2.29  19.1 0.909 0.727  4.09  1.55
@@ -101,7 +101,7 @@ The function <code>enquo</code> turns the input into a “quosure”. Then the <
 mtcars %&gt;%
   select(cyl:carb) %&gt;%
   test2(groupby_vars = cyl, disp:drat)</code></pre>
-<pre><code>## # A tibble: 3 x 4
+<pre><code>## # A tibble: 3 × 4
 ##     cyl  disp    hp  drat
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     4  105.  82.6  4.07
@@ -127,7 +127,7 @@ For example, if we want specify behaviour for different columns of the data fram
 mtcars %&gt;% 
   test3(groupby_vars = cyl, disp:drat, wt:carb)</code></pre>
 <pre><code>## Joining, by = &quot;cyl&quot;</code></pre>
-<pre><code>## # A tibble: 3 x 10
+<pre><code>## # A tibble: 3 × 10
 ##     cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     4  105.  82.6  4.07 0.570  1.68 0.302 0.467 0.539 0.522
