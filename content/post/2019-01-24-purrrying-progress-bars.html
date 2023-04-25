@@ -9,8 +9,9 @@ tags: ["purrr", "progress bars"]
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p><strong>Important note (2023-04-25):</strong> In <code>purrr</code> version 1.0.0 the capability of integral progress bars was introduced. Just use the argument <code>.progress=TRUE</code> in the <code>map</code> function. See the documentation <a href="https://purrr.tidyverse.org/reference/progress_bars.html">here</a>. The rest of this post remains unchanged, even though it is no longer the optimal way to solve this issue.</p>
 <p>With all the functional programming going on (i.e., <code>purrr::map</code> and the likes), there is at least one thing that I found missing: progress bars. The <code>plyr::do</code> function had a nice looking progress bar open up by default if the operation took more than 2 seconds and had at least two more to go (as per Hadley’s description in <a href="https://github.com/tidyverse/purrr/issues/149">Issue#149 in tidyverse/purrr</a>).</p>
-<p>The issue is still open, for the time of writing these lines, and will probably be solved sometime in the near future as a feature of <code>purrr::map</code>.</p>
+<p><del>The issue is still open, for the time of writing these lines, and will probably be solved sometime in the near future as a feature of <code>purrr::map</code>.</del></p>
 <p>Personally, I like <span class="citation">@cderv</span>’s elegent solution suggested at that same <a href="https://github.com/tidyverse/purrr/issues/149">github issue</a>.</p>
 <p>Here is an example implementation for reading multiple files within a directory and combining them into a single tibble while showing a progress bar when reading the files. The file reading is very similar to what was suggested in <a href="https://serialmentor.com/blog/2016/6/13/reading-and-combining-many-tidy-data-files-in-R">this post</a>.</p>
 <pre class="r"><code>library(purrr)
