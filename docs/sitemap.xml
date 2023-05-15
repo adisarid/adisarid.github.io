@@ -2,245 +2,242 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/author/</loc>
+    <loc>https://adisarid.github.io/</loc>
+    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/categories/</loc>
+    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/post/</loc>
+    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/category/r/</loc>
+    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tag/rstudio-server/</loc>
+    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tags/</loc>
+    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/post/2023-05-15-rstudio-server-2fa/rstudio_2fa/</loc>
+    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/</loc>
     <lastmod>2022-11-08T17:00:00+02:00</lastmod>
   </url><url>
-    <loc>/</loc>
+    <loc>https://adisarid.github.io/authors/</loc>
     <lastmod>2022-11-08T17:00:00+02:00</lastmod>
   </url><url>
-    <loc>/authors/</loc>
+    <loc>https://adisarid.github.io/talk/using-data-science-in-market-research-the-ugly-truth./</loc>
     <lastmod>2022-11-08T17:00:00+02:00</lastmod>
   </url><url>
-    <loc>/talk/using-data-science-in-market-research-the-ugly-truth./</loc>
-    <lastmod>2022-11-08T17:00:00+02:00</lastmod>
-  </url><url>
-    <loc>/categories/</loc>
+    <loc>https://adisarid.github.io/tag/rstudioconf/</loc>
     <lastmod>2022-08-01T01:36:42+00:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
+    <loc>https://adisarid.github.io/post/what-i-learned-from-rstudio-conf-2022/</loc>
     <lastmod>2022-08-01T01:36:42+00:00</lastmod>
   </url><url>
-    <loc>/category/r/</loc>
-    <lastmod>2022-08-01T01:36:42+00:00</lastmod>
-  </url><url>
-    <loc>/tag/rstudioconf/</loc>
-    <lastmod>2022-08-01T01:36:42+00:00</lastmod>
-  </url><url>
-    <loc>/post/what-i-learned-from-rstudio-conf-2022/</loc>
-    <lastmod>2022-08-01T01:36:42+00:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2022-08-01T01:36:42+00:00</lastmod>
-  </url><url>
-    <loc>/post/creating-your-google-chat-r-bot-in-under-5-minutes/</loc>
+    <loc>https://adisarid.github.io/post/creating-your-google-chat-r-bot-in-under-5-minutes/</loc>
     <lastmod>2021-11-25T06:58:46+00:00</lastmod>
   </url><url>
-    <loc>/tag/google-workspace/</loc>
+    <loc>https://adisarid.github.io/tag/google-workspace/</loc>
     <lastmod>2021-11-25T06:58:46+00:00</lastmod>
   </url><url>
-    <loc>/tag/webhooks/</loc>
+    <loc>https://adisarid.github.io/tag/webhooks/</loc>
     <lastmod>2021-11-25T06:58:46+00:00</lastmod>
   </url><url>
-    <loc>/tag/shiny/</loc>
+    <loc>https://adisarid.github.io/tag/shiny/</loc>
     <lastmod>2021-09-21T19:48:31+00:00</lastmod>
   </url><url>
-    <loc>/post/using-github-actions-to-update-a-shiny-app/</loc>
+    <loc>https://adisarid.github.io/post/using-github-actions-to-update-a-shiny-app/</loc>
     <lastmod>2021-09-21T19:48:31+00:00</lastmod>
   </url><url>
-    <loc>/post/data-science-forensics/</loc>
+    <loc>https://adisarid.github.io/post/data-science-forensics/</loc>
     <lastmod>2021-07-30T06:23:55+00:00</lastmod>
   </url><url>
-    <loc>/tag/microsoft/</loc>
+    <loc>https://adisarid.github.io/tag/microsoft/</loc>
     <lastmod>2021-07-30T06:23:55+00:00</lastmod>
   </url><url>
-    <loc>/tag/safe-links/</loc>
+    <loc>https://adisarid.github.io/tag/safe-links/</loc>
     <lastmod>2021-07-30T06:23:55+00:00</lastmod>
   </url><url>
-    <loc>/tag/spam/</loc>
+    <loc>https://adisarid.github.io/tag/spam/</loc>
     <lastmod>2021-07-30T06:23:55+00:00</lastmod>
   </url><url>
-    <loc>/tag/error-handling/</loc>
+    <loc>https://adisarid.github.io/tag/error-handling/</loc>
     <lastmod>2020-11-11T08:30:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/purrr/</loc>
+    <loc>https://adisarid.github.io/tag/purrr/</loc>
     <lastmod>2020-11-11T08:30:00+00:00</lastmod>
   </url><url>
-    <loc>/post/yet-another-post-on-error-handling/</loc>
+    <loc>https://adisarid.github.io/post/yet-another-post-on-error-handling/</loc>
     <lastmod>2020-11-11T08:30:00+00:00</lastmod>
   </url><url>
-    <loc>/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</loc>
+    <loc>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</loc>
     <lastmod>2020-11-05T20:30:00+02:00</lastmod>
   </url><url>
-    <loc>/talk/r-you-ready-a-short-intro-into-r-hebrew./</loc>
+    <loc>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</loc>
     <lastmod>2020-10-14T20:30:00+02:00</lastmod>
   </url><url>
-    <loc>/talk/leveraging-data-science-in-market-research/</loc>
+    <loc>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</loc>
     <lastmod>2020-06-03T20:30:00+02:00</lastmod>
   </url><url>
-    <loc>/tag/learnr/</loc>
+    <loc>https://adisarid.github.io/tag/learnr/</loc>
     <lastmod>2020-05-26T11:06:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2020-05-26-break-rooms-and-learnr/</loc>
+    <loc>https://adisarid.github.io/post/2020-05-26-break-rooms-and-learnr/</loc>
     <lastmod>2020-05-26T11:06:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/lets-encrypt/</loc>
+    <loc>https://adisarid.github.io/tag/lets-encrypt/</loc>
     <lastmod>2020-03-06T22:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/nginx/</loc>
+    <loc>https://adisarid.github.io/tag/nginx/</loc>
     <lastmod>2020-03-06T22:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/rstudio-server/</loc>
+    <loc>https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/</loc>
     <lastmod>2020-03-06T22:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2020-03-06-setup_rstudio_server_with_ssl/</loc>
-    <lastmod>2020-03-06T22:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/post/2020-01-31-rstudio-conf2020-recap/</loc>
+    <loc>https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/</loc>
     <lastmod>2020-01-31T06:08:00-10:00</lastmod>
   </url><url>
-    <loc>/tag/rstudio-conference/</loc>
+    <loc>https://adisarid.github.io/tag/rstudio-conference/</loc>
     <lastmod>2020-01-31T06:08:00-10:00</lastmod>
   </url><url>
-    <loc>/talk/want-to-talk-to-r-just-call-your-plumber/</loc>
+    <loc>https://adisarid.github.io/talk/want-to-talk-to-r-just-call-your-plumber/</loc>
     <lastmod>2020-01-17T19:10:00+02:00</lastmod>
   </url><url>
-    <loc>/event/</loc>
+    <loc>https://adisarid.github.io/event/</loc>
     <lastmod>2020-01-17T00:00:00+02:00</lastmod>
   </url><url>
-    <loc>/post/2019-12-13-confidence_prediction_intervals_explained/</loc>
+    <loc>https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/</loc>
     <lastmod>2019-12-13T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/linear-models/</loc>
+    <loc>https://adisarid.github.io/tag/linear-models/</loc>
     <lastmod>2019-12-13T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/talk/not-so-shiny/</loc>
+    <loc>https://adisarid.github.io/talk/not-so-shiny/</loc>
     <lastmod>2019-10-24T18:05:00+02:00</lastmod>
   </url><url>
-    <loc>/tag/googledrive/</loc>
+    <loc>https://adisarid.github.io/tag/googledrive/</loc>
     <lastmod>2019-09-17T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-09-17-google_drive_dir_structure_permissions/</loc>
+    <loc>https://adisarid.github.io/post/2019-09-17-google_drive_dir_structure_permissions/</loc>
     <lastmod>2019-09-17T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/authentication/</loc>
+    <loc>https://adisarid.github.io/tag/authentication/</loc>
     <lastmod>2019-08-30T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/aws/</loc>
+    <loc>https://adisarid.github.io/tag/aws/</loc>
     <lastmod>2019-08-30T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/cognito/</loc>
+    <loc>https://adisarid.github.io/tag/cognito/</loc>
     <lastmod>2019-08-30T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-08-10-cognito-shiny-authentication/</loc>
+    <loc>https://adisarid.github.io/post/2019-08-10-cognito-shiny-authentication/</loc>
     <lastmod>2019-08-30T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-07-03-shiny_app_lessons/</loc>
+    <loc>https://adisarid.github.io/post/2019-07-03-shiny_app_lessons/</loc>
     <lastmod>2019-07-19T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-04-28-test_your_tidyness/</loc>
+    <loc>https://adisarid.github.io/post/2019-04-28-test_your_tidyness/</loc>
     <lastmod>2019-04-28T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/tidyverse/</loc>
+    <loc>https://adisarid.github.io/tag/tidyverse/</loc>
     <lastmod>2019-04-28T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication-type/3/</loc>
+    <loc>https://adisarid.github.io/publication-type/3/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/author/admin/</loc>
+    <loc>https://adisarid.github.io/author/admin/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication/preprint/</loc>
+    <loc>https://adisarid.github.io/publication/preprint/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication_types/</loc>
+    <loc>https://adisarid.github.io/publication_types/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication/</loc>
+    <loc>https://adisarid.github.io/publication/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/source-themes/</loc>
+    <loc>https://adisarid.github.io/tag/source-themes/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/teaching/</loc>
+    <loc>https://adisarid.github.io/tag/teaching/</loc>
     <lastmod>2019-03-12T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-03-12-the_teachr_cheat_sheet/</loc>
+    <loc>https://adisarid.github.io/post/2019-03-12-the_teachr_cheat_sheet/</loc>
     <lastmod>2019-03-12T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/train-the-trainer/</loc>
+    <loc>https://adisarid.github.io/tag/train-the-trainer/</loc>
     <lastmod>2019-03-12T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/slides/</loc>
+    <loc>https://adisarid.github.io/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/slides/example/</loc>
+    <loc>https://adisarid.github.io/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/class-actions/</loc>
+    <loc>https://adisarid.github.io/tag/class-actions/</loc>
     <lastmod>2019-02-03T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/conjoint-analysis/</loc>
+    <loc>https://adisarid.github.io/tag/conjoint-analysis/</loc>
     <lastmod>2019-02-03T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-02-03-class-action-conjoint/</loc>
+    <loc>https://adisarid.github.io/post/2019-02-03-class-action-conjoint/</loc>
     <lastmod>2019-02-03T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/progress-bars/</loc>
+    <loc>https://adisarid.github.io/tag/progress-bars/</loc>
     <lastmod>2019-01-25T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-01-24-purrrying-progress-bars/</loc>
+    <loc>https://adisarid.github.io/post/2019-01-24-purrrying-progress-bars/</loc>
     <lastmod>2019-01-25T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-01-20-short-note-about-tidy-eval/</loc>
+    <loc>https://adisarid.github.io/post/2019-01-20-short-note-about-tidy-eval/</loc>
     <lastmod>2019-01-20T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/tidyeval/</loc>
+    <loc>https://adisarid.github.io/tag/tidyeval/</loc>
     <lastmod>2019-01-20T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/conference/</loc>
+    <loc>https://adisarid.github.io/tag/conference/</loc>
     <lastmod>2019-01-19T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/post/2019-01-19-rstudio-conf-recap/</loc>
+    <loc>https://adisarid.github.io/post/2019-01-19-rstudio-conf-recap/</loc>
     <lastmod>2019-01-19T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>/privacy/</loc>
-    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
-  </url><url>
-    <loc>/terms/</loc>
-    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
-  </url><url>
-    <loc>/tag/deep-learning/</loc>
+    <loc>https://adisarid.github.io/tag/deep-learning/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/demo/</loc>
+    <loc>https://adisarid.github.io/tag/demo/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/project/external-project/</loc>
+    <loc>https://adisarid.github.io/project/external-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/project/internal-project/</loc>
+    <loc>https://adisarid.github.io/project/internal-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/project/</loc>
+    <loc>https://adisarid.github.io/project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication-type/2/</loc>
+    <loc>https://adisarid.github.io/publication-type/2/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication/journal-article/</loc>
+    <loc>https://adisarid.github.io/publication/journal-article/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/author/robert-ford/</loc>
+    <loc>https://adisarid.github.io/author/robert-ford/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication-type/1/</loc>
+    <loc>https://adisarid.github.io/publication-type/1/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication/conference-paper/</loc>
+    <loc>https://adisarid.github.io/publication/conference-paper/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/admin/</loc>
+    <loc>https://adisarid.github.io/admin/</loc>
   </url><url>
-    <loc>/tag/ci/cd/</loc>
+    <loc>https://adisarid.github.io/tag/ci/cd/</loc>
   </url>
 </urlset>

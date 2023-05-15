@@ -2,23 +2,78 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>RStudio server | Adi Sarid</title>
-    <link>/tag/rstudio-server/</link>
-      <atom:link href="/tag/rstudio-server/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/tag/rstudio-server/</link>
+      <atom:link href="https://adisarid.github.io/tag/rstudio-server/index.xml" rel="self" type="application/rss+xml" />
     <description>RStudio server</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Fri, 06 Mar 2020 22:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Mon, 15 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>RStudio server</title>
-      <link>/tag/rstudio-server/</link>
+      <link>https://adisarid.github.io/tag/rstudio-server/</link>
     </image>
     
     <item>
+      <title>Using OTP (one-time passwords) in rstudio server open source</title>
+      <link>https://adisarid.github.io/post/2023-05-15-rstudio-server-2fa/rstudio_2fa/</link>
+      <pubDate>Mon, 15 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/post/2023-05-15-rstudio-server-2fa/rstudio_2fa/</guid>
+      <description>&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
+&lt;p&gt;Lately, I decided to harden security a bit. This included securing my rstudio server (open source) with one-time passwords.&lt;/p&gt;
+&lt;p&gt;Two-factor authentication (or multi-factor authentication) is when you use a username, password, and another means of authentication, mainly a one-time password that&amp;rsquo;s generated and sent via SMS or email or, in this case, created by an authentication app. In this case, I will demonstrate how to enable OTP on the rstudio server login.&lt;/p&gt;
+&lt;p&gt;At the moment of writing these lines, some posts deal with this &lt;a href=&#34;https://jstaf.github.io/posts/rstudio-server-semi-pro/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;, and &lt;a href=&#34;https://bartosz.nitkiewicz.me/posts/rstudio-en/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;; however, none of them worked for me. The latter did lead me in the right direction, so here is the setup I used to enable the OTP on rstudio server.&lt;/p&gt;
+&lt;p&gt;The following assumes you have an rstudio server running on linux, with &lt;code&gt;sudo&lt;/code&gt; privileges.&lt;/p&gt;
+&lt;h2 id=&#34;installing-google-authenticator&#34;&gt;Installing &lt;code&gt;google-authenticator&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;google-authenticator&lt;/code&gt; is an authentication module that&amp;rsquo;s installed on linux (not to be confused the android app that goes by a similar name). Installing it is the first step:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt install libpam-google-authenticator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This module integrates into linux&amp;rsquo;s PAM (pluggable authentication modules).&lt;/p&gt;
+&lt;p&gt;Now, log into rstudio as you would regularly and in the terminal run:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;google-authenticator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will yield a series of questions and set-up steps, i.e.:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Confirm using time-based tokens&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Scan the QR-code into your preferred authentication app (e.g., &lt;a href=&#34;https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;amp;hl=en&amp;amp;gl=US&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;google authenticator for Android&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Copy your emergency codes for backup&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;I also disallowed multiple logins,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permitted time skews; and&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Limited login attempts against brute force attacks).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;edit-the-rstudio-authentication-profile&#34;&gt;Edit the rstudio authentication profile&lt;/h2&gt;
+&lt;p&gt;The next step is to edit the authentication profile for rstudio. Inside linux command line (as sudo) run the following code: &lt;code&gt;sudo nano /etc/pam.d/rstudio&lt;/code&gt;, and paste the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;auth required pam_google_authenticator.so
+@include common-account
+@include common-session
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, edit another rstudio server file using: &lt;code&gt;/etc/rstudio/rserver.conf&lt;/code&gt; and paste the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;auth-pam-require-password-prompt=0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save and close the file.&lt;/p&gt;
+&lt;p&gt;Restart your rstudio server using &lt;code&gt;sudo systemctl restart rstudio-server.service&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;check-that-everything-works&#34;&gt;Check that everything works&lt;/h2&gt;
+&lt;p&gt;Go to your rstudio server login page and enter your user name. In the password text box enter the code shown on your authentication app. It should be able to log you in.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Set up RStudio server with Let&#39;s Encrypt SSL certificate</title>
-      <link>/post/2020-03-06-setup_rstudio_server_with_ssl/</link>
+      <link>https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/</link>
       <pubDate>Fri, 06 Mar 2020 22:00:00 +0000</pubDate>
-      <guid>/post/2020-03-06-setup_rstudio_server_with_ssl/</guid>
+      <guid>https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/</guid>
       <description>
-&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).&lt;/p&gt;
@@ -41,7 +96,7 @@
 &lt;h3&gt;AWS Lightsail’s firewall settings&lt;/h3&gt;
 &lt;p&gt;When using &lt;strong&gt;AWS Lightsail&lt;/strong&gt; (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).&lt;/p&gt;
 &lt;p&gt;Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#39;../../media/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#39;https://adisarid.github.io/media/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
 &lt;p&gt;If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;

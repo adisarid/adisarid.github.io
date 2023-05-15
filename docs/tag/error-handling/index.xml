@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Error handling | Adi Sarid</title>
-    <link>/tag/error-handling/</link>
-      <atom:link href="/tag/error-handling/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/tag/error-handling/</link>
+      <atom:link href="https://adisarid.github.io/tag/error-handling/index.xml" rel="self" type="application/rss+xml" />
     <description>Error handling</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Wed, 11 Nov 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Error handling</title>
-      <link>/tag/error-handling/</link>
+      <link>https://adisarid.github.io/tag/error-handling/</link>
     </image>
     
     <item>
       <title>YAPOEH! (Yet another post on error handling)</title>
-      <link>/post/yet-another-post-on-error-handling/</link>
+      <link>https://adisarid.github.io/post/yet-another-post-on-error-handling/</link>
       <pubDate>Wed, 11 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>/post/yet-another-post-on-error-handling/</guid>
+      <guid>https://adisarid.github.io/post/yet-another-post-on-error-handling/</guid>
       <description>
-&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Error catching can be hard to catch at times (no pun intended). If you’re not used to error handling, this short post might help you do it elegantly.&lt;/p&gt;
@@ -583,7 +583,7 @@ gt::gt(summary(bench_results)) %&amp;gt;%
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(bench_results) + 
   ggtitle(&amp;quot;Comparison of safely, possibly, and tryCatch&amp;quot;) + 
   coord_flip(ylim = c(1.5, 15))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../post/2020-11-09-YAPOEH-yet-another-post-on-error-handling.en_files/figure-html/error%20prone%20data%20set-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2020-11-09-YAPOEH-yet-another-post-on-error-handling.en_files/figure-html/error%20prone%20data%20set-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As can be seen from the benchmark’s results, there is no doubt about it: &lt;code&gt;tryCatch&lt;/code&gt; is the fastest. The &lt;code&gt;purrr&lt;/code&gt; functions &lt;code&gt;safely&lt;/code&gt; and &lt;code&gt;possibly&lt;/code&gt; take longer to run. In my opinion though they are slightly more convenient in terms of syntax.&lt;/p&gt;
 &lt;p&gt;In addition, the &lt;code&gt;safely&lt;/code&gt; variation allows us to retrieve the error messages conveniently for later examination. Again, this capability comes with a price when compared to &lt;code&gt;tryCatch&lt;/code&gt;, but it is roughly the same run time when compared to &lt;code&gt;possibly&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;

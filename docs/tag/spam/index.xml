@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Spam | Adi Sarid</title>
-    <link>/tag/spam/</link>
-      <atom:link href="/tag/spam/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/tag/spam/</link>
+      <atom:link href="https://adisarid.github.io/tag/spam/index.xml" rel="self" type="application/rss+xml" />
     <description>Spam</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Fri, 03 Sep 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Spam</title>
-      <link>/tag/spam/</link>
+      <link>https://adisarid.github.io/tag/spam/</link>
     </image>
     
     <item>
       <title>A data science detective story (and there&#39;s a villain too)</title>
-      <link>/post/data-science-forensics/</link>
+      <link>https://adisarid.github.io/post/data-science-forensics/</link>
       <pubDate>Fri, 03 Sep 2021 00:00:00 +0000</pubDate>
-      <guid>/post/data-science-forensics/</guid>
+      <guid>https://adisarid.github.io/post/data-science-forensics/</guid>
       <description>
-&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Here is a detective story about some data science forensics, and there is a villain too.&lt;/p&gt;
@@ -53,7 +53,7 @@ ggplot(responses, aes(x = type, fill = factor(rating))) +
   ylab(&amp;quot;Respondents [%]&amp;quot;) + 
   xlab(&amp;quot;&amp;quot;) + 
   ggtitle(&amp;quot;Distribution of complete vs. partial responses,\nbefore/after June 21&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../post/2021-07-30-data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2021-07-30-data-science-forensics/index.en_files/figure-html/comparison-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;See how the distribution of partial data after June 21’ is completely different from the distribution of the complete surveys and the partial surveys before June 21’?&lt;/p&gt;
 &lt;p&gt;Another thing we noticed was that a lot of the partial surveys were being answered within 2-3 minutes (another strong indication for the work of Microsoft’s bot).&lt;/p&gt;
 &lt;/div&gt;

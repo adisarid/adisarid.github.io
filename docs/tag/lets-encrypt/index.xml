@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Let&#39;s Encrypt | Adi Sarid</title>
-    <link>/tag/lets-encrypt/</link>
-      <atom:link href="/tag/lets-encrypt/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/tag/lets-encrypt/</link>
+      <atom:link href="https://adisarid.github.io/tag/lets-encrypt/index.xml" rel="self" type="application/rss+xml" />
     <description>Let&#39;s Encrypt</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Fri, 06 Mar 2020 22:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Let&#39;s Encrypt</title>
-      <link>/tag/lets-encrypt/</link>
+      <link>https://adisarid.github.io/tag/lets-encrypt/</link>
     </image>
     
     <item>
       <title>Set up RStudio server with Let&#39;s Encrypt SSL certificate</title>
-      <link>/post/2020-03-06-setup_rstudio_server_with_ssl/</link>
+      <link>https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/</link>
       <pubDate>Fri, 06 Mar 2020 22:00:00 +0000</pubDate>
-      <guid>/post/2020-03-06-setup_rstudio_server_with_ssl/</guid>
+      <guid>https://adisarid.github.io/post/2020-03-06-setup_rstudio_server_with_ssl/</guid>
       <description>
-&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;For a while now I’ve been struggling with various installation setup related to the open source versions of RStudio server, Shiny server (and dockerized versions of them).&lt;/p&gt;
@@ -41,7 +41,7 @@
 &lt;h3&gt;AWS Lightsail’s firewall settings&lt;/h3&gt;
 &lt;p&gt;When using &lt;strong&gt;AWS Lightsail&lt;/strong&gt; (which I’ve been using), a default firewall rule is applied. This means that when you complete steps 7-8 in Dean’s post, your server will not work if you’re using AWS Lightsail. The reason for that is that AWS Lightsail built-in firewall blocks all ports except 22 and 80 by default (rstudio server uses 8787 and shiny server uses 3838). It doesn’t matter much, because by the end of this post we’ll be using port 443 (for secure SSL connection), but you can also make the non-secure version work out - useful for checking that your server is working. Let’s go ahead and open port 443 in your Lightsail instance (and explain how to also temporarily open 8787 and 3838).&lt;/p&gt;
 &lt;p&gt;Click on the instance you’ve opened, and then go to the Networking tab. In this page you’ll see a “Firewall” title and beneath it a table with the currently open ports. Under the table click on “+ Add another”. Add HTTPS (under application), TCP (under protocol) and port 443, like in the following screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#39;../../media/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#39;https://adisarid.github.io/media/lightsail_firewall_configuration.jpg&#39;&gt;&lt;/p&gt;
 &lt;p&gt;If you want to temporarily enable direct access to port 8787 and 3838 (to check that your installation went well), you can do that as well (use “Custom” under application, TCP for protocol, and port 8787 (repeat for 3838 in an additional line).&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;

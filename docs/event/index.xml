@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recent &amp; Upcoming Talks | Adi Sarid</title>
-    <link>/event/</link>
-      <atom:link href="/event/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/event/</link>
+      <atom:link href="https://adisarid.github.io/event/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent &amp; Upcoming Talks</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0200</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Recent &amp; Upcoming Talks</title>
-      <link>/event/</link>
+      <link>https://adisarid.github.io/event/</link>
     </image>
     
     <item>
       <title>Using Data Science in Market Research - The Ugly Truth.</title>
-      <link>/talk/using-data-science-in-market-research-the-ugly-truth./</link>
+      <link>https://adisarid.github.io/talk/using-data-science-in-market-research-the-ugly-truth./</link>
       <pubDate>Tue, 08 Nov 2022 17:00:00 +0200</pubDate>
-      <guid>/talk/using-data-science-in-market-research-the-ugly-truth./</guid>
-      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;../pdf/2022-11-08_ds_in_mr.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+      <guid>https://adisarid.github.io/talk/using-data-science-in-market-research-the-ugly-truth./</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2022-11-08_ds_in_mr.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Landing Your First Awesome Data Science Job - The tricks you need up your sleeve</title>
-      <link>/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</link>
+      <link>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</link>
       <pubDate>Thu, 05 Nov 2020 20:30:00 +0200</pubDate>
-      <guid>/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</guid>
-      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;../pdf/2020-11-01_Landing_your_first_data_science_job_tricks_up_your_sleeve.pdf&#34;&gt;here&lt;/a&gt;. The recording is available &lt;a href=&#34;https://www.youtube.com/watch?v=rISH_hgdckg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; (Hebrew).&lt;/p&gt;
+      <guid>https://adisarid.github.io/talk/landing-your-first-awesome-data-science-job-the-tricks-you-need-up-your-sleeve/</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-11-01_Landing_your_first_data_science_job_tricks_up_your_sleeve.pdf&#34;&gt;here&lt;/a&gt;. The recording is available &lt;a href=&#34;https://www.youtube.com/watch?v=rISH_hgdckg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt; (Hebrew).&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>R you ready? A short intro into R (Hebrew).</title>
-      <link>/talk/r-you-ready-a-short-intro-into-r-hebrew./</link>
+      <link>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</link>
       <pubDate>Wed, 14 Oct 2020 20:30:00 +0200</pubDate>
-      <guid>/talk/r-you-ready-a-short-intro-into-r-hebrew./</guid>
-      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;../pdf/2020-10-14_R_U_Ready_Short_intro_to_R.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+      <guid>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-10-14_R_U_Ready_Short_intro_to_R.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Leveraging Data Science in Market Research</title>
-      <link>/talk/leveraging-data-science-in-market-research/</link>
+      <link>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</link>
       <pubDate>Wed, 03 Jun 2020 20:30:00 +0200</pubDate>
-      <guid>/talk/leveraging-data-science-in-market-research/</guid>
-      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;../pdf/2020-06-02_Leveraging_data_science_in_market_research.pdf&#34;&gt;here&lt;/a&gt;, and the recording &lt;a href=&#34;https://youtu.be/KLQmHAOt-lk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+      <guid>https://adisarid.github.io/talk/leveraging-data-science-in-market-research/</guid>
+      <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-06-02_Leveraging_data_science_in_market_research.pdf&#34;&gt;here&lt;/a&gt;, and the recording &lt;a href=&#34;https://youtu.be/KLQmHAOt-lk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Want to talk to R? just call your plumber</title>
-      <link>/talk/want-to-talk-to-r-just-call-your-plumber/</link>
+      <link>https://adisarid.github.io/talk/want-to-talk-to-r-just-call-your-plumber/</link>
       <pubDate>Fri, 17 Jan 2020 19:10:00 +0200</pubDate>
-      <guid>/talk/want-to-talk-to-r-just-call-your-plumber/</guid>
+      <guid>https://adisarid.github.io/talk/want-to-talk-to-r-just-call-your-plumber/</guid>
       <description>&lt;p&gt;Presentation and source code are available  &lt;a href=&#34;https://github.com/adisarid/startrek_plumber_api/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Not So Shiny?</title>
-      <link>/talk/not-so-shiny/</link>
+      <link>https://adisarid.github.io/talk/not-so-shiny/</link>
       <pubDate>Thu, 24 Oct 2019 18:05:00 +0200</pubDate>
-      <guid>/talk/not-so-shiny/</guid>
+      <guid>https://adisarid.github.io/talk/not-so-shiny/</guid>
       <description>&lt;p&gt;Presentation and source code are available  &lt;a href=&#34;https://github.com/adisarid/meetup_not_so_shiny/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;, accompanying shiny app used for demonstrations is available &lt;a href=&#34;https://sarid.shinyapps.io/not_so_shiny&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>

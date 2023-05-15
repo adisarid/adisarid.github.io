@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Train the Trainer | Adi Sarid</title>
-    <link>/tag/train-the-trainer/</link>
-      <atom:link href="/tag/train-the-trainer/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/tag/train-the-trainer/</link>
+      <atom:link href="https://adisarid.github.io/tag/train-the-trainer/index.xml" rel="self" type="application/rss+xml" />
     <description>Train the Trainer</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Tue, 12 Mar 2019 12:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Train the Trainer</title>
-      <link>/tag/train-the-trainer/</link>
+      <link>https://adisarid.github.io/tag/train-the-trainer/</link>
     </image>
     
     <item>
       <title>The teachR&#39;s::cheat sheet</title>
-      <link>/post/2019-03-12-the_teachr_cheat_sheet/</link>
+      <link>https://adisarid.github.io/post/2019-03-12-the_teachr_cheat_sheet/</link>
       <pubDate>Tue, 12 Mar 2019 12:00:00 +0000</pubDate>
-      <guid>/post/2019-03-12-the_teachr_cheat_sheet/</guid>
+      <guid>https://adisarid.github.io/post/2019-03-12-the_teachr_cheat_sheet/</guid>
       <description>
-&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;A few months ago I attended the 2019 rstudio::conf, including the shiny train-the-trainer workshop. It was a two day workshop and it inspired me in many ways. The first day of the workshop focused on the very basics of teaching (R or anything else), and for me it put the spotlight on things I never considered before.&lt;/p&gt;
@@ -54,7 +54,7 @@
 &lt;p&gt;Bloom’s taxonomy illustrates the levels of learning new concepts or topics.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://wp0.vanderbilt.edu/cft/guides-sub-pages/blooms-taxonomy/&#34;&gt;Vanderbilt University Center for Teaching&lt;/a&gt; has a nice illustration for it.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;../../media/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;https://adisarid.github.io/media/blooms_taxonomy.png&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;Blooms Taxonomy&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;You can visit the Vanderbilt website for a more thorough explanation about the taxonomy, but suffice it to say that “remember” is the most basic form of acquired knowledge, and the highest levels (at the top of the pyramid) are evaluate and create (being able to evaluate someone else’s work, or create your own noval work).&lt;/p&gt;

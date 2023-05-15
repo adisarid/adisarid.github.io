@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.262">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Adi Sarid">
+<meta name="dcterms.date" content="2023-05-15">
+
+<title>Using OTP (one-time passwords) in rstudio server open source</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="rstudio_2fa_files/libs/clipboard/clipboard.min.js"></script>
+<script src="rstudio_2fa_files/libs/quarto-html/quarto.js"></script>
+<script src="rstudio_2fa_files/libs/quarto-html/popper.min.js"></script>
+<script src="rstudio_2fa_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="rstudio_2fa_files/libs/quarto-html/anchor.min.js"></script>
+<link href="rstudio_2fa_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="rstudio_2fa_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="rstudio_2fa_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="rstudio_2fa_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="rstudio_2fa_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Using OTP (one-time passwords) in rstudio server open source</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p> </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 15, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Lately, I decided to harden security a bit. This included securing my rstudio server (open source) with one-time passwords.</p>
+<p>Two-factor authentication (or multi-factor authentication) is when you use a username, password, and another means of authentication, mainly a one-time password that’s generated and sent via SMS or email or, in this case, created by an authentication app. In this case, I will demonstrate how to enable OTP on the rstudio server login.</p>
+<p>At the moment of writing these lines, some posts deal with this <a href="https://jstaf.github.io/posts/rstudio-server-semi-pro/">here</a>, and <a href="https://bartosz.nitkiewicz.me/posts/rstudio-en/">here</a>; however, none of them worked for me. The latter did lead me in the right direction, so here is the setup I used to enable the OTP on rstudio server.</p>
+<p>The following assumes you have an rstudio server running on linux, with <code>sudo</code> privileges.</p>
+</section>
+<section id="installing-google-authenticator" class="level2">
+<h2 class="anchored" data-anchor-id="installing-google-authenticator">Installing <code>google-authenticator</code></h2>
+<p>The <code>google-authenticator</code> is an authentication module that’s installed on linux (not to be confused the android app that goes by a similar name). Installing it is the first step:</p>
+<pre><code>sudo apt install libpam-google-authenticator</code></pre>
+<p>This module integrates into linux’s PAM (pluggable authentication modules).</p>
+<p>Now, log into rstudio as you would regularly and in the terminal run:</p>
+<pre><code>google-authenticator</code></pre>
+<p>This will yield a series of questions and set-up steps, i.e.:</p>
+<ul>
+<li><p>Confirm using time-based tokens</p></li>
+<li><p>Scan the QR-code into your preferred authentication app (e.g., <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en&amp;gl=US">google authenticator for Android</a></p></li>
+<li><p>Copy your emergency codes for backup</p></li>
+<li><p>I also disallowed multiple logins,</p></li>
+<li><p>Permitted time skews; and</p></li>
+<li><p>Limited login attempts against brute force attacks).</p></li>
+</ul>
+</section>
+<section id="edit-the-rstudio-authentication-profile" class="level2">
+<h2 class="anchored" data-anchor-id="edit-the-rstudio-authentication-profile">Edit the rstudio authentication profile</h2>
+<p>The next step is to edit the authentication profile for rstudio. Inside linux command line (as sudo) run the following code: <code>sudo nano /etc/pam.d/rstudio</code>, and paste the following:</p>
+<pre><code>auth required pam_google_authenticator.so
+@include common-account
+@include common-session</code></pre>
+<p>Now, edit another rstudio server file using: <code>/etc/rstudio/rserver.conf</code> and paste the following:</p>
+<pre><code>auth-pam-require-password-prompt=0</code></pre>
+<p>Save and close the file.</p>
+<p>Restart your rstudio server using <code>sudo systemctl restart rstudio-server.service</code>.</p>
+</section>
+<section id="check-that-everything-works" class="level2">
+<h2 class="anchored" data-anchor-id="check-that-everything-works">Check that everything works</h2>
+<p>Go to your rstudio server login page and enter your user name. In the password text box enter the code shown on your authentication app. It should be able to log you in.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

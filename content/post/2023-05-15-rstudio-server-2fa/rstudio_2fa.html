@@ -1,0 +1,56 @@
+---
+title: "Using OTP (one-time passwords) in rstudio server open source"
+author: "Adi Sarid"
+date: "2023-05-15"
+categories:
+  - R
+tags:
+  - rstudio server
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2023-05-15T21:17:42Z'
+featured: no
+---
+
+
+
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Lately, I decided to harden security a bit. This included securing my rstudio server (open source) with one-time passwords.</p>
+<p>Two-factor authentication (or multi-factor authentication) is when you use a username, password, and another means of authentication, mainly a one-time password that’s generated and sent via SMS or email or, in this case, created by an authentication app. In this case, I will demonstrate how to enable OTP on the rstudio server login.</p>
+<p>At the moment of writing these lines, some posts deal with this <a href="https://jstaf.github.io/posts/rstudio-server-semi-pro/">here</a>, and <a href="https://bartosz.nitkiewicz.me/posts/rstudio-en/">here</a>; however, none of them worked for me. The latter did lead me in the right direction, so here is the setup I used to enable the OTP on rstudio server.</p>
+<p>The following assumes you have an rstudio server running on linux, with <code>sudo</code> privileges.</p>
+</div>
+<div id="installing-google-authenticator" class="section level2">
+<h2>Installing <code>google-authenticator</code></h2>
+<p>The <code>google-authenticator</code> is an authentication module that’s installed on linux (not to be confused the android app that goes by a similar name). Installing it is the first step:</p>
+<pre><code>sudo apt install libpam-google-authenticator</code></pre>
+<p>This module integrates into linux’s PAM (pluggable authentication modules).</p>
+<p>Now, log into rstudio as you would regularly and in the terminal run:</p>
+<pre><code>google-authenticator</code></pre>
+<p>This will yield a series of questions and set-up steps, i.e.:</p>
+<ul>
+<li><p>Confirm using time-based tokens</p></li>
+<li><p>Scan the QR-code into your preferred authentication app (e.g., <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en&amp;gl=US">google authenticator for Android</a>)</p></li>
+<li><p>Copy your emergency codes for backup</p></li>
+<li><p>I also disallowed multiple logins,</p></li>
+<li><p>Permitted time skews; and</p></li>
+<li><p>Limited login attempts against brute force attacks).</p></li>
+</ul>
+</div>
+<div id="edit-the-rstudio-authentication-profile" class="section level2">
+<h2>Edit the rstudio authentication profile</h2>
+<p>The next step is to edit the authentication profile for rstudio. Inside linux command line (as sudo) run the following code: <code>sudo nano /etc/pam.d/rstudio</code>, and paste the following:</p>
+<pre><code>auth required pam_google_authenticator.so
+@include common-account
+@include common-session</code></pre>
+<p>Now, edit another rstudio server file using: <code>/etc/rstudio/rserver.conf</code> and paste the following:</p>
+<pre><code>auth-pam-require-password-prompt=0</code></pre>
+<p>Save and close the file.</p>
+<p>Restart your rstudio server using <code>sudo systemctl restart rstudio-server.service</code>.</p>
+</div>
+<div id="check-that-everything-works" class="section level2">
+<h2>Check that everything works</h2>
+<p>Go to your rstudio server login page and enter your user name. In the password text box enter the code shown on your authentication app. It should be able to log you in.</p>
+</div>

@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Google Workspace | Adi Sarid</title>
-    <link>/tag/google-workspace/</link>
-      <atom:link href="/tag/google-workspace/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/tag/google-workspace/</link>
+      <atom:link href="https://adisarid.github.io/tag/google-workspace/index.xml" rel="self" type="application/rss+xml" />
     <description>Google Workspace</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Thu, 25 Nov 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Google Workspace</title>
-      <link>/tag/google-workspace/</link>
+      <link>https://adisarid.github.io/tag/google-workspace/</link>
     </image>
     
     <item>
       <title>Creating your google chat R bot in under 5 minutes</title>
-      <link>/post/creating-your-google-chat-r-bot-in-under-5-minutes/</link>
+      <link>https://adisarid.github.io/post/creating-your-google-chat-r-bot-in-under-5-minutes/</link>
       <pubDate>Thu, 25 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>/post/creating-your-google-chat-r-bot-in-under-5-minutes/</guid>
+      <guid>https://adisarid.github.io/post/creating-your-google-chat-r-bot-in-under-5-minutes/</guid>
       <description>
-&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;We use Google workspace as our email and document solution (i.e., the gmail solution for businesses). A few days ago I was chatting with one of my colleagues and noticed this feature called: “Manage webhooks” in the chat window. Apparently it’s a quick hack to create your own chat bot, which can communicate with a google chat, a group chat, or a chat space (different variations of a chat room, basically).&lt;/p&gt;

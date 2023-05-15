@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>linear models | Adi Sarid</title>
-    <link>/tag/linear-models/</link>
-      <atom:link href="/tag/linear-models/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/tag/linear-models/</link>
+      <atom:link href="https://adisarid.github.io/tag/linear-models/index.xml" rel="self" type="application/rss+xml" />
     <description>linear models</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Fri, 13 Dec 2019 12:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>linear models</title>
-      <link>/tag/linear-models/</link>
+      <link>https://adisarid.github.io/tag/linear-models/</link>
     </image>
     
     <item>
       <title>Confidence and prediction intervals explained... (with a Shiny app!)</title>
-      <link>/post/2019-12-13-confidence_prediction_intervals_explained/</link>
+      <link>https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/</link>
       <pubDate>Fri, 13 Dec 2019 12:00:00 +0000</pubDate>
-      <guid>/post/2019-12-13-confidence_prediction_intervals_explained/</guid>
+      <guid>https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained/</guid>
       <description>
-&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;This semester I started teaching introduction to statistics and data analysis with R, at Tel-Aviv university.&lt;/p&gt;
@@ -115,7 +115,7 @@ ggplot() +
   xlab(&amp;quot;x&amp;quot;) + 
   ylab(&amp;quot;y&amp;quot;) + 
   ggtitle(&amp;quot;Log-linear: Model, Fit, Confidence and Prediction Intervals&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-12-13-confidence_prediction_intervals_explained_files/figure-html/example%20for%20a%20log%20linear%20relationship-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Conclusions&lt;/h2&gt;

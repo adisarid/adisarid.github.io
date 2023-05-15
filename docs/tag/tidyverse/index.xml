@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tidyverse | Adi Sarid</title>
-    <link>/tag/tidyverse/</link>
-      <atom:link href="/tag/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://adisarid.github.io/tag/tidyverse/</link>
+      <atom:link href="https://adisarid.github.io/tag/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     <description>Tidyverse</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Sun, 28 Apr 2019 12:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Tidyverse</title>
-      <link>/tag/tidyverse/</link>
+      <link>https://adisarid.github.io/tag/tidyverse/</link>
     </image>
     
     <item>
       <title>Test your tidyness - a short quiz to check your tidyverse capabilities</title>
-      <link>/post/2019-04-28-test_your_tidyness/</link>
+      <link>https://adisarid.github.io/post/2019-04-28-test_your_tidyness/</link>
       <pubDate>Sun, 28 Apr 2019 12:00:00 +0000</pubDate>
-      <guid>/post/2019-04-28-test_your_tidyness/</guid>
+      <guid>https://adisarid.github.io/post/2019-04-28-test_your_tidyness/</guid>
       <description>
-&lt;script src=&#34;../../rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://adisarid.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Over the last month I gave a tidyverse + intro to data science corporate training in a startup in Tel-Aviv. We had two groups (beginners and intermediates), and for the last assignment of the course I was aiming for a short quiz comprised of various topics which we covered during the course, such that can also be automated easily (i.e., multiple choice questions).&lt;/p&gt;
@@ -74,9 +74,9 @@ data.frame(a = 1:10, b = letters[1:10]) %&amp;gt;%
 &lt;li&gt;Figure 1: &lt;code&gt;geom_violin&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Figure 1: &lt;code&gt;geom_boxplot&lt;/code&gt;, Figure 2: &lt;code&gt;geom_point&lt;/code&gt; + &lt;code&gt;geom_line&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;../../post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## `geom_smooth()` using formula &amp;#39;y ~ x&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;../../post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-04-28-Test_your_tidyness_files/figure-html/ggplot2%20challege-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;question-4&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Question 4:&lt;/h2&gt;
@@ -165,7 +165,7 @@ map_chr(some_string, ~paste0(stringi::stri_wrap(., width = 5), collapse = &amp;q
 &lt;li&gt;Yes, according to either x-axis or y-axis.&lt;/li&gt;
 &lt;li&gt;No, it will not be classified as an outlier.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;../../post/2019-04-28-Test_your_tidyness_files/figure-html/outlier%20question-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/2019-04-28-Test_your_tidyness_files/figure-html/outlier%20question-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;question-10&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Question 10:&lt;/h2&gt;
