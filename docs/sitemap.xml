@@ -3,21 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://adisarid.github.io/</loc>
-    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/categories/</loc>
-    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tag/conference/</loc>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/post/insights-from-posit-conf-2023/</loc>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tag/positconf/</loc>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/post/</loc>
-    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/category/r/</loc>
-    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
-    <loc>https://adisarid.github.io/tag/rstudio-server/</loc>
-    <lastmod>2023-05-15T21:17:42+00:00</lastmod>
+    <loc>https://adisarid.github.io/tag/rstudio-conference/</loc>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tag/rstudioconf/</loc>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/tags/</loc>
+    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tag/rstudio-server/</loc>
     <lastmod>2023-05-15T21:17:42+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/post/2023-05-15-rstudio-server-2fa/rstudio_2fa/</loc>
@@ -31,9 +46,6 @@
   </url><url>
     <loc>https://adisarid.github.io/talk/using-data-science-in-market-research-the-ugly-truth./</loc>
     <lastmod>2022-11-08T17:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/tag/rstudioconf/</loc>
-    <lastmod>2022-08-01T01:36:42+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/post/what-i-learned-from-rstudio-conf-2022/</loc>
     <lastmod>2022-08-01T01:36:42+00:00</lastmod>
@@ -99,9 +111,6 @@
     <lastmod>2020-03-06T22:00:00+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/post/2020-01-31-rstudio-conf2020-recap/</loc>
-    <lastmod>2020-01-31T06:08:00-10:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/tag/rstudio-conference/</loc>
     <lastmod>2020-01-31T06:08:00-10:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/talk/want-to-talk-to-r-just-call-your-plumber/</loc>
@@ -199,9 +208,6 @@
   </url><url>
     <loc>https://adisarid.github.io/tag/tidyeval/</loc>
     <lastmod>2019-01-20T12:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/tag/conference/</loc>
-    <lastmod>2019-01-19T12:00:00+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/post/2019-01-19-rstudio-conf-recap/</loc>
     <lastmod>2019-01-19T12:00:00+00:00</lastmod>

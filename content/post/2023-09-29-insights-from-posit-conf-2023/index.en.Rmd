@@ -1,0 +1,71 @@
+---
+title: Insights from Posit::conf(2023)
+author: Adi Sarid
+date: '2023-09-29'
+slug: insights-from-posit-conf-2023
+categories:
+  - R
+tags:
+  - conference
+  - rstudio::conf
+  - posit::conf
+  - rstudio conference
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2023-09-29T09:12:37Z'
+featured: no
+draft: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+I've been attending posit::conf since 2019 (when it was still called rstudio::conf), and this year was no different. I really like the keynotes, talks, the community, meeting like minded data science, and R/Python enthusiasts. In this blog post we'll delve into some of the key takeaways from the conference.
+
+## Designing Data Visualizations to Successfully Tell a Story 📊
+
+This one-day workshop was led by Cédric Scherer and discussed how to create visualizations that emphasize a specific message. I think that Cédric makes a good distinction between visualizations meant for exploration versus those meant for explanation. The former is usually used during the research phase (tidy \<-\> model \<-\> visualize) and the latter at the communication of the findings.
+
+If you're familiar with `ggplot2` then you already have everything you need - the difference is the paradigm. Understand the message you want to convey, think like a designer, and make sure that the chart conveys that message. Preferably a single message per chart.
+
+If you're interested, the workshop's repo is [here](https://github.com/posit-conf-2023/dataviz-storytelling/tree/main).
+
+## Deploy and maintain models with `vetiver` 🏃
+
+This is another (one-day) workshop that I attended. This workshop was led by Julia Silge (the author of the `vetiver` package). The package supports machine learning operations, i.e., practices to deploy and maintain machine learning models in production.
+
+The workshop surveyed the main capabilities of `vetiver` starting from deployment of models into `plumber` APIs, saving and versioning models with related meta-data (e.g., model performance) via the `pins` package, creating docker containers of models and APIs for easy deployment, and related practices.
+
+The workshop also covered integration with Posit connect (i.e., for using `pins` and API deployment), however, these can also be implemented relatively easily in common cloud provides such as AWS (EC2 for API + S3 for pins) or Azure (VM + storage) or GCP equivalent.
+
+The workshop covered a lot of ground and I'm excited to try everything out! (hours of fun 😊).
+
+## Large Language Models keynote 🤗
+
+A fascinating keynote by Jeremy Howard. Jeremy provided some background on the training stages of LLMs (ChatGPT specifically), and provided some hacks (like custom instructions), that can improve the results of the models.
+
+Jeremy also showed how he installs, fine-tunes, and uses various open-source models from [huggingface](https://huggingface.co/), uses ChatGPT for programming (creating custom code/functions), and more.
+
+The talk was a video recording and is already available for watching here: <https://www.youtube.com/watch?v=jkrNMKz9pWU>.
+
+## Additional things worth mentioning 🔦
+
+-   There have been developments in WebR + shinylive. shinylive is now available for building shiny apps and using them without a server (i.e., building shiny apps in R and providing them for running completely on the user's browser). They can be combined in static HTML pages, quarto/markdown documents, and even used offline.\
+    See the [shinylive repo](https://github.com/posit-dev/r-shinylive) for using shinylive from R (not yet on CRAN), and examples [here](https://shinylive.io/r/examples). However, note that shinylive is not secure (in the sense that the source code can be pulled by the user), so if your app has sensitive information - don't use shinylive. Also I find it a bit slow. I think that it can be well suited for educational purposes (e.g., combining apps in online books, blogs, etc.).
+
+-   Some talks about `duckdb` and related R packages (`duckplyr`, `duckdb`): it's an in-process data management system. It provides a solution for working with large datasets (that do not fit in-memory). Data can be loaded to a duckdb and R works with duckdb for pulling the data that's required for the analysis instead of all of the dataset. View [this talk](https://reg.conf.posit.co/flow/posit/positconf23/attendee-portal/page/sessioncatalog/session/1685040650710001GM9G) by Hannes Mühleisen.
+
+-   GitHub copilot is now available on RStudio.
+
+-   Quarto - interesting talk showing extensions. More on quarto extensions [here](https://quarto.org/docs/extensions/).
+
+-   Typst integration with quarto - a replacement for LaTeX as a pdf compiler, typst is much faster in compiling documents. Currently implemented in the quarto pre-release 1.4 version. I have tried to play with it a bit, but it seems as though customizing/building templates requires knowledge in the typst language (which is a kind of a new markdown scripting). Looks promising.
+
+The posit::conf(2024) conference was announced - it will be in Seattle from 12 to 14 of August. Only three days this time: one workshop day and two conference days.
+
+## Conclusion 😎
+
+As usual, posit::conf 2023 proved to be an exceptional community gathering that provided us with a rich array of insights, tools, and innovative ideas to ponder and elevate our professional endeavors. I eagerly anticipate the forthcoming posit::conf event in Seattle.

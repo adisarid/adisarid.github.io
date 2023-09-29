@@ -19,7 +19,7 @@ name: Adi Sarid
 organizations:
 - name: Sarid Research Institute LTD.
   url: "http://www.sarid-ins.com"
-role: Partner and Head of Operations Research Department
+role: <img class = "avatar avatar-circle" src="/home/adi_sarid_hex_headshot.jpg" width="100" height="100" style="zoom:80%; text-align:left;"><br/>Partner and Head of Data Science
 social:
 - icon: envelope
   icon_pack: fas
@@ -36,8 +36,8 @@ social:
 superuser: true
 ---
 
-Adi Sarid is a partner and head of Operations Research Department at the [Sarid Research Institute LTD](http://www.sarid-ins.com). 
+Adi Sarid is a partner and head of Data Science at the [Sarid Research Institute LTD](http://www.sarid-ins.com). 
 
 Adi has a PhD in Operations Research from the department of Industrial Engineering in Tel-Aviv university, an MSc in Operations Research from Tel-Aviv university, and a BA in Mathematics Statistics and Operations Research from the Technion.
 
-Adi is also a certified [RStudio instructor](https://education.rstudio.com/trainers/), teaching tidyverse, shiny, statistics, and data science.
+Adi is also a certified [Posit instructor](https://education.rstudio.com/trainers/), teaching tidyverse, shiny, statistics, and data science.
