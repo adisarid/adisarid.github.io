@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>0 | Adi Sarid</title>
+    <link>https://adisarid.github.io/publication-type/0/</link>
+      <atom:link href="https://adisarid.github.io/publication-type/0/index.xml" rel="self" type="application/rss+xml" />
+    <description>0</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Wed, 25 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <title>0</title>
+      <link>https://adisarid.github.io/publication-type/0/</link>
+    </image>
+    
+    <item>
+      <title>Power Distribution in Developing Countries – Planning for Effectiveness and Equity</title>
+      <link>https://adisarid.github.io/publication/power-distribution-in-developing-countries-planning-for-effectiveness-and-equity/</link>
+      <pubDate>Wed, 25 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/publication/power-distribution-in-developing-countries-planning-for-effectiveness-and-equity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Large Scale Examination of Textual Behavioral Nudges on Uptake Rates of Medical Checkups</title>
+      <link>https://adisarid.github.io/publication/2022-05-28-a-large-scale-examination-of-textual-behavioural-nudges/</link>
+      <pubDate>Sat, 28 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/publication/2022-05-28-a-large-scale-examination-of-textual-behavioural-nudges/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

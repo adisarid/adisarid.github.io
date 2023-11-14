@@ -2,8 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://adisarid.github.io/publication-type/0/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/adi-s.-sarid/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://adisarid.github.io/</loc>
-    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/authors/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/michal-tzur/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/peter-w.-glynn/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/publication/power-distribution-in-developing-countries-planning-for-effectiveness-and-equity/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/publication_types/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/publication/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tag/research-paper/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tags/</loc>
+    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/categories/</loc>
     <lastmod>2023-09-29T09:12:37+00:00</lastmod>
@@ -29,9 +59,6 @@
     <loc>https://adisarid.github.io/tag/rstudioconf/</loc>
     <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
-    <loc>https://adisarid.github.io/tags/</loc>
-    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
-  </url><url>
     <loc>https://adisarid.github.io/tag/rstudio-server/</loc>
     <lastmod>2023-05-15T21:17:42+00:00</lastmod>
   </url><url>
@@ -41,14 +68,35 @@
     <loc>https://adisarid.github.io/author/</loc>
     <lastmod>2022-11-08T17:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://adisarid.github.io/authors/</loc>
-    <lastmod>2022-11-08T17:00:00+02:00</lastmod>
-  </url><url>
     <loc>https://adisarid.github.io/talk/using-data-science-in-market-research-the-ugly-truth./</loc>
     <lastmod>2022-11-08T17:00:00+02:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/post/what-i-learned-from-rstudio-conf-2022/</loc>
     <lastmod>2022-08-01T01:36:42+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/publication/2022-05-28-a-large-scale-examination-of-textual-behavioural-nudges/</loc>
+    <lastmod>2022-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/amnon-maltz/</loc>
+    <lastmod>2022-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/elina-saifer/</loc>
+    <lastmod>2022-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/neta-amorai-belkin/</loc>
+    <lastmod>2022-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/stella-rashkovich/</loc>
+    <lastmod>2022-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/tamar-alcalay/</loc>
+    <lastmod>2022-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/tamar-landau/</loc>
+    <lastmod>2022-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/author/yafit-cohen/</loc>
+    <lastmod>2022-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/post/creating-your-google-chat-r-bot-in-under-5-minutes/</loc>
     <lastmod>2021-11-25T06:58:46+00:00</lastmod>
@@ -155,24 +203,6 @@
     <loc>https://adisarid.github.io/tag/tidyverse/</loc>
     <lastmod>2019-04-28T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://adisarid.github.io/publication-type/3/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/author/admin/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/publication/preprint/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/publication_types/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/publication/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/tag/source-themes/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://adisarid.github.io/tag/teaching/</loc>
     <lastmod>2019-03-12T12:00:00+00:00</lastmod>
   </url><url>
@@ -226,21 +256,6 @@
   </url><url>
     <loc>https://adisarid.github.io/project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/publication-type/2/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/publication/journal-article/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/author/robert-ford/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/publication-type/1/</loc>
-    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/publication/conference-paper/</loc>
-    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/admin/</loc>
   </url><url>
