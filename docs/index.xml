@@ -123,6 +123,14 @@ See the &lt;a href=&#34;https://github.com/posit-dev/r-shinylive&#34;&gt;shinyli
     </item>
     
     <item>
+      <title>Uncovering Resilience Disparities among Religious Groups in Israel’s Mass COVID-19 Vaccination Drive - Lessons Learned to the Post-COVID Era</title>
+      <link>https://adisarid.github.io/publication/uncovering_resilience_disparities/</link>
+      <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/publication/uncovering_resilience_disparities/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Using Data Science in Market Research - The Ugly Truth.</title>
       <link>https://adisarid.github.io/talk/using-data-science-in-market-research-the-ugly-truth./</link>
       <pubDate>Tue, 08 Nov 2022 17:00:00 +0200</pubDate>
@@ -1025,6 +1033,14 @@ gt::gt(summary(bench_results)) %&amp;gt;%
       <guid>https://adisarid.github.io/talk/r-you-ready-a-short-intro-into-r-hebrew./</guid>
       <description>&lt;p&gt;The presentation is available &lt;a href=&#34;https://adisarid.github.io/pdf/2020-10-14_R_U_Ready_Short_intro_to_R.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Attractive Flu Shot - A Behavioral Approach to Increasing Influenza Vaccination Uptake Rates</title>
+      <link>https://adisarid.github.io/publication/attractive_flu_shot/</link>
+      <pubDate>Sat, 08 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/publication/attractive_flu_shot/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -2897,6 +2913,14 @@ vctrs::vec_c(factor(&amp;quot;a&amp;quot;), factor(&amp;quot;b&amp;quot;))
     </item>
     
     <item>
+      <title>The multi-scale generation and transmission expansion model</title>
+      <link>https://adisarid.github.io/publication/multiscale-generation-transmission/</link>
+      <pubDate>Sun, 01 Apr 2018 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/publication/multiscale-generation-transmission/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>External Project</title>
       <link>https://adisarid.github.io/project/external-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
@@ -2915,6 +2939,14 @@ vctrs::vec_c(factor(&amp;quot;a&amp;quot;), factor(&amp;quot;b&amp;quot;))
 &lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
 &lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Determining the sampling time frame for in-vehicle data recorder measurement in assessing drivers</title>
+      <link>https://adisarid.github.io/publication/ivdr_sampling_time/</link>
+      <pubDate>Thu, 01 May 2014 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/publication/ivdr_sampling_time/</guid>
+      <description></description>
     </item>
     
     <item>

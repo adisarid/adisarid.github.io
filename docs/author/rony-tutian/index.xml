@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rony Tutian | Adi Sarid</title>
+    <link>https://adisarid.github.io/author/rony-tutian/</link>
+      <atom:link href="https://adisarid.github.io/author/rony-tutian/index.xml" rel="self" type="application/rss+xml" />
+    <description>Rony Tutian</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Wed, 10 May 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
+      <title>Rony Tutian</title>
+      <link>https://adisarid.github.io/author/rony-tutian/</link>
+    </image>
+    
+    <item>
+      <title>Uncovering Resilience Disparities among Religious Groups in Israel’s Mass COVID-19 Vaccination Drive - Lessons Learned to the Post-COVID Era</title>
+      <link>https://adisarid.github.io/publication/uncovering_resilience_disparities/</link>
+      <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/publication/uncovering_resilience_disparities/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
