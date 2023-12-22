@@ -1,0 +1,124 @@
+---
+title: Assessing relationships with correlograms
+author: Adi Sarid
+date: '2023-12-22'
+slug: assessing-relationships-with-correlograms
+categories:
+  - R
+tags:
+  - Correlation
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2023-12-22T16:49:06Z'
+featured: no
+draft: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+We often find ourselves with a complex dataset containing numerous variables. 
+One of the initial steps in the discovery phase - the initial analysis where 
+you get familiar with the data - is using correlations to get a sense of the 
+relationships between the variables.
+
+A good tool for getting a quick glimpse of these relationships is a 
+**correlogram chart**, which is the hero of this post. But before that, 
+a few words about correlations.
+
+## What is a correlation coefficient?
+
+A correlation coefficient (denoted as ⍴) is a statistical measure indicating if 
+a statistical relationship (specifically linear) exists between two variables 
+(features of the data). 
+
+Correlation ranges from -1 and up to +1. 
+The extremes indicate a strong relationship between two variables: 
+
+   * A correlation coefficient of -1 (or close to it) indicates that when one 
+   variable increases, the other decreases (or vice versa)
+
+   * A correlation coefficient close to +1 indicates that the 
+   two variables increase or decrease together
+
+   * A correlation coefficient close to 0 indicates that no 
+   relationship was found (linear at least, there might be a different 
+   relationship as we'll see in a moment).
+
+## Correlation "toy example"
+
+To illustrate, here are a few scatter plots indicating the relationship 
+between two variables (represented by the x-axis and the y-axis).
+
+```{r example for correlations, warning=FALSE, message=FALSE}
+
+library(tidyverse)
+
+tot_samp <- 100
+base_x <- runif(tot_samp)
+
+corr_examples <- tibble(x = base_x) %>% 
+  mutate(high_corr = x + rnorm(tot_samp, sd = 0.2),
+         high_inve = -x + rnorm(tot_samp, sd = 0.2),
+         low_corr1 = runif(tot_samp) - 0.5,
+         low_corr2 = x * if_else(runif(tot_samp) < 0.5, 1, -1))
+
+cor(corr_examples)[,1]
+
+corr_examples %>% 
+  pivot_longer(-x, values_to = "y", names_to = "correlation") %>% 
+  mutate(correlation = fct_recode(correlation,
+                                  "Positive relationship (⍴≈0.8)" = "high_corr",
+                                  "Negative relationship (⍴≈-0.8)" = "high_inve",
+                                  "No relationship (⍴≈0)" = "low_corr1",
+                                  "Non-linear relationship (⍴≈0)" = "low_corr2")) %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_point() + 
+  facet_wrap(~correlation) + 
+  theme_bw() + 
+  ylab("Y Variable") + 
+  xlab("X Variable") + 
+  ggtitle("Illustration of variable relationships and correlation coefficient")
+```
+
+These examples were engineered to show various types of relationships and how 
+they are reflected in the correlation coefficient. The two upper charts 
+illustrate strong relationships: either positive (upper-left) or negative 
+(upper-right).
+
+The bottom-left chart shows no-relationships (these are just random numbers 
+on the x and y-axis), and the bottom-right illustrates an interesting 
+relationship: the two variables are not correlated 
+(a correlation coefficient close to 0), but they are surely related to one 
+another. The y-value can either be x or -x. A simple transformation of y 
+(absolute value),  would yield a correlation coefficient of 1 instead of 0. 
+This last example also shows the limitation of using a correlation coefficient,
+having said that though, let's use a correlogram to inspect the variables.
+
+## Correlograms to the rescue
+
+A correlogram is a powerful tool that allows us to get a quick glimpse of the 
+correlation coefficients of the data features visually. In our toy example, 
+it looks like this:
+
+```{r a correlogram}
+corr_examples %>% 
+  set_names(c("Original variable", "Positive", "Negative", "No relationship", "Non-linear")) %>% 
+  cor() %>% 
+  ggcorrplot::ggcorrplot(ggtheme = theme_bw(), 
+                         title = 'Correlogram of the variables in our "toy example"', 
+                         colors = c("#FC8D59", "#FFFFFF", "#91CF60"))
+```
+
+Using the correlogram we can immediately see the relationships between our 
+original variable, the positive, and negative relationship-variables. 
+We can see that there are two variables with low correlation.
+
+Now, let's move to a more interesting and realistic example - 
+illustrating movie-genera relationships.
+
+## Relationships of movie-generas
+
