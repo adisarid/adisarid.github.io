@@ -133,7 +133,7 @@ titles with information such as release dates, runtime (duration in
 minutes), and associated genres. Since the original file is very large
 in size, I have rearranged it to contain just the genres, with 0-1
 coding (if a title is associated with a specific genre, the coding will
-be 1, otherwise it is 0).
+be 1, otherwise, it is 0).
 
 ```{r preprocessing imdb data, eval=FALSE}
 library(tidyverse)
@@ -171,9 +171,48 @@ imdb_genres_wide <- imdb_genres_long |>
 
 # Export the result to preserve for use
 # This one exports the entire data with title names
-write_csv(imdb_genres_wide, "imdb_genre_association.csv")
+# write_csv(imdb_genres_wide, "imdb_genre_association.csv")
 # This one exports just the 0-1 encoding without title names (takes less space)
 arrow::write_parquet(imdb_genres_wide |> select(-originalTitle), 
    "imdb_genre_association_no_name.parquet")
 
 ```
+
+```{r reading the data}
+imdb_genres_coding <- arrow::read_parquet("data/imdb_genre_association_no_name.parquet")
+
+glimpse(imdb_genres_coding)
+```
+
+The following correlogram shows the relationships between genres. It is
+also "clustered" in the sense that similar genres are re-arranged to
+appear as blocks.
+
+```{r genre correlogram}
+imdb_cor <- cor(imdb_genres_coding)
+ggcorrplot::ggcorrplot(imdb_cor,
+                       title = "Correlogram of movie genres",
+                       hc.order = TRUE,
+                       ggtheme = theme_bw(),
+                       colors = c("#D73027", "#FFFFFF", "#1A9850"),
+                       tl.cex = 10, 
+                       tl.srt = 90) + 
+  theme(axis.text.x = element_text(hjust = 0.5))
+```
+
+Generally we can see that the correlations are not very strong between
+genres (the strongest relationship is between
+
+Although the correlations are not very strong between genres (the
+highest are around 0.4), the chart immediately highlights some
+relationships:
+
+-   Action, Adventure, and Animation are related
+
+-   History, Biography, and Documentary
+
+-   Crime and Mystery
+
+-   Romance and Drama
+
+-   Talk-shows and News
