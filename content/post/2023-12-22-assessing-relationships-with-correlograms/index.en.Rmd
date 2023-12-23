@@ -18,39 +18,42 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
-We often find ourselves with a complex dataset containing numerous variables. 
-One of the initial steps in the discovery phase - the initial analysis where 
-you get familiar with the data - is using correlations to get a sense of the 
-relationships between the variables.
+We often find ourselves with a complex dataset containing numerous
+variables. One of the initial steps in the discovery phase - the initial
+analysis where you get familiar with the data - is using correlations to
+understand the relationships between the variables.
 
-A good tool for getting a quick glimpse of these relationships is a 
-**correlogram chart**, which is the hero of this post. But before that, 
+A good tool for getting a quick glimpse of these relationships is a
+**correlogram chart**, which is the hero of this post. But before that,
 a few words about correlations.
 
 ## What is a correlation coefficient?
 
-A correlation coefficient (denoted as ⍴) is a statistical measure indicating if 
-a statistical relationship (specifically linear) exists between two variables 
-(features of the data). 
+A correlation coefficient (denoted as ⍴) is a statistical measure
+indicating if a statistical relationship (specifically linear) exists
+between two variables (features of the data).
 
-Correlation ranges from -1 and up to +1. 
-The extremes indicate a strong relationship between two variables: 
+Correlation ranges from -1 and up to +1. The extremes indicate a strong
+relationship between two variables:
 
-   * A correlation coefficient of -1 (or close to it) indicates that when one 
-   variable increases, the other decreases (or vice versa)
+-   A correlation coefficient of -1 (or close to it) indicates that when
+    one variable increases, the other decreases (or vice versa)
 
-   * A correlation coefficient close to +1 indicates that the 
-   two variables increase or decrease together
+-   A correlation coefficient close to +1 indicates that the two
+    variables increase or decrease together
 
-   * A correlation coefficient close to 0 indicates that no 
-   relationship was found (linear at least, there might be a different 
-   relationship as we'll see in a moment).
+-   A correlation coefficient close to 0 indicates that no (linear)
+    relationship was found (there might be a different relationship as
+    we'll see in a moment).
 
 ## Correlation "toy example"
 
-To illustrate, here are a few scatter plots indicating the relationship 
+To illustrate, here are a few scatter plots indicating the relationship
 between two variables (represented by the x-axis and the y-axis).
 
 ```{r example for correlations, warning=FALSE, message=FALSE}
@@ -84,25 +87,26 @@ corr_examples %>%
   ggtitle("Illustration of variable relationships and correlation coefficient")
 ```
 
-These examples were engineered to show various types of relationships and how 
-they are reflected in the correlation coefficient. The two upper charts 
-illustrate strong relationships: either positive (upper-left) or negative 
-(upper-right).
+These examples were engineered to show various types of relationships
+and how they are reflected in the correlation coefficient. The two upper
+charts illustrate strong relationships: either positive (upper-left) or
+negative (upper-right).
 
-The bottom-left chart shows no-relationships (these are just random numbers 
-on the x and y-axis), and the bottom-right illustrates an interesting 
-relationship: the two variables are not correlated 
-(a correlation coefficient close to 0), but they are surely related to one 
-another. The y-value can either be x or -x. A simple transformation of y 
-(absolute value),  would yield a correlation coefficient of 1 instead of 0. 
-This last example also shows the limitation of using a correlation coefficient,
-having said that though, let's use a correlogram to inspect the variables.
+The bottom-left chart shows no-relationships (these are just random
+numbers on the x and y-axis), and the bottom-right illustrates an
+interesting relationship: the two variables are not correlated (a
+correlation coefficient close to 0), but they are surely related to one
+another. The y-value can either be x or -x. A simple transformation of y
+(absolute value), would yield a correlation coefficient of 1 instead of
+0. This last example also shows the limitation of using a correlation
+coefficient, having said that though, let's use a correlogram to inspect
+the variables.
 
 ## Correlograms to the rescue
 
-A correlogram is a powerful tool that allows us to get a quick glimpse of the 
-correlation coefficients of the data features visually. In our toy example, 
-it looks like this:
+A correlogram is a powerful tool that allows us to get a quick glimpse
+of the correlation coefficients of the data features visually. In our
+toy example, it looks like this:
 
 ```{r a correlogram}
 corr_examples %>% 
@@ -113,12 +117,63 @@ corr_examples %>%
                          colors = c("#FC8D59", "#FFFFFF", "#91CF60"))
 ```
 
-Using the correlogram we can immediately see the relationships between our 
-original variable, the positive, and negative relationship-variables. 
+Using the correlogram, we can immediately see the relationships between
+our original variable, the positive and negative relationship variables.
 We can see that there are two variables with low correlation.
 
-Now, let's move to a more interesting and realistic example - 
+Now, let's move to a more interesting and realistic example -
 illustrating movie-genera relationships.
 
-## Relationships of movie-generas
+## Relationships of movie-genres
 
+The IMDb has some interesting data for download (see [this
+link](https://datasets.imdbws.com/)). Specifically, one of the files
+they have made available is called `title.basics.tsc.gz` which contains
+titles with information such as release dates, runtime (duration in
+minutes), and associated genres. Since the original file is very large
+in size, I have rearranged it to contain just the genres, with 0-1
+coding (if a title is associated with a specific genre, the coding will
+be 1, otherwise it is 0).
+
+```{r preprocessing imdb data, eval=FALSE}
+library(tidyverse)
+
+# Read the data
+imdb_titles <- read_tsv('data.tsv')
+
+# Have a look on what we have
+glimpse(imdb_titles)
+
+# Rework the data to extract the genres
+imdb_genres  <- imdb_titles |>
+   select(originalTitle, genres) |>
+   separate(genres, into = c("genre1", "genre2", "genre3"), sep = ',')
+
+# Make the data into a long format
+imdb_genres_long <- imdb_genres |>
+   pivot_longer(cols = -originalTitle, names_to = "gen_loc_rm", values_to = "genre") |>
+   mutate(genre_assoc = 1) |>
+   filter(!is.na(genre))
+
+# Have a look on available genres in the data
+imdb_genres_long  |>
+   distinct(genre)
+
+# Make it wide again - as preperation to the correlogram
+imdb_genres_wide <- imdb_genres_long |>
+   select(-gen_loc_rm) |>
+   distinct(originalTitle, genre, .keep_all = TRUE) |>
+   pivot_wider(id_cols = originalTitle, 
+               names_from = genre, 
+               values_from = genre_assoc, 
+               values_fill = 0) |>
+   select(-`\\N`)
+
+# Export the result to preserve for use
+# This one exports the entire data with title names
+write_csv(imdb_genres_wide, "imdb_genre_association.csv")
+# This one exports just the 0-1 encoding without title names (takes less space)
+arrow::write_parquet(imdb_genres_wide |> select(-originalTitle), 
+   "imdb_genre_association_no_name.parquet")
+
+```
