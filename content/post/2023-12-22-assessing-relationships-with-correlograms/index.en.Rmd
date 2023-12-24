@@ -59,7 +59,7 @@ between two variables (represented by the x-axis and the y-axis).
 ```{r example for correlations, warning=FALSE, message=FALSE}
 
 library(tidyverse)
-
+set.seed(0)
 tot_samp <- 100
 base_x <- runif(tot_samp)
 

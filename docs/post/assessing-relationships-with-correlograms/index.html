@@ -906,7 +906,7 @@ we’ll see in a moment).</p></li>
 <p>To illustrate, here are a few scatter plots indicating the relationship
 between two variables (represented by the x-axis and the y-axis).</p>
 <pre class="r"><code>library(tidyverse)
-
+set.seed(0)
 tot_samp &lt;- 100
 base_x &lt;- runif(tot_samp)
 
@@ -917,8 +917,8 @@ corr_examples &lt;- tibble(x = base_x) %&gt;%
          low_corr2 = x * if_else(runif(tot_samp) &lt; 0.5, 1, -1))
 
 cor(corr_examples)[,1]</code></pre>
-<pre><code>##          x  high_corr  high_inve  low_corr1  low_corr2 
-##  1.0000000  0.8110265 -0.8127713  0.1859640 -0.0740417</code></pre>
+<pre><code>##           x   high_corr   high_inve   low_corr1   low_corr2 
+##  1.00000000  0.83236732 -0.79352962  0.08356114  0.06900645</code></pre>
 <pre class="r"><code>corr_examples %&gt;% 
   pivot_longer(-x, values_to = &quot;y&quot;, names_to = &quot;correlation&quot;) %&gt;% 
   mutate(correlation = fct_recode(correlation,
