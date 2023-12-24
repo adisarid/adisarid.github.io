@@ -5,12 +5,238 @@
     <link>https://adisarid.github.io/post/</link>
       <atom:link href="https://adisarid.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Fri, 29 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© 2023 Adi Sarid</copyright><lastBuildDate>Fri, 22 Dec 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://adisarid.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>Assessing relationships with correlograms</title>
+      <link>https://adisarid.github.io/post/assessing-relationships-with-correlograms/</link>
+      <pubDate>Fri, 22 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://adisarid.github.io/post/assessing-relationships-with-correlograms/</guid>
+      <description>
+
+
+&lt;p&gt;We often find ourselves with a complex dataset containing numerous
+variables. One of the initial steps in the discovery phase - the initial
+analysis where you get familiar with the data - is using correlations to
+understand the relationships between the variables.&lt;/p&gt;
+&lt;p&gt;A good tool for getting a quick glimpse of these relationships is a
+&lt;strong&gt;correlogram chart&lt;/strong&gt;, which is the hero of this post. But before that,
+a few words about correlations.&lt;/p&gt;
+&lt;div id=&#34;what-is-a-correlation-coefficient&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What is a correlation coefficient?&lt;/h2&gt;
+&lt;p&gt;A correlation coefficient (denoted as ⍴) is a statistical measure
+indicating if a statistical relationship (specifically linear) exists
+between two variables (features of the data).&lt;/p&gt;
+&lt;p&gt;Correlation ranges from -1 and up to +1. The extremes indicate a strong
+relationship between two variables:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A correlation coefficient of -1 (or close to it) indicates that when
+one variable increases, the other decreases (or vice versa)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A correlation coefficient close to +1 indicates that the two
+variables increase or decrease together&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A correlation coefficient close to 0 indicates that no (linear)
+relationship was found (there might be a different relationship as
+we’ll see in a moment).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;correlation-toy-example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Correlation “toy example”&lt;/h2&gt;
+&lt;p&gt;To illustrate, here are a few scatter plots indicating the relationship
+between two variables (represented by the x-axis and the y-axis).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+
+tot_samp &amp;lt;- 100
+base_x &amp;lt;- runif(tot_samp)
+
+corr_examples &amp;lt;- tibble(x = base_x) %&amp;gt;% 
+  mutate(high_corr = x + rnorm(tot_samp, sd = 0.2),
+         high_inve = -x + rnorm(tot_samp, sd = 0.2),
+         low_corr1 = runif(tot_samp) - 0.5,
+         low_corr2 = x * if_else(runif(tot_samp) &amp;lt; 0.5, 1, -1))
+
+cor(corr_examples)[,1]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##          x  high_corr  high_inve  low_corr1  low_corr2 
+##  1.0000000  0.8110265 -0.8127713  0.1859640 -0.0740417&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;corr_examples %&amp;gt;% 
+  pivot_longer(-x, values_to = &amp;quot;y&amp;quot;, names_to = &amp;quot;correlation&amp;quot;) %&amp;gt;% 
+  mutate(correlation = fct_recode(correlation,
+                                  &amp;quot;Positive relationship (⍴≈0.8)&amp;quot; = &amp;quot;high_corr&amp;quot;,
+                                  &amp;quot;Negative relationship (⍴≈-0.8)&amp;quot; = &amp;quot;high_inve&amp;quot;,
+                                  &amp;quot;No relationship (⍴≈0)&amp;quot; = &amp;quot;low_corr1&amp;quot;,
+                                  &amp;quot;Non-linear relationship (⍴≈0)&amp;quot; = &amp;quot;low_corr2&amp;quot;)) %&amp;gt;% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_point() + 
+  facet_wrap(~correlation) + 
+  theme_bw() + 
+  ylab(&amp;quot;Y Variable&amp;quot;) + 
+  xlab(&amp;quot;X Variable&amp;quot;) + 
+  ggtitle(&amp;quot;Illustration of variable relationships and correlation coefficient&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/assessing-relationships-with-correlograms/index.en_files/figure-html/example%20for%20correlations-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;These examples were engineered to show various types of relationships
+and how they are reflected in the correlation coefficient. The two upper
+charts illustrate strong relationships: either positive (upper-left) or
+negative (upper-right).&lt;/p&gt;
+&lt;p&gt;The bottom-left chart shows no-relationships (these are just random
+numbers on the x and y-axis), and the bottom-right illustrates an
+interesting relationship: the two variables are not correlated (a
+correlation coefficient close to 0), but they are surely related to one
+another. The y-value can either be x or -x. A simple transformation of y
+(absolute value), would yield a correlation coefficient of 1 instead of
+0. This last example also shows the limitation of using a correlation
+coefficient, having said that though, let’s use a correlogram to inspect
+the variables.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;correlograms-to-the-rescue&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Correlograms to the rescue&lt;/h2&gt;
+&lt;p&gt;A correlogram is a powerful tool that allows us to get a quick glimpse
+of the correlation coefficients of the data features visually. In our
+toy example, it looks like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;corr_examples %&amp;gt;% 
+  set_names(c(&amp;quot;Original variable&amp;quot;, &amp;quot;Positive&amp;quot;, &amp;quot;Negative&amp;quot;, &amp;quot;No relationship&amp;quot;, &amp;quot;Non-linear&amp;quot;)) %&amp;gt;% 
+  cor() %&amp;gt;% 
+  ggcorrplot::ggcorrplot(ggtheme = theme_bw(), 
+                         title = &amp;#39;Correlogram of the variables in our &amp;quot;toy example&amp;quot;&amp;#39;, 
+                         colors = c(&amp;quot;#FC8D59&amp;quot;, &amp;quot;#FFFFFF&amp;quot;, &amp;quot;#91CF60&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/assessing-relationships-with-correlograms/index.en_files/figure-html/a%20correlogram-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Using the correlogram, we can immediately see the relationships between
+our original variable, the positive and negative relationship variables.
+We can see that there are two variables with low correlation.&lt;/p&gt;
+&lt;p&gt;Now, let’s move to a more interesting and realistic example -
+illustrating movie-genera relationships.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;relationships-of-movie-genres&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Relationships of movie-genres&lt;/h2&gt;
+&lt;p&gt;The IMDb has some interesting data for download (see &lt;a href=&#34;https://datasets.imdbws.com/&#34;&gt;this
+link&lt;/a&gt;). Specifically, one of the files
+they have made available is called &lt;code&gt;title.basics.tsc.gz&lt;/code&gt; which contains
+titles with information such as release dates, runtime (duration in
+minutes), and associated genres. Since the original file is very large
+in size, I have rearranged it to contain just the genres, with 0-1
+coding (if a title is associated with a specific genre, the coding will
+be 1, otherwise, it is 0).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+
+# Read the data
+imdb_titles &amp;lt;- read_tsv(&amp;#39;data.tsv&amp;#39;)
+
+# Have a look on what we have
+glimpse(imdb_titles)
+
+# Rework the data to extract the genres
+imdb_genres  &amp;lt;- imdb_titles |&amp;gt;
+   select(originalTitle, genres) |&amp;gt;
+   separate(genres, into = c(&amp;quot;genre1&amp;quot;, &amp;quot;genre2&amp;quot;, &amp;quot;genre3&amp;quot;), sep = &amp;#39;,&amp;#39;)
+
+# Make the data into a long format
+imdb_genres_long &amp;lt;- imdb_genres |&amp;gt;
+   pivot_longer(cols = -originalTitle, names_to = &amp;quot;gen_loc_rm&amp;quot;, values_to = &amp;quot;genre&amp;quot;) |&amp;gt;
+   mutate(genre_assoc = 1) |&amp;gt;
+   filter(!is.na(genre))
+
+# Have a look on available genres in the data
+imdb_genres_long  |&amp;gt;
+   distinct(genre)
+
+# Make it wide again - as preperation to the correlogram
+imdb_genres_wide &amp;lt;- imdb_genres_long |&amp;gt;
+   select(-gen_loc_rm) |&amp;gt;
+   distinct(originalTitle, genre, .keep_all = TRUE) |&amp;gt;
+   pivot_wider(id_cols = originalTitle, 
+               names_from = genre, 
+               values_from = genre_assoc, 
+               values_fill = 0) |&amp;gt;
+   select(-`\\N`)
+
+# Export the result to preserve for use
+# This one exports the entire data with title names
+# write_csv(imdb_genres_wide, &amp;quot;imdb_genre_association.csv&amp;quot;)
+# This one exports just the 0-1 encoding without title names (takes less space)
+arrow::write_parquet(imdb_genres_wide |&amp;gt; select(-originalTitle), 
+   &amp;quot;imdb_genre_association_no_name.parquet&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;imdb_genres_coding &amp;lt;- arrow::read_parquet(&amp;quot;data/imdb_genre_association_no_name.parquet&amp;quot;)
+
+glimpse(imdb_genres_coding)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Rows: 4,701,772
+## Columns: 28
+## $ Documentary  &amp;lt;dbl&amp;gt; 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, …
+## $ Short        &amp;lt;dbl&amp;gt; 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ Animation    &amp;lt;dbl&amp;gt; 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, …
+## $ Comedy       &amp;lt;dbl&amp;gt; 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, …
+## $ Romance      &amp;lt;dbl&amp;gt; 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Sport        &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ News         &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Drama        &amp;lt;dbl&amp;gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ Fantasy      &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Horror       &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Biography    &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Music        &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ War          &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Crime        &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Western      &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Family       &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ Adventure    &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Action       &amp;lt;dbl&amp;gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ History      &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Mystery      &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Sci-Fi`     &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Musical      &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Thriller     &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Film-Noir`  &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Talk-Show`  &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Game-Show`  &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Reality-TV` &amp;lt;dbl&amp;gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Adult        &amp;lt;dbl&amp;gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following correlogram shows the relationships between genres. It is
+also “clustered” in the sense that similar genres are re-arranged to
+appear as blocks.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;imdb_cor &amp;lt;- cor(imdb_genres_coding)
+ggcorrplot::ggcorrplot(imdb_cor,
+                       title = &amp;quot;Correlogram of movie genres&amp;quot;,
+                       hc.order = TRUE,
+                       ggtheme = theme_bw(),
+                       colors = c(&amp;quot;#D73027&amp;quot;, &amp;quot;#FFFFFF&amp;quot;, &amp;quot;#1A9850&amp;quot;),
+                       tl.cex = 10, 
+                       tl.srt = 90) + 
+  theme(axis.text.x = element_text(vjust = 0.5))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/assessing-relationships-with-correlograms/index.en_files/figure-html/genre%20correlogram-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Generally, we can see that the correlations are not very strong between
+genres (the strongest relationship is between&lt;/p&gt;
+&lt;p&gt;Although the correlations are not very strong between most genres (the
+highest are around 0.4), the chart immediately highlights some positive
+relationships (partial list):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Action, Adventure, and Animation are related&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;History, Biography, and Documentary&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Crime and Mystery&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Romance and Drama&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Talk-shows and News&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Thriller and Horror (and also Crime and Mystery)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We can also see some negative (opposite) relationships such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Adult vs. Comedy&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Documentary vs. Comedy&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Drama vs. Documentary&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;In this post, I discussed correlations in general and illustrated how
+different relationships are expressed in positive, negative, or
+sometimes even low correlation (when the relationship is non-linear).&lt;/p&gt;
+&lt;p&gt;We’ve seen how correlogram charts can be a strong visual tool for
+quickly glancing at a large data set and highlighting some
+relationships.&lt;/p&gt;
+&lt;p&gt;Correlograms are usually only one of the initial steps - they give us
+some directions, but most of the time further research is required.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Insights from Posit::conf(2023)</title>

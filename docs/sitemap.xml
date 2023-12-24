@@ -2,13 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://adisarid.github.io/</loc>
+    <lastmod>2023-12-22T16:49:06+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/post/assessing-relationships-with-correlograms/</loc>
+    <lastmod>2023-12-22T16:49:06+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/categories/</loc>
+    <lastmod>2023-12-22T16:49:06+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tag/correlation/</loc>
+    <lastmod>2023-12-22T16:49:06+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/post/</loc>
+    <lastmod>2023-12-22T16:49:06+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/category/r/</loc>
+    <lastmod>2023-12-22T16:49:06+00:00</lastmod>
+  </url><url>
+    <loc>https://adisarid.github.io/tags/</loc>
+    <lastmod>2023-12-22T16:49:06+00:00</lastmod>
+  </url><url>
     <loc>https://adisarid.github.io/publication-type/0/</loc>
     <lastmod>2023-10-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/author/adi-s.-sarid/</loc>
-    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/</loc>
     <lastmod>2023-10-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/authors/</loc>
@@ -32,12 +50,6 @@
     <loc>https://adisarid.github.io/tag/research-paper/</loc>
     <lastmod>2023-10-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://adisarid.github.io/tags/</loc>
-    <lastmod>2023-10-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/categories/</loc>
-    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
-  </url><url>
     <loc>https://adisarid.github.io/tag/conference/</loc>
     <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
@@ -45,12 +57,6 @@
     <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/tag/positconf/</loc>
-    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/post/</loc>
-    <lastmod>2023-09-29T09:12:37+00:00</lastmod>
-  </url><url>
-    <loc>https://adisarid.github.io/category/r/</loc>
     <lastmod>2023-09-29T09:12:37+00:00</lastmod>
   </url><url>
     <loc>https://adisarid.github.io/tag/rstudio-conference/</loc>

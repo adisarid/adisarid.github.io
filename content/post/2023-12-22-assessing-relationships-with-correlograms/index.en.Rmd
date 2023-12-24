@@ -197,15 +197,15 @@ ggcorrplot::ggcorrplot(imdb_cor,
                        colors = c("#D73027", "#FFFFFF", "#1A9850"),
                        tl.cex = 10, 
                        tl.srt = 90) + 
-  theme(axis.text.x = element_text(hjust = 0.5))
+  theme(axis.text.x = element_text(vjust = 0.5))
 ```
 
-Generally we can see that the correlations are not very strong between
+Generally, we can see that the correlations are not very strong between
 genres (the strongest relationship is between
 
-Although the correlations are not very strong between genres (the
-highest are around 0.4), the chart immediately highlights some
-relationships:
+Although the correlations are not very strong between most genres (the
+highest are around 0.4), the chart immediately highlights some positive
+relationships (partial list):
 
 -   Action, Adventure, and Animation are related
 
@@ -216,3 +216,26 @@ relationships:
 -   Romance and Drama
 
 -   Talk-shows and News
+
+-   Thriller and Horror (and also Crime and Mystery)
+
+We can also see some negative (opposite) relationships such as:
+
+-   Adult vs. Comedy
+
+-   Documentary vs. Comedy
+
+-   Drama vs. Documentary
+
+## Conclusions
+
+In this post, I discussed correlations in general and illustrated how
+different relationships are expressed in positive, negative, or
+sometimes even low correlation (when the relationship is non-linear).
+
+We've seen how correlogram charts can be a strong visual tool for
+quickly glancing at a large data set and highlighting some
+relationships.
+
+Correlograms are usually only one of the initial steps - they give us
+some directions, but most of the time further research is required.

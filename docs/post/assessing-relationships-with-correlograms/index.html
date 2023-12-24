@@ -1,0 +1,1505 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="We often find ourselves with a complex dataset containing numerous variables. One of the initial steps in the discovery phase - the initial analysis where you get familiar with the data - is using correlations to understand the relationships between the variables." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://adisarid.github.io/post/assessing-relationships-with-correlograms/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.f0cf03b20998d63e314819fa4a90c13f.css" />
+
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K7YT1P1DEV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-K7YT1P1DEV', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/manifest.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_180x180_fill_lanczos_center_3.png" />
+
+  <link rel="canonical" href="https://adisarid.github.io/post/assessing-relationships-with-correlograms/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Adi Sarid" />
+  <meta property="og:url" content="https://adisarid.github.io/post/assessing-relationships-with-correlograms/" />
+  <meta property="og:title" content="Assessing relationships with correlograms | Adi Sarid" />
+  <meta property="og:description" content="We often find ourselves with a complex dataset containing numerous variables. One of the initial steps in the discovery phase - the initial analysis where you get familiar with the data - is using correlations to understand the relationships between the variables." /><meta property="og:image" content="https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png" />
+    <meta property="twitter:image" content="https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2023-12-22T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2023-12-22T16:49:06&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://adisarid.github.io/post/assessing-relationships-with-correlograms/"
+  },
+  "headline": "Assessing relationships with correlograms",
+  
+  "datePublished": "2023-12-22T00:00:00Z",
+  "dateModified": "2023-12-22T16:49:06Z",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Adi Sarid",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://adisarid.github.io/media/icon_hu3addb1d2efd6524d7c75d3b1174538d9_629_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "We often find ourselves with a complex dataset containing numerous variables. One of the initial steps in the discovery phase - the initial analysis where you get familiar with the data - is using correlations to understand the relationships between the variables."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Assessing relationships with correlograms | Adi Sarid</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="f63b4f107ab0c6fe2c38079d0884834b" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Adi Sarid</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#intro"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Assessing relationships with correlograms</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Dec 22, 2023
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<p>We often find ourselves with a complex dataset containing numerous
+variables. One of the initial steps in the discovery phase - the initial
+analysis where you get familiar with the data - is using correlations to
+understand the relationships between the variables.</p>
+<p>A good tool for getting a quick glimpse of these relationships is a
+<strong>correlogram chart</strong>, which is the hero of this post. But before that,
+a few words about correlations.</p>
+<div id="what-is-a-correlation-coefficient" class="section level2">
+<h2>What is a correlation coefficient?</h2>
+<p>A correlation coefficient (denoted as ⍴) is a statistical measure
+indicating if a statistical relationship (specifically linear) exists
+between two variables (features of the data).</p>
+<p>Correlation ranges from -1 and up to +1. The extremes indicate a strong
+relationship between two variables:</p>
+<ul>
+<li><p>A correlation coefficient of -1 (or close to it) indicates that when
+one variable increases, the other decreases (or vice versa)</p></li>
+<li><p>A correlation coefficient close to +1 indicates that the two
+variables increase or decrease together</p></li>
+<li><p>A correlation coefficient close to 0 indicates that no (linear)
+relationship was found (there might be a different relationship as
+we’ll see in a moment).</p></li>
+</ul>
+</div>
+<div id="correlation-toy-example" class="section level2">
+<h2>Correlation “toy example”</h2>
+<p>To illustrate, here are a few scatter plots indicating the relationship
+between two variables (represented by the x-axis and the y-axis).</p>
+<pre class="r"><code>library(tidyverse)
+
+tot_samp &lt;- 100
+base_x &lt;- runif(tot_samp)
+
+corr_examples &lt;- tibble(x = base_x) %&gt;% 
+  mutate(high_corr = x + rnorm(tot_samp, sd = 0.2),
+         high_inve = -x + rnorm(tot_samp, sd = 0.2),
+         low_corr1 = runif(tot_samp) - 0.5,
+         low_corr2 = x * if_else(runif(tot_samp) &lt; 0.5, 1, -1))
+
+cor(corr_examples)[,1]</code></pre>
+<pre><code>##          x  high_corr  high_inve  low_corr1  low_corr2 
+##  1.0000000  0.8110265 -0.8127713  0.1859640 -0.0740417</code></pre>
+<pre class="r"><code>corr_examples %&gt;% 
+  pivot_longer(-x, values_to = &quot;y&quot;, names_to = &quot;correlation&quot;) %&gt;% 
+  mutate(correlation = fct_recode(correlation,
+                                  &quot;Positive relationship (⍴≈0.8)&quot; = &quot;high_corr&quot;,
+                                  &quot;Negative relationship (⍴≈-0.8)&quot; = &quot;high_inve&quot;,
+                                  &quot;No relationship (⍴≈0)&quot; = &quot;low_corr1&quot;,
+                                  &quot;Non-linear relationship (⍴≈0)&quot; = &quot;low_corr2&quot;)) %&gt;% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_point() + 
+  facet_wrap(~correlation) + 
+  theme_bw() + 
+  ylab(&quot;Y Variable&quot;) + 
+  xlab(&quot;X Variable&quot;) + 
+  ggtitle(&quot;Illustration of variable relationships and correlation coefficient&quot;)</code></pre>
+<p><img src="https://adisarid.github.io/post/assessing-relationships-with-correlograms/index.en_files/figure-html/example%20for%20correlations-1.png" width="672" /></p>
+<p>These examples were engineered to show various types of relationships
+and how they are reflected in the correlation coefficient. The two upper
+charts illustrate strong relationships: either positive (upper-left) or
+negative (upper-right).</p>
+<p>The bottom-left chart shows no-relationships (these are just random
+numbers on the x and y-axis), and the bottom-right illustrates an
+interesting relationship: the two variables are not correlated (a
+correlation coefficient close to 0), but they are surely related to one
+another. The y-value can either be x or -x. A simple transformation of y
+(absolute value), would yield a correlation coefficient of 1 instead of
+0. This last example also shows the limitation of using a correlation
+coefficient, having said that though, let’s use a correlogram to inspect
+the variables.</p>
+</div>
+<div id="correlograms-to-the-rescue" class="section level2">
+<h2>Correlograms to the rescue</h2>
+<p>A correlogram is a powerful tool that allows us to get a quick glimpse
+of the correlation coefficients of the data features visually. In our
+toy example, it looks like this:</p>
+<pre class="r"><code>corr_examples %&gt;% 
+  set_names(c(&quot;Original variable&quot;, &quot;Positive&quot;, &quot;Negative&quot;, &quot;No relationship&quot;, &quot;Non-linear&quot;)) %&gt;% 
+  cor() %&gt;% 
+  ggcorrplot::ggcorrplot(ggtheme = theme_bw(), 
+                         title = &#39;Correlogram of the variables in our &quot;toy example&quot;&#39;, 
+                         colors = c(&quot;#FC8D59&quot;, &quot;#FFFFFF&quot;, &quot;#91CF60&quot;))</code></pre>
+<p><img src="https://adisarid.github.io/post/assessing-relationships-with-correlograms/index.en_files/figure-html/a%20correlogram-1.png" width="672" /></p>
+<p>Using the correlogram, we can immediately see the relationships between
+our original variable, the positive and negative relationship variables.
+We can see that there are two variables with low correlation.</p>
+<p>Now, let’s move to a more interesting and realistic example -
+illustrating movie-genera relationships.</p>
+</div>
+<div id="relationships-of-movie-genres" class="section level2">
+<h2>Relationships of movie-genres</h2>
+<p>The IMDb has some interesting data for download (see <a href="https://datasets.imdbws.com/">this
+link</a>). Specifically, one of the files
+they have made available is called <code>title.basics.tsc.gz</code> which contains
+titles with information such as release dates, runtime (duration in
+minutes), and associated genres. Since the original file is very large
+in size, I have rearranged it to contain just the genres, with 0-1
+coding (if a title is associated with a specific genre, the coding will
+be 1, otherwise, it is 0).</p>
+<pre class="r"><code>library(tidyverse)
+
+# Read the data
+imdb_titles &lt;- read_tsv(&#39;data.tsv&#39;)
+
+# Have a look on what we have
+glimpse(imdb_titles)
+
+# Rework the data to extract the genres
+imdb_genres  &lt;- imdb_titles |&gt;
+   select(originalTitle, genres) |&gt;
+   separate(genres, into = c(&quot;genre1&quot;, &quot;genre2&quot;, &quot;genre3&quot;), sep = &#39;,&#39;)
+
+# Make the data into a long format
+imdb_genres_long &lt;- imdb_genres |&gt;
+   pivot_longer(cols = -originalTitle, names_to = &quot;gen_loc_rm&quot;, values_to = &quot;genre&quot;) |&gt;
+   mutate(genre_assoc = 1) |&gt;
+   filter(!is.na(genre))
+
+# Have a look on available genres in the data
+imdb_genres_long  |&gt;
+   distinct(genre)
+
+# Make it wide again - as preperation to the correlogram
+imdb_genres_wide &lt;- imdb_genres_long |&gt;
+   select(-gen_loc_rm) |&gt;
+   distinct(originalTitle, genre, .keep_all = TRUE) |&gt;
+   pivot_wider(id_cols = originalTitle, 
+               names_from = genre, 
+               values_from = genre_assoc, 
+               values_fill = 0) |&gt;
+   select(-`\\N`)
+
+# Export the result to preserve for use
+# This one exports the entire data with title names
+# write_csv(imdb_genres_wide, &quot;imdb_genre_association.csv&quot;)
+# This one exports just the 0-1 encoding without title names (takes less space)
+arrow::write_parquet(imdb_genres_wide |&gt; select(-originalTitle), 
+   &quot;imdb_genre_association_no_name.parquet&quot;)</code></pre>
+<pre class="r"><code>imdb_genres_coding &lt;- arrow::read_parquet(&quot;data/imdb_genre_association_no_name.parquet&quot;)
+
+glimpse(imdb_genres_coding)</code></pre>
+<pre><code>## Rows: 4,701,772
+## Columns: 28
+## $ Documentary  &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, …
+## $ Short        &lt;dbl&gt; 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ Animation    &lt;dbl&gt; 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, …
+## $ Comedy       &lt;dbl&gt; 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, …
+## $ Romance      &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Sport        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ News         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Drama        &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ Fantasy      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Horror       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Biography    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Music        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ War          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Crime        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Western      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Family       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
+## $ Adventure    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Action       &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ History      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Mystery      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Sci-Fi`     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Musical      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Thriller     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Film-Noir`  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Talk-Show`  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Game-Show`  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ `Reality-TV` &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ Adult        &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</code></pre>
+<p>The following correlogram shows the relationships between genres. It is
+also “clustered” in the sense that similar genres are re-arranged to
+appear as blocks.</p>
+<pre class="r"><code>imdb_cor &lt;- cor(imdb_genres_coding)
+ggcorrplot::ggcorrplot(imdb_cor,
+                       title = &quot;Correlogram of movie genres&quot;,
+                       hc.order = TRUE,
+                       ggtheme = theme_bw(),
+                       colors = c(&quot;#D73027&quot;, &quot;#FFFFFF&quot;, &quot;#1A9850&quot;),
+                       tl.cex = 10, 
+                       tl.srt = 90) + 
+  theme(axis.text.x = element_text(vjust = 0.5))</code></pre>
+<p><img src="https://adisarid.github.io/post/assessing-relationships-with-correlograms/index.en_files/figure-html/genre%20correlogram-1.png" width="672" /></p>
+<p>Generally, we can see that the correlations are not very strong between
+genres (the strongest relationship is between</p>
+<p>Although the correlations are not very strong between most genres (the
+highest are around 0.4), the chart immediately highlights some positive
+relationships (partial list):</p>
+<ul>
+<li><p>Action, Adventure, and Animation are related</p></li>
+<li><p>History, Biography, and Documentary</p></li>
+<li><p>Crime and Mystery</p></li>
+<li><p>Romance and Drama</p></li>
+<li><p>Talk-shows and News</p></li>
+<li><p>Thriller and Horror (and also Crime and Mystery)</p></li>
+</ul>
+<p>We can also see some negative (opposite) relationships such as:</p>
+<ul>
+<li><p>Adult vs. Comedy</p></li>
+<li><p>Documentary vs. Comedy</p></li>
+<li><p>Drama vs. Documentary</p></li>
+</ul>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>In this post, I discussed correlations in general and illustrated how
+different relationships are expressed in positive, negative, or
+sometimes even low correlation (when the relationship is non-linear).</p>
+<p>We’ve seen how correlogram charts can be a strong visual tool for
+quickly glancing at a large data set and highlighting some
+relationships.</p>
+<p>Correlograms are usually only one of the initial steps - they give us
+some directions, but most of the time further research is required.</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/correlation/">Correlation</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://adisarid.github.io/post/assessing-relationships-with-correlograms/&amp;text=Assessing%20relationships%20with%20correlograms" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://adisarid.github.io/post/assessing-relationships-with-correlograms/&amp;t=Assessing%20relationships%20with%20correlograms" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Assessing%20relationships%20with%20correlograms&amp;body=https://adisarid.github.io/post/assessing-relationships-with-correlograms/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://adisarid.github.io/post/assessing-relationships-with-correlograms/&amp;title=Assessing%20relationships%20with%20correlograms" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Assessing%20relationships%20with%20correlograms%20https://adisarid.github.io/post/assessing-relationships-with-correlograms/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://adisarid.github.io/post/assessing-relationships-with-correlograms/&amp;title=Assessing%20relationships%20with%20correlograms" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://adisarid.github.io"></a></h5>
+      <h6 class="card-subtitle"><img class = "avatar avatar-circle" src="/home/adi_sarid_hex_headshot.jpg" width="100" height="100" style="zoom:80%; text-align:left;"><br/>Partner and Head of Data Science</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/SaridResearch" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=Lza4mMoAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/adisarid" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+  <p class="powered-by">
+    © 2023 Adi Sarid
+  </p>
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.8859d3cf6e5d748215fea2814e2e9c7f.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>
