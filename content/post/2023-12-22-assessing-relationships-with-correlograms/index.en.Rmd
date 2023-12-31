@@ -200,12 +200,9 @@ ggcorrplot::ggcorrplot(imdb_cor,
   theme(axis.text.x = element_text(vjust = 0.5))
 ```
 
-Generally, we can see that the correlations are not very strong between
-genres (the strongest relationship is between
-
 Although the correlations are not very strong between most genres (the
-highest are around 0.4), the chart immediately highlights some positive
-relationships (partial list):
+highest are around 0.4 between action and adventure), the chart
+immediately highlights some positive relationships (partial list):
 
 -   Action, Adventure, and Animation are related
 

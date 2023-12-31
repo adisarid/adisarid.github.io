@@ -204,11 +204,9 @@ ggcorrplot::ggcorrplot(imdb_cor,
                        tl.srt = 90) + 
   theme(axis.text.x = element_text(vjust = 0.5))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://adisarid.github.io/post/assessing-relationships-with-correlograms/index.en_files/figure-html/genre%20correlogram-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Generally, we can see that the correlations are not very strong between
-genres (the strongest relationship is between&lt;/p&gt;
 &lt;p&gt;Although the correlations are not very strong between most genres (the
-highest are around 0.4), the chart immediately highlights some positive
-relationships (partial list):&lt;/p&gt;
+highest are around 0.4 between action and adventure), the chart
+immediately highlights some positive relationships (partial list):&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Action, Adventure, and Animation are related&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;History, Biography, and Documentary&lt;/p&gt;&lt;/li&gt;
